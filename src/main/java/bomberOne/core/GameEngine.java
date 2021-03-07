@@ -1,4 +1,4 @@
-package bomberOneCore;
+package bomberOne.core;
 
 public interface GameEngine {
 
