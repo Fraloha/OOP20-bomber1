@@ -1,0 +1,11 @@
+Cose da gestire:
+- Fuoco Amico
+- Tipo Nemici
+
+
+
+Appunti:
+- I nemici possono Modificare la mappa? SI, accidentalmente
+- I nemici possono muoversi mentre attaccano ? NO
+- l'esplosioni trapassano le entità? si, solo i nemici(salvo powerUp PIERCE)
+
