@@ -5,7 +5,11 @@ Cose da gestire:
 
 
 Appunti:
-- I nemici possono Modificare la mappa? SI, accidentalmente
-- I nemici possono muoversi mentre attaccano ? NO
 - l'esplosioni trapassano le entità? si, solo i nemici(salvo powerUp PIERCE)
+
+- Due difficoltà:
+    1- facile -> (No respawn nemici, meno veloci, più powerUp, nemici non ti seguono)
+    2- difficile -> (respawn nemici, nemici più veloci, meno % powerUp, nemici ti seguono)
+
+Il gioco finisce quando le casse sono finite e anche i nemici
 
