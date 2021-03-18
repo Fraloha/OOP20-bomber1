@@ -6,6 +6,7 @@ Cose da gestire:
 
 Appunti:
 - l'esplosioni trapassano le entità? si, solo i nemici(salvo powerUp PIERCE)
+- i nemici ogni volta che spawnano stanno fermi 4 secondi prima di partire
 
 - Due difficoltà:
     1- facile -> (No respawn nemici, meno veloci, più powerUp, nemici non ti seguono)
