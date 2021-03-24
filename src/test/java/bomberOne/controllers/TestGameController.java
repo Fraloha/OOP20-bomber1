@@ -13,6 +13,4 @@ public class TestGameController {
 	public void testList() {
 		assertEquals(List.of(1,2,3), exList);
 	}
-	
-	
 }
