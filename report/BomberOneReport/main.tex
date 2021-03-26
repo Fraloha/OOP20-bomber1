@@ -22,74 +22,56 @@
 \tableofcontents
 
 \chapter{Analisi}
-Il software ha lo scopo di replicare in una formula rivisitata lo storico videogame arcade NEO Bomberman.
-Il player, nei panni del Bomberman, sarà catapultato in un'arena situata all'interno di un castello.
+Il software ha lo scopo di replicare in una formula rivisitata lo storico videogame arcade NEO Bomberman (\url{https://it.wikipedia.org/wiki/Neo_Bomberman}).
+Il player, nei panni del Bomberman avrà l'obbiettivo di distruggere tutte le casse presenti nella mappa entro lo scadere di un certo limite di tempo. 
 \\
-L'obbiettivo del protagonista sarà quello di distruggere tutte le casse presenti nella mappa entro lo scadere di un certo limite di tempo. 
-\\
-\textbf{ATTENZIONE!} Ad ostacolare l'impresa del Bomberman saranno presenti pericolosi nemici, eliminali tutti!!
+Ad ostacolare il Bomberman saranno presenti dei nemici, anch'essi da eliminare.
 
 \section{Requisiti}
 
 \subsubsection{Requisiti funzionali}
 \begin{itemize}
-    \item Il menù di gioco, visualizzato all'avvio dell'applicazione, permette di iniziare una nuova partita (selezionando la difficoltà) e di accedere alla classifica.
-	\item Una volta lanciata la partita, verrà creata una mappa 2D nel quale saranno presenti numerose entità, quali Protagonista Casse e Nemici.
-	\item La skin del personaggio dovrà essere modificabile.
-	\item Il Bomberman avrà a disposizione 3 vite.
-	\item Il protagonista potrà tentare di distruggere le altre entità tramite il rilascio di bombe, accumulando mano a mano Punti abilità.
-	\item I nemici saranno in grado di colpire il protagonista corpo a corpo, togliendogli una vita.
-	\\
-	\item Le casse colpite potrebbero rilasciare un powerUp tra i seguenti: \begin{itemize}
-	    \item \textbf{TimeExtra}: saranno aggiunti secondi al tempo rimanente.
-	    \item \textbf{Pierce}: l'esplosione delle bombe potrà trapassare casse e nemici.
-	    \item \textbf{FirePower}: l'esplosione delle bombe potrà colpire più lontano.
-	    \item \textbf{LifeExtra}: verrà aggiunta una vita al Bomberman.
-	    \item \textbf{Speed}: la velocità del Bomberman verrà aumentata.
+	\item Creazione di una mappa 2D nel quale saranno presenti svariate entità, con le quali il protagonista potrà interagire.
+	\item Implementazione di due diverse difficoltà, che andranno a modificare l'esperienza di gioco:
+	\begin{itemize}
+	    \item \textbf{Difficoltà Standard}: 
+	    \item \textbf{Difficoltà Hardcore}: 
 	\end{itemize}
-	\item La partita termina quando il Bomberman avrà terminato le vite, oppure quando sarà scaduto il tempo, oppure ancora quando si saranno eliminati tutti i nemici e tutte le casse.
-	\item Una volta conclusa la partita, il nome del player verrà salvato nella classifica insieme al relativo punteggio.
+	    
+	\item Realizzazione del Bomberman in grado di spostarsi all'interno della mappa e di rilasciare le bombe.
+	\item Realizzazione di nemici dotati di intelligenza, e in grado di colpire corpo a corpo il Player.
+	\item Realizzazione di svariati PowerUp (potenziamenti per il Bomberman).
+	\item Creazione di elementi distruttibili, nonchè le casse di gioco.
+	\item Realizzazione del respawn dei nemici.
+	\item Fornire all'utente la possiblità di salvare il proprio score, in una classifica globale.
+	\item Realizzazione di un menu nel quale l'utente potrà navigare e scegliere se lanciare una partita, oppure accedere alla classifica dei punteggi.
+	\\
+
 \end{itemize}
 
 \subsubsection{Requisiti non funzionali}
 \begin{itemize}
 	\item Prestazioni in grado di fornire una buona esperienza di gioco.
+	\item Disposizione casuale delle casse all'interno della mappa.
+	\item Possibilità da parte dell'utente di scegliere i comandi di gioco e l'aspetto del Bomberman.
 \end{itemize}
 
-\subsection*{Elementi positivi}
-\begin{itemize}
-	\item Si fornisce una descrizione in linguaggio naturale di ciò che il software dovrà fare.
-	\item Gli obiettivi sono spiegati con chiarezza, per punti.
-	\item Se il software è stato commissionato o è destinato ad un utente o compagnia specifici, il committente viene nominato.
-	\item Se vi sono termini il cui significato non è immediatamente intuibile, essi vengono spiegati.
-	\item Vengono descritti separatamente requisiti funzionali e non funzionali.
-	\item Considerato a un paio di pagine un limite ragionevole alla lunghezza della parte sui requisiti, in quello spazio si deve cercare di chiarire \textit{tutti} gli aspetti dell'applicazione, non lasciando decisioni che impattano la parte ``esterna'' alla discussione del design (che dovrebbe solo occuparsi della parte ``interna'').
-\end{itemize}
-
-\subsection*{Elementi negativi}
-\begin{itemize}
-	\item Si forniscono indicazioni circa le soluzioni che si vogliono adottare
-	\item Si forniscono dettagli di tipo tecnico o implementativo (parlando di classi, linguaggi di programmazione, librerie, eccetera)
-\end{itemize}
 
 \section{Analisi e modello del dominio}
 
-In questa sezione si descrive il modello del \textit{dominio
-applicativo}, descrivendo le \textit{entità} in gioco ed i rapporti fra loro.
-%
-Si possono sollevare eventuali aspetti particolarmente impegnativi, descrivendo perché lo sono, senza inserire idee circa possibili soluzioni, ovvero sull'organizzazione interna del software.
-%
-Infatti, la fase di analisi va effettuata \textbf{prima} del progetto: né il progetto né il software esistono nel momento in cui si effettua l'analisi.
-%
-La discussione di aspetti propri del software (ossia, della \textit{soluzione} al problema e non del problema stesso) appartengono alla sfera della progettazione, e vanno discussi successivamente.
-
-È obbligatorio fornire uno schema UML del dominio, che diventerà anche lo scheletro della
-parte ``entity'' del modello dell'applicazione, ovvero degli elementi costitutivi del modello (in ottica MVC - Model View Controller): se l'analisi è ben fatta, dovreste ottenere una gerarchia di concetti che rappresentano le entità che compongono il problema da risolvere.
-%
-Un'analisi ben svolta \textbf{prima} di cimentarsi con lo sviluppo rappresenta un notevole aiuto per
-le fasi successive: è sufficiente descrivere a parole il dominio, quindi estrarre i sostantivi
-utilizzati, capire il loro ruolo all'interno del problema, le relazioni che intercorrono fra loro, e
-reificarli in interfacce.
+Una volta avviata la partita il giocatore verrà collocato all'interno della mappa nella quale saranno presenti casse, nemici e muri indistruttibili.
+Il Bomberman per vincere la partita dovrà aver distrutto, tramite il rilascio di bombe, tutte le casse e tutti i nemici presenti, entro lo scadere del tempo limite.
+Le difficoltà primarie saranno:
+\begin{itemize}
+    \item Far interagire il protagonista con i nemici e l'ambiente di gioco gestendo al meglio le varie collisioni e i vari eventi.
+    \item Realizzare due difficoltà del gameplay caratterizzate da dinamiche differenti.
+\end{itemize}
+\begin{figure}
+    \centering
+    \includegraphics[scale=0.8]{BomberOneReport/img/uml.png}
+    \caption{Schema UML dell’analisi dei requisiti indicante le principali entità e relazioni che comporranno l’applicazione}
+    \label{fig:umlAnalisys}
+\end{figure}
 
 \subsection*{Elementi positivi}
 \begin{itemize}
@@ -132,7 +114,6 @@ Il requisito non funzionale riguardante il consumo energetico richiederà studi 
 
 \begin{figure}[h]
 \centering{}
-\includegraphics{img/analysis.pdf}
 \caption{Schema UML dell'analisi del problema, con rappresentate le entità principali ed i rapporti fra loro}
 \label{img:analysis}
 \end{figure}
