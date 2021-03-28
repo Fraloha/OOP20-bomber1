@@ -23,15 +23,17 @@ public class TestCollision {
 		assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(32, 63), new P2d(64,95))));
 		assertFalse(object.isCollidingWith(new BoundingBoxImpl(new P2d(32, 64), new P2d(64,96))));
 	}
-//	
-//	@Test
-//	public void testCollisionOnLeft() {
-//		assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(32,1), new P2d(64,33))));
-//	}
-//	
-//	@Test
-//	public void testCollisionOnRight() {
-//		assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(32,1), new P2d(64,33))));
-//	}
+	
+	@Test
+	public void testCollisionOnLeft() {
+		assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(1, 32), new P2d(33,64))));
+		assertFalse(object.isCollidingWith(new BoundingBoxImpl(new P2d(0, 32), new P2d(32,64))));
+	}
+	
+	@Test
+	public void testCollisionOnRight() {
+		assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(63, 32), new P2d(95,64))));
+		assertFalse(object.isCollidingWith(new BoundingBoxImpl(new P2d(64, 32), new P2d(96,64))));
+	}
 	
 }

@@ -30,14 +30,14 @@ public class BoundingBoxImpl implements BoundingBox {
 		if(this.rBCorner.y > obj.getLeftTopCorner().y && this.lTCorner.y < obj.getLeftTopCorner().y && this.lTCorner.x <= obj.getLeftTopCorner().x  &&  this.rBCorner.x >= obj.getLeftTopCorner().x || this.rBCorner.y > obj.getLeftTopCorner().y && this.lTCorner.y < obj.getLeftTopCorner().y && this.lTCorner.x >= obj.getLeftTopCorner().x && this.lTCorner.x <= obj.getRightBottomCorner().x) {
 			return true;
 		}
-//		//obj collide on left
-//		if(this.lTCorner.x <= obj.getRightBottomCorner().x && (this.lTCorner.y <= obj.getLeftTopCorner().y && this.lTCorner.y >= obj.getRightBottomCorner().y) || (this.rBCorner.y <= obj.getLeftTopCorner().y && this.rBCorner.y >= obj.getRightBottomCorner().y)) {
-//			return true;
-//		}
-//		//obj collide on right
-//		if(this.rBCorner.x >= obj.getLeftTopCorner().x && (this.lTCorner.y <= obj.getLeftTopCorner().y && this.lTCorner.y >= obj.getRightBottomCorner().y) || (this.rBCorner.y <= obj.getLeftTopCorner().y && this.rBCorner.y >= obj.getRightBottomCorner().y)) {
-//			return true;
-//		}
+		//obj collide on left
+		if(this.lTCorner.x < obj.getRightBottomCorner().x && this.rBCorner.x > obj.getRightBottomCorner().x && this.lTCorner.y <= obj.getLeftTopCorner().y  &&  this.rBCorner.y >= obj.getLeftTopCorner().y || this.lTCorner.x < obj.getRightBottomCorner().x && this.rBCorner.x > obj.getRightBottomCorner().x && this.lTCorner.y >= obj.getLeftTopCorner().y && this.lTCorner.y <= obj.getRightBottomCorner().y) {
+			return true;
+		}
+		//obj collide on right
+		if(this.rBCorner.x > obj.getLeftTopCorner().x && this.lTCorner.x < obj.getLeftTopCorner().x && this.lTCorner.y <= obj.getLeftTopCorner().y  &&  this.rBCorner.y >= obj.getLeftTopCorner().y || this.rBCorner.x > obj.getLeftTopCorner().x && this.lTCorner.x < obj.getLeftTopCorner().x && this.lTCorner.x >= obj.getLeftTopCorner().y && this.lTCorner.y <= obj.getRightBottomCorner().y) {
+		return true;
+	}
 		return false;
 	}
 
