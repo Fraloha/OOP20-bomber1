@@ -1,0 +1,63 @@
+TypePowerUp:
+- tempo extra
+- PIERCE
+- Potenza di fuoco
+- Vita extra
+- punti extra
+- velocità
+
+
+Appunti:
+- l'esplosioni trapassano le entità? si, solo i nemici(salvo powerUp PIERCE)
+- i nemici ogni volta che spawnano stanno fermi 4 secondi prima di partire
+
+- Due difficoltà:
+    1- facile -> (No respawn nemici, meno veloci, più powerUp, nemici non ti seguono)
+    2- difficile -> (respawn nemici, nemici più veloci, meno % powerUp, nemici ti seguono)
+
+Il gioco finisce quando le casse sono finite e anche i nemici
+
+Punteggio:
+- 150 ogni nemico
+- 50 ogni cassa
+- tempo rimasto in secondi * 10 
+
+DIVISIONE classi:
+
+Sakka:
+- Images/SpriteMap
+- ResourceLoader
+- GameObjectFactory
+- GameEngine
+- EventHandler
+- WorldEventListener
+- Event
+- GameObject 
+- BoundingBox
+- Box
+
+Tommi:
+- GameState
+- World 
+- GameObjectCollection
+- Timer
+
+Gussss:
+- Player
+- Bomber
+- PowerUpHandler
+- Explosion
+- Bomb
+- Command
+- CommandHandler
+- TypePowerUp
+
+Ago:
+- Memento
+- Originator
+- Care Taker
+- Observation
+- Enemy
+- Simple Observation
+- TriggeredObservation
+
