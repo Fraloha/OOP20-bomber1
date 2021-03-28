@@ -4,8 +4,12 @@ import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.physics.BoundingBox;
+import bomberOne.model.physics.BoundingBoxImpl;
 
 public abstract class AbstractGameObjectImpl implements AbstractGameObject {
+	
+
+	private static final int RECTDIMENTIONS = 32;
 	
 	protected double speed;
 	protected BufferedImage img;
@@ -21,6 +25,7 @@ public abstract class AbstractGameObjectImpl implements AbstractGameObject {
 		this.lifes = lifes;
 		this.isBreakable = isBreakable;
 		this.isAlive = true;
+		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.x + RECTDIMENTIONS, this.position.y + RECTDIMENTIONS));
 	}
 
 	@Override
