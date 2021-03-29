@@ -2,7 +2,7 @@ package bomberOne.model.gameObjects;
 
 import java.util.Optional;
 
-public interface Box extends AbstractGameObject {
+public interface Box extends GameObject {
 
 	/**
 	 * 

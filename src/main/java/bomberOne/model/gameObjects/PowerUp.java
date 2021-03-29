@@ -1,6 +1,6 @@
 package bomberOne.model.gameObjects;
 
-public interface PowerUp extends AbstractGameObject{
+public interface PowerUp extends GameObject{
 
 	public enum type{
 		FirePower,

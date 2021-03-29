@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.common.P2d;
 import bomberOne.model.physics.BoundingBox;
 
-public abstract interface AbstractGameObject {
+public abstract interface GameObject {
 
 	/**
 	 * 

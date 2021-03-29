@@ -6,7 +6,7 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.physics.BoundingBox;
 import bomberOne.model.physics.BoundingBoxImpl;
 
-public abstract class AbstractGameObjectImpl implements AbstractGameObject {
+public abstract class GameObjectImpl implements GameObject {
 	
 
 	private static final int RECTDIMENTIONS = 32;
@@ -19,7 +19,7 @@ public abstract class AbstractGameObjectImpl implements AbstractGameObject {
 	protected boolean isAlive;
 	protected boolean isBreakable;
 	
-	public AbstractGameObjectImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
+	public GameObjectImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		this.position = pos;
 		this.img = img;
 		this.lifes = lifes;

@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import bomberOne.model.common.P2d;
 
-public class BoxImpl extends AbstractGameObjectImpl implements Box {
+public class BoxImpl extends GameObjectImpl implements Box {
 
 	Optional<PowerUp> powerUp;	
 	

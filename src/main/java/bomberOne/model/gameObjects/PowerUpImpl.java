@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.P2d;
 
-public class PowerUpImpl extends AbstractGameObjectImpl implements PowerUp {
+public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 
 	
 	private boolean released;
