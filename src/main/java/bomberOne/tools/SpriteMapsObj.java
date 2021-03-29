@@ -9,7 +9,8 @@ public enum SpriteMapsObj {
      PLAYER_3,
      PLAYER_4,
      BOMB,
-     EXPLOSION_SPRITEMAP;
+     EXPLOSION_SPRITEMAP,
+     ENEMIES;
 
      BufferedImage image = null;
      BufferedImage[][] sprites = null;

@@ -7,7 +7,7 @@ import bomberOne.model.common.P2d;
 
 public class BoxImpl extends GameObjectImpl implements Box {
 
-	Optional<PowerUp> powerUp;	
+	private Optional<PowerUp> powerUp;	
 	
 	public BoxImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
@@ -22,7 +22,7 @@ public class BoxImpl extends GameObjectImpl implements Box {
 	
 	@Override
 	public Optional<PowerUp> getPowerUp() {
-		return (this.powerUp.equals(Optional.empty())) ? Optional.empty() : Optional.of(this.powerUp.get());
+		return (this.powerUp.equals(Optional.empty())) ? Optional.empty() : this.powerUp;
 	}
 
 	@Override

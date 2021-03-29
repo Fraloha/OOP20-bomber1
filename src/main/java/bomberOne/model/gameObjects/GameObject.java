@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.common.P2d;
 import bomberOne.model.physics.BoundingBox;
 
-public abstract interface GameObject {
+public interface GameObject {
 
 	/**
 	 * 
@@ -23,7 +23,7 @@ public abstract interface GameObject {
 	/**
 	 * Repeatedly called during the game loop.
 	 */
-	public abstract void update();
+	public void update();
 	
 	/**
 	 * 

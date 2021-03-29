@@ -7,10 +7,14 @@ import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
 
+/**
+ * Test if "object" collide with other Objects in every directions
+ * @author Luigi
+ *
+ */
 public class TestCollision {
 
 	BoundingBox object = new BoundingBoxImpl(new P2d(32,32), new P2d(64,64));
-	
 	
 	@Test
 	public void testCollisionOnTop() {

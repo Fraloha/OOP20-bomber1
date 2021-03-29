@@ -10,6 +10,7 @@ import java.awt.image.BufferedImage;
 public enum ImagesObj {
 	 ICON,
      BACKGROUND,
+     HARDWALL,
      BOX,
      POWER_BOMB,
      POWER_FIREPOWER,
