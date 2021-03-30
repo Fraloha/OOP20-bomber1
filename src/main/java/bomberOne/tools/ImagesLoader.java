@@ -3,27 +3,21 @@ package bomberOne.tools;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import bomberOne.model.User;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.tools.img.SpriteMapsObj;
 
 
-public class ResourceLoader {
+public class ImagesLoader {
 	
-	List<User> userRankStandard = new ArrayList<>();
-	List<User> userRankHard = new ArrayList<>();
-	
+	/**
+	 * When this method is called, the ResourceLoader launch "loadImages() and sliceSprite()"
+	 */
 	public static void start() {
-		DirectoryLoader.start();
-		
-	}
-	
-	public static void loadRanks() {
+		ImagesLoader.loadImages();
+		ImagesLoader.sliceSprite();
 		
 	}
 	

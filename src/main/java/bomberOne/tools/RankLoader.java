@@ -5,18 +5,15 @@ import java.io.BufferedOutputStream;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
-import java.util.ArrayList;
 import java.util.List;
 
 import bomberOne.model.User;
 
 public class RankLoader {
-
 	
 	/**
 	 * This method takes in input two Lists of Users and serialize every Object in the corresponding file
@@ -25,38 +22,38 @@ public class RankLoader {
 	 */
 	public static void writeUsers(List<User> userRankStandard, List<User> userRankHard) {
 		try (
-				ObjectOutput rankHardOutput = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(DirectoryLoader.RANK_HARD_PATH)));
-				ObjectOutput rankStdOutput = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(DirectoryLoader.RANK_STANDARD_PATH)));
+				ObjectOutput outputStd = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankStandardPath())));
+				ObjectOutput outputHard = new ObjectOutputStream(new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankHardPath())));
 				){
-		      rankStdOutput.writeObject(userRankStandard);
-		      rankHardOutput.writeObject(userRankHard);
+			outputStd.writeObject(userRankStandard);
+		    outputHard.writeObject(userRankHard);
 	    }  
 	    catch(IOException ex){
-	     System.out.println("Cannot perform the output");
+	    	System.out.println("Cannot perform the output");
 	    }
 	}
 	
-	public static void readUsers() {
-		List<User> userRankStandard = new ArrayList<>();
-		List<User> userRankHard = new ArrayList<>();
+	/**
+	 * This method take in input two list of User, load from file the different ranks and puts them in the lists.
+	 * @param userRankStandard the list to fill with the Rank of User that played in Standard Difficulty
+	 * @param userRankHard the list to fill with the Rank of User that played in Hard Difficulty
+	 */
+	@SuppressWarnings("unchecked")
+	public static void readUsers(List<User> userRankStandard, List<User> userRankHard) {
 		try(
-			      InputStream file = new FileInputStream(DirectoryLoader.RANK_HARD_PATH);
-			      InputStream buffer = new BufferedInputStream(file);
-			      ObjectInput input = new ObjectInputStream (buffer);
-			    ){
-			      //deserialize the List
-			      userRankHard = (List<User>)input.readObject();
-			      //display its data
-			      userRankHard.stream().forEach(e -> {
-			    	  System.out.println(e.getName() + " " + e.getScore());
-			      });
-			    }
-			    catch(ClassNotFoundException ex){
-			      System.out.println("Cannot perform input. Class not found.");
-			    }
-			    catch(IOException ex){
-			    	System.out.println("Cannot perform input.");
-			    }
+			    ObjectInput inputStd = new ObjectInputStream (new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankStandardPath())));
+				ObjectInput inputHard = new ObjectInputStream (new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankHardPath())));
+				){
+			//deserialize the List
+			userRankStandard.addAll((List<User>) inputStd.readObject());
+			userRankHard.addAll((List<User>) inputHard.readObject());
+		}
+		catch(ClassNotFoundException ex){
+			System.out.println("Cannot perform input. Class not found.");
+		}
+		catch(IOException ex){
+			System.out.println("Cannot perform input.");
+		}
 	}
 
 
