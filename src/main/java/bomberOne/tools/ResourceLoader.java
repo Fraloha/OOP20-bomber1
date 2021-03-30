@@ -3,17 +3,32 @@ package bomberOne.tools;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
+import bomberOne.model.User;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.tools.img.SpriteMapsObj;
 
 
 public class ResourceLoader {
 	
+	List<User> userRankStandard = new ArrayList<>();
+	List<User> userRankHard = new ArrayList<>();
+	
+	public static void start() {
+		DirectoryLoader.start();
+		
+	}
+	
+	public static void loadRanks() {
+		
+	}
+	
 	/**
-	 * This method load the images from the res/ and puts them on its map.
+	 * This method load the images from the res/ and puts them on ImageObj enum values.
 	 * 
 	 * @throws IOException if it can't read the Files
 	 */
