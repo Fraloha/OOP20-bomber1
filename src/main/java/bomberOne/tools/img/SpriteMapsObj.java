@@ -1,4 +1,4 @@
-package bomberOne.tools;
+package bomberOne.tools.img;
 
 import java.awt.image.BufferedImage;
 
@@ -10,11 +10,20 @@ public enum SpriteMapsObj {
      PLAYER_4,
      BOMB,
      EXPLOSION_SPRITEMAP,
-     ENEMIES;
+     ENEMIES_STANDARD,
+     ENEMIES_HARD;
 
      BufferedImage image = null;
      BufferedImage[][] sprites = null;
 
+     public void setImage(BufferedImage img) {
+    	 this.image = img;
+     }
+     
+     public void setSprite(BufferedImage [][] sprites) {
+    	 this.sprites = sprites;
+     }
+     
      public BufferedImage getImage() {
          return this.image;
      }
