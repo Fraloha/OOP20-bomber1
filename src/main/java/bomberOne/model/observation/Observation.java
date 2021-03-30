@@ -1,15 +1,15 @@
 package bomberOne.model.observation;
 
-import java.awt.geom.Point2D;
+import bomberOne.model.common.P2d;
 
 public interface Observation {
 	
 	/* Methods. */
-	public void setDestination(Point2D.Float newDestination);
+	public void setDestination(P2d newDestination);
 	
-	public Point2D.Float getDestination();
+	public P2d getDestination();
 	
-	public void setNextPosition(Point2D.Float nextPosition);
+	public void setNextPosition(P2d nextPosition);
 	
-	public Point2D.Float getNextPosition();
+	public P2d getNextPosition();
 }

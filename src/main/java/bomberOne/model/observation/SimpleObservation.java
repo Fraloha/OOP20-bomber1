@@ -1,9 +1,9 @@
 package bomberOne.model.observation;
 
-import java.awt.geom.Point2D;
+import bomberOne.model.common.P2d;
 
 public interface SimpleObservation extends Observation{
 	
 	/* Methods. */
-	public Point2D.Float calculateDistance(Point2D.Float point);
+	public P2d calculateDistance(P2d point);
 }

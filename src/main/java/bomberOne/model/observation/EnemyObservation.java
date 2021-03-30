@@ -1,6 +1,6 @@
 package bomberOne.model.observation;
 
-import java.awt.geom.Point2D;
+import bomberOne.model.common.P2d;
 
 /**
  * 
@@ -10,11 +10,11 @@ import java.awt.geom.Point2D;
 public class EnemyObservation implements Observation{
 	
 	/* Fields. */
-	private Point2D.Float destination;
-	private Point2D.Float nextStep;
+	private P2d destination;
+	private P2d nextStep;
 	
 	/* Constructors. */
-	public EnemyObservation(Point2D.Float destination) {
+	public EnemyObservation(P2d destination) {
 		this.destination = destination;
 	}
 	
@@ -24,7 +24,7 @@ public class EnemyObservation implements Observation{
 	 * This method set the destination field of the observation object.
 	 * @param newDestination
 	 */
-	public void setDestination(Point2D.Float newDestination) {
+	public void setDestination(P2d newDestination) {
 		this.destination = newDestination;
 	}
 	
@@ -32,7 +32,7 @@ public class EnemyObservation implements Observation{
 	 * This method gets the value of the destination field.
 	 * @return the current destination.
 	 */
-	public Point2D.Float getDestination(){
+	public P2d getDestination(){
 		return this.destination;
 	}
 	
@@ -40,7 +40,7 @@ public class EnemyObservation implements Observation{
 	 * This method sets the next position.
 	 * @param nextPosition
 	 */
-	public void setNextPosition(Point2D.Float nextPosition) {
+	public void setNextPosition(P2d nextPosition) {
 		this.nextStep = nextPosition;
 	}
 	
@@ -48,7 +48,7 @@ public class EnemyObservation implements Observation{
 	 * This method gets value of the next position value.
 	 * @return the next position value.
 	 */
-	public Point2D.Float getNextPosition(){
+	public P2d getNextPosition(){
 		return this.nextStep;
 	}
 }

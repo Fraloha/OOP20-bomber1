@@ -1,20 +1,20 @@
 package bomberOne.model.observation;
 
-import java.awt.geom.Point2D;
+import bomberOne.model.common.P2d;
 
 public class EnemySimpleObservation extends EnemyObservation implements SimpleObservation{
 	
 	/* Constructor. */
-	public EnemySimpleObservation(Point2D.Float destination) {
+	public EnemySimpleObservation(P2d destination) {
 		super(destination);
 	}
 	
 	/* Methods. */
-	public Point2D.Float calculateDistance(Point2D.Float point){
+	public P2d calculateDistance(P2d point){
 		//Variables declaration.
-		Point2D.Float currentDestination = this.getDestination();
+		P2d currentDestination = this.getDestination();
 		
 		//Calculating the distance between the destination and the point passed as parameter.
-		return new Point2D.Float(currentDestination.x - point.x, currentDestination.y - point.y);
+		return new P2d(currentDestination.x - point.x, currentDestination.y - point.y);
 	}
 }

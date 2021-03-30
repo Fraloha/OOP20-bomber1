@@ -1,10 +1,10 @@
 package bomberOne.model.observation;
 
-import java.awt.geom.Point2D;
+import bomberOne.model.common.P2d;
 
 public interface TriggeredObservation extends SimpleObservation{
 	
 	/* Methods. */
 	
-	public boolean Found(Point2D.Float position);
+	public boolean Found(P2d position);
 }
