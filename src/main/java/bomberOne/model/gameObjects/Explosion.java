@@ -10,6 +10,8 @@ public interface Explosion extends GameObject {
 	
 	public boolean getPierce();
 	
-	public List<Fire> getFire();
+	public List<Fire> getVerticalFire();
+	
+	public List<Fire> getHorizontalFire();
 	
 }
