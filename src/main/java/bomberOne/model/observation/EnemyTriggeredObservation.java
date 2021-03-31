@@ -12,11 +12,11 @@ public class EnemyTriggeredObservation extends EnemySimpleObservation implements
 	
 	/* Methods. */
 	private boolean sameRow(P2d position) {
-		return (int)this.getDestination().x == (int)position.x ? true : false;
+		return (int)this.getDestination().getX() == (int)position.getX() ? true : false;
 	}
 	
 	private boolean sameColumn(P2d position) {
-		return (int)this.getDestination().y == (int)position.y ? true : false;
+		return (int)this.getDestination().getY() == (int)position.getY() ? true : false;
 	}
 	
 	public boolean Found(P2d position) {
