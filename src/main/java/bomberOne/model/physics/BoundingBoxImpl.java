@@ -23,19 +23,19 @@ public class BoundingBoxImpl implements BoundingBox {
 	@Override
 	public boolean isCollidingWith(BoundingBox obj) {
 		//obj collide on top
-		if(this.lTCorner.y < obj.getRightBottomCorner().y && this.rBCorner.y > obj.getRightBottomCorner().y && this.lTCorner.x <= obj.getLeftTopCorner().x  &&  this.rBCorner.x >= obj.getLeftTopCorner().x || this.lTCorner.y < obj.getRightBottomCorner().y && this.rBCorner.y > obj.getRightBottomCorner().y && this.lTCorner.x >= obj.getLeftTopCorner().x && this.lTCorner.x <= obj.getRightBottomCorner().x) {
+		if(this.lTCorner.getY() < obj.getRightBottomCorner().getY() && this.rBCorner.getY() > obj.getRightBottomCorner().getY() && this.lTCorner.getX() <= obj.getLeftTopCorner().getX()  &&  this.rBCorner.getX() >= obj.getLeftTopCorner().getX() || this.lTCorner.getY() < obj.getRightBottomCorner().getY() && this.rBCorner.getY() > obj.getRightBottomCorner().getY() && this.lTCorner.getX() >= obj.getLeftTopCorner().getX() && this.lTCorner.getX() <= obj.getRightBottomCorner().getX()) {
 			return true;
 		}
 		//obj collide on bottom
-		if(this.rBCorner.y > obj.getLeftTopCorner().y && this.lTCorner.y < obj.getLeftTopCorner().y && this.lTCorner.x <= obj.getLeftTopCorner().x  &&  this.rBCorner.x >= obj.getLeftTopCorner().x || this.rBCorner.y > obj.getLeftTopCorner().y && this.lTCorner.y < obj.getLeftTopCorner().y && this.lTCorner.x >= obj.getLeftTopCorner().x && this.lTCorner.x <= obj.getRightBottomCorner().x) {
+		if(this.rBCorner.getY() > obj.getLeftTopCorner().getY() && this.lTCorner.getY() < obj.getLeftTopCorner().getY() && this.lTCorner.getX() <= obj.getLeftTopCorner().getX()  &&  this.rBCorner.getX() >= obj.getLeftTopCorner().getX() || this.rBCorner.getY() > obj.getLeftTopCorner().getY() && this.lTCorner.getY() < obj.getLeftTopCorner().getY() && this.lTCorner.getX() >= obj.getLeftTopCorner().getX() && this.lTCorner.getX() <= obj.getRightBottomCorner().getX()) {
 			return true;
 		}
 		//obj collide on left
-		if(this.lTCorner.x < obj.getRightBottomCorner().x && this.rBCorner.x > obj.getRightBottomCorner().x && this.lTCorner.y <= obj.getLeftTopCorner().y  &&  this.rBCorner.y >= obj.getLeftTopCorner().y || this.lTCorner.x < obj.getRightBottomCorner().x && this.rBCorner.x > obj.getRightBottomCorner().x && this.lTCorner.y >= obj.getLeftTopCorner().y && this.lTCorner.y <= obj.getRightBottomCorner().y) {
+		if(this.lTCorner.getX() < obj.getRightBottomCorner().getX() && this.rBCorner.getX() > obj.getRightBottomCorner().getX() && this.lTCorner.getY() <= obj.getLeftTopCorner().getY()  &&  this.rBCorner.getY() >= obj.getLeftTopCorner().getY() || this.lTCorner.getX() < obj.getRightBottomCorner().getX() && this.rBCorner.getX() > obj.getRightBottomCorner().getX() && this.lTCorner.getY() >= obj.getLeftTopCorner().getY() && this.lTCorner.getY() <= obj.getRightBottomCorner().getY()) {
 			return true;
 		}
 		//obj collide on right
-		if(this.rBCorner.x > obj.getLeftTopCorner().x && this.lTCorner.x < obj.getLeftTopCorner().x && this.lTCorner.y <= obj.getLeftTopCorner().y  &&  this.rBCorner.y >= obj.getLeftTopCorner().y || this.rBCorner.x > obj.getLeftTopCorner().x && this.lTCorner.x < obj.getLeftTopCorner().x && this.lTCorner.x >= obj.getLeftTopCorner().y && this.lTCorner.y <= obj.getRightBottomCorner().y) {
+		if(this.rBCorner.getX() > obj.getLeftTopCorner().getX() && this.lTCorner.getX() < obj.getLeftTopCorner().getX() && this.lTCorner.getY() <= obj.getLeftTopCorner().getY()  &&  this.rBCorner.getY() >= obj.getLeftTopCorner().getY() || this.rBCorner.getX() > obj.getLeftTopCorner().getX() && this.lTCorner.getX() < obj.getLeftTopCorner().getX() && this.lTCorner.getX() >= obj.getLeftTopCorner().getY() && this.lTCorner.getY() <= obj.getRightBottomCorner().getY()) {
 		return true;
 	}
 		return false;
