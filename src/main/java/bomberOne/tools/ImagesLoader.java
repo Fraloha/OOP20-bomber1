@@ -41,6 +41,7 @@ public class ImagesLoader {
         	 ImagesObj.POWER_TIMER.setImage(ImageIO.read(new File(RES_PATH + "power_timer.png")));
         	 ImagesObj.HARDWALL.setImage(ImageIO.read(new File(RES_PATH + "hardWall.png")));
         	 ImagesObj.FIRE.setImage(ImageIO.read(new File(RES_PATH + "fire.png")));
+        	 ImagesObj.SPAWN.setImage(ImageIO.read(new File(RES_PATH + "spawn.png")));
         	 
         	 SpriteMapsObj.PLAYER_1.setImage(ImageIO.read(new File(RES_PATH + "bomber1.png")));
         	 SpriteMapsObj.PLAYER_2.setImage(ImageIO.read(new File(RES_PATH + "bomber2.png")));

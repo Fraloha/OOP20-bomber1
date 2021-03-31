@@ -57,4 +57,16 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 		return new HardWall(position, ImagesObj.HARDWALL.getImage(), 1, false);
 	}
 
+	@Override
+	public GameObject createFire(P2d position) {
+		//return new FireImpl()
+		return null;
+	}
+
+	@Override
+	public GameObject createBomb(P2d position, int firePower, boolean pierce) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -50,4 +50,20 @@ public interface GameObjectFactory {
 	 * @return the HardWall
 	 */
 	public GameObject createHardWall(P2d position);
+	
+	/**
+	 * Create a new Fire Object
+	 * @param position The position of the Fire
+	 * @return the Fire
+	 */
+	public GameObject createFire(P2d position);
+	
+	/**
+	 * Create a new Bomb Object
+	 * @param position of the Bomb
+	 * @param firePower of the Bomb
+	 * @param pierce of the Bomb
+	 * @return the Bomb
+	 */
+	public GameObject createBomb(P2d position, int firePower, boolean pierce);
 }
