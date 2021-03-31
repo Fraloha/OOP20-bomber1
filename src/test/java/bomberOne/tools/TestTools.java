@@ -63,7 +63,7 @@ public class TestTools {
 	 * This method tests if ImageLoader load correctly all the images
 	 */
 	@Test
-	public void testResourceLoader() {
+	public void testImageLoader() {
 		ImagesLoader.start();
 		assertNotNull(ImagesObj.BACKGROUND.getImage());
 		assertNotNull(ImagesObj.BOMB.getImage());
