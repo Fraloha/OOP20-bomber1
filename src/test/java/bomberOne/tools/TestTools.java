@@ -76,6 +76,7 @@ public class TestTools {
 		assertNotNull(ImagesObj.POWER_PIERCE.getImage());
 		assertNotNull(ImagesObj.POWER_SPEED.getImage());
 		assertNotNull(ImagesObj.POWER_TIMER.getImage());
+		assertNotNull(ImagesObj.SPAWN.getImage());
 		
 		assertNotNull(SpriteMapsObj.PLAYER_1.getImage());
 		assertNotNull(SpriteMapsObj.PLAYER_2.getImage());

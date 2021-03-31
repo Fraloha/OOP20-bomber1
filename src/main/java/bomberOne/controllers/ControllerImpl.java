@@ -3,7 +3,7 @@ package bomberOne.controllers;
 import bomberOne.model.GameModel;
 import bomberOne.views.View;
 
-public class ControllerImpl implements Controller{
+public abstract class ControllerImpl implements Controller{
 
 	GameModel model;
 	View view;
@@ -20,20 +20,15 @@ public class ControllerImpl implements Controller{
 
 	@Override
 	public void attachModel(GameModel model) {
-		// TODO Auto-generated method stub
-		
+		this.model = model;
 	}
 
 	@Override
 	public GameModel getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.model;
 	}
 
 	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
+	public abstract void init();
 
 }

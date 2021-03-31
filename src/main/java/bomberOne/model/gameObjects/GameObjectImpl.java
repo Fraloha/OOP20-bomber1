@@ -69,7 +69,12 @@ public abstract class GameObjectImpl implements GameObject {
 
 	@Override
 	public void hitted() {
-		this.lifes--;
+		if(this.isBreakable) {
+			this.lifes--;
+			if(this.getLifes() == 0) {
+				this.isAlive = false;
+			}
+		}
 	}
 
 	@Override
