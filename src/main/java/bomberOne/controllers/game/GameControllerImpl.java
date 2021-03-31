@@ -18,13 +18,8 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 	@Override
 	public void run() {
 		long lastTime = System.nanoTime();
-		long timer = System.currentTimeMillis();
-
         final double NS = 1000000000.0 / 60.0; // Locked ticks per second to 60
         double delta = 0;
-        int fps = 0;    // Frames per second
-        int ticks = 0;  // Ticks/Updates per second; should be 60 at all times
-
         // Count FPS, Ticks, and execute updates
         while (this.model.getGameOver()) {
             long currentTime = System.nanoTime();
@@ -35,7 +30,6 @@ public class GameControllerImpl extends ControllerImpl implements GameController
                 this.updateGame(elapsed);
                 this.processEvent();
                 this.processInput();
-                ticks++;
                 delta--;
             }
             this.render();
