@@ -1,5 +1,19 @@
 package bomberOne.controllers.game;
 
-public interface GameController extends Runnable{
+import bomberOne.controllers.Controller;
+import bomberOne.model.event.WorldEventListener;
 
+public interface GameController extends Controller{
+
+	
+	public void initGame();
+	
+	public void processInput();
+	
+	public void render();
+	
+	public void updateGame();
+	
+	public WorldEventListener getEventHandler();
+	
 }

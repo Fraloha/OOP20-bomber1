@@ -20,14 +20,12 @@ public class ControllerImpl implements Controller{
 
 	@Override
 	public void attachModel(GameModel model) {
-		// TODO Auto-generated method stub
-		
+		this.model = model;
 	}
 
 	@Override
 	public GameModel getModel() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.model;
 	}
 
 	@Override
