@@ -29,5 +29,15 @@ public class BoxImpl extends GameObjectImpl implements Box {
 	public void addPowerUp(PowerUp pU) {
 		this.powerUp = Optional.of(pU);
 	}
+	
+	/**
+	 * If the box contains the PowerUp, release it
+	 */
+	@Override
+	public void hitted() {
+		if(!this.powerUp.isEmpty()) {
+			this.powerUp.get().release();
+		}
+	}
 
 }

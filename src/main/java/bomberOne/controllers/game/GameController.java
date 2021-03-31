@@ -4,9 +4,6 @@ import bomberOne.controllers.Controller;
 import bomberOne.model.event.WorldEventListener;
 
 public interface GameController extends Controller{
-
-	
-	public void initGame();
 	
 	public void processInput();
 	
