@@ -3,6 +3,7 @@ package bomberOne.controllers.setUp;
 import bomberOne.controllers.Controller;
 import bomberOne.model.Commands;
 import bomberOne.model.Difficulty;
+import bomberOne.model.Skins;
 
 /**
  * This Controller sets some settings of the GameModel by the choice of the User in the SetUpView
@@ -27,7 +28,7 @@ public interface SetUpController extends Controller{
 	 * Set the skin of the Bomberman
 	 * @param id
 	 */
-	public void notifySkin(int id);
+	public void notifySkin(Skins skin);
 	
 	/**
 	 * Set the Controls that are used by the Player to manage the Bomberman
