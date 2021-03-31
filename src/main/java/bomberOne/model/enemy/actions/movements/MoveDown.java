@@ -18,5 +18,4 @@ public class MoveDown implements Movement{
 	public P2d doMovement(P2d currentPosition, double speed) {
 		return new P2d(currentPosition.getX(), currentPosition.getY() - speed);
 	}
-	
 }
