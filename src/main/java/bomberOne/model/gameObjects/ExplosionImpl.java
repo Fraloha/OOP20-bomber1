@@ -8,22 +8,12 @@ import bomberOne.model.common.P2d;
 public class ExplosionImpl implements Explosion {
 	private final int firePower;
 	private final boolean pierce;
-	private final Fire center;
-	private final List<Fire> verticalFire;
-	private final List<Fire> horizontalFire;
+	private final P2d center;
 	
 	public ExplosionImpl(int firePower, boolean pierce, P2d center) {
 		this.firePower = firePower;
 		this.pierce = pierce;
-		this.center = new FireImpl(center, null, 4, false);
-		this.verticalFire = new LinkedList<>();
-		this.horizontalFire = new LinkedList<>();
-		for(int c = 1; c<=this.firePower; c++) {
-			this.verticalFire.add(new FireImpl(new P2d(center.getX(), center.getY()+c), null, 4, false));
-			this.verticalFire.add(new FireImpl(new P2d(center.getX(), center.getY()-c), null, 4, false));
-			this.horizontalFire.add(new FireImpl(new P2d(center.getX()+c, center.getY()), null, 4, false));
-			this.horizontalFire.add(new FireImpl(new P2d(center.getX()-c, center.getY()), null, 4, false));
-		}
+		this.center = center;
 	}
 
 	@Override
@@ -37,18 +27,7 @@ public class ExplosionImpl implements Explosion {
 	}
 
 	@Override
-	public Fire getCenter() {
+	public P2d getCenter() {
 		return this.center;
 	}
-
-	@Override
-	public List<Fire> getVerticalFire() {
-		return this.verticalFire;
-	}
-
-	@Override
-	public List<Fire> getHorizontalFire() {
-		return this.horizontalFire;
-	}
-
 }

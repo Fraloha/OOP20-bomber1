@@ -2,6 +2,8 @@ package bomberOne.model.gameObjects;
 
 import java.util.List;
 
+import bomberOne.model.common.P2d;
+
 public interface Explosion{
 	
 	/**
@@ -20,18 +22,5 @@ public interface Explosion{
 	 * 
 	 * @return the Fire referring to the center of @this Explosion
 	 */
-	public Fire getCenter();
-	
-	/**
-	 * 
-	 * @return the List of vertical Fire referring @this Explosion
-	 */
-	public List<Fire> getVerticalFire();
-
-	/**
-	 * 
-	 * @return the List of horizontal Fire referring @this Explosion
-	 */
-	public List<Fire> getHorizontalFire();
-	
+	public P2d getCenter();
 }
