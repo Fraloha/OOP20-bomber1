@@ -25,7 +25,7 @@ public abstract class GameObjectImpl implements GameObject {
 		this.lifes = lifes;
 		this.isBreakable = isBreakable;
 		this.isAlive = true;
-		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.x + RECTDIMENTIONS, this.position.y + RECTDIMENTIONS));
+		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
 	}
 
 	@Override
