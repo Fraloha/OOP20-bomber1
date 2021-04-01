@@ -23,6 +23,12 @@ public interface User extends Serializable{
 	public void setScore(int score);
 	
 	/**
+	 * Sets the skin of the user
+	 * @param skin The skin to attach to the User
+	 */
+	public void setSkin(Skins skin);
+	
+	/**
 	 * 
 	 * @return the name of the User
 	 */
@@ -33,5 +39,12 @@ public interface User extends Serializable{
 	 * @return the score of the User
 	 */
 	public int getScore();
+	
+	/**
+	 * 
+	 * @return the skin choised by the User
+	 */
+	public Skins getSkin();
+	
 
 }
