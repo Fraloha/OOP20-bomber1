@@ -28,7 +28,7 @@ public interface SetUpController extends Controller{
 	 * Set the skin of the Bomberman
 	 * @param id
 	 */
-	public void notifySkin(Skins skin);
+	public void setSkin(Skins skin);
 	
 	/**
 	 * Set the Controls that are used by the Player to manage the Bomberman
