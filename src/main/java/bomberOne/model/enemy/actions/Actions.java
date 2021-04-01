@@ -10,13 +10,7 @@ import bomberOne.model.enemy.actions.movements.*;
  */
 public interface Actions {
 	
-	/**
-	 * This method sets the current position of the enemy to a new one.
-	 */
-	public P2d MoveEnemy(Movement enemyMovement, P2d currentPositon, double speed);
+	public P2d doAction(MovementExecutor executor);
 	
-	/**
-	 * This method attacks the player.
-	 */
 	public void Attack();
 }

@@ -19,7 +19,7 @@ public class EnemyTriggeredObservation extends EnemySimpleObservation implements
 		return (int)this.getDestination().getY() == (int)position.getY() ? true : false;
 	}
 	
-	public boolean Found(P2d position) {
+	public boolean found(P2d position) {
 		return sameRow(position) || sameColumn(position) ? true : false;
 	}
 }

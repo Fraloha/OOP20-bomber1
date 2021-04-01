@@ -6,5 +6,5 @@ public interface TriggeredObservation extends SimpleObservation{
 	
 	/* Methods. */
 	
-	public boolean Found(P2d position);
+	public boolean found(P2d position);
 }
