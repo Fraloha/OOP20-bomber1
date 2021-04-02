@@ -14,7 +14,7 @@ public class BasicTestPerception {
 		assertEquals(simple.getDestination(), staticPosition);
 		assertEquals(simple.getNextPosition(), staticPosition);
 		assertEquals(medium.calculateDistance(new P2d(5, 5)), new P2d(5, 5));
-		assertEquals(semiRealistic.Found(new P2d(2, 3)), false);
+		assertEquals(semiRealistic.found(new P2d(2, 3)), false);
 		
 		System.out.println("\n\nEnd of the test.\n\n");
 	}
