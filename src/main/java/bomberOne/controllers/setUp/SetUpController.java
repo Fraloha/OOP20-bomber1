@@ -1,7 +1,7 @@
 package bomberOne.controllers.setUp;
 
 import bomberOne.controllers.Controller;
-import bomberOne.model.Commands;
+import bomberOne.model.Controls;
 import bomberOne.model.Difficulty;
 import bomberOne.model.Skins;
 
@@ -34,5 +34,5 @@ public interface SetUpController extends Controller{
 	 * Set the Controls that are used by the Player to manage the Bomberman
 	 * @param choice
 	 */
-	public void setControls(Commands choice);
+	public void setControls(Controls choice);
 }

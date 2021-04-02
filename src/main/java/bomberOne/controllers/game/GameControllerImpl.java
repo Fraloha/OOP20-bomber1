@@ -3,6 +3,7 @@ package bomberOne.controllers.game;
 import bomberOne.controllers.ControllerImpl;
 import bomberOne.model.GameModel;
 import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
 import bomberOne.views.View;
 

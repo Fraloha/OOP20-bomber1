@@ -1,7 +1,7 @@
 package bomberOne.controllers.setUp;
 
 import bomberOne.controllers.ControllerImpl;
-import bomberOne.model.Commands;
+import bomberOne.model.Controls;
 import bomberOne.model.Difficulty;
 import bomberOne.model.Skins;
 
@@ -24,7 +24,7 @@ public class SetUpControllerImpl extends ControllerImpl implements SetUpControll
 	}
 
 	@Override
-	public void setControls(Commands choice) {
+	public void setControls(Controls choice) {
 		// TODO QUANDO GUS SVILUPPA I COMANDI
 		
 	}
