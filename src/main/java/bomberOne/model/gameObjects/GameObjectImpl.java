@@ -34,7 +34,7 @@ public abstract class GameObjectImpl implements GameObject {
 	}
 
 	@Override
-	public abstract void update();
+	public abstract void update(int elapsed);
 
 	@Override
 	public P2d getPosition() {

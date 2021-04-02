@@ -11,7 +11,7 @@ public class FireImpl extends GameObjectImpl implements Fire {
 	}
 
 	@Override
-	public void update() {
+	public void update(int elapsed) {
 		if(this.lifes == 0) {
 			this.isAlive = false;
 		}
