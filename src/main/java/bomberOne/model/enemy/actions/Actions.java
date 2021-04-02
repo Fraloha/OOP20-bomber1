@@ -1,7 +1,6 @@
 package bomberOne.model.enemy.actions;
 
 import bomberOne.model.common.P2d;
-import bomberOne.model.enemy.actions.movements.*;
 
 /**
  * This interface defines the actions of an enemy.
@@ -10,7 +9,7 @@ import bomberOne.model.enemy.actions.movements.*;
  */
 public interface Actions {
 	
-	public P2d doAction(MovementExecutor executor);
+	public P2d doAction(P2d currentPosition, double speed);
 	
 	public void Attack();
 }

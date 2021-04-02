@@ -1,18 +1,15 @@
 package bomberOne.model.enemy.actions;
 
 import bomberOne.model.common.P2d;
-import bomberOne.model.enemy.actions.movements.*;
 import bomberOne.model.observation.EnemyTriggeredObservation;
 
 public class IntermediateBehavior implements Actions{
 	
 	/* Fields. */
-	MovementExecutor executor;
 	EnemyTriggeredObservation triggeredObs;
 	
 	/* Constructor. */
-	public IntermediateBehavior(P2d playerPosition, P2d currentPosition, double speed) {
-		this.executor = new MovementExecutor(currentPosition, speed);
+	public IntermediateBehavior(P2d playerPosition) {
 		this.triggeredObs = new EnemyTriggeredObservation(playerPosition);
 	}
 	
@@ -20,27 +17,20 @@ public class IntermediateBehavior implements Actions{
 	
 	private void followByRow(boolean direction) {
 		
-		if(direction) {
-			this.executor.setMovement(new MoveRight());
-		}else {
-			this.executor.setMovement(new MoveLeft());
-		}
-		
-		this.executor.execute();
 	}
 	
 	private void followByColumn(boolean direction) {
 		
-		if(direction) {
-			this.executor.setMovement(new MoveUp());
-		}else {
-			this.executor.setMovement(new MoveDown());
-		}
-		
-		this.executor.execute();
 	}
 	
-	public P2d doAction() {
+	@Override
+	public P2d doAction(P2d currentPosition, double speed) {
+		
+		return currentPosition;
+	}
+
+	@Override
+	public void Attack() {
 		
 	}
 }
