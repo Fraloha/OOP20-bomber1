@@ -60,7 +60,7 @@ public interface GameModel {
 	 */
 	void incScore(int inc);
 	
-	void updateGame();
+	void updateGame(int elapsed);
 	
 	boolean getGameOver();
 	
