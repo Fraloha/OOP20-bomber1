@@ -15,6 +15,10 @@ public class CommandListenerImpl implements CommandListener{
 		this.commandList = new LinkedList<>();
 	}
 	
+	public CommandListenerImpl(GameModel game) {
+		this.game = game;
+	}
+	
 	@Override
 	public void addCommand(Command command) {
 		this.commandList.add(command);
