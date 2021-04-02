@@ -5,13 +5,14 @@ import java.util.List;
 
 import bomberOne.model.GameModel;
 
-public class CommandHandlerImpl implements CommandHandler{
+public class CommandListenerImpl implements CommandListener{
 	private List<Command> commandList;
 	private GameModel game;
 	
-	public CommandHandlerImpl() {
+	
+	
+	public CommandListenerImpl() {
 		this.commandList = new LinkedList<>();
-		
 	}
 	
 	@Override
