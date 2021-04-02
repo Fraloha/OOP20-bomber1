@@ -4,7 +4,11 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import bomberOne.model.common.P2d;
-
+/**
+ * This class implements a simple Bomb who extends a GameObject
+ * @author Gustavo Mazzanti
+ *
+ */
 public class BombImpl extends GameObjectImpl implements Bomb {
 	private final int firePower;
 	private final boolean pierced;

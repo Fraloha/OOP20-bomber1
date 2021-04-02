@@ -4,7 +4,11 @@ import java.util.LinkedList;
 import java.util.List;
 
 import bomberOne.model.common.P2d;
-
+/**
+ * This class implements a single Explosion
+ * @author Gustavo Mazzanti
+ *
+ */
 public class ExplosionImpl implements Explosion {
 	private final int firePower;
 	private final boolean pierce;
