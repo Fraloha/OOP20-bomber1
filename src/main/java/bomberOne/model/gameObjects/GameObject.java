@@ -23,7 +23,7 @@ public interface GameObject {
 	/**
 	 * Repeatedly called during the game loop.
 	 */
-	public void update();
+	public void update(int elapsed);
 	
 	/**
 	 * 
