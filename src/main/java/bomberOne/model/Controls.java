@@ -1,6 +1,6 @@
 package bomberOne.model;
 
-public enum Commands {
+public enum Controls {
 	
 	WASD,
 	ARROW;

@@ -38,7 +38,11 @@ public interface World {
 	
 	void checkRespawn();
 	
+	
 	void checkBoundary();
 	
+	/**
+	 * Check if a bomb is exploded
+	 */
 	void checkExplosion();
 }
