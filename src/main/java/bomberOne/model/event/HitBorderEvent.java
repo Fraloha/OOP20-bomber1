@@ -10,7 +10,7 @@ import bomberOne.model.gameObjects.GameObject;
 public class HitBorderEvent implements WorldEvent{
 
 	public HitBorderEvent(GameObject entity, int elapsed) {
-		//TODO
+		
 	}
 	
 }

@@ -30,7 +30,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 	}
 
 	@Override
-	public void update() {
+	public void update(int elapsed) {
 		if(this.lifes == 0) {
 			this.isAlive = false;
 			this.explode();
