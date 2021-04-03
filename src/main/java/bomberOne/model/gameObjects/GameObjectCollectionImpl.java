@@ -6,8 +6,12 @@ import bomberOne.model.enemy.Enemy;
 
 public class GameObjectCollectionImpl implements GameObjectCollection {
 
-	List<GameObject> gameObjectList = new LinkedList<>();
+	private List<GameObject> gameObjectList;
 	
+	public GameObjectCollectionImpl() {
+		this.gameObjectList = new LinkedList<>();
+	}
+
 	@Override
 	public List<GameObject> getGameObjectCollection() {
 		return gameObjectList;
@@ -17,7 +21,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	public List<Bomb> getBombList() {
 		List<Bomb> bombList = new LinkedList<>();
 		gameObjectList.stream()
-			.filter(p -> p.getClass().equals(Bomb.class)).forEach(e -> {
+			.filter(p -> p.getClass().equals(BombImpl.class)).forEach(e -> {
 				bombList.add((Bomb) e);
 			});
 		return bombList;
@@ -27,7 +31,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	public List<Explosion> getExplosionList() {
 		List<Explosion> explosionList = new LinkedList<>();
 		gameObjectList.stream()
-			.filter(p -> p.getClass().equals(Explosion.class)).forEach(e -> {
+			.filter(p -> p.getClass().equals(ExplosionImpl.class)).forEach(e -> {
 				explosionList.add((Explosion) e);
 			});
 		return explosionList;
@@ -36,8 +40,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	@Override
 	public List<Box> getBoxList() {
 		List<Box> boxList = new LinkedList<>();
-		gameObjectList.stream()
-			.filter(p -> p.getClass().equals(Box.class)).forEach(e -> {
+		gameObjectList.stream().filter(p -> p.getClass().equals(BoxImpl.class)).forEach(e -> {
 				boxList.add((Box) e);
 			});
 		return boxList;
@@ -57,7 +60,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	public List<PowerUp> getPowerUpList() {
 		List<PowerUp> powerUpList = new LinkedList<>();
 		gameObjectList.stream()
-			.filter(p -> p.getClass().equals(PowerUp.class)).forEach(e -> {
+			.filter(p -> p.getClass().equals(PowerUpImpl.class)).forEach(e -> {
 				powerUpList.add((PowerUp) e);
 			});
 		return powerUpList;
