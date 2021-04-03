@@ -156,4 +156,35 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			
 		}
 	}
+//	private int checkWalls(int power, Direction dir) {
+//		int realPower = 1;
+//		for(int i = 1; i < power; i++) {
+//				realPower++;
+//				if(dir.equals(Direction.UP)) {
+//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
+//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+//						break;
+//					}
+//				}
+//				if(dir.equals(Direction.DOWN)) {
+//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
+//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+//						break;
+//					}
+//				}
+//				if(dir.equals(Direction.LEFT)) {
+//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)
+//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+//						break;
+//					}
+//				}
+//				if(dir.equals(Direction.RIGHT)) {
+//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
+//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+//						break;
+//					}
+//				}
+//		}
+//		return realPower;
+	}
 }
