@@ -1,8 +1,8 @@
 package bomberOne.model;
 
+import bomberOne.model.bomber.Bomber;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
-import bomberOne.model.gameObjects.Bomber;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.physics.BoundingBox;
 

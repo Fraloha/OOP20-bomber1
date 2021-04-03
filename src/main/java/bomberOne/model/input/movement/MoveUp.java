@@ -1,6 +1,7 @@
-package bomberOne.model.input;
+package bomberOne.model.input.movement;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.input.Command;
 
 public class MoveUp implements Command {
 

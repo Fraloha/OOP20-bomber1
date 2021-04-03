@@ -47,7 +47,9 @@ public abstract class AnimatedEntity extends GameObjectImpl implements GameObjec
 
 	@Override
 	public void update(int elapsed) {
-		
+		if(this.lifes == 0) {
+			this.isAlive = false;
+		}
 
 	}
 

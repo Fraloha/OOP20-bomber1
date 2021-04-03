@@ -6,7 +6,8 @@ public interface PowerUp extends GameObject{
 		FirePower,
 		Speed,
 		Pierce,
-		Time;
+		Time,
+		Ammo;
 	}
 	
 	/**
