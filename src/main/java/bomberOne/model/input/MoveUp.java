@@ -6,7 +6,7 @@ public class MoveUp implements Command {
 
 	@Override
 	public void execute(GameModel gameModel) {
-		
+		gameModel.getWorld().getBomber().moveUp();
 	}
 
 }

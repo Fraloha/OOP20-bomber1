@@ -6,8 +6,7 @@ public class MoveLeft implements Command {
 
 	@Override
 	public void execute(GameModel gameModel) {
-		// TODO Auto-generated method stub
-
+		gameModel.getWorld().getBomber().moveLeft();
 	}
 
 }

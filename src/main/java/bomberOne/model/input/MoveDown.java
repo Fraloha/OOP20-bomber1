@@ -6,8 +6,7 @@ public class MoveDown implements Command {
 
 	@Override
 	public void execute(GameModel gameModel) {
-		// TODO Auto-generated method stub
-
+		gameModel.getWorld().getBomber().moveDown();
 	}
 
 }
