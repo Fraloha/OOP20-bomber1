@@ -2,6 +2,8 @@ package bomberOne.model.event;
 
 import java.util.List;
 
+import bomberOne.model.GameModel;
+
 public interface WorldEventListener {
 
 	/**
@@ -23,12 +25,13 @@ public interface WorldEventListener {
 	
 	/**
 	 * Set the GameModel linked to the Listener
+	 * @param game the Model to attach to the Listener
 	 */
-//	public void setGameModel(GameModel game);
-//	
+	public void setGameModel(GameModel game);	
 	
 	/**
 	 * Get the GameModel linked to the Listener
+	 * @return GameModel, the Model attached to the Listener
 	 */
-//	public GameModel getGameModel();
+	public GameModel getGameModel();
 }

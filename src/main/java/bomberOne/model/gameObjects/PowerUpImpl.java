@@ -27,7 +27,7 @@ public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 	}
 
 	@Override
-	public void update() {
+	public void update(int elapsed) {
 		// TODO Auto-generated method stub
 		
 	}

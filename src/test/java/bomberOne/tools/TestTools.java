@@ -1,6 +1,6 @@
 package bomberOne.tools;
 
-import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.io.IOException;
@@ -63,7 +63,7 @@ public class TestTools {
 	 * This method tests if ImageLoader load correctly all the images
 	 */
 	@Test
-	public void testResourceLoader() {
+	public void testImageLoader() {
 		ImagesLoader.start();
 		assertNotNull(ImagesObj.BACKGROUND.getImage());
 		assertNotNull(ImagesObj.BOMB.getImage());
@@ -76,6 +76,7 @@ public class TestTools {
 		assertNotNull(ImagesObj.POWER_PIERCE.getImage());
 		assertNotNull(ImagesObj.POWER_SPEED.getImage());
 		assertNotNull(ImagesObj.POWER_TIMER.getImage());
+		assertNotNull(ImagesObj.SPAWN.getImage());
 		
 		assertNotNull(SpriteMapsObj.PLAYER_1.getImage());
 		assertNotNull(SpriteMapsObj.PLAYER_2.getImage());

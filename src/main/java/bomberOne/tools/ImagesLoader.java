@@ -12,6 +12,7 @@ import bomberOne.tools.img.SpriteMapsObj;
 
 public class ImagesLoader {
 	
+	 private static final String RES_PATH = "." + File.separator + "res" + File.separator + "images" + File.separator;
 	/**
 	 * When this method is called, the ResourceLoader launch "loadImages() and sliceSprite()"
 	 */
@@ -29,26 +30,27 @@ public class ImagesLoader {
 	public static void loadImages() {
 		System.out.println(System.getProperty("user.dir"));
          try {
-        	 ImagesObj.ICON.setImage(ImageIO.read(new File(".//res//images//icon.png")));
-        	 ImagesObj.BOMB.setImage(ImageIO.read(new File(".//res//images//bomb.png")));
-        	 ImagesObj.BACKGROUND.setImage(ImageIO.read(new File(".//res//images//bg.png")));
-        	 ImagesObj.BOX.setImage(ImageIO.read(new File(".//res//images//box.png")));
-        	 ImagesObj.POWER_BOMB.setImage(ImageIO.read(new File(".//res//images//power_bomb.png")));
-        	 ImagesObj.POWER_FIREPOWER.setImage(ImageIO.read(new File(".//res//images//power_firepower.png")));
-        	 ImagesObj.POWER_SPEED.setImage(ImageIO.read(new File(".//res//images//power_speed.png")));
-        	 ImagesObj.POWER_PIERCE.setImage(ImageIO.read(new File(".//res//images//power_pierce.png")));
-        	 ImagesObj.POWER_TIMER.setImage(ImageIO.read(new File(".//res//images//power_timer.png")));
-        	 ImagesObj.HARDWALL.setImage(ImageIO.read(new File(".//res//images//hardWall.png")));
-        	 ImagesObj.FIRE.setImage(ImageIO.read(new File(".//res//images//fire.png")));
+        	 ImagesObj.ICON.setImage(ImageIO.read(new File(RES_PATH + "icon.png")));
+        	 ImagesObj.BOMB.setImage(ImageIO.read(new File(RES_PATH + "bomb.png")));
+        	 ImagesObj.BACKGROUND.setImage(ImageIO.read(new File(RES_PATH + "bg.png")));
+        	 ImagesObj.BOX.setImage(ImageIO.read(new File(RES_PATH + "box.png")));
+        	 ImagesObj.POWER_BOMB.setImage(ImageIO.read(new File(RES_PATH + "power_bomb.png")));
+        	 ImagesObj.POWER_FIREPOWER.setImage(ImageIO.read(new File(RES_PATH + "power_firepower.png")));
+        	 ImagesObj.POWER_SPEED.setImage(ImageIO.read(new File(RES_PATH + "power_speed.png")));
+        	 ImagesObj.POWER_PIERCE.setImage(ImageIO.read(new File(RES_PATH + "power_pierce.png")));
+        	 ImagesObj.POWER_TIMER.setImage(ImageIO.read(new File(RES_PATH + "power_timer.png")));
+        	 ImagesObj.HARDWALL.setImage(ImageIO.read(new File(RES_PATH + "hardWall.png")));
+        	 ImagesObj.FIRE.setImage(ImageIO.read(new File(RES_PATH + "fire.png")));
+        	 ImagesObj.SPAWN.setImage(ImageIO.read(new File(RES_PATH + "spawn.png")));
         	 
-        	 SpriteMapsObj.PLAYER_1.setImage(ImageIO.read(new File(".//res//images//bomber1.png")));
-        	 SpriteMapsObj.PLAYER_2.setImage(ImageIO.read(new File(".//res//images//bomber2.png")));
-	         SpriteMapsObj.PLAYER_3.setImage(ImageIO.read(new File(".//res//images//bomber3.png")));
-	         SpriteMapsObj.PLAYER_4.setImage(ImageIO.read(new File(".//res//images//bomber4.png")));
-	         SpriteMapsObj.ENEMIES_HARD.setImage(ImageIO.read(new File(".//res//images//enemiesHard.png")));
-	         SpriteMapsObj.ENEMIES_STANDARD.setImage(ImageIO.read(new File(".//res//images//enemiesSTANDARD.png")));
+        	 SpriteMapsObj.PLAYER_1.setImage(ImageIO.read(new File(RES_PATH + "bomber1.png")));
+        	 SpriteMapsObj.PLAYER_2.setImage(ImageIO.read(new File(RES_PATH + "bomber2.png")));
+	         SpriteMapsObj.PLAYER_3.setImage(ImageIO.read(new File(RES_PATH + "bomber3.png")));
+	         SpriteMapsObj.PLAYER_4.setImage(ImageIO.read(new File(RES_PATH + "bomber4.png")));
+	         SpriteMapsObj.ENEMIES_HARD.setImage(ImageIO.read(new File(RES_PATH + "enemiesHard.png")));
+	         SpriteMapsObj.ENEMIES_STANDARD.setImage(ImageIO.read(new File(RES_PATH + "enemiesSTANDARD.png")));
 		        
-	         SpriteMapsObj.EXPLOSION_SPRITEMAP.setImage(ImageIO.read(new File(".//res//images//explosion.png")));
+	         SpriteMapsObj.EXPLOSION_SPRITEMAP.setImage(ImageIO.read(new File(RES_PATH + "explosion.png")));
 	         
           } catch (IOException e) {
 			System.out.println("Cannot read the Images");

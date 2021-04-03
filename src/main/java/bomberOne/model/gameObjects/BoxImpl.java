@@ -14,7 +14,7 @@ public class BoxImpl extends GameObjectImpl implements Box {
 	}
 
 	@Override
-	public void update() {
+	public void update(int elapsed) {
 		if(this.lifes == 0) {
 			this.isAlive = false;
 		}
@@ -28,6 +28,16 @@ public class BoxImpl extends GameObjectImpl implements Box {
 	@Override
 	public void addPowerUp(PowerUp pU) {
 		this.powerUp = Optional.of(pU);
+	}
+	
+	/**
+	 * If the box contains the PowerUp, release it
+	 */
+	@Override
+	public void hitted() {
+		if(!this.powerUp.isEmpty()) {
+			this.powerUp.get().release();
+		}
 	}
 
 }

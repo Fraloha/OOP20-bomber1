@@ -25,7 +25,7 @@ public abstract class GameObjectImpl implements GameObject {
 		this.lifes = lifes;
 		this.isBreakable = isBreakable;
 		this.isAlive = true;
-		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.x + RECTDIMENTIONS, this.position.y + RECTDIMENTIONS));
+		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public abstract class GameObjectImpl implements GameObject {
 	}
 
 	@Override
-	public abstract void update();
+	public abstract void update(int elapsed);
 
 	@Override
 	public P2d getPosition() {
@@ -69,7 +69,12 @@ public abstract class GameObjectImpl implements GameObject {
 
 	@Override
 	public void hitted() {
-		this.lifes--;
+		if(this.isBreakable) {
+			this.lifes--;
+			if(this.getLifes() == 0) {
+				this.isAlive = false;
+			}
+		}
 	}
 
 	@Override

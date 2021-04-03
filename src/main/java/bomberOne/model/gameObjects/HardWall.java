@@ -11,7 +11,7 @@ public class HardWall extends GameObjectImpl {
 	}
 
 	@Override
-	public void update() {
+	public void update(int elapsed) {
 	}
 
 }

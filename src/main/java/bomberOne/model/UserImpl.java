@@ -2,12 +2,11 @@ package bomberOne.model;
 
 public class UserImpl implements User {
 
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = -9028500705336408837L;
 	private String name;
 	private int score;
+	private Skins skin;
 	
 	@Override
 	public String getName() {
@@ -27,6 +26,16 @@ public class UserImpl implements User {
 	@Override
 	public void setScore(int score) {
 		this.score = score;
+	}
+
+	@Override
+	public void setSkin(Skins skin) {
+		this.skin = skin;
+	}
+
+	@Override
+	public Skins getSkin() {
+		return this.skin;
 	}
 
 }

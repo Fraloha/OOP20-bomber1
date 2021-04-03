@@ -15,6 +15,6 @@ public class EnemySimpleObservation extends EnemyObservation implements SimpleOb
 		P2d currentDestination = this.getDestination();
 		
 		//Calculating the distance between the destination and the point passed as parameter.
-		return new P2d(currentDestination.x - point.x, currentDestination.y - point.y);
+		return new P2d(currentDestination.getX() - point.getX(), currentDestination.getY() - point.getY());
 	}
 }

@@ -23,7 +23,7 @@ public interface GameObject {
 	/**
 	 * Repeatedly called during the game loop.
 	 */
-	public void update();
+	public void update(int elapsed);
 	
 	/**
 	 * 
@@ -58,7 +58,7 @@ public interface GameObject {
 	
 	/**
 	 * 
-	 * @return True if Obj is hitted from an explosion
+	 * @return True if Object is hitted from an explosion
 	 */
 	public boolean isHitted();
 	
