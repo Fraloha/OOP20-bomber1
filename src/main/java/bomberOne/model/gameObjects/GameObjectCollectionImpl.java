@@ -8,8 +8,12 @@ import bomberOne.model.enemy.Enemy;
 
 public class GameObjectCollectionImpl implements GameObjectCollection {
 
-	List<GameObject> gameObjectList = new LinkedList<>();
+	private List<GameObject> gameObjectList;
 	
+	public GameObjectCollectionImpl() {
+		this.gameObjectList = new LinkedList<>();
+	}
+
 	@Override
 	public List<GameObject> getGameObjectCollection() {
 		return gameObjectList;
@@ -38,8 +42,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	@Override
 	public List<Box> getBoxList() {
 		List<Box> boxList = new LinkedList<>();
-		gameObjectList.stream()
-			.filter(p -> p.getClass().equals(Box.class)).forEach(e -> {
+		gameObjectList.stream().filter(p -> p.getClass().equals(Box.class)).forEach(e -> {
 				boxList.add((Box) e);
 			});
 		return boxList;
