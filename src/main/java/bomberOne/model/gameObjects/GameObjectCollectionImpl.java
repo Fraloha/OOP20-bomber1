@@ -2,8 +2,6 @@ package bomberOne.model.gameObjects;
 
 import java.util.LinkedList;
 import java.util.List;
-import java.util.stream.Collector;
-import java.util.stream.Collectors;
 import bomberOne.model.enemy.Enemy;
 
 public class GameObjectCollectionImpl implements GameObjectCollection {

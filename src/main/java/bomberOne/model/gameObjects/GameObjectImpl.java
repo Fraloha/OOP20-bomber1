@@ -36,11 +36,17 @@ public abstract class GameObjectImpl implements GameObject {
 	@Override
 	public abstract void update(int elapsed);
 
+	
 	@Override
 	public P2d getPosition() {
 		return this.position;
 	}
 
+	@Override
+	public void setPosition(P2d newPos) {
+		this.position = newPos;
+	}
+	
 	@Override
 	public BoundingBox getBoundingBox() {
 		return this.collider;

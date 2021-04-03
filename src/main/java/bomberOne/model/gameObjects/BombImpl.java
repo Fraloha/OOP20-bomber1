@@ -10,6 +10,9 @@ import bomberOne.model.common.P2d;
  *
  */
 public class BombImpl extends GameObjectImpl implements Bomb {
+	
+	private int timeToExplode;
+	private int thicks;
 	private final int firePower;
 	private final boolean pierced;
 	private Optional<Explosion> explosion;
@@ -19,12 +22,15 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 		this.explosion = Optional.empty();
 		this.firePower = firePower;
 		this.pierced = pierced;
+		this.timeToExplode = 270;
+		this.thicks = 0;
 	}
 
 	@Override
 	public Explosion explode() {
 		Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.position);
 		this.explosion = Optional.of(boom);
+		this.lifes--;
 		return boom;
 	}
 
@@ -35,11 +41,13 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 
 	@Override
 	public void update(int elapsed) {
-		if(this.lifes == 0) {
-			this.isAlive = false;
+		if(this.thicks++ == timeToExplode) {
 			this.explode();
 		}
-
+		
+		if(this.getLifes() == 0) {
+			this.isAlive = false;
+		}
 	}
 
 }

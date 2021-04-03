@@ -10,13 +10,18 @@ import bomberOne.model.common.P2d;
  */
 public class FireImpl extends GameObjectImpl implements Fire {
 
+	private int lifeTime;
+	private int thick;
+	
 	public FireImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
+		this.lifeTime = 210;
+		this.thick = 0;
 	}
 
 	@Override
 	public void update(int elapsed) {
-		if(this.lifes == 0) {
+		if(this.thick++ == this.lifeTime) {
 			this.isAlive = false;
 		}
 	}

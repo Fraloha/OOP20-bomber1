@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.factory.GameObjectFactory;
+import bomberOne.model.factory.GameObjectFactoryImpl;
+import bomberOne.model.gameObjects.ExplosionImpl;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUpImpl;
@@ -32,16 +35,20 @@ public class TestWorldEventListener {
 	 * Test if the Listener add events, and process them correctly
 	 */
 	@Test
-	public void TestNotifyEvent() {
-		//this.listener.notifyEvent(new ExplosionEvent(exp));
-		this.listener.notifyEvent(new HitBorderEvent(new HardWall(new P2d(0, 0), ImagesObj.HARDWALL.getImage(), 0, false), 10));
-		this.listener.notifyEvent(new PickPowerUpEvent(new PowerUpImpl(new P2d(0, 0), ImagesObj.POWER_BOMB.getImage(), 0, false, PowerUp.type.FirePower)));
-		assertEquals(EXPECTED_N_EVENTS, this.listener.getEventList().size());
-		//process all the events
-		this.listener.processEvents();
-		//check if the List is now Empty
-		assertTrue(this.listener.getEventList().isEmpty());
-	
+	public void TestExplosionEvent() {
+		GameObjectFactory factory = new GameObjectFactoryImpl();
+		//World world = new WorldImpl();
+		//GameModel model = new GameModelImpl();
+		//model.setWorld(world);
+		//this.listener.setGameModel(model);
+//		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
+//		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
+//		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
+//		this.listener.processEvents();
+//		assertTrue(world.getFireList().size() == 3);
+//		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
+//		this.listener.processEvents();
+//		assertTrue(world.getFireList().size() == 7);
 	}
 	
 }

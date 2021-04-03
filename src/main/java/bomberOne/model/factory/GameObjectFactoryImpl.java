@@ -5,7 +5,9 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.Difficulty;
 import bomberOne.model.Skins;
 import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
+import bomberOne.model.gameObjects.FireImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
@@ -59,14 +61,12 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createFire(P2d position) {
-		//return new FireImpl()
-		return null;
+		return new FireImpl(position, ImagesObj.FIRE.getImage(), 1, false);
 	}
 
 	@Override
 	public GameObject createBomb(P2d position, int firePower, boolean pierce) {
-		// TODO Auto-generated method stub
-		return null;
+		return new BombImpl(position, ImagesObj.BOMB.getImage(), 1, false, firePower, pierce);
 	}
 
 }

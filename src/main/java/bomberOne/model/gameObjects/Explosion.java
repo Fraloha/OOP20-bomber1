@@ -1,6 +1,5 @@
 package bomberOne.model.gameObjects;
 
-import java.util.List;
 
 import bomberOne.model.common.P2d;
 

@@ -1,8 +1,10 @@
 package bomberOne.model;
 
 import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.gameObjects.Bomber;
 import bomberOne.model.gameObjects.GameObjectCollection;
+import bomberOne.model.physics.BoundingBox;
 
 /**
  * The world of gameplay
@@ -26,6 +28,8 @@ public interface World {
 	 */
 	GameObjectCollection getGameObjectCollection();
 	
+	GameObjectFactory getGameObjectFactory();
+	
 	void setEventListener(WorldEventListener event);
 	
 	/**
@@ -38,7 +42,6 @@ public interface World {
 	void checkCollision();
 	
 	void checkRespawn();
-	
 	
 	void checkBoundary();
 	
