@@ -1,4 +1,6 @@
-package bomberOne.model;
+package bomberOne.model.factory;
+
+import bomberOne.model.World;
 
 public interface WorldFactory {
 
