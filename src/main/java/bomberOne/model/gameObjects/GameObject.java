@@ -45,12 +45,6 @@ public interface GameObject {
 	
 	/**
 	 * 
-	 * @return speed of the Object
-	 */
-	public double getSpeed();
-	
-	/**
-	 * 
 	 * @return the number of Object's lifes
 	 */
 	public int getLifes();

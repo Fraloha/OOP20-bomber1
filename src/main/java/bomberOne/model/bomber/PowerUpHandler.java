@@ -6,20 +6,20 @@ public interface PowerUpHandler {
 	/**
 	 * This method apply the powerUp More Fire Power
 	 */
-	public void applyFirePower();
+	public void applyFirePower(int increment);
 	
 	/**
 	 * This method apply the powerUp More Speed
 	 */
-	public void applySpeed();
+	public void applySpeed(int increment);
 	
 	/**
 	 * This method apply the powerUp Pierce
 	 */
-	public void activatePierce();
+	public void applyPierce();
 	
 	/**
 	 * This method apply the powerUp More Ammo
 	 */
-	public void applyMultiAmmo();	
+	public void applyMultiAmmo(int increment);	
 }

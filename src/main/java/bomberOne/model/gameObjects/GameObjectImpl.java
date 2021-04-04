@@ -11,7 +11,6 @@ public abstract class GameObjectImpl implements GameObject {
 
 	private static final int RECTDIMENTIONS = 32;
 	
-	protected double speed;
 	protected BufferedImage img;
 	protected P2d position;
 	protected BoundingBox collider;
@@ -50,11 +49,6 @@ public abstract class GameObjectImpl implements GameObject {
 	@Override
 	public BoundingBox getBoundingBox() {
 		return this.collider;
-	}
-
-	@Override
-	public double getSpeed() {
-		return this.speed;
 	}
 
 	@Override

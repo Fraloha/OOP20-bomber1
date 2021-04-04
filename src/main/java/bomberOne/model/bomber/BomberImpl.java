@@ -10,7 +10,7 @@ import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUp.type;
 
-public class BomberImpl extends AnimatedEntityImpl {
+public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private static final int SPEED_INC = 2;
 	private static final int AMMO_INC = 1;
 	private static final int FIRE_POWER_INC = 2;
@@ -27,34 +27,38 @@ public class BomberImpl extends AnimatedEntityImpl {
 	public BomberImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
 		this.startPosition = pos;
-		this.firePower  = 1;
-		this.speed = 1;
+		this.firePower  = FIRE_POWER;
+		this.speed = SPEED;
 		this.pierce = false;
-		this.maxAmmo = 1;
+		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
-		this.sprites = 1;
-		this.direction = Direction.DOWN;
+		this.sprites = SPRITES;
+		this.direction = DIR;
 	}
 	
+	@Override
 	public void respawn() {
 		this.position = startPosition;
-		this.firePower = 1;
-		this.speed = 1;
+		this.firePower  = FIRE_POWER;
+		this.speed = SPEED;
 		this.pierce = false;
-		this.maxAmmo = 1;
+		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
-		this.sprites = 1;
-		this.direction = Direction.DOWN;
+		this.sprites = SPRITES;
+		this.direction = DIR;
 	}
 	
+	@Override
 	public void addLifes(int lifes) {
 		this.lifes += lifes;
 	}
 	
+	@Override
 	public void restoreAmmo() {
 		this.usedAmmo--;
 	}
 	
+	@Override
 	public Bomb plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
@@ -63,6 +67,7 @@ public class BomberImpl extends AnimatedEntityImpl {
 		return null;
 	}
 	
+	@Override
 	public void applyPowerUp(PowerUp.type typeOfPowerUp){
 		switch (typeOfPowerUp) {
 			case FirePower:
@@ -80,32 +85,19 @@ public class BomberImpl extends AnimatedEntityImpl {
 		}
 	}
 	
+	@Override
 	public int getSprite() {
 		return this.sprites;
 	}
 	
+	@Override
 	public Direction getDirection(){
 		return this.direction;
 	}
 	
+	@Override
 	public void setUpHandler(PowerUpHandler activator) {
 		this.activator = activator;
-	}
-	
-	protected void incSpeed(int increment) {
-		this.speed += increment;
-	}
-	
-	protected void incAmmo(int increment) {
-		this.maxAmmo += increment;
-	}
-	
-	protected void incFirePower(int increment) {
-		this.firePower += increment;
-	}
-	
-	protected void activatePierce() {
-		this.pierce = true;
 	}
 	
 	@Override
@@ -153,5 +145,21 @@ public class BomberImpl extends AnimatedEntityImpl {
 		if(!this.isAlive) {
 			this.sprites = 4;
 		}
+	}
+
+	protected void incSpeed(int increment) {
+		this.speed += increment;
+	}
+	
+	protected void incAmmo(int increment) {
+		this.maxAmmo += increment;
+	}
+	
+	protected void incFirePower(int increment) {
+		this.firePower += increment;
+	}
+	
+	protected void activatePierce() {
+		this.pierce = true;
 	}
 }
