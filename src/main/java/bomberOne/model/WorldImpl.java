@@ -1,6 +1,6 @@
 package bomberOne.model;
 
-import bomberOne.model.bomber.Bomber;
+import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.event.WorldEventListenerImpl;
@@ -16,7 +16,7 @@ public class WorldImpl implements World {
 	private GameObjectCollection collection = new GameObjectCollectionImpl();
 	private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
 	private WorldEventListener listener = new WorldEventListenerImpl();
-	private Bomber bomberMan = new Bomber(new P2d(1,1), SpriteMapsObj.PLAYER_1.getImage(), 3, true);
+	private BomberImpl bomberMan = new BomberImpl(new P2d(1,1), SpriteMapsObj.PLAYER_1.getImage(), 3, true);
 	boolean respawn;
 		
 	public WorldImpl(boolean respawn) {
@@ -49,7 +49,7 @@ public class WorldImpl implements World {
 	}
 
 	@Override
-	public Bomber getBomber() {
+	public BomberImpl getBomber() {
 		// TODO Auto-generated method stub
 		return this.bomberMan;
 	}
