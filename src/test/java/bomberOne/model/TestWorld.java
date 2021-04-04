@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import bomberOne.model.WorldFactory;
 import bomberOne.model.WorldFactoryImpl;
-import bomberOne.model.bomber.Bomber;
+import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.tools.img.ImagesObj;
 
@@ -18,6 +18,6 @@ public class TestWorld {
 	@Test
 	public void testStandardWorld() {
 		World standardWorld = factory.createWorldStandard();
-		assertTrue(standardWorld.getBomber().getPosition().equals(new Bomber(new P2d(1,1), ImagesObj.ICON.getImage(), 3, true).getPosition()));
+		assertTrue(standardWorld.getBomber().getPosition().equals(new BomberImpl(new P2d(1,1), ImagesObj.ICON.getImage(), 3, true).getPosition()));
 	}
 }

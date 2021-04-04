@@ -4,13 +4,13 @@ import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.AnimatedEntity;
+import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUp.type;
 
-public class Bomber extends AnimatedEntity {
+public class BomberImpl extends AnimatedEntityImpl {
 	private static final int SPEED_INC = 2;
 	private static final int AMMO_INC = 1;
 	private static final int FIRE_POWER_INC = 2;
@@ -24,7 +24,7 @@ public class Bomber extends AnimatedEntity {
 	private int sprites; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private Direction direction;
 
-	public Bomber(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
+	public BomberImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
 		this.startPosition = pos;
 		this.firePower  = 1;
@@ -35,12 +35,6 @@ public class Bomber extends AnimatedEntity {
 		this.sprites = 1;
 		this.direction = Direction.DOWN;
 	}
-	
-	public void setPowerUpHandler(PowerUpHandler activator) {
-		this.activator = activator;
-	}
-	
-	
 	
 	public void respawn() {
 		this.position = startPosition;
@@ -72,16 +66,16 @@ public class Bomber extends AnimatedEntity {
 	public void applyPowerUp(PowerUp.type typeOfPowerUp){
 		switch (typeOfPowerUp) {
 			case FirePower:
-				this.firePower += FIRE_POWER_INC;
+				this.activator.applyFirePower(this.FIRE_POWER_INC);
 				break;
 			case Ammo:
-				this.maxAmmo += AMMO_INC;
+				this.activator.applyMultiAmmo(this.AMMO_INC);
 				break;
 			case Pierce:
-				this.pierce = true;
+				this.activator.applyPierce();
 				break;
 			case Speed:
-				this.speed += SPEED_INC;
+				this.activator.applySpeed(this.SPEED_INC);
 				break;
 		}
 	}
@@ -96,6 +90,22 @@ public class Bomber extends AnimatedEntity {
 	
 	public void setUpHandler(PowerUpHandler activator) {
 		this.activator = activator;
+	}
+	
+	protected void incSpeed(int increment) {
+		this.speed += increment;
+	}
+	
+	protected void incAmmo(int increment) {
+		this.maxAmmo += increment;
+	}
+	
+	protected void incFirePower(int increment) {
+		this.firePower += increment;
+	}
+	
+	protected void activatePierce() {
+		this.pierce = true;
 	}
 	
 	@Override
