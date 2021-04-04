@@ -5,11 +5,11 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 
-public class AnimatedEntityImpl extends GameObjectImpl implements GameObject, AnimatedEntity {
+public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-	private int speed;
 	private int elapsed;
 	private Direction dir;
+	protected int speed;
 	
 	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);

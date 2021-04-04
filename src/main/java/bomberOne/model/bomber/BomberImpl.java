@@ -16,7 +16,6 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private static final int FIRE_POWER_INC = 2;
 	private final P2d startPosition;
 	private int firePower;
-	private int speed;
 	private boolean pierce;
 	private int maxAmmo;
 	private int usedAmmo;

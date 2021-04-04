@@ -1,13 +1,14 @@
 package bomberOne.model.bomber;
 
 import bomberOne.model.common.Direction;
+import bomberOne.model.gameObjects.AnimatedEntity;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.PowerUp;
 /**This is the interface of the Bomber 
  * @author Gustavo Mazzanti
  *
  */
-public interface Bomber {
+public interface Bomber extends AnimatedEntity {
 	/**
 	 * Costants to initialize the Bomber
 	 */

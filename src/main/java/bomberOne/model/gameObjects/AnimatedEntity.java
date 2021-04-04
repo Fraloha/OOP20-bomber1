@@ -2,7 +2,7 @@ package bomberOne.model.gameObjects;
 
 import bomberOne.model.common.Direction;
 
-public interface AnimatedEntity {
+public interface AnimatedEntity extends GameObject{
 
 	/**
 	 * Method to set TimeElapsed at
