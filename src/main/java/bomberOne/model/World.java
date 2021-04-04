@@ -1,6 +1,6 @@
 package bomberOne.model;
 
-import bomberOne.model.bomber.Bomber;
+import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.gameObjects.GameObjectCollection;
@@ -30,7 +30,7 @@ public interface World {
 	/**
 	 * @return the bomber
 	 */
-	Bomber getBomber();
+	BomberImpl getBomber();
 	
 	void updateState(int time);
 	

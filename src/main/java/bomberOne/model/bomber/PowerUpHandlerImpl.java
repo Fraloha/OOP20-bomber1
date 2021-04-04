@@ -8,29 +8,29 @@ import bomberOne.model.gameObjects.PowerUp;
  */
 public class PowerUpHandlerImpl implements PowerUpHandler {
 	
-	private final Bomber bomber;
+	private final BomberImpl bomber;
 		
-	public PowerUpHandlerImpl(Bomber bomber) {
+	public PowerUpHandlerImpl(BomberImpl bomber) {
 		this.bomber = bomber;
 	}
 	
 	@Override
-	public void applyFirePower() {
-		this.bomber.applyPowerUp(PowerUp.type.FirePower);
+	public void applyFirePower(int increment) {
+		this.bomber.incFirePower(increment);
 	}
 
 	@Override
-	public void applySpeed() {
-		this.bomber.applyPowerUp(PowerUp.type.Speed);
+	public void applySpeed(int increment) {
+		this.bomber.incSpeed(increment);
 	}
 
 	@Override
-	public void activatePierce() {
-		this.bomber.applyPowerUp(PowerUp.type.Pierce);
+	public void applyPierce() {
+		this.bomber.activatePierce();
 	}
 
 	@Override
-	public void applyMultiAmmo() {
-		this.bomber.applyPowerUp(PowerUp.type.Ammo);
+	public void applyMultiAmmo(int increment) {
+		this.bomber.incAmmo(increment);
 	}
 }

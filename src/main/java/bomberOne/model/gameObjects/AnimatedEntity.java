@@ -1,56 +1,50 @@
 package bomberOne.model.gameObjects;
 
-import java.awt.image.BufferedImage;
-
 import bomberOne.model.common.Direction;
-import bomberOne.model.common.P2d;
 
-public abstract class AnimatedEntity extends GameObjectImpl implements GameObject {
+public interface AnimatedEntity {
 
-	int elapsed;
-	Direction dir;
+	/**
+	 * Method to set TimeElapsed at
+	 * @param elapsed
+	 */
+	void setTimeElapsed(int elapsed);
 	
-	public AnimatedEntity(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
-		dir = Direction.DOWN;
-	}
+	/**
+	 * Method that
+	 * @return TimeElapsed
+	 */
+	int getTimeElapsed();
 	
-	public void setTimeElapsed(int elapsed) {
-		this.elapsed = elapsed;
-	}
+	/**
+	 * 
+	 * @return speed of the Object
+	 */
+	double getSpeed();
 	
-	public int getTimeElapsed() {
-		return this.elapsed;
-	}
-	
-	public void moveUp() {
-		this.position.update(elapsed, 0, (-this.speed));
-	}
-	
-	public void moveDown() {
-		this.position.update(elapsed, 0, this.speed);
-	}
-	
-	public void moveLeft() {
-		this.position.update(elapsed, (-this.speed), 0);
-	}
-	
-	public void moveRight() {
-		this.position.update(elapsed, this.speed, 0);
-	}
-	
-	public Direction getDir() {
-		return this.dir;
-	}
-	
-	public abstract void attack();
+	/**
+	 * Method to moveUp the Entity
+	 */
+	void moveUp();
 
-	@Override
-	public void update(int elapsed) {
-		if(this.lifes == 0) {
-			this.isAlive = false;
-		}
+	/**
+	 * Method to moveDown the Entity
+	 */
+	void moveDown();
 
-	}
+	/**
+	 * Method to moveLeft the Entity
+	 */
+	void moveLeft();
 
+	/**
+	 * Method to moveRight the Entity
+	 */
+	void moveRight();
+
+	/**
+	 * Method that
+	 * @return Direction of the Entity
+	 */
+	Direction getDir();
 }
