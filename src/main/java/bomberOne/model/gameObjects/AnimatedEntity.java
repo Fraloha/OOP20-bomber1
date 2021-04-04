@@ -5,7 +5,7 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 
-public abstract class AnimatedEntity extends GameObjectImpl implements GameObject {
+public class AnimatedEntity extends GameObjectImpl implements GameObject {
 
 	int elapsed;
 	Direction dir;
@@ -42,8 +42,6 @@ public abstract class AnimatedEntity extends GameObjectImpl implements GameObjec
 	public Direction getDir() {
 		return this.dir;
 	}
-	
-	public abstract void attack();
 
 	@Override
 	public void update(int elapsed) {

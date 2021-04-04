@@ -125,11 +125,6 @@ public class Bomber extends AnimatedEntity {
 		this.direction = Direction.RIGHT;
 		super.moveRight();
 	}
-
-	@Override
-	public void attack() {
-		
-	}
 	
 	@Override
 	public void hitted() {
