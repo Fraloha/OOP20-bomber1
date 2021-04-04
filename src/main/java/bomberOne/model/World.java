@@ -19,11 +19,6 @@ public interface World {
 	boolean getRespawn();
 	
 	/**
-	 * Set the possibility of the enemies of respawn
-	 */
-	void setRespawn(Boolean respawn);
-	
-	/**
 	 * @return all the collection of the GameObjects
 	 */
 	GameObjectCollection getGameObjectCollection();

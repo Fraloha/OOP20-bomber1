@@ -24,7 +24,7 @@ public class Bomber extends AnimatedEntity {
 	private int sprites; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private Direction direction;
 
-	private Bomber(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
+	public Bomber(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
 		this.startPosition = pos;
 		this.firePower  = 1;

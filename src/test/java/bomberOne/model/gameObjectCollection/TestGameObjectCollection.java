@@ -46,7 +46,7 @@ public class TestGameObjectCollection {
 		List<Box> boxList = new LinkedList<>();
 		Box box = new BoxImpl(new P2d(32,1), new BufferedImage(3,3,3), 1, true);
 		boxList.add(box);
-		List<HardWall> wallList = new LinkedList();
+		List<HardWall> wallList = new LinkedList<>();
 		HardWall wall = new HardWall(new P2d(33,1), new BufferedImage(2,3,3), 1, true);
 		wallList.add(wall);
 		collection.spawn(box);
