@@ -2,6 +2,8 @@ package bomberOne.model;
 
 public class GameModelImpl implements GameModel {
 
+	World world;
+	
 	@Override
 	public void init() {
 		// TODO Auto-generated method stub
@@ -28,8 +30,7 @@ public class GameModelImpl implements GameModel {
 
 	@Override
 	public World getWorld() {
-		// TODO Auto-generated method stub
-		return null;
+		return this.world;
 	}
 
 	@Override
@@ -40,8 +41,7 @@ public class GameModelImpl implements GameModel {
 
 	@Override
 	public void setWorld(World world) {
-		// TODO Auto-generated method stub
-		
+		this.world = world;
 	}
 
 	@Override

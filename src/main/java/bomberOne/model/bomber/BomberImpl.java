@@ -8,7 +8,6 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUp.type;
 
 public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private static final int SPEED_INC = 2;
@@ -74,16 +73,16 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public void applyPowerUp(PowerUp.type typeOfPowerUp){
 		switch (typeOfPowerUp) {
 			case FirePower:
-				this.activator.applyFirePower(this.FIRE_POWER_INC);
+				this.activator.applyFirePower(FIRE_POWER_INC);
 				break;
 			case Ammo:
-				this.activator.applyMultiAmmo(this.AMMO_INC);
+				this.activator.applyMultiAmmo(AMMO_INC);
 				break;
 			case Pierce:
 				this.activator.applyPierce();
 				break;
 			case Speed:
-				this.activator.applySpeed(this.SPEED_INC);
+				this.activator.applySpeed(SPEED_INC);
 				break;
 			case Time:
 				//TODO richiamare nuovo evento timerIncrease

@@ -5,14 +5,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import org.junit.jupiter.api.Test;
 
+import bomberOne.model.Difficulty;
+import bomberOne.model.GameModel;
+import bomberOne.model.GameModelImpl;
+import bomberOne.model.Skins;
+import bomberOne.model.World;
+import bomberOne.model.WorldImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;
-import bomberOne.model.gameObjects.HardWall;
-import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
-import bomberOne.tools.img.ImagesObj;;
+import bomberOne.tools.ImagesLoader;
+
 
 /**
  * Test if the WorldEventListener takes correctly events in input, put them on the queue 
@@ -36,19 +40,21 @@ public class TestWorldEventListener {
 	 */
 	@Test
 	public void TestExplosionEvent() {
+		ImagesLoader.loadImages();
+		ImagesLoader.sliceSprite();
 		GameObjectFactory factory = new GameObjectFactoryImpl();
-		//World world = new WorldImpl();
-		//GameModel model = new GameModelImpl();
-		//model.setWorld(world);
-		//this.listener.setGameModel(model);
-//		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
-//		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
-//		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
-//		this.listener.processEvents();
-//		assertTrue(world.getFireList().size() == 3);
-//		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
-//		this.listener.processEvents();
-//		assertTrue(world.getFireList().size() == 7);
+		World world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
+		GameModel model = new GameModelImpl();
+		model.setWorld(world);
+		this.listener.setGameModel(model);
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
+		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
+		this.listener.processEvents();
+		assertTrue(world.getGameObjectCollection().getFireList().size() == 3);
+		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
+		this.listener.processEvents();
+		assertTrue(world.getGameObjectCollection().getGameObjectCollection().size() == 7);
 	}
 	
 }

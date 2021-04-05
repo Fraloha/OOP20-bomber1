@@ -31,7 +31,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	public void processEvents() {
 		this.eventList.stream().forEach(event -> {
 			if (event.getClass().equals(PickPowerUpEvent.class)){
-				this.processPickPowerUpEvent(event);
+				this.processPickPowerUpEvent((PickPowerUpEvent) event);
 			}
 			if (event.getClass().equals(HitFireEvent.class)){
 				this.processHitFireEvent((HitFireEvent) event);
@@ -99,6 +99,10 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	private void processExplosionEvent(ExplosionEvent event) {
 		Explosion exp = event.getExplosion();
 		this.model.getWorld().getGameObjectFactory().createFire(exp.getCenter());
+		List<P2d> wallsList = new ArrayList<>();
+		wallsList.addAll(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()));
+		wallsList.addAll(this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()));
+		
 		//Pierced
 		if(exp.getPierce()) {
 			for(int i = 1; i < exp.getFirePower(); i++) {
@@ -122,8 +126,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			for(int i = 1; i < exp.getFirePower(); i++) {
 				P2d newPos = new P2d(exp.getCenter().getX() - OBJ_DIMETIONS, exp.getCenter().getY());
 				this.model.getWorld().getGameObjectCollection().spawn(this.model.getWorld().getGameObjectFactory().createFire(newPos));
-				if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)
-						|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+				if(wallsList.contains(newPos)) {
 					break;
 				}
 			}
@@ -132,8 +135,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			for(int i = 1; i < exp.getFirePower(); i++) {
 				P2d newPos = new P2d(exp.getCenter().getX() + OBJ_DIMETIONS, exp.getCenter().getY());
 				this.model.getWorld().getGameObjectCollection().spawn(this.model.getWorld().getGameObjectFactory().createFire(newPos));
-				if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-						|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+				if(wallsList.contains(newPos)) {
 					break;
 				}
 			}
@@ -142,8 +144,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			for(int i = 1; i < exp.getFirePower(); i++) {
 				P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() - OBJ_DIMETIONS);
 				this.model.getWorld().getGameObjectCollection().spawn(this.model.getWorld().getGameObjectFactory().createFire(newPos));
-				if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-						|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+				if(wallsList.contains(newPos)) {
 					break;
 				}
 			}
@@ -152,13 +153,12 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			for(int i = 1; i < exp.getFirePower(); i++) {
 				P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() + OBJ_DIMETIONS);
 				this.model.getWorld().getGameObjectCollection().spawn(this.model.getWorld().getGameObjectFactory().createFire(newPos));
-				if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-						|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
+				if(wallsList.contains(newPos)) {
 					break;
 				}
 			}
 			
 		}
 	}
-	}
 }
+
