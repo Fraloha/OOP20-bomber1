@@ -54,6 +54,12 @@ public interface GameObjectCollection {
 	List<PowerUp> getPowerUpList();
 	
 	/**
+	 * This method filters the List of GameObject and creates a List of PowerUp
+	 * @return a List of PowerUp
+	 */
+	List<Fire> getFireList();
+	
+	/**
 	 * This method takes a GameObject and add it in the List of GameObject
 	 * @param GameObject
 	 */

@@ -77,6 +77,16 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	}
 	
 	@Override
+	public List<Fire> getFireList() {
+		List<Fire> fireList = new LinkedList<>();
+		gameObjectList.stream()
+			.filter(p -> p.getClass().equals(FireImpl.class)).forEach(e -> {
+				fireList.add((Fire) e);
+			});
+		return fireList;
+	}
+	
+	@Override
 	public void spawn(GameObject obj) {
 		gameObjectList.add(obj);
 	}
@@ -85,4 +95,6 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
 	public void despawn(GameObject obj) {
 		gameObjectList.remove(obj);
 	}
+
+	
 }
