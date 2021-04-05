@@ -20,18 +20,22 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private int maxAmmo;
 	private int usedAmmo;
 	private PowerUpHandler activator;
-	private int sprites; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
+	//Images and animations
+	private int spriteIndex; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private Direction direction;
+	private int animationIndex = 0;
+	private BufferedImage[][] animations;
 
-	public BomberImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
+	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes, boolean isBreakable) {
+		super(pos, img[0][1], lifes, isBreakable);
+		this.animations = img;
 		this.startPosition = pos;
 		this.firePower  = FIRE_POWER;
 		this.speed = SPEED;
 		this.pierce = false;
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
-		this.sprites = SPRITES;
+		this.spriteIndex = SPRITES;
 		this.direction = DIR;
 	}
 	
@@ -43,7 +47,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.pierce = false;
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
-		this.sprites = SPRITES;
+		this.spriteIndex = SPRITES;
 		this.direction = DIR;
 	}
 	
@@ -81,12 +85,22 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 			case Speed:
 				this.activator.applySpeed(this.SPEED_INC);
 				break;
+			case Time:
+				//TODO richiamare nuovo evento timerIncrease
+				break;
+			default:
+				break;
 		}
 	}
 	
 	@Override
+	public BufferedImage getImage() {
+		return this.animations[this.spriteIndex][this.animationIndex];
+	}
+	
+	@Override
 	public int getSprite() {
-		return this.sprites;
+		return this.spriteIndex;
 	}
 	
 	@Override
@@ -101,28 +115,28 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void moveUp() {
-		this.sprites = 0;
+		this.spriteIndex = 0;
 		this.direction = Direction.UP;
 		super.moveUp();
 	}
 
 	@Override
 	public void moveDown() {
-		this.sprites = 1;
+		this.spriteIndex = 1;
 		this.direction = Direction.DOWN;
 		super.moveDown();
 	}
 
 	@Override
 	public void moveLeft() {
-		this.sprites = 2;
+		this.spriteIndex = 2;
 		this.direction = Direction.LEFT;
 		super.moveLeft();
 	}
 
 	@Override
 	public void moveRight() {
-		this.sprites = 3;
+		this.spriteIndex = 3;
 		this.direction = Direction.RIGHT;
 		super.moveRight();
 	}
@@ -133,7 +147,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		if(this.lifes>=0) {
 			this.respawn();
 		} else {
-			this.sprites = 4;
+			this.spriteIndex = 4;
 			this.isAlive = false;
 		}
 	}
@@ -142,7 +156,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public void update(int elapsed) {
 		super.update(elapsed);
 		if(!this.isAlive) {
-			this.sprites = 4;
+			this.spriteIndex = 4;
 		}
 	}
 

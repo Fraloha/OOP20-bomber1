@@ -38,6 +38,7 @@ public class BoxImpl extends GameObjectImpl implements Box {
 		if(!this.powerUp.isEmpty()) {
 			this.powerUp.get().release();
 		}
+		super.hitted();
 	}
 
 }

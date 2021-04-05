@@ -56,8 +56,12 @@ public class WorldEventListenerImpl implements WorldEventListener {
 		return this.model;
 	}
 
-	private void processPickPowerUpEvent(WorldEvent event) {
-		
+	/*
+	 * When the Bomber picks the PowerUp, this method applies the PowerUp to the Bomber
+	 */
+	private void processPickPowerUpEvent(PickPowerUpEvent event) {
+		this.model.getWorld().getBomber().applyPowerUp(event.getPowerUp().getType());
+		event.getPowerUp().hitted();
 	}
 	
 	/**
@@ -83,7 +87,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 		if(event.getEntity().getDir().equals(Direction.LEFT)){
 			event.getEntity().setPosition(new P2d(event.getWall().getPosition().getX() + OBJ_DIMETIONS, event.getEntity().getPosition().getY()));
 		}
-		if(event.getEntity().getDir().equals(Direction.DOWN)){
+		if(event.getEntity().getDir().equals(Direction.RIGHT)){
 			event.getEntity().setPosition(new P2d(event.getWall().getPosition().getX() - OBJ_DIMETIONS, event.getEntity().getPosition().getY()));
 		}
 	}
@@ -156,35 +160,5 @@ public class WorldEventListenerImpl implements WorldEventListener {
 			
 		}
 	}
-//	private int checkWalls(int power, Direction dir) {
-//		int realPower = 1;
-//		for(int i = 1; i < power; i++) {
-//				realPower++;
-//				if(dir.equals(Direction.UP)) {
-//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
-//						break;
-//					}
-//				}
-//				if(dir.equals(Direction.DOWN)) {
-//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
-//						break;
-//					}
-//				}
-//				if(dir.equals(Direction.LEFT)) {
-//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)
-//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
-//						break;
-//					}
-//				}
-//				if(dir.equals(Direction.RIGHT)) {
-//					if(this.model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos) 
-//							|| this.model.getWorld().getGameObjectCollection().getHardWallList().stream().map(e -> e.getPosition()).collect(Collectors.toList()).contains(newPos)) {
-//						break;
-//					}
-//				}
-//		}
-//		return realPower;
 	}
 }
