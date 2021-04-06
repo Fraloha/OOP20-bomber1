@@ -23,7 +23,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	//Images and animations
 	private int spriteIndex; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private Direction direction;
-	private int animationIndex = 0;
+	private int animationIndex;
 	private BufferedImage[][] animations;
 
 	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes, boolean isBreakable) {
@@ -36,11 +36,13 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
 		this.spriteIndex = SPRITES;
+		this.animationIndex = 0;
 		this.direction = DIR;
 	}
 	
 	@Override
 	public void respawn() {
+		this.isAlive  = true;
 		this.position = startPosition;
 		this.firePower  = FIRE_POWER;
 		this.speed = SPEED;
@@ -48,6 +50,8 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
 		this.spriteIndex = SPRITES;
+		this.animationIndex = 0;
+		this.fpAgg = 0;
 		this.direction = DIR;
 	}
 	
@@ -140,11 +144,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	@Override
 	public void hitted() {
 		this.lifes--;
-		if(this.lifes>=0) {
-			this.respawn();
-		} else {
-			this.isAlive = false;
-		}
+		this.isAlive = false;
 	}
 
 	@Override
@@ -153,23 +153,31 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 			switch (this.direction) {
 			case UP:
 				this.spriteIndex = 0;
+				this.animationIndex = 0;
 				break;
 			case DOWN:
 				this.spriteIndex  = 1;
+				this.animationIndex = 0;
 				break;
 			case LEFT:
 				this.spriteIndex = 2;
+				this.animationIndex = 0;
 				break;
 			case RIGHT:
 				this.spriteIndex = 3;
+				this.animationIndex = 0;
 				break;
 			}
 		} else {
 			this.spriteIndex = 4;
+			this.animationIndex = 0;
 		}
 		if(++this.fpAgg == 4) {
 			this.fpAgg = 0;
 			this.animationIndex++;
+		}
+		if(this.spriteIndex == 4 && this.animationIndex%4 == 3) {
+			this.respawn();
 		}
 		super.update(elapsed);
 	}
