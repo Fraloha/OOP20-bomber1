@@ -19,6 +19,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private int maxAmmo;
 	private int usedAmmo;
 	private PowerUpHandler activator;
+	private int fpAgg = 0;
 	//Images and animations
 	private int spriteIndex; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private Direction direction;
@@ -64,7 +65,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public Bomb plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return new BombImpl(this.position, null, 1, true, this.firePower, this.pierce);
+			return new BombImpl(new P2d(this.position.getX(), this.position.getY()), null, 1, true, this.firePower, this.pierce);
 		}
 		return null;
 	}
@@ -94,7 +95,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public BufferedImage getImage() {
-		return this.animations[this.spriteIndex][this.animationIndex];
+		return this.animations[this.spriteIndex][this.animationIndex%4];
 	}
 	
 	@Override
@@ -114,28 +115,24 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void moveUp() {
-		this.spriteIndex = 0;
 		this.direction = Direction.UP;
 		super.moveUp();
 	}
 
 	@Override
 	public void moveDown() {
-		this.spriteIndex = 1;
 		this.direction = Direction.DOWN;
 		super.moveDown();
 	}
 
 	@Override
 	public void moveLeft() {
-		this.spriteIndex = 2;
 		this.direction = Direction.LEFT;
 		super.moveLeft();
 	}
 
 	@Override
 	public void moveRight() {
-		this.spriteIndex = 3;
 		this.direction = Direction.RIGHT;
 		super.moveRight();
 	}
@@ -146,17 +143,35 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		if(this.lifes>=0) {
 			this.respawn();
 		} else {
-			this.spriteIndex = 4;
 			this.isAlive = false;
 		}
 	}
 
 	@Override
 	public void update(int elapsed) {
-		super.update(elapsed);
-		if(!this.isAlive) {
+		if(this.isAlive) {
+			switch (this.direction) {
+			case UP:
+				this.spriteIndex = 0;
+				break;
+			case DOWN:
+				this.spriteIndex  = 1;
+				break;
+			case LEFT:
+				this.spriteIndex = 2;
+				break;
+			case RIGHT:
+				this.spriteIndex = 3;
+				break;
+			}
+		} else {
 			this.spriteIndex = 4;
 		}
+		if(++this.fpAgg == 4) {
+			this.fpAgg = 0;
+			this.animationIndex++;
+		}
+		super.update(elapsed);
 	}
 
 	protected void incSpeed(int increment) {

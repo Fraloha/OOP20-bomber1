@@ -44,7 +44,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 		if(this.thicks++ == timeToExplode) {
 			this.explode();
 		}
-		
 		if(this.getLifes() == 0) {
 			this.isAlive = false;
 		}
