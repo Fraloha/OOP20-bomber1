@@ -3,6 +3,7 @@ package bomberOne.model.event;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bomberOne.model.Difficulty;
@@ -28,15 +29,27 @@ public class TestWorldEventListener {
 
 	static final int EXPECTED_N_EVENTS = 2;
 	
-	WorldEventListener listener = new WorldEventListenerImpl();
+	WorldEventListener listener;
+	World world;
+	GameModel model;
+	GameObjectFactory factory;
 	
-	@Test
-	public void TestCollisionEvent() {
+	@BeforeEach
+    public void init() {
+		listener = new WorldEventListenerImpl();
 		ImagesLoader.loadImages();
 		ImagesLoader.sliceSprite();
-		World world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
-		GameModel model = new GameModelImpl();
-		GameObjectFactory factory = new GameObjectFactoryImpl();
+		world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
+		model = new GameModelImpl();
+		factory = new GameObjectFactoryImpl();
+    }
+	
+	/**
+	 * Test if objects that collide with the fire are hitted correctly
+	 */
+	@Test
+	public void TestCollisionEvent() {
+		
 		model.setWorld(world);
 		this.listener.setGameModel(model);
 		world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
@@ -51,11 +64,6 @@ public class TestWorldEventListener {
 	 */
 	@Test
 	public void TestExplosionEvent() {
-		ImagesLoader.loadImages();
-		ImagesLoader.sliceSprite();
-		World world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
-		GameModel model = new GameModelImpl();
-		GameObjectFactory factory = new GameObjectFactoryImpl();
 		model.setWorld(world);
 		this.listener.setGameModel(model);
 		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
