@@ -1,7 +1,7 @@
 package bomberOne.model.event;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
@@ -31,30 +31,44 @@ public class TestWorldEventListener {
 	WorldEventListener listener = new WorldEventListenerImpl();
 	
 	@Test
-	public void TestSetGetModel() {
-		
+	public void TestCollisionEvent() {
+		ImagesLoader.loadImages();
+		ImagesLoader.sliceSprite();
+		World world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
+		GameModel model = new GameModelImpl();
+		GameObjectFactory factory = new GameObjectFactoryImpl();
+		model.setWorld(world);
+		this.listener.setGameModel(model);
+		world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
+		this.listener.notifyEvent(new HitFireEvent(world.getGameObjectCollection().getBoxList().get(0)));
+		this.listener.processEvents();
+		assertFalse(world.getGameObjectCollection().getBoxList().get(0).isAlive());
 	}
 	
 	/**
-	 * Test if the Listener add events, and process them correctly
+	 * Test if the Listener handle correctly the explosions with and without Pierce
+	 * 
 	 */
 	@Test
 	public void TestExplosionEvent() {
 		ImagesLoader.loadImages();
 		ImagesLoader.sliceSprite();
-		GameObjectFactory factory = new GameObjectFactoryImpl();
 		World world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
 		GameModel model = new GameModelImpl();
+		GameObjectFactory factory = new GameObjectFactoryImpl();
 		model.setWorld(world);
 		this.listener.setGameModel(model);
 		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
 		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(64, 0)));
+		world.getGameObjectCollection().spawn(factory.createBox(new P2d(64, 64)));
 		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
 		this.listener.processEvents();
-		assertTrue(world.getGameObjectCollection().getFireList().size() == 3);
+		assertTrue(world.getGameObjectCollection().getFireList().size() == 2);
+		world.getGameObjectCollection().getGameObjectCollection().removeAll(world.getGameObjectCollection().getFireList());
 		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
 		this.listener.processEvents();
-		assertTrue(world.getGameObjectCollection().getGameObjectCollection().size() == 7);
+		assertTrue(world.getGameObjectCollection().getFireList().size() == 3);
 	}
 	
 }

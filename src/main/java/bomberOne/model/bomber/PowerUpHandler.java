@@ -1,7 +1,5 @@
 package bomberOne.model.bomber;
 
-import bomberOne.model.GameModel;
-
 public interface PowerUpHandler {
 	/**
 	 * This method apply the powerUp More Fire Power

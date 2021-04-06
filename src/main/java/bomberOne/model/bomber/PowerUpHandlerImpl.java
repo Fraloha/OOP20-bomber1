@@ -1,6 +1,5 @@
 package bomberOne.model.bomber;
 
-import bomberOne.model.gameObjects.PowerUp;
 /**
  * This class apply the powerUp at the Bomber
  * @author Gustavo Mazzanti

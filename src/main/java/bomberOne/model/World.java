@@ -4,7 +4,6 @@ import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.gameObjects.GameObjectCollection;
-import bomberOne.model.physics.BoundingBox;
 
 /**
  * The world of gameplay

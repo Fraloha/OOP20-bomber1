@@ -11,6 +11,7 @@ public class BoxImpl extends GameObjectImpl implements Box {
 	
 	public BoxImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);
+		this.powerUp = Optional.empty();
 	}
 
 	@Override
