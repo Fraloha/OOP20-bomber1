@@ -10,10 +10,10 @@ import bomberOne.model.gameObjects.PowerUp;
  */
 public interface Bomber extends AnimatedEntity {
 	/**
-	 * Costants to initialize the Bomber
+	 * Constants to initialize the Bomber
 	 */
 	static final int FIRE_POWER = 1;
-	static final int SPEED = 100;
+	static final double SPEED = 100;
 	static final int AMMO = 1;
 	static final int SPRITES = 1;
 	static final Direction DIR = Direction.DOWN;
@@ -49,19 +49,38 @@ public interface Bomber extends AnimatedEntity {
 
 	/**
 	 * Method that
-	 * @return number of the current Sprite image
+	 * @return number of the Life
 	 */
-	int getSprite();
-
+	int getLifes();
+	
+	/**
+	 * Method that
+	 * @return number of maxAmmo
+	 */
+	int getAmmo();
+	
+	/**
+	 * Method that
+	 * @return dimension of the bomb's explosion
+	 */
+	int getFirePower();
+	
 	/**
 	 * Method that
 	 * @return Direction current
 	 */
 	Direction getDirection();
 
-	/** Mothod for attaching 
+	/**
+	 * Method that
+	 * @return true if Bomber is Pierced (PowerUp)
+	 */
+	boolean isPierced();
+	
+	/** Method for attaching 
 	 * @param PowerUpHandler
 	 */
 	void setUpHandler(PowerUpHandler activator);
+
 
 }

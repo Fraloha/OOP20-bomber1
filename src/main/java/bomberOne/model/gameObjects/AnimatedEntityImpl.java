@@ -9,7 +9,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 
 	private int elapsed;
 	private Direction dir;
-	protected int speed;
+	protected double speed;
 	
 	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
 		super(pos, img, lifes, isBreakable);

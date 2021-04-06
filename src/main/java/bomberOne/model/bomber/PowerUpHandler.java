@@ -11,7 +11,7 @@ public interface PowerUpHandler {
 	/**
 	 * This method apply the powerUp More Speed
 	 */
-	public void applySpeed(int increment);
+	public void applySpeed(double increment);
 	
 	/**
 	 * This method apply the powerUp Pierce

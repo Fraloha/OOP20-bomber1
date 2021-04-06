@@ -20,7 +20,7 @@ public class PowerUpHandlerImpl implements PowerUpHandler {
 	}
 
 	@Override
-	public void applySpeed(int increment) {
+	public void applySpeed(double increment) {
 		this.bomber.incSpeed(increment);
 	}
 

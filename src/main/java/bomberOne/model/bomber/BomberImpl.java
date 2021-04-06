@@ -10,9 +10,9 @@ import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
 
 public class BomberImpl extends AnimatedEntityImpl implements Bomber {
-	private static final int SPEED_INC = 2;
-	private static final int AMMO_INC = 1;
-	private static final int FIRE_POWER_INC = 2;
+	public static final double SPEED_INC = 2;
+	public static final int AMMO_INC = 1;
+	public static final int FIRE_POWER_INC = 2;
 	private final P2d startPosition;
 	private int firePower;
 	private boolean pierce;
@@ -62,7 +62,9 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void restoreAmmo() {
-		this.usedAmmo--;
+		if(this.usedAmmo>0) {
+			this.usedAmmo--;
+		}
 	}
 	
 	@Override
@@ -103,13 +105,28 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	}
 	
 	@Override
-	public int getSprite() {
-		return this.spriteIndex;
+	public int getLifes() {
+		return this.lifes;
+	}
+	
+	@Override
+	public int getAmmo() {
+		return this.maxAmmo - this.usedAmmo;
+	}
+	
+	@Override
+	public int getFirePower() {
+		return this.firePower;
 	}
 	
 	@Override
 	public Direction getDirection(){
 		return this.direction;
+	}
+	
+	@Override
+	public boolean isPierced() {
+		return this.pierce;
 	}
 	
 	@Override
@@ -182,7 +199,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		super.update(elapsed);
 	}
 
-	protected void incSpeed(int increment) {
+	protected void incSpeed(double increment) {
 		this.speed += increment;
 	}
 	
