@@ -17,7 +17,6 @@ import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.Fire;
-import bomberOne.model.gameObjects.FireImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
@@ -50,7 +49,7 @@ public class WorldImpl implements World {
 	 * This method create all HardWall and Box in the World
 	 */
 	private void setHardWall() {
-		
+	
 	}
 
 	@Override
@@ -90,14 +89,21 @@ public class WorldImpl implements World {
 		for(GameObject obj : collection.getGameObjectCollection()) {
 			obj.update(time);
 		}
+		List<GameObject> deathObject = collection.getGameObjectCollection().stream()
+				.filter(p -> p.isAlive() == false).collect(Collectors.toList());
+		for(GameObject obj : deathObject) {
+			collection.despawn(obj);
+		}
 	}
 
 	@Override
 	public void checkCollision() {
 		// TODO Auto-generated method stub
 		List<Fire> fireList = collection.getFireList();
-		List<GameObject> list = collection.getGameObjectCollection().stream()
-			.filter(p -> p.getClass()!=(FireImpl.class)).collect(Collectors.toList());
+		List<GameObject> list = new LinkedList<>();
+		list.add(bomberMan);
+		list.addAll(collection.getBoxList());
+		list.addAll(collection.getEnemyList());
 		for(GameObject obj : list) {
 			for(Fire fire : fireList) {
 				if(fire.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
