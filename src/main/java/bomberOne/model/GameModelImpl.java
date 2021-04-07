@@ -1,5 +1,7 @@
 package bomberOne.model;
 
+import bomberOne.model.timer.Timer;
+
 public class GameModelImpl implements GameModel {
 
 	World world;
