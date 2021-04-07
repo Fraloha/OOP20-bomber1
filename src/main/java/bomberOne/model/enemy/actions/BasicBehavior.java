@@ -15,9 +15,4 @@ public class BasicBehavior implements Actions{
 		
 		return currentPosition;
 	}
-
-	@Override
-	public void Attack() {
-		
-	}
 }

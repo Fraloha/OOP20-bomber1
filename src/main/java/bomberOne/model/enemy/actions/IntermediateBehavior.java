@@ -28,9 +28,4 @@ public class IntermediateBehavior implements Actions{
 		
 		return currentPosition;
 	}
-
-	@Override
-	public void Attack() {
-		
-	}
 }

@@ -10,6 +10,4 @@ import bomberOne.model.common.P2d;
 public interface Actions {
 	
 	public P2d doAction(P2d currentPosition, double speed);
-	
-	public void Attack();
 }
