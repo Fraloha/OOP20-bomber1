@@ -1,13 +1,13 @@
-package bomberOne.model.input;
+package bomberOne.model.input.movement;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.input.Command;
 
 public class MoveRight implements Command {
 
 	@Override
 	public void execute(GameModel gameModel) {
-		// TODO Auto-generated method stub
-
+		gameModel.getWorld().getBomber().moveRight();
 	}
 
 }

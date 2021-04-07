@@ -32,16 +32,16 @@ public interface GameObject {
 	public P2d getPosition();
 	
 	/**
+	 * Sets a new Position for the GameObject
+	 * @param newPos the new Position to set
+	 */
+	public void setPosition(P2d newPos);
+	
+	/**
 	 * 
 	 * @return the Rectangle associated with the Object
 	 */
 	public BoundingBox getBoundingBox();
-	
-	/**
-	 * 
-	 * @return speed of the Object
-	 */
-	public double getSpeed();
 	
 	/**
 	 * 

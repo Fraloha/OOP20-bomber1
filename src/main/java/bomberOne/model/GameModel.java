@@ -1,5 +1,7 @@
 package bomberOne.model;
 
+import bomberOne.model.timer.Timer;
+
 /**
  * The Model of the Game
  * @author Tommaso Brini

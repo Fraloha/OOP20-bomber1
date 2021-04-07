@@ -11,7 +11,6 @@ public abstract class GameObjectImpl implements GameObject {
 
 	private static final int RECTDIMENTIONS = 32;
 	
-	protected double speed;
 	protected BufferedImage img;
 	protected P2d position;
 	protected BoundingBox collider;
@@ -27,7 +26,7 @@ public abstract class GameObjectImpl implements GameObject {
 		this.isAlive = true;
 		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
 	}
-
+	
 	@Override
 	public BufferedImage getImage() {
 		return img;
@@ -36,19 +35,20 @@ public abstract class GameObjectImpl implements GameObject {
 	@Override
 	public abstract void update(int elapsed);
 
+	
 	@Override
 	public P2d getPosition() {
 		return this.position;
 	}
 
 	@Override
+	public void setPosition(P2d newPos) {
+		this.position = newPos;
+	}
+	
+	@Override
 	public BoundingBox getBoundingBox() {
 		return this.collider;
-	}
-
-	@Override
-	public double getSpeed() {
-		return this.speed;
 	}
 
 	@Override

@@ -11,10 +11,10 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 
 	private static final int PERIOD = 20;
 	
-	GameModel model;
-	WorldEventListener eventHandler;
-	CommandListener commandHandler;
-	View view;
+	private GameModel model;
+	private WorldEventListener eventHandler;
+	private CommandListener commandHandler;
+	private View view;
 	
 	@Override
 	public void run() {

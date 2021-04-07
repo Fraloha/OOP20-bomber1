@@ -4,21 +4,39 @@ import java.awt.image.BufferedImage;
 
 import bomberOne.model.Difficulty;
 import bomberOne.model.Skins;
+import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
+import bomberOne.model.gameObjects.FireImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUp.type;
 import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.tools.img.ImagesObj;
+import bomberOne.tools.img.SpriteMapsObj;
 
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
+	private static final int BOMBER_LIFES = 3;
+	
 	@Override
 	public GameObject createBomber(P2d position, Skins color) {
-		//return new Bomber();
-		return null;
+		BufferedImage [][] images = null;
+		if(color.equals(Skins.WHITE)) {
+			images = SpriteMapsObj.PLAYER_1.getSprites();
+		}
+		if(color.equals(Skins.BLACK)) {
+			images = SpriteMapsObj.PLAYER_2.getSprites();
+		}
+		if(color.equals(Skins.RED)) {
+			images = SpriteMapsObj.PLAYER_3.getSprites();
+		}
+		if(color.equals(Skins.BLUE)) {
+			images = SpriteMapsObj.PLAYER_4.getSprites();
+		}
+		return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES, true);
 	}
 
 	@Override
@@ -59,14 +77,12 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createFire(P2d position) {
-		//return new FireImpl()
-		return null;
+		return new FireImpl(position, ImagesObj.FIRE.getImage(), 1, false);
 	}
 
 	@Override
 	public GameObject createBomb(P2d position, int firePower, boolean pierce) {
-		// TODO Auto-generated method stub
-		return null;
+		return new BombImpl(position, ImagesObj.BOMB.getImage(), 1, false, firePower, pierce);
 	}
 
 }
