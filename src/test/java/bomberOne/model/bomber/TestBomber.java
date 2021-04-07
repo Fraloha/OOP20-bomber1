@@ -3,39 +3,50 @@ package bomberOne.model.bomber;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.img.SpriteMapsObj;
 
 public class TestBomber {
 	
-	BomberImpl bomber = new BomberImpl(new P2d(0, 0), null, 3, true);
-	PowerUpHandlerImpl activator = new PowerUpHandlerImpl(bomber);
+	BomberImpl bomber;
+	PowerUpHandlerImpl activator;
 	
+	@BeforeEach
+	public void init() {
+		ImagesLoader.start();
+		bomber = new BomberImpl(new P2d(0, 0), SpriteMapsObj.PLAYER_1.getSprites(), 3, true);
+		activator = new PowerUpHandlerImpl(bomber);
+		bomber.setUpHandler(activator);
+	}
 	
 	@Test
 	public void testInitializer() {
-		this.bomber.setUpHandler(activator);
-		assertTrue(this.bomber.getSpeed() == Bomber.SPEED);
-		assertTrue(this.bomber.getAmmo() == Bomber.AMMO);
+		assertTrue(bomber.getSpeed() == Bomber.SPEED);
+		assertTrue(bomber.getAmmo() == Bomber.AMMO);
 	}
 	
 	@Test
 	public void testLifes() {
-		assertTrue(this.bomber.getLifes() == 3);
-		this.bomber.addLifes(1);
-		assertTrue(this.bomber.getLifes() == 4);
-		this.bomber.hitted();
-		assertTrue(this.bomber.getLifes() == 3);
+		assertTrue(bomber.getLifes() == 3);
+		bomber.addLifes(1);
+		assertTrue(bomber.getLifes() == 4);
+		bomber.hitted();
+		assertTrue(bomber.getLifes() == 3);
 	}
 	
 	@Test
 	public void testRespawn() {
-		assertFalse(this.bomber.isAlive());
-		this.bomber.respawn();
-		assertTrue(this.bomber.isAlive());
+		assertTrue(bomber.isAlive());
+		bomber.hitted();
+		assertFalse(bomber.isAlive());
+		bomber.respawn();
+		assertTrue(bomber.isAlive());
 	}
 	
 	@Test
