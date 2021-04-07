@@ -1,5 +1,7 @@
 package bomberOne.model.bomber;
 
+import java.util.Optional;
+
 import bomberOne.model.common.Direction;
 import bomberOne.model.gameObjects.AnimatedEntity;
 import bomberOne.model.gameObjects.Bomb;
@@ -39,7 +41,7 @@ public interface Bomber extends AnimatedEntity {
 	 * Method that generates new Bomb
 	 * @return Bomb
 	 */
-	Bomb plantBomb();
+	Optional<Bomb> plantBomb();
 
 	/**
 	 * Method that applies the 

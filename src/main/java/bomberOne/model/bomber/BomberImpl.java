@@ -1,6 +1,7 @@
 package bomberOne.model.bomber;
 
 import java.awt.image.BufferedImage;
+import java.util.Optional;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
@@ -8,6 +9,8 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.img.SpriteMapsObj;
 
 public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public static final double SPEED_INC = 2;
@@ -38,6 +41,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.spriteIndex = SPRITES;
 		this.animationIndex = 0;
 		this.direction = DIR;
+		ImagesLoader.start();
 	}
 	
 	@Override
@@ -68,12 +72,12 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	}
 	
 	@Override
-	public Bomb plantBomb() {
+	public Optional<Bomb> plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return new BombImpl(new P2d(this.position.getX(), this.position.getY()), null, 1, true, this.firePower, this.pierce);
+			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), SpriteMapsObj.BOMB.getImage(), 1, true, this.firePower, this.pierce));
 		}
-		return null;
+		return Optional.empty();
 	}
 	
 	@Override
