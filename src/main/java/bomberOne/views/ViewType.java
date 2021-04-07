@@ -10,7 +10,7 @@ public enum ViewType {
 	/**
 	 * Style files path
 	 */
-	private static final String DIRECTORY = "viewStyle/";
+	private static final String DIRECTORY = "viewsStyle/";
 	private static final String FORMAT = ".fxml";
 	
 	private String path;
