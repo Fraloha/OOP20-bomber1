@@ -4,6 +4,11 @@ import java.util.List;
 
 import bomberOne.model.GameModel;
 
+/**
+ * This class Handle every type of event in the World
+ * @author Luigi
+ *
+ */
 public interface WorldEventListener {
 
 	/**

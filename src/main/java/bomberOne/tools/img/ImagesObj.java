@@ -9,18 +9,23 @@ import java.awt.image.BufferedImage;
  *
  */
 public enum ImagesObj {
-	 ICON,
-	 SPAWN,
-     BACKGROUND,
-     HARDWALL,
-     BOMB,
-     FIRE,
-     BOX,
-     POWER_BOMB,
-     POWER_FIREPOWER,
-     POWER_SPEED,
-     POWER_PIERCE,
-     POWER_TIMER;
+	
+	BOMBER1SCOREBOARD,
+	BOMBER2SCOREBOARD,
+	BOMBER3SCOREBOARD,
+	BOMBER4SCOREBOARD,
+	ICON,
+	SPAWN,
+    BACKGROUND,
+    HARDWALL,
+    BOMB,
+    FIRE,
+    BOX,
+    POWER_BOMB,
+    POWER_FIREPOWER,
+    POWER_SPEED,
+    POWER_PIERCE,
+    POWER_TIMER;
 
      BufferedImage image = null;
 

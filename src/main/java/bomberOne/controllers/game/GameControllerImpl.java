@@ -2,10 +2,12 @@ package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
 import bomberOne.model.GameModel;
+import bomberOne.model.GameModelImpl;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
-import bomberOne.views.View;
+import bomberOne.model.input.CommandListenerImpl;
+import bomberOne.views.game.GameView;
 
 public class GameControllerImpl extends ControllerImpl implements GameController, Runnable{
 
@@ -14,7 +16,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 	private GameModel model;
 	private WorldEventListener eventHandler;
 	private CommandListener commandHandler;
-	private View view;
+	private GameView view;
 	
 	@Override
 	public void run() {
@@ -66,10 +68,11 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 
 	@Override
 	public void init() {
-		this.model = new WorldEventListenerImpl();
+		this.model = new GameModelImpl();
+		this.eventHandler = new WorldEventListenerImpl();
 		this.commandHandler = new CommandListenerImpl();
 		view.drawGame();
-		this.model.getWorld().init();
+		this.model.init();
 	}
 
 	@Override

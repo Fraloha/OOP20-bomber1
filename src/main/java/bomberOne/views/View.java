@@ -11,8 +11,14 @@ public interface View {
 	public void attachController(Controller controller);
 	
 	/**
+	 * Get the Controller attached to the View
+	 * @return
+	 */
+	public Controller getController();
+	
+	/**
 	 * Initialize the View
 	 */
-	public void init();
+	public abstract void init();
 	
 }

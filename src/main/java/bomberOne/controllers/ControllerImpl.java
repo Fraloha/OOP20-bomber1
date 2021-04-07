@@ -5,8 +5,8 @@ import bomberOne.views.View;
 
 public abstract class ControllerImpl implements Controller{
 
-	GameModel model;
-	View view;
+	private GameModel model;
+	private View view;
 	
 	@Override
 	public void attachView(View view) {

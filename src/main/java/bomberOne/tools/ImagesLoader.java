@@ -30,6 +30,13 @@ public class ImagesLoader {
 	public static void loadImages() {
 		System.out.println(System.getProperty("user.dir"));
          try {
+        	 
+        	 ImagesObj.BOMBER1SCOREBOARD.setImage(ImageIO.read(new File(RES_PATH + "b1SB.png")));
+        	 ImagesObj.BOMBER2SCOREBOARD.setImage(ImageIO.read(new File(RES_PATH + "b2SB.png")));
+        	 ImagesObj.BOMBER3SCOREBOARD.setImage(ImageIO.read(new File(RES_PATH + "b3SB.png")));
+        	 ImagesObj.BOMBER4SCOREBOARD.setImage(ImageIO.read(new File(RES_PATH + "b4SB.png")));
+         	 
+        	 
         	 ImagesObj.ICON.setImage(ImageIO.read(new File(RES_PATH + "icon.png")));
         	 ImagesObj.BOMB.setImage(ImageIO.read(new File(RES_PATH + "bomb.png")));
         	 ImagesObj.BACKGROUND.setImage(ImageIO.read(new File(RES_PATH + "bg.png")));
