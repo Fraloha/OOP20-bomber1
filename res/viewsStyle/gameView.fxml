@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.GameViewImpl">
+<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.GameViewImpl">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -32,7 +32,7 @@
                         <Font size="17.0" />
                      </font>
                   </Label>
-                  <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="34.0" prefWidth="166.0" style="-fx-border-color: yellow; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 10;" text="Score" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="34.0" prefWidth="166.0" style="-fx-border-color: yellow; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 10;" text="Score" textAlignment="RIGHT" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="7.0" left="12.0" top="8.0" />
                      </HBox.margin>
@@ -50,7 +50,7 @@
                         <Image url="@../../../../../Pictures/imgbin_clock-red-circle-alarm-clock-line-art-png.png" />
                      </image>
                   </ImageView>
-                  <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="102.0" style="-fx-border-color: red; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 10;" text="Time" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="102.0" style="-fx-border-color: red; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 10;" text="Time" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>
@@ -71,4 +71,4 @@
          </center>
       </BorderPane>
    </children>
-</AnchorPane>
+</fx:root>
