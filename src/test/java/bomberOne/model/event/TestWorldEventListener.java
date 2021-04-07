@@ -59,11 +59,11 @@ public class TestWorldEventListener {
 	}
 	
 	/**
-	 * Test if the Listener handle correctly the explosions with and without Pierce
+	 * Test if the Listener handle correctly the explosions without Pierce
 	 * 
 	 */
 	@Test
-	public void TestExplosionEvent() {
+	public void TestExplosionWithoutPierce() {
 		model.setWorld(world);
 		this.listener.setGameModel(model);
 		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
@@ -73,10 +73,23 @@ public class TestWorldEventListener {
 		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
 		this.listener.processEvents();
 		assertTrue(world.getGameObjectCollection().getFireList().size() == 2);
-		world.getGameObjectCollection().getGameObjectCollection().removeAll(world.getGameObjectCollection().getFireList());
+	}
+	/**
+	* Test handle correctly the explosions with Pierce
+	*
+	*/
+	@Test
+	public void TestExplosionWithPierce(){
+		model.setWorld(world);
+		this.listener.setGameModel(model);
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
+		world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(64, 0)));
+		world.getGameObjectCollection().spawn(factory.createBox(new P2d(64, 64)));
 		this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
 		this.listener.processEvents();
 		assertTrue(world.getGameObjectCollection().getFireList().size() == 3);
+		
 	}
 	
 }
