@@ -11,6 +11,7 @@ import bomberOne.model.enemy.Enemy;
 import bomberOne.model.event.ExplosionEvent;
 import bomberOne.model.event.HitBorderEvent;
 import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.PickPowerUpEvent;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
@@ -20,6 +21,7 @@ import bomberOne.model.gameObjects.Fire;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
+import bomberOne.model.gameObjects.PowerUp;
 
 
 public class WorldImpl implements World {
@@ -109,6 +111,13 @@ public class WorldImpl implements World {
 				if(fire.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
 					this.listener.notifyEvent(new HitFireEvent(obj));
 				}
+			}
+		}
+		List<PowerUp> powerUpList = collection.getPowerUpList().stream()
+				.filter(p -> p.isReleased() == true).collect(Collectors.toList());
+		for(PowerUp power : powerUpList) {
+			if(power.getBoundingBox().isCollidingWith(bomberMan.getBoundingBox())) {
+				this.listener.notifyEvent(new PickPowerUpEvent(power));
 			}
 		}
 	}
