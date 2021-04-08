@@ -30,15 +30,19 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	@Override
 	public void processEvents() {
 		this.eventList.stream().forEach(event -> {
+			
 			if (event.getClass().equals(PickPowerUpEvent.class)){
 				this.processPickPowerUpEvent((PickPowerUpEvent) event);
 			}
+			
 			if (event.getClass().equals(HitFireEvent.class)){
 				this.processHitFireEvent((HitFireEvent) event);
 			}
+			
 			if (event.getClass().equals(HitBorderEvent.class)){
 				this.processHitBorderEvent((HitBorderEvent) event);
 			}
+			
 			if (event.getClass().equals(ExplosionEvent.class)){
 				this.processExplosionEvent((ExplosionEvent) event);
 			}

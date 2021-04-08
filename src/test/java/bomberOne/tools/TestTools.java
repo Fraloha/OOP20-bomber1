@@ -65,6 +65,7 @@ public class TestTools {
 	@Test
 	public void testImageLoader() {
 		ImagesLoader.start();
+		assertNotNull(ImagesObj.BOMBER1SCOREBOARD.getImage());
 		assertNotNull(ImagesObj.BACKGROUND.getImage());
 		assertNotNull(ImagesObj.BOMB.getImage());
 		assertNotNull(ImagesObj.BOX.getImage());

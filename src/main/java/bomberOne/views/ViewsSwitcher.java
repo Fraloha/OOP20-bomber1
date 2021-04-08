@@ -23,12 +23,13 @@ public class ViewsSwitcher {
 	 * Switch the view displayed on the Stage
 	 * @param stage
 	 * @param viewType the type of the View to switch
-	 * @param model
+	 * @param model the Istance of the GameModel
+	 * @throws IOException 
 	 */
 	public static void switchView(Stage stage, ViewType viewType, GameModel model) {
 		FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(viewType.getPath()));
 		Parent root = null;
-		try { 
+		try {
 			root = loader.load();
 		} catch (IOException e) {
 			e.printStackTrace();

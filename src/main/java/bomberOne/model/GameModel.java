@@ -1,6 +1,6 @@
 package bomberOne.model;
 
-import bomberOne.model.timer.Timer;
+import bomberOne.model.timer.TimerImpl;
 
 /**
  * The Model of the Game
@@ -68,5 +68,5 @@ public interface GameModel {
 	
 	void checkGameOver();
 	
-	Timer getTime();
+	TimerImpl getTime();
 }

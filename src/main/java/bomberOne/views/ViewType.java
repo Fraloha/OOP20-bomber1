@@ -1,25 +1,30 @@
 package bomberOne.views;
 
+import java.io.File;
+
 public enum ViewType {
 
-	HOME,
-	SETUP,
-	GAME,
-	RANK;
+	HOME("HomeView"),
+	SETUP("SetUpView"),
+	GAME("GameView"),
+	RANK("RankView");
 	
 	/**
 	 * Style files path
 	 */
-	private static final String DIRECTORY = "viewsStyle/";
+	private static final String DIRECTORY = "viewsStyle" + File.separator;
 	private static final String FORMAT = ".fxml";
 	
-	private String path;
-	
-	
+	private String fileName;
+
+
+	private ViewType(String string) {
+		this.fileName = string;
+	}
+
+
 	public String getPath() {
-		ViewType.GAME.path = DIRECTORY + "gameView" + FORMAT; 
-		ViewType.SETUP.path = DIRECTORY + "setUpView" + FORMAT; 
-		return this.path;
+		return DIRECTORY + this.fileName + FORMAT;
 	}
 	
 }

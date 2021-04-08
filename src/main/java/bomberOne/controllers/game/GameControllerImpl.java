@@ -79,5 +79,10 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 	public void processEvent() {
 		this.eventHandler.processEvents();
 	}
+	
+	@Override
+	public CommandListener getCommandListener() {
+		return this.commandHandler;
+	}
 
 }

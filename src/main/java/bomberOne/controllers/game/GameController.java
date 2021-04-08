@@ -1,6 +1,7 @@
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.Controller;
+import bomberOne.model.input.CommandListener;
 
 /**
  * The Game Controller that contains the gameloop and handles Events & Command
@@ -30,4 +31,9 @@ public interface GameController extends Controller{
 	 */
 	public void updateGame(int elapsedTime);
 	
+	
+	/**
+	 * Return the command Listener attached to the controller
+	 */
+	public CommandListener getCommandListener();
 }

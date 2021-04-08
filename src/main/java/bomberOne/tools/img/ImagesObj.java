@@ -10,6 +10,8 @@ import java.awt.image.BufferedImage;
  */
 public enum ImagesObj {
 	
+	LIFE_YES,
+	LIFE_NO,
 	BOMBER1SCOREBOARD,
 	BOMBER2SCOREBOARD,
 	BOMBER3SCOREBOARD,

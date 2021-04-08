@@ -1,6 +1,6 @@
 package bomberOne.model;
 
-import bomberOne.model.timer.Timer;
+import bomberOne.model.timer.TimerImpl;
 
 public class GameModelImpl implements GameModel {
 
@@ -77,7 +77,7 @@ public class GameModelImpl implements GameModel {
 	}
 
 	@Override
-	public Timer getTime() {
+	public TimerImpl getTime() {
 		// TODO Auto-generated method stub
 		return null;
 	}
