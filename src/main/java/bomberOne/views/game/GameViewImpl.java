@@ -2,15 +2,13 @@ package bomberOne.views.game;
 
 import java.awt.event.KeyEvent;
 
-import bomberOne.controllers.game.GameController;
 import bomberOne.model.Skins;
+import bomberOne.model.bomber.Bomber;
+import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
-import bomberOne.model.input.movement.MoveDown;
-import bomberOne.model.input.movement.MoveLeft;
-import bomberOne.model.input.movement.MoveRight;
-import bomberOne.model.input.movement.MoveUp;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.views.ViewImpl;
+import bomberOne.views.game.movement.ControlsMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -20,6 +18,7 @@ import javafx.scene.image.ImageView;
 
 public class GameViewImpl extends ViewImpl implements GameView{
 
+	private static final int ANIMATED_ENTITY_IMAGE_HEIGHT = 16;
 	private static int WORLD_CELLS = 18;
 	private static int CELL_SIZE = 32;
 	private static int WORLD_WIDTH = 576;
@@ -51,6 +50,18 @@ public class GameViewImpl extends ViewImpl implements GameView{
 
 	private GraphicsContext gCForeground;
 	private GraphicsContext gCBackground;
+	private ControlsMap controlsMap;
+	
+	
+	
+	@Override
+	public void init() {
+		this.drawGame();
+		this.getController().init();
+		this.gCBackground = this.canvasBackground.getGraphicsContext2D();
+		this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
+		this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
+	}
 	
 	@Override
 	public void drawGame() {
@@ -78,32 +89,23 @@ public class GameViewImpl extends ViewImpl implements GameView{
 		this.timeLabel.setText(this.getController().getModel().getTime().getTime().toString());
 		this.scoreLabel.setText(this.getController().getModel().getScore() + "");
 		this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+		/*	Draw the BomberMan	*/
+		Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
+		this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null), bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+		/*	Draw all the updateable Objects but not enemies */
 		this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection()
 			.stream()
 			.filter(elem -> !elem.getClass().equals(HardWall.class))
-			.forEach(obj -> gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY()));
+			.filter(elem -> !elem.getClass().equals(EnemyImpl.class))
+			.forEach(obj -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY()));
+		/*	Draw the enemies	*/
+		this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList()
+			.stream()
+			.forEach(enemy -> {
+				this.gCForeground.drawImage(SwingFXUtils.toFXImage(enemy.getImage(), null), enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+				
+			});
 		
-		
-	}
-
-	public void keyPressed(KeyEvent e) {
-     	if (e.getKeyCode() == 38){
-     		 ((GameController) this.getController()).getCommandListener().addCommand(new MoveUp());
-     	} else if (e.getKeyCode() == 40){
-     		 ((GameController) this.getController()).getCommandListener().addCommand(new MoveDown());  	     
-     	} else if (e.getKeyCode() == 39){
-     		 ((GameController) this.getController()).getCommandListener().addCommand(new MoveLeft());    	     		
-     	} else if (e.getKeyCode() == 37){	 
-     		((GameController) this.getController()).getCommandListener().addCommand(new MoveRight());
-     	}
-     }
-	
-	@Override
-	public void init() {
-		this.drawGame();
-		this.getController().init();
-		this.gCBackground = this.canvasBackground.getGraphicsContext2D();
-		this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
 	}
 
 	/**
@@ -157,6 +159,30 @@ public class GameViewImpl extends ViewImpl implements GameView{
 		}
 		
 	}
+	
+	/*				INPUT				*/
+	
+	/**
+	 * Read the user's input and notify the command to the CommandListener
+	 * @param e
+	 */
+	public void keyPressed(KeyEvent e) {
+		if(this.controlsMap.getControlMap().containsKey(e.getKeyCode())) {
+			this.controlsMap.getControlMap().get(e.getKeyCode()).run();
+			this.getController().getModel().getWorld().getBomber().setStatic(false);
+		}
+
+     }
+	
+	/**
+     * Reads the keys released and performs certain actions based on the key.
+     * @param e The key released
+     */
+    public void keyReleased(KeyEvent e) {
+    	if(this.controlsMap.getControlMap().containsKey(e.getKeyCode())) {
+			this.getController().getModel().getWorld().getBomber().setStatic(true);
+		}
+    }
 
 	
 	

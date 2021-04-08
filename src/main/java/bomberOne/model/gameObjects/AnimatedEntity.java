@@ -47,4 +47,14 @@ public interface AnimatedEntity extends GameObject{
 	 * @return Direction of the Entity
 	 */
 	Direction getDir();
+	
+	/*
+	 * @return True if the Animated Entity is static
+	 */
+	boolean isStatic();
+	
+	/*
+	 * Set the isStatic propriety as "value"
+	 */
+	void setStatic(boolean value);
 }

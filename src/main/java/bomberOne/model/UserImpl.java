@@ -7,6 +7,7 @@ public class UserImpl implements User {
 	private String name;
 	private int score;
 	private Skins skin;
+	private Controls controls;
 	
 	@Override
 	public String getName() {
@@ -36,6 +37,16 @@ public class UserImpl implements User {
 	@Override
 	public Skins getSkin() {
 		return this.skin;
+	}
+
+	@Override
+	public void setControls(Controls controls) {
+		this.controls = controls;
+	}
+
+	@Override
+	public Controls getControls() {
+		return this.controls;
 	}
 
 }

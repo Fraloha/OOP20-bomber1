@@ -46,5 +46,17 @@ public interface User extends Serializable{
 	 */
 	public Skins getSkin();
 	
+	/**
+	 * 
+	 * Set the controls of the User
+	 */
+	public void setControls(Controls controls);
+	
+	/**
+	 * 
+	 * @return the controls of the User
+	 */
+	public Controls getControls();
+	
 
 }
