@@ -1,6 +1,9 @@
 package bomberOne.model.enemy.actions;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.GameObject;
+import java.util.LinkedList;
+
 
 /**
  * This interface defines the actions of an enemy.
@@ -10,4 +13,6 @@ import bomberOne.model.common.P2d;
 public interface Actions {
 	
 	public P2d doAction(P2d currentPosition, double speed);
+	
+	public boolean freePath(LinkedList<? extends GameObject> objects);
 }

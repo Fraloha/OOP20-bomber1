@@ -1,8 +1,10 @@
 package bomberOne.model.enemy.actions;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.observation.EnemyTriggeredObservation;
 import bomberOne.model.enemy.Enemy;
+import java.util.LinkedList;
 
 public class IntermediateBehavior implements Actions{
 	
@@ -17,14 +19,6 @@ public class IntermediateBehavior implements Actions{
 	}
 	
 	/* Methods. */
-	
-	private void followByRow(boolean direction) {
-		
-	}
-	
-	private void followByColumn(boolean direction) {
-		
-	}
 	
 	@Override
 	public P2d doAction(P2d currentPosition, double speed) {
