@@ -3,6 +3,7 @@ package bomberOne.model;
 import bomberOne.model.factory.WorldFactory;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
+import bomberOne.model.timer.TimerThread;
 
 public class GameModelImpl implements GameModel {
 
@@ -12,9 +13,9 @@ public class GameModelImpl implements GameModel {
 	private Difficulty difficulty;
 	private int score=0;
 	private WorldFactory factory;
-	private Timer timer = new TimerImpl(GameModelImpl.TIME);
-	private Controls controls;
+	private TimerImpl timer = new TimerImpl(GameModelImpl.TIME);
 	private boolean gameOver = false;
+	private TimerThread thread = new TimerThread(timer);
 	
 	@Override
 	public void init() {
@@ -24,6 +25,7 @@ public class GameModelImpl implements GameModel {
 		} else {
 			this.world=factory.createWorldHard(this.user);
 		}
+		thread.start();
 	}
 
 	@Override
@@ -87,7 +89,12 @@ public class GameModelImpl implements GameModel {
 	@Override
 	public void checkGameOver() {
 		// TODO Auto-generated method stub
-		if(!this.world.getBomber().isAlive()) {
+		if(this.world.getBomber().getLifes()==0) {
+			this.gameOver=true;
+		} else if (this.world.getGameObjectCollection().getBoxList().size()==0 && 
+					this.world.getGameObjectCollection().getEnemyList().size()==0) {
+			this.gameOver=true;
+		} else if(this.timer.getTime().getTotal()==0) {
 			this.gameOver=true;
 		} else {
 			this.gameOver=false;
@@ -101,14 +108,8 @@ public class GameModelImpl implements GameModel {
 	}
 
 	@Override
-	public void setControls(Controls controls) {
-		// TODO Auto-generated method stub
-		this.controls=controls;
-	}
-
-	@Override
 	public Controls getControls() {
 		// TODO Auto-generated method stub
-		return this.controls;
+		return this.user.getControls();
 	}
 }

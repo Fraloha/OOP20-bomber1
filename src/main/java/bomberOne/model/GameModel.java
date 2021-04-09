@@ -68,8 +68,6 @@ public interface GameModel {
 	
 	void checkGameOver();
 	
-	void setControls(Controls controls);
-	
 	Controls getControls();
 	
 	Timer getTime();

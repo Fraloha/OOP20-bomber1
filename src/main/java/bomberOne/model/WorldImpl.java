@@ -51,7 +51,7 @@ public class WorldImpl implements World {
 	 * This method create all HardWall and Box in the World
 	 */
 	private void setHardWall() {
-	
+		
 	}
 
 	@Override
