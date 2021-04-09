@@ -2,10 +2,10 @@ package bomberOne.views.game;
 
 import java.awt.event.KeyEvent;
 
-import bomberOne.model.Skins;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
+import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.views.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;

@@ -2,8 +2,6 @@ package bomberOne.model.factory;
 
 import java.awt.image.BufferedImage;
 
-import bomberOne.model.Difficulty;
-import bomberOne.model.Skins;
 import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
@@ -13,6 +11,8 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUp.type;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.tools.img.SpriteMapsObj;

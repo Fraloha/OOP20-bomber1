@@ -1,9 +1,9 @@
 package bomberOne.controllers.setUp;
 
 import bomberOne.controllers.ControllerImpl;
-import bomberOne.model.Controls;
-import bomberOne.model.Difficulty;
-import bomberOne.model.Skins;
+import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 
 public class SetUpControllerImpl extends ControllerImpl implements SetUpController {
 
