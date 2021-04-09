@@ -2,13 +2,13 @@ package bomberOne.model.timer;
 
 public class TimerThread extends Thread{
 
-	private TimerImpl timer;
+	private Timer timer;
 	
-	public void setTimer(TimerImpl t) {
+	public void setTimer(Timer t) {
 		this.timer = t;
 	}
 	
-	public TimerThread(TimerImpl t) {
+	public TimerThread(Timer t) {
 		this.timer = t;
 	}
 	
