@@ -21,7 +21,7 @@ public interface Timer {
 	/**
 	 * @return the Time attached to the timer
 	 */
-	public TimeImpl getTime();
+	public Time getTime();
 	
 	/**
 	 * 
