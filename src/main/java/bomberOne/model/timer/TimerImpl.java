@@ -2,7 +2,7 @@ package bomberOne.model.timer;
 
 public class TimerImpl implements Timer{
 
-	private TimeImpl time;
+	private Time time;
 	
 	public TimerImpl(int tot) {
 		this.time = new TimeImpl(tot);
@@ -16,7 +16,7 @@ public class TimerImpl implements Timer{
 		this.time.setTotal(time.getTotal() - 1);
 	}
 	
-	public TimeImpl getTime() {
+	public Time getTime() {
 		return this.time;
 	}
 	
