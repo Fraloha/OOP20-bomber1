@@ -17,6 +17,12 @@ public interface AnimatedEntity extends GameObject{
 	int getTimeElapsed();
 	
 	/**
+	 * Method to set
+	 * @param speed
+	 */
+	void setSpeed(double speed);
+	
+	/**
 	 * 
 	 * @return speed of the Object
 	 */
@@ -43,17 +49,23 @@ public interface AnimatedEntity extends GameObject{
 	void moveRight();
 
 	/**
+	 * Method to set
+	 * @param dir
+	 */
+	void setDir(Direction dir);
+	
+	/**
 	 * Method that
 	 * @return Direction of the Entity
 	 */
 	Direction getDir();
 	
-	/*
+	/**
 	 * @return True if the Animated Entity is static
 	 */
 	boolean isStatic();
 	
-	/*
+	/**
 	 * Set the isStatic propriety as "value"
 	 */
 	void setStatic(boolean value);

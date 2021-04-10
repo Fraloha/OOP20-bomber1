@@ -25,38 +25,37 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private int fpAgg = 0;
 	//Images and animations
 	private int spriteIndex; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
-	private Direction direction;
 	private int animationIndex;
 	private BufferedImage[][] animations;
 
 	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes, boolean isBreakable) {
 		super(pos, img[0][1], lifes, isBreakable);
+		this.setSpeed(SPEED);
+		this.setDir(DIR);
 		this.animations = img;
 		this.startPosition = pos;
 		this.firePower  = FIRE_POWER;
-		this.speed = SPEED;
 		this.pierce = false;
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
 		this.spriteIndex = SPRITES;
 		this.animationIndex = 0;
-		this.direction = DIR;
 		ImagesLoader.start();
 	}
 	
 	@Override
 	public void respawn() {
+		this.setSpeed(SPEED);
+		this.setDir(DIR);
 		this.isAlive  = true;
 		this.position = startPosition;
 		this.firePower  = FIRE_POWER;
-		this.speed = SPEED;
 		this.pierce = false;
 		this.maxAmmo = AMMO;
 		this.usedAmmo = 0;
 		this.spriteIndex = SPRITES;
 		this.animationIndex = 0;
 		this.fpAgg = 0;
-		this.direction = DIR;
 	}
 	
 	@Override
@@ -96,7 +95,6 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 				this.activator.applySpeed(SPEED_INC);
 				break;
 			case Time:
-				//TODO richiamare nuovo evento timerIncrease
 				break;
 			default:
 				break;
@@ -125,7 +123,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public Direction getDirection(){
-		return this.direction;
+		return this.getDir();
 	}
 	
 	@Override
@@ -140,25 +138,25 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void moveUp() {
-		this.direction = Direction.UP;
+		this.setDir(Direction.UP);
 		super.moveUp();
 	}
 
 	@Override
 	public void moveDown() {
-		this.direction = Direction.DOWN;
+		this.setDir(Direction.DOWN);
 		super.moveDown();
 	}
 
 	@Override
 	public void moveLeft() {
-		this.direction = Direction.LEFT;
+		this.setDir(Direction.LEFT);
 		super.moveLeft();
 	}
 
 	@Override
 	public void moveRight() {
-		this.direction = Direction.RIGHT;
+		this.setDir(Direction.RIGHT);
 		super.moveRight();
 	}
 	
@@ -171,7 +169,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	@Override
 	public void update(int elapsed) {
 		if(this.isAlive) {
-			switch (this.direction) {
+			switch (this.getDir()) {
 			case UP:
 				this.spriteIndex = 0;
 				this.animationIndex = 0;
@@ -204,7 +202,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	}
 
 	protected void incSpeed(double increment) {
-		this.speed += increment;
+		this.setSpeed(this.getSpeed() + increment);
 	}
 	
 	protected void incAmmo(int increment) {

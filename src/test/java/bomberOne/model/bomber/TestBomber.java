@@ -33,6 +33,7 @@ public class TestBomber {
 	
 	@Test
 	public void testLifes() {
+		System.out.println(bomber.getLifes());
 		assertTrue(bomber.getLifes() == 3);
 		bomber.addLifes(1);
 		assertTrue(bomber.getLifes() == 4);

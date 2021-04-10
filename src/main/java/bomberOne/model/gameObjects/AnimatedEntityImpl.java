@@ -9,7 +9,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 
 	private int elapsed;
 	private Direction dir;
-	protected double speed;
+	private double speed;
 	private boolean isStatic;
 	
 	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
@@ -17,6 +17,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 		this.dir = Direction.DOWN;
 		this.isStatic = true;
 	}
+	
+	
 	
 	@Override
 	public void setTimeElapsed(int elapsed) {
@@ -26,6 +28,11 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 	@Override
 	public int getTimeElapsed() {
 		return this.elapsed;
+	}
+	
+	@Override
+	public void setSpeed(double speed) {
+		this.speed = speed;
 	}
 	
 	@Override
@@ -54,6 +61,11 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 	}
 	
 	@Override
+	public void setDir(Direction dir) {
+		this.dir = dir;
+	}
+	
+	@Override
 	public Direction getDir() {
 		return this.dir;
 	}
@@ -65,14 +77,10 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 		}
 	}
 
-
-
 	@Override
 	public boolean isStatic() {
 		return this.isStatic;
 	}
-
-
 
 	@Override
 	public void setStatic(boolean value) {
