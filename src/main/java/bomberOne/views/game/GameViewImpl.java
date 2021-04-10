@@ -74,6 +74,9 @@ public class GameViewImpl extends ViewImpl implements GameView{
 				gCBackground.drawImage(SwingFXUtils.toFXImage(ImagesObj.BACKGROUND.getImage(), null), i * CELL_SIZE, j * CELL_SIZE);
 			}
 		}
+		//Draw the spawner
+		double spawnCord = CELL_SIZE * WORLD_CELLS/2 - CELL_SIZE/2;
+		gCBackground.drawImage(SwingFXUtils.toFXImage(ImagesObj.SPAWN.getImage(), null), spawnCord, spawnCord);
 		
 		//Draw the Walls
 		this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList()

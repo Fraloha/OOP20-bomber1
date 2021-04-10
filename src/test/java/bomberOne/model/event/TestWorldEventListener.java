@@ -1,5 +1,6 @@
 package bomberOne.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -37,8 +38,7 @@ public class TestWorldEventListener {
 	@BeforeEach
     public void init() {
 		listener = new WorldEventListenerImpl();
-		ImagesLoader.loadImages();
-		ImagesLoader.sliceSprite();
+		ImagesLoader.start();
 		world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
 		model = new GameModelImpl();
 		factory = new GameObjectFactoryImpl();
@@ -52,9 +52,11 @@ public class TestWorldEventListener {
 		
 		model.setWorld(world);
 		this.listener.setGameModel(model);
+		assertEquals(this.model.getScore(), 0);
 		world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
 		this.listener.notifyEvent(new HitFireEvent(world.getGameObjectCollection().getBoxList().get(0)));
 		this.listener.processEvents();
+		assertEquals(this.model.getScore(), 50);
 		assertFalse(world.getGameObjectCollection().getBoxList().get(0).isAlive());
 	}
 	
