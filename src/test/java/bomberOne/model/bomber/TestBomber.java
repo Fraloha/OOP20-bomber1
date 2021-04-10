@@ -12,6 +12,11 @@ import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.tools.ImagesLoader;
 import bomberOne.tools.img.SpriteMapsObj;
 
+/**
+ * Tester for BomberImpl
+ * @author Gustavo Mazzanti
+ *
+ */
 public class TestBomber {
 	
 	BomberImpl bomber;
