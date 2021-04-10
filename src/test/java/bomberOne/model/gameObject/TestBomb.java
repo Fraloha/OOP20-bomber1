@@ -18,23 +18,21 @@ import bomberOne.tools.img.SpriteMapsObj;
  * @author Gustavo Mazzanti
  *
  */
-public class testBomb {
+public class TestBomb {
 	BombImpl bomb;
 	Optional<Explosion> explosion;
 	
 	@BeforeEach
 	public void init() {
 		this.bomb = new BombImpl(new P2d(0, 0), SpriteMapsObj.BOMB.getImage(), 1, true, 3, false);
-		this.explosion = Optional.empty();
 	}
 	
 	@Test
 	public void testOptionalExplosion() {
+		this.explosion = Optional.empty();
 		assertTrue(this.bomb.getExplosion() == this.explosion);
-		this.bomb.explode();
-		assertFalse(this.bomb.getExplosion() == this.explosion);
-		this.explosion = this.bomb.getExplosion();
-		assertTrue(this.bomb.getExplosion() == this.explosion);
+		this.explosion = Optional.of(this.bomb.explode());
+		assertTrue(this.bomb.getExplosion().equals(this.explosion));
 	}
 	
 	
