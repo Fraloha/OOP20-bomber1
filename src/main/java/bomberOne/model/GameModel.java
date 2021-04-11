@@ -1,6 +1,9 @@
 package bomberOne.model;
 
 import bomberOne.model.timer.Timer;
+import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.User;
 
 /**
  * The Model of the Game

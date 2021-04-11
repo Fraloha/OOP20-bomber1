@@ -7,12 +7,16 @@ import java.util.stream.Collectors;
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import bomberOne.model.enemy.EnemyImpl;
+import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.Explosion;
 import bomberOne.model.gameObjects.PowerUp;
 
 public class WorldEventListenerImpl implements WorldEventListener {
 
 	private static final int OBJ_DIMETIONS = 32;
+	private static final int BOX_INC_SCORE = 50;
+	private static final int ENEMY_INC_SCORE = 150;
 	
 	private GameModel model;
 	private List<WorldEvent> eventList = new ArrayList<>();
@@ -79,6 +83,12 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	 */
 	private void processHitFireEvent(HitFireEvent event) {
 		event.getEntity().hitted();
+		if(event.getEntity().getClass().equals(BoxImpl.class)) {
+			this.model.incScore(BOX_INC_SCORE);
+		}
+		if(event.getEntity().getClass().equals(EnemyImpl.class)) {
+			this.model.incScore(ENEMY_INC_SCORE);
+		}
 	}
 	
 	/**

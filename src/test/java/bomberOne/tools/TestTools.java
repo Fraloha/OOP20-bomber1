@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.User;
-import bomberOne.model.UserImpl;
+import bomberOne.model.user.User;
+import bomberOne.model.user.UserImpl;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.tools.img.SpriteMapsObj;
 

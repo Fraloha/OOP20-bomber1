@@ -12,6 +12,11 @@ import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.tools.ImagesLoader;
 import bomberOne.tools.img.SpriteMapsObj;
 
+/**
+ * Tester for BomberImpl
+ * @author Gustavo Mazzanti
+ *
+ */
 public class TestBomber {
 	
 	BomberImpl bomber;
@@ -33,6 +38,7 @@ public class TestBomber {
 	
 	@Test
 	public void testLifes() {
+		System.out.println(bomber.getLifes());
 		assertTrue(bomber.getLifes() == 3);
 		bomber.addLifes(1);
 		assertTrue(bomber.getLifes() == 4);

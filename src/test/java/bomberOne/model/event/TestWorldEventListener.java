@@ -1,21 +1,22 @@
 package bomberOne.model.event;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.Difficulty;
 import bomberOne.model.GameModel;
 import bomberOne.model.GameModelImpl;
-import bomberOne.model.Skins;
 import bomberOne.model.World;
 import bomberOne.model.WorldImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 import bomberOne.tools.ImagesLoader;
 
 
@@ -37,8 +38,7 @@ public class TestWorldEventListener {
 	@BeforeEach
     public void init() {
 		listener = new WorldEventListenerImpl();
-		ImagesLoader.loadImages();
-		ImagesLoader.sliceSprite();
+		ImagesLoader.start();
 		world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
 		model = new GameModelImpl();
 		factory = new GameObjectFactoryImpl();
@@ -52,9 +52,11 @@ public class TestWorldEventListener {
 		
 		model.setWorld(world);
 		this.listener.setGameModel(model);
+		assertEquals(this.model.getScore(), 0);
 		world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
 		this.listener.notifyEvent(new HitFireEvent(world.getGameObjectCollection().getBoxList().get(0)));
 		this.listener.processEvents();
+		assertEquals(this.model.getScore(), 50);
 		assertFalse(world.getGameObjectCollection().getBoxList().get(0).isAlive());
 	}
 	

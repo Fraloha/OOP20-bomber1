@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 import bomberOne.controllers.game.GameController;
-import bomberOne.model.Controls;
 import bomberOne.model.input.PlantBomb;
 import bomberOne.model.input.movement.MoveDown;
 import bomberOne.model.input.movement.MoveLeft;
 import bomberOne.model.input.movement.MoveRight;
 import bomberOne.model.input.movement.MoveUp;
+import bomberOne.model.user.Controls;
 import bomberOne.views.View;
 
 /**

@@ -22,6 +22,8 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 
 
 public class WorldImpl implements World {

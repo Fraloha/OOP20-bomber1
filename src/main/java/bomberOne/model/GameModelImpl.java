@@ -4,6 +4,9 @@ import bomberOne.model.factory.WorldFactory;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
+import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.User;
 
 public class GameModelImpl implements GameModel {
 

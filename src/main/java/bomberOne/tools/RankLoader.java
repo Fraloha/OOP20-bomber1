@@ -11,7 +11,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import bomberOne.model.User;
+import bomberOne.model.user.User;
 
 public class RankLoader {
 	
