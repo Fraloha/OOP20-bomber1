@@ -8,6 +8,8 @@ import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ImagesObj;
 import bomberOne.views.ViewImpl;
+import bomberOne.views.ViewType;
+import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.game.movement.ControlsMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -82,7 +84,7 @@ public class GameViewImpl extends ViewImpl implements GameView{
 		this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList()
 			.stream()
 			.forEach(wall -> {
-				gCBackground.drawImage(SwingFXUtils.toFXImage(ImagesObj.HARDWALL.getImage(), null), wall.getPosition().getX(), wall.getPosition().getY());
+				gCBackground.drawImage(SwingFXUtils.toFXImage(wall.getImage(), null), wall.getPosition().getX(), wall.getPosition().getY());
 			});
 		
 	}
@@ -186,6 +188,11 @@ public class GameViewImpl extends ViewImpl implements GameView{
 			this.getController().getModel().getWorld().getBomber().setStatic(true);
 		}
     }
+
+	@Override
+	public void switchToRank() {
+		ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+	}
 
 	
 	

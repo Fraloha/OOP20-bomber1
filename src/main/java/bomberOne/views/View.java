@@ -1,6 +1,7 @@
 package bomberOne.views;
 
 import bomberOne.controllers.Controller;
+import javafx.stage.Stage;
 
 public interface View {
 
@@ -20,5 +21,17 @@ public interface View {
 	 * Initialize the View
 	 */
 	public abstract void init();
+	
+	/**
+	 * Attach a stage to the View
+	 * @param stage
+	 */
+	public void setStage(Stage stage);
+	
+	/**
+	 * Return stage attached to the View
+	 * @param stage
+	 */
+	public Stage getStage();
 	
 }

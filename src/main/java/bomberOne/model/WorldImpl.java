@@ -35,7 +35,7 @@ public class WorldImpl implements World {
 	private WorldEventListener listener = new WorldEventListenerImpl();
 	private BomberImpl bomberMan;
 	boolean respawn;
-	Difficulty difficulty;
+	private Difficulty difficulty;
 		
 	public WorldImpl(Difficulty difficulty, Skins skin) {
 		this.difficulty=difficulty;
