@@ -39,6 +39,7 @@ public class ViewsSwitcher {
 		Controller controller = ViewsSwitcher.getController(viewType);
 		controller.attachView(view);
         view.attachController(controller);
+        view.setStage(stage);
         view.init();
         stage.show();
 	}

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import bomberOne.model.enemy.Enemy;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.Explosion;
@@ -108,6 +109,9 @@ public class WorldEventListenerImpl implements WorldEventListener {
 		}
 		if(event.getEntity().getDir().equals(Direction.RIGHT)){
 			event.getEntity().setPosition(new P2d(event.getWall().getPosition().getX() - OBJ_DIMETIONS, event.getEntity().getPosition().getY()));
+		}
+		if(event.getEntity().getClass().equals(EnemyImpl.class)) {
+			((Enemy) event.getEntity()).changeDir();
 		}
 	}
 	

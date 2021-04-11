@@ -37,6 +37,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             }
             this.render();
 	    }
+        this.view.switchToRank();
 	        
 	}
 
