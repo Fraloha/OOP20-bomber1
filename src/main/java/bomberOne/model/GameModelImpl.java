@@ -105,7 +105,7 @@ public class GameModelImpl implements GameModel {
 	}
 
 	@Override
-	public Timer getTime() {
+	public Timer getTimer() {
 		// TODO Auto-generated method stub
 		return this.timer;
 	}
