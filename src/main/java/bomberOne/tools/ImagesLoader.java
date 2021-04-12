@@ -28,7 +28,6 @@ public class ImagesLoader {
 	 * @throws IOException if it can't read the Files
 	 */
 	public static void loadImages() {
-		System.out.println(System.getProperty("user.dir"));
          try {
         	 
         	 ImagesObj.BOMBER1SCOREBOARD.setImage(ImageIO.read(ClassLoader.getSystemResource(RES_PATH + "b1SB.png")));
