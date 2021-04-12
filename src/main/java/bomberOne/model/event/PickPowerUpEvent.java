@@ -23,7 +23,7 @@ public class PickPowerUpEvent implements WorldEvent{
 	@Override
 	public void process(GameModel model) {
 		if(this.powerUp.getType().equals(PowerUp.type.Time)) {
-			model.getTime().setTimer(TIMER_INC);
+			model.getTime().setTimer(model.getTime().getTime().getTotal() + TIMER_INC);
 		}
 		else {
 			model.getWorld().getBomber().applyPowerUp(this.powerUp.getType());			
