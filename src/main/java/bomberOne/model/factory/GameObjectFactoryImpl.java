@@ -36,7 +36,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 		if(color.equals(Skins.BLUE)) {
 			images = AnimatedObjectsSprites.PLAYER_4.getSprites();
 		}
-		return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES, true);
+		return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createBox(P2d position) {
-		return new BoxImpl(position, ObjectsImages.BOX.getImage(), 1, true);
+		return new BoxImpl(position, ObjectsImages.BOX.getImage(), 1);
 	}
 
 	@Override
@@ -72,17 +72,17 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createHardWall(P2d position) {
-		return new HardWall(position, ObjectsImages.HARDWALL.getImage(), 1, false);
+		return new HardWall(position, ObjectsImages.HARDWALL.getImage(), 1);
 	}
 
 	@Override
 	public GameObject createFire(P2d position) {
-		return new FireImpl(position, ObjectsImages.FIRE.getImage(), 1, false);
+		return new FireImpl(position, ObjectsImages.FIRE.getImage(), 1);
 	}
 
 	@Override
 	public GameObject createBomb(P2d position, int firePower, boolean pierce) {
-		return new BombImpl(position, ObjectsImages.BOMB.getImage(), 1, false, firePower, pierce);
+		return new BombImpl(position, ObjectsImages.BOMB.getImage(), 1, firePower, pierce);
 	}
 
 }

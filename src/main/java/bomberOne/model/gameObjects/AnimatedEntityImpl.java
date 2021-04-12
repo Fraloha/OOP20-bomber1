@@ -12,8 +12,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 	private double speed;
 	private boolean isStatic;
 	
-	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
+	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes) {
+		super(pos, img, lifes);
 		this.dir = Direction.DOWN;
 		this.isStatic = true;
 	}

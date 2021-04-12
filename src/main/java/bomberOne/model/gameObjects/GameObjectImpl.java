@@ -18,11 +18,10 @@ public abstract class GameObjectImpl implements GameObject {
 	protected boolean isAlive;
 	protected boolean isBreakable;
 	
-	public GameObjectImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
+	public GameObjectImpl(P2d pos, BufferedImage img, int lifes) {
 		this.position = pos;
 		this.img = img;
 		this.lifes = lifes;
-		this.isBreakable = isBreakable;
 		this.isAlive = true;
 		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
 	}
@@ -62,18 +61,10 @@ public abstract class GameObjectImpl implements GameObject {
 	}
 
 	@Override
-	public boolean isHitted() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
 	public void hitted() {
-		if(this.isBreakable) {
-			this.lifes--;
-			if(this.getLifes() == 0) {
-				this.isAlive = false;
-			}
+		this.lifes--;
+		if(this.getLifes() == 0) {
+			this.isAlive = false;
 		}
 	}
 

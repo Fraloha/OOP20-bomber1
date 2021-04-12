@@ -31,7 +31,7 @@ public class TestGameObjectCollection {
 	@Test
 	public void testSpawnDespawn() {
 		List<GameObject> list = new LinkedList<>();
-		Bomb bomb = new BombImpl(new P2d(32,1), new BufferedImage(3,3,3), 1, true, 1, true);
+		Bomb bomb = new BombImpl(new P2d(32,1), new BufferedImage(3,3,3), 1, 1, true);
 		list.add(bomb);
 		collection.spawn(bomb);
 		assertTrue(collection.getGameObjectCollection().equals(list));
@@ -44,10 +44,10 @@ public class TestGameObjectCollection {
 	@Test
 	public void testGetObjectList() {
 		List<Box> boxList = new LinkedList<>();
-		Box box = new BoxImpl(new P2d(32,1), new BufferedImage(3,3,3), 1, true);
+		Box box = new BoxImpl(new P2d(32,1), new BufferedImage(3,3,3), 1);
 		boxList.add(box);
 		List<HardWall> wallList = new LinkedList<>();
-		HardWall wall = new HardWall(new P2d(33,1), new BufferedImage(2,3,3), 1, true);
+		HardWall wall = new HardWall(new P2d(33,1), new BufferedImage(2,3,3), 1);
 		wallList.add(wall);
 		collection.spawn(box);
 		collection.spawn(wall);

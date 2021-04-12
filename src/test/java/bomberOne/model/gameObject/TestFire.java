@@ -15,7 +15,7 @@ public class TestFire {
 	
 	@BeforeEach
 	public void init() {
-		this.fire = new FireImpl(new P2d(0, 0), AnimatedObjectsSprites.EXPLOSION_SPRITEMAP.getImage(), 1, false);
+		this.fire = new FireImpl(new P2d(0, 0), AnimatedObjectsSprites.EXPLOSION.getImage(), 1);
 	}
 	
 	@Test

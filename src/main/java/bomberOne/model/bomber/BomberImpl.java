@@ -28,8 +28,8 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private int animationIndex;
 	private BufferedImage[][] animations;
 
-	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes, boolean isBreakable) {
-		super(pos, img[0][1], lifes, isBreakable);
+	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes) {
+		super(pos, img[0][1], lifes);
 		this.setSpeed(SPEED);
 		this.setDir(DIR);
 		this.animations = img;
@@ -74,7 +74,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public Optional<Bomb> plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), AnimatedObjectsSprites.BOMB.getImage(), 1, true, this.firePower, this.pierce));
+			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), AnimatedObjectsSprites.BOMB.getImage(), 1, this.firePower, this.pierce));
 		}
 		return Optional.empty();
 	}

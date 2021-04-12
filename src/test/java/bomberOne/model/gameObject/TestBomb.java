@@ -24,7 +24,7 @@ public class TestBomb {
 	
 	@BeforeEach
 	public void init() {
-		this.bomb = new BombImpl(new P2d(0, 0), AnimatedObjectsSprites.BOMB.getImage(), 1, true, 3, false);
+		this.bomb = new BombImpl(new P2d(0, 0), AnimatedObjectsSprites.BOMB.getImage(), 1, 3, false);
 	}
 	
 	@Test

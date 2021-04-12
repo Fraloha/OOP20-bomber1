@@ -25,7 +25,7 @@ public class TestBomber {
 	@BeforeEach
 	public void init() {
 		ImagesLoader.start();
-		bomber = new BomberImpl(new P2d(0, 0), AnimatedObjectsSprites.PLAYER_1.getSprites(), 3, true);
+		bomber = new BomberImpl(new P2d(0, 0), AnimatedObjectsSprites.PLAYER_1.getSprites(), 3);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);
 	}
