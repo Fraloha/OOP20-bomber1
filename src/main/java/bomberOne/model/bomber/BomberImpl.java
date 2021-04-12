@@ -205,7 +205,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.setSpeed(this.getSpeed() + increment);
 	}
 	
-	protected void incAmmo(int increment) {
+	public void incAmmo(int increment) {
 		this.maxAmmo += increment;
 	}
 	

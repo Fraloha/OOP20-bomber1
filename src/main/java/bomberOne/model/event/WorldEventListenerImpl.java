@@ -18,6 +18,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	private static final int OBJ_DIMETIONS = 32;
 	private static final int BOX_INC_SCORE = 50;
 	private static final int ENEMY_INC_SCORE = 150;
+	private static final int TIMER_INC = 30;
 	
 	private GameModel model;
 	private List<WorldEvent> eventList = new ArrayList<>();
@@ -70,7 +71,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
 	 */
 	private void processPickPowerUpEvent(PickPowerUpEvent event) {
 		if(event.getPowerUp().getType().equals(PowerUp.type.Time)) {
-			// TODO incrementa il timer attaccato al model
+			this.model.getTime().setTimer(TIMER_INC);
 		}
 		else {
 			this.model.getWorld().getBomber().applyPowerUp(event.getPowerUp().getType());			
@@ -186,6 +187,8 @@ public class WorldEventListenerImpl implements WorldEventListener {
 				break;
 			}
 		}
+		
+		this.model.getWorld().getBomber().incAmmo(1);
 		
 	}
 }
