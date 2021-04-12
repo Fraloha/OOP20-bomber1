@@ -3,8 +3,6 @@ package bomberOne.views;
 import java.io.IOException;
 
 import bomberOne.controllers.Controller;
-import bomberOne.controllers.game.GameControllerImpl;
-import bomberOne.controllers.setUp.SetUpControllerImpl;
 import bomberOne.model.GameModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -36,32 +34,12 @@ public class ViewsSwitcher {
 		}
 		View view = loader.getController();
 		stage.setScene(new Scene(root));
-		Controller controller = ViewsSwitcher.getController(viewType);
+		Controller controller = viewType.getController();
 		controller.attachView(view);
         view.attachController(controller);
         view.setStage(stage);
         view.init();
         stage.show();
 	}
-	
-	/**
-	 * Create a specify Controller for the View in Input
-	 * @param type the type of the View
-	 * @return the Controller to attach to the view
-	 */
-	private static Controller getController(ViewType type) {
-	
-		Controller controller = null;
-		
-		if(type.equals(ViewType.GAME)) {
-			controller = new GameControllerImpl();
-		}
-		
-		if(type.equals(ViewType.SETUP)) {
-			controller = new SetUpControllerImpl();
-		}
-		return controller;
-	}
-	
 	
 }
