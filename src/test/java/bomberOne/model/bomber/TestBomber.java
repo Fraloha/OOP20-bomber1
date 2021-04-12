@@ -10,7 +10,7 @@ import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.tools.ImagesLoader;
-import bomberOne.tools.img.SpriteMapsObj;
+import bomberOne.tools.img.AnimatedObjectsSprites;
 
 /**
  * Tester for BomberImpl
@@ -25,7 +25,7 @@ public class TestBomber {
 	@BeforeEach
 	public void init() {
 		ImagesLoader.start();
-		bomber = new BomberImpl(new P2d(0, 0), SpriteMapsObj.PLAYER_1.getSprites(), 3, true);
+		bomber = new BomberImpl(new P2d(0, 0), AnimatedObjectsSprites.PLAYER_1.getSprites(), 3, true);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);
 	}
