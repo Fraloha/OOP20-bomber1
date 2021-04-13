@@ -12,6 +12,10 @@ import bomberOne.tools.img.AnimatedObjectsSprites;
 
 public class ImagesLoader {
 	
+	private static final int ANIMATED_HEIGHT = 48;
+	private static final int OBJ_HEIGHT = 32;
+	private static final int OBJ_WIDTH = 32;
+
 	/**
 	 * When this method is called, the ResourceLoader launch "loadImages() and sliceSprite()"
 	 */
@@ -50,10 +54,10 @@ public class ImagesLoader {
 	public static void sliceSprite() {
 		Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
 			if(value.equals(AnimatedObjectsSprites.EXPLOSION)) {
-				value.setSprite(sliceSpriteMap(value.getImage(), 32, 32));
+				value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, OBJ_HEIGHT));
 			}
 			else {
-				value.setSprite(sliceSpriteMap(value.getImage(), 32, 48));
+				value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, ANIMATED_HEIGHT));
 			}
 		});
 	}
