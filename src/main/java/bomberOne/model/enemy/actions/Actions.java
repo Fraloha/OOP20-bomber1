@@ -12,7 +12,5 @@ import java.util.LinkedList;
  */
 public interface Actions {
 	
-	public P2d doAction(P2d currentPosition, double speed);
-	
-	public boolean freePath(LinkedList<? extends GameObject> objects);
+	public void doActions();
 }

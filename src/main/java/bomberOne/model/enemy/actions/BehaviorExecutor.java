@@ -26,7 +26,7 @@ public class BehaviorExecutor {
 		this.behavior = newBehavior;
 	}
 	
-	public P2d execute() {
-		return this.behavior.doAction(currentPosition, speed);
+	public void execute() {
+		this.behavior.doActions();
 	}
 }

@@ -13,11 +13,4 @@ import java.util.LinkedList;
  */
 public interface Enemy extends AnimatedEntity{
 	
-	public void setBoxes(LinkedList<Box> boxes);
-	
-	public void setWalls(LinkedList<HardWall> walls);
-	
-	public LinkedList<Box> getBoxes();
-	
-	public LinkedList<HardWall> getWalls();
 }

@@ -9,9 +9,9 @@ import java.util.LinkedList;
 public class BasicBehavior implements Actions{
 	
 	/* Fields. */
-	Random randomGenerator = new Random();
-	Enemy selectedEnemy;
-	int frameCounter;
+	private Random randomGenerator = new Random();
+	private Enemy selectedEnemy;
+	private int frameCounter;
 	
 	/* Constructors. */
 	public BasicBehavior(Enemy newEnemy) {
@@ -21,31 +21,36 @@ public class BasicBehavior implements Actions{
 	
 	/* Methods. */
 	@Override
-	public P2d doAction(P2d currentPosition, double speed) {
+	public void doActions() {
 		
-		return currentPosition;
-	}
-	
-	public boolean freePath(LinkedList<? extends GameObject> objects) {
-		
-		/* Variables declaration. */
-		boolean resultBoxes = true;
-		boolean resultWalls = true;
-		
-		//Checking if the enemy is colliding with any objects in the list.
-		for(GameObject obj : this.selectedEnemy.getBoxes()) {
-			if(this.selectedEnemy.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
-				resultBoxes = false;
+		//Checking the frame counter.
+		if(this.frameCounter == 4) {
+			
+			//Generating a new random integer value.
+			switch(this.randomGenerator.nextInt(3)) {
+			
+			case 0:
+				this.selectedEnemy.moveUp();
+				break;
+				
+			case 1:
+				this.selectedEnemy.moveDown();
+				break;
+				
+			case 2:
+				this.selectedEnemy.moveRight();
+				break;
+				
+			case 3:
+				this.selectedEnemy.moveLeft();
 				break;
 			}
+			
+			//Resetting the frame counter.
+			this.frameCounter = 1;
+			
+		}else {
+			this.frameCounter++;
 		}
-		
-		for(GameObject obj : this.selectedEnemy.getWalls()) {
-			if(this.selectedEnemy.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
-				resultWalls = false;
-			}
-		}
-		
-		return resultBoxes | resultWalls;
 	}
 }
