@@ -58,10 +58,10 @@ public class GameViewImpl extends ViewImpl implements GameView{
 	
 	@Override
 	public void init() {
-		this.drawGame();
-		this.getController().init();
 		this.gCBackground = this.canvasBackground.getGraphicsContext2D();
 		this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
+		this.drawGame();
+		this.getController().init();
 		this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
 	}
 	

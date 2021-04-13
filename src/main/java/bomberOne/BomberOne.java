@@ -16,6 +16,7 @@ public class BomberOne extends Application{
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {
+		primaryStage.setResizable(false);
 		ImagesLoader.start();
 		DirectoryLoader.start();
 		ViewsSwitcher.switchView(primaryStage, ViewType.GAME, new GameModelImpl());

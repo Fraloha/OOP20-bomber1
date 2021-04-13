@@ -14,7 +14,7 @@ public enum AnimatedObjectsSprites {
     PLAYER_2("bomber2.png"),
     PLAYER_3("bomber3.png"),
     PLAYER_4("bomber4.png"),
-    BOMB(""),
+ //   BOMB(""),
     EXPLOSION("explosion.png"),
     ENEMIES_STANDARD("enemiesStandard.png"),
     ENEMIES_HARD("enemiesHard.png");

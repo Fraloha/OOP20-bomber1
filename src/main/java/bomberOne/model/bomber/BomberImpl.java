@@ -11,6 +11,7 @@ import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.tools.ImagesLoader;
 import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.ObjectsImages;
 
 public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public static final double SPEED_INC = 2;
@@ -74,7 +75,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public Optional<Bomb> plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), AnimatedObjectsSprites.BOMB.getImage(), 1, this.firePower, this.pierce));
+			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), ObjectsImages.BOMB.getImage(), 1, this.firePower, this.pierce));
 		}
 		return Optional.empty();
 	}
