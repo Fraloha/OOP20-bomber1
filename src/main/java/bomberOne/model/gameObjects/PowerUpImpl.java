@@ -11,7 +11,7 @@ public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 	private PowerUp.type type;
 	
 	public PowerUpImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable, PowerUp.type type) {
-		super(pos, img, lifes, isBreakable);
+		super(pos, img, lifes);
 		this.released = false;
 		this.type = type;
 	}

@@ -17,8 +17,8 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 	private final boolean pierced;
 	private Optional<Explosion> explosion;
 
-	public BombImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable, int firePower, boolean pierced) {
-		super(pos, img, lifes, isBreakable);
+	public BombImpl(P2d pos, BufferedImage img, int lifes, int firePower, boolean pierced) {
+		super(pos, img, lifes);
 		this.explosion = Optional.empty();
 		this.firePower = firePower;
 		this.pierced = pierced;

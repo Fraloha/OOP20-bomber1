@@ -73,5 +73,5 @@ public interface GameModel {
 	
 	Controls getControls();
 	
-	Timer getTime();
+	Timer getTimer();
 }

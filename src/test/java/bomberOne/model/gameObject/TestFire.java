@@ -8,14 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.FireImpl;
-import bomberOne.tools.img.SpriteMapsObj;
+import bomberOne.tools.img.AnimatedObjectsSprites;
 
 public class TestFire {
 	FireImpl fire;
 	
 	@BeforeEach
 	public void init() {
-		this.fire = new FireImpl(new P2d(0, 0), SpriteMapsObj.EXPLOSION_SPRITEMAP.getImage(), 1, false);
+		this.fire = new FireImpl(new P2d(0, 0), AnimatedObjectsSprites.EXPLOSION.getImage(), 1);
 	}
 	
 	@Test

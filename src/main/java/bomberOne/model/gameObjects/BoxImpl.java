@@ -9,8 +9,8 @@ public class BoxImpl extends GameObjectImpl implements Box {
 
 	private Optional<PowerUp> powerUp;	
 	
-	public BoxImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
+	public BoxImpl(P2d pos, BufferedImage img, int lifes) {
+		super(pos, img, lifes);
 		this.powerUp = Optional.empty();
 	}
 

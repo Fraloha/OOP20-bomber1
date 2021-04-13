@@ -25,7 +25,7 @@ public class SetUpControllerImpl extends ControllerImpl implements SetUpControll
 
 	@Override
 	public void setControls(Controls choice) {
-		// TODO QUANDO GUS SVILUPPA I COMANDI
+		this.getModel().getUser().setControls(choice);
 		
 	}
 

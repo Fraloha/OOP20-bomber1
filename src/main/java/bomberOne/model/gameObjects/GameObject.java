@@ -60,16 +60,11 @@ public interface GameObject {
 	 * 
 	 * @return True if Object is hitted from an explosion
 	 */
-	public boolean isHitted();
+//	public boolean isHitted();
 	
 	/**
 	 * Decreases the number of lifes of the Object
 	 */
 	public void hitted();
-	
-	/**
-	 * 
-	 * @return True if the Object is Breakable
-	 */
-	public boolean isBreakable();
+
 }

@@ -14,8 +14,8 @@ import bomberOne.model.gameObjects.PowerUp.type;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.model.gameObjects.PowerUpImpl;
-import bomberOne.tools.img.ImagesObj;
-import bomberOne.tools.img.SpriteMapsObj;
+import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.AnimatedObjectsSprites;
 
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
@@ -25,18 +25,18 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 	public GameObject createBomber(P2d position, Skins color) {
 		BufferedImage [][] images = null;
 		if(color.equals(Skins.WHITE)) {
-			images = SpriteMapsObj.PLAYER_1.getSprites();
+			images = AnimatedObjectsSprites.PLAYER_1.getSprites();
 		}
 		if(color.equals(Skins.BLACK)) {
-			images = SpriteMapsObj.PLAYER_2.getSprites();
+			images = AnimatedObjectsSprites.PLAYER_2.getSprites();
 		}
 		if(color.equals(Skins.RED)) {
-			images = SpriteMapsObj.PLAYER_3.getSprites();
+			images = AnimatedObjectsSprites.PLAYER_3.getSprites();
 		}
 		if(color.equals(Skins.BLUE)) {
-			images = SpriteMapsObj.PLAYER_4.getSprites();
+			images = AnimatedObjectsSprites.PLAYER_4.getSprites();
 		}
-		return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES, true);
+		return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES);
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createBox(P2d position) {
-		return new BoxImpl(position, ImagesObj.BOX.getImage(), 1, true);
+		return new BoxImpl(position, ObjectsImages.BOX.getImage(), 1);
 	}
 
 	@Override
@@ -55,16 +55,16 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 		
 		BufferedImage powerUpImage = new BufferedImage(0, 0, 0);
 		if(type.equals(PowerUp.type.FirePower)) {
-			powerUpImage = ImagesObj.POWER_FIREPOWER.getImage();
+			powerUpImage = ObjectsImages.POWER_FIREPOWER.getImage();
 		}
 		if(type.equals(PowerUp.type.Pierce)) {
-			powerUpImage = ImagesObj.POWER_PIERCE.getImage();
+			powerUpImage = ObjectsImages.POWER_PIERCE.getImage();
 		}
 		if(type.equals(PowerUp.type.Speed)) {
-			powerUpImage = ImagesObj.POWER_SPEED.getImage();
+			powerUpImage = ObjectsImages.POWER_SPEED.getImage();
 		}
 		if(type.equals(PowerUp.type.Time)) {
-			powerUpImage = ImagesObj.POWER_TIMER.getImage();
+			powerUpImage = ObjectsImages.POWER_TIMER.getImage();
 		}
 		PowerUp pU = new PowerUpImpl(position, powerUpImage, 1, true, type);
 		return pU;
@@ -72,17 +72,17 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
 
 	@Override
 	public GameObject createHardWall(P2d position) {
-		return new HardWall(position, ImagesObj.HARDWALL.getImage(), 1, false);
+		return new HardWall(position, ObjectsImages.HARDWALL.getImage(), 1);
 	}
 
 	@Override
 	public GameObject createFire(P2d position) {
-		return new FireImpl(position, ImagesObj.FIRE.getImage(), 1, false);
+		return new FireImpl(position, ObjectsImages.FIRE.getImage(), 1);
 	}
 
 	@Override
 	public GameObject createBomb(P2d position, int firePower, boolean pierce) {
-		return new BombImpl(position, ImagesObj.BOMB.getImage(), 1, false, firePower, pierce);
+		return new BombImpl(position, ObjectsImages.BOMB.getImage(), 1, firePower, pierce);
 	}
 
 }

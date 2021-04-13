@@ -1,5 +1,5 @@
 package bomberOne.model.powerUps;
-import bomberOne.tools.img.ImagesObj;
+import bomberOne.tools.img.ObjectsImages;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,7 +12,7 @@ import bomberOne.model.gameObjects.PowerUpImpl;
 
 public class TestPowerUps {
 
-	PowerUp pUp = new PowerUpImpl(new P2d(0,0), ImagesObj.POWER_FIREPOWER.getImage(),1, false, PowerUp.type.FirePower);
+	PowerUp pUp = new PowerUpImpl(new P2d(0,0), ObjectsImages.POWER_FIREPOWER.getImage(),1, false, PowerUp.type.FirePower);
 	
 	@Test
 	public void testReleased() {
@@ -24,7 +24,7 @@ public class TestPowerUps {
 	@Test
 	public void testType() {
 		assertEquals(PowerUp.type.FirePower, pUp.getType());
-		assertEquals(ImagesObj.POWER_FIREPOWER.getImage(), pUp.getImage());
+		assertEquals(ObjectsImages.POWER_FIREPOWER.getImage(), pUp.getImage());
 	}
 	
 }

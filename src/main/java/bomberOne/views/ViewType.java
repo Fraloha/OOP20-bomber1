@@ -2,12 +2,24 @@ package bomberOne.views;
 
 import java.io.File;
 
+import bomberOne.controllers.*;
+import bomberOne.controllers.game.GameControllerImpl;
+import bomberOne.controllers.setUp.*;;
+
+/**
+ * Enum for the Views, each one has her StyleFile and her specific Controller Type
+ * @author Luigi
+ *
+ */
 public enum ViewType {
 
-	HOME("HomeView"),
-	SETUP("SetUpView"),
-	GAME("GameView"),
-	RANK("RankView");
+	/**
+	 * TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO
+	 */
+	HOME("HomeView", new GameControllerImpl()),
+	SETUP("SetUpView", new SetUpControllerImpl()),
+	GAME("GameView", new GameControllerImpl()),
+	RANK("RankView", new GameControllerImpl());
 	
 	/**
 	 * Style files path
@@ -16,15 +28,28 @@ public enum ViewType {
 	private static final String FORMAT = ".fxml";
 	
 	private String fileName;
+	private Controller controller;
 
 
-	private ViewType(String string) {
+	ViewType(String string, Controller controller) {
 		this.fileName = string;
+		this.controller = controller;
 	}
 
-
+	/**
+	 * Get the path of FXML Style file
+	 * @return
+	 */
 	public String getPath() {
 		return DIRECTORY + this.fileName + FORMAT;
+	}
+	
+	/**
+	 * Return the specific controller linked to the specific view
+	 * @return
+	 */
+	public Controller getController() {
+		return this.controller;
 	}
 	
 }
