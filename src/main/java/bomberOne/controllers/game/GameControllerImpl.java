@@ -2,7 +2,6 @@ package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
 import bomberOne.model.GameModel;
-import bomberOne.model.GameModelImpl;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
@@ -69,11 +68,10 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 
 	@Override
 	public void init() {
-		this.model = new GameModelImpl();
 		this.eventHandler = new WorldEventListenerImpl();
 		this.commandHandler = new CommandListenerImpl();
-		view.drawGame();
 		this.model.init();
+		this.run();
 	}
 
 	@Override

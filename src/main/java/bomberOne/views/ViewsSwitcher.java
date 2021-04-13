@@ -36,6 +36,7 @@ public class ViewsSwitcher {
 		stage.setScene(new Scene(root));
 		Controller controller = viewType.getController();
 		controller.attachView(view);
+		controller.attachModel(model);
         view.attachController(controller);
         view.setStage(stage);
         view.init();
