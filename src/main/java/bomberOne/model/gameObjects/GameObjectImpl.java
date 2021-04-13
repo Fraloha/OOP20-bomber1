@@ -16,7 +16,6 @@ public abstract class GameObjectImpl implements GameObject {
 	protected BoundingBox collider;
 	protected int lifes;
 	protected boolean isAlive;
-	protected boolean isBreakable;
 	
 	public GameObjectImpl(P2d pos, BufferedImage img, int lifes) {
 		this.position = pos;
@@ -66,11 +65,6 @@ public abstract class GameObjectImpl implements GameObject {
 		if(this.getLifes() == 0) {
 			this.isAlive = false;
 		}
-	}
-
-	@Override
-	public boolean isBreakable() {
-		return this.isBreakable;
 	}
 
 	@Override
