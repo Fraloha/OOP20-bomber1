@@ -1,7 +1,6 @@
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
-import bomberOne.model.GameModel;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
@@ -12,10 +11,8 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 
 	private static final int PERIOD = 20;
 	
-	private GameModel model;
 	private WorldEventListener eventHandler;
 	private CommandListener commandHandler;
-	private GameView view;
 	
 	@Override
 	public void run() {
@@ -23,7 +20,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         final double NS = 1000000000.0 / 60.0; // Locked ticks per second to 60
         double delta = 0;
         // Count FPS, Ticks, and execute updates
-        while (this.model.getGameOver()) {
+        while (this.getModel().getGameOver()) {
             long currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / NS;
             int elapsed = (int)(currentTime - lastTime);
@@ -36,7 +33,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             }
             this.render();
 	    }
-        this.view.switchToRank();
+        ((GameView) this.getView()).switchToRank();
 	        
 	}
 
@@ -58,19 +55,19 @@ public class GameControllerImpl extends ControllerImpl implements GameController
 
 	@Override
 	public void render() {
-		view.render();
+		((GameView) this.getView()).render();
 	}
 
 	@Override
 	public void updateGame(int elapsedTime) {
-		this.model.getWorld().updateState(elapsedTime);
+		this.getModel().getWorld().updateState(elapsedTime);
 	}
 
 	@Override
 	public void init() {
 		this.eventHandler = new WorldEventListenerImpl();
 		this.commandHandler = new CommandListenerImpl();
-		this.model.init();
+		this.getModel().init();
 		this.run();
 	}
 
