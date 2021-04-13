@@ -66,10 +66,5 @@ public interface GameObject {
 	 * Decreases the number of lifes of the Object
 	 */
 	public void hitted();
-	
-	/**
-	 * 
-	 * @return True if the Object is Breakable
-	 */
-	public boolean isBreakable();
+
 }
