@@ -28,7 +28,7 @@ public class GameModelImpl implements GameModel {
 		} else {
 			this.world=factory.createWorldHard(this.user);
 		}
-		thread.start();
+		this.thread.start();
 	}
 
 	@Override
@@ -93,11 +93,14 @@ public class GameModelImpl implements GameModel {
 	public void checkGameOver() {
 		// TODO Auto-generated method stub
 		if(this.world.getBomber().getLifes()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else if (this.world.getGameObjectCollection().getBoxList().size()==0 && 
 					this.world.getGameObjectCollection().getEnemyList().size()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else if(this.timer.getTime().getTotal()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else {
 			this.gameOver=false;
