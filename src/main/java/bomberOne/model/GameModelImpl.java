@@ -16,7 +16,7 @@ public class GameModelImpl implements GameModel {
 	private Difficulty difficulty;
 	private int score=0;
 	private WorldFactory factory;
-	private TimerImpl timer = new TimerImpl(GameModelImpl.TIME);
+	private Timer timer = new TimerImpl(GameModelImpl.TIME);
 	private boolean gameOver = false;
 	private TimerThread thread = new TimerThread(timer);
 	
