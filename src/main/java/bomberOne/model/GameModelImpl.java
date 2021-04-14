@@ -4,7 +4,6 @@ import bomberOne.model.factory.WorldFactory;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 
@@ -19,6 +18,10 @@ public class GameModelImpl implements GameModel {
 	private Timer timer = new TimerImpl(GameModelImpl.TIME);
 	private boolean gameOver = false;
 	private TimerThread thread = new TimerThread(timer);
+
+	public GameModelImpl(User user) {
+		this.user=user;
+	}
 	
 	@Override
 	public void init() {
@@ -31,12 +34,12 @@ public class GameModelImpl implements GameModel {
 		thread.start();
 	}
 
-	@Override
+		@Override
 	public void setUser(User user) {
 		// TODO Auto-generated method stub
 		this.user=user;
 	}
-
+	
 	@Override
 	public User getUser() {
 		// TODO Auto-generated method stub
@@ -109,10 +112,5 @@ public class GameModelImpl implements GameModel {
 		// TODO Auto-generated method stub
 		return this.timer;
 	}
-
-	@Override
-	public Controls getControls() {
-		// TODO Auto-generated method stub
-		return this.user.getControls();
-	}
+	
 }
