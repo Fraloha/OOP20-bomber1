@@ -1,5 +1,10 @@
 package bomberOne.model;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +43,8 @@ public class WorldImpl implements World {
 	private BomberImpl bomberMan;
 	private boolean respawn;
 	private Difficulty difficulty;
+	private BufferedReader bufferedReader;
+	private List<List<String>> mapLayout;
 		
 	public WorldImpl(Difficulty difficulty, Skins skin) {
 		this.difficulty=difficulty;
@@ -47,108 +54,54 @@ public class WorldImpl implements World {
 			this.respawn=true;
 		}
 		this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32,32), skin);
+		this.loadMap();
 		//TODO Riempire il World
 		this.setHardWall();
 		this.setBox();
 	}
 	
 	/**
-	 * This method create all HardWall and Box in the World
+	 * This method loads the fixed map of the game
 	 */
-	private void setHardWall() {
-		//Edge of the map
-		for(int i=0; i<WorldImpl.DIMENSION;i++) {
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,0));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,(WorldImpl.DIMENSION-1)*WorldImpl.FRAME));
-			if(i!=0 && i!=18) {
-				this.createHardWall(new P2d(0,i*WorldImpl.FRAME));
-				this.createHardWall(new P2d((WorldImpl.DIMENSION-1)*WorldImpl.FRAME,i*WorldImpl.FRAME));
-			}
+	private void loadMap() {
+		try {
+			this.bufferedReader = new BufferedReader(new FileReader("src/main/resources/mappa.csv"));
+		} catch (IOException e) {
+			System.err.println("Error");
 		}
 		
-		//Line 2,15
-		int i=2;
-		while(i!=0) {
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,2*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,3*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,5*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,7*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,10*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,12*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,14*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,15*WorldImpl.FRAME));
-			if(i==2) {
-				i=15;
-			} else {
-				i=0;
-			}
-		}
-		
-		//Line 3,5,7,10,12,14
-		i=3;
-		while(i!=0) {
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,2*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,15*WorldImpl.FRAME));
-			switch(i) {
-				case 3:
-					i=5;
-					break;
-				case 5:
-					i=7;
-					break;
-				case 7:
-					i=10;
-					break;
-				case 10:
-					i=12;
-					break;
-				case 12:
-					i=14;
-					break;
-				case 14:
-					i=0;
-					break;
-			}
-		}
-		
-		//Line 4,6,11,13
-		i=4;
-		while(i!=0) {
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,4*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,6*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,11*WorldImpl.FRAME));
-			this.createHardWall(new P2d(i*WorldImpl.FRAME,13*WorldImpl.FRAME));
-			switch(i) {
-			case 4:
-				i=6;
-				break;
-			case 6:
-				i=11;
-				break;
-			case 11:
-				i=13;
-				break;
-			case 13:
-				i=0;
-				break;
-			}
-		}
-		
-		//The center of the map
-		this.createHardWall(new P2d(6*WorldImpl.FRAME, 8*WorldImpl.FRAME));
-		this.createHardWall(new P2d(6*WorldImpl.FRAME, 9*WorldImpl.FRAME));
-		this.createHardWall(new P2d(8*WorldImpl.FRAME, 6*WorldImpl.FRAME));
-		this.createHardWall(new P2d(8*WorldImpl.FRAME, 11*WorldImpl.FRAME));
-		this.createHardWall(new P2d(9*WorldImpl.FRAME, 6*WorldImpl.FRAME));
-		this.createHardWall(new P2d(9*WorldImpl.FRAME, 11*WorldImpl.FRAME));
-		this.createHardWall(new P2d(11*WorldImpl.FRAME, 8*WorldImpl.FRAME));
-		this.createHardWall(new P2d(11*WorldImpl.FRAME, 9*WorldImpl.FRAME));
-	}
-
-	private void createHardWall(P2d pos) {
-		this.collection.spawn(this.objectFactory.createHardWall(pos));
+		this.mapLayout=new ArrayList<>();
+        try { 
+     	   String currentLine;
+     	   while ((currentLine = bufferedReader.readLine()) != null) {
+     		   if (currentLine.isEmpty()) {
+     			   continue;
+     		   }
+     		   mapLayout.add(new ArrayList<>(Arrays.asList(currentLine.split(","))));
+     	   }
+        } catch (IOException | NullPointerException e) {
+         System.out.println(e + ": Error parsing map data");
+         e.printStackTrace();
+     }
 	}
 	
+	
+	/**
+	 * This method creates all HardWall in the World
+	 */
+	private void setHardWall() {
+		for(int y=0; y<WorldImpl.DIMENSION; y++) {
+			for(int x=0; x<WorldImpl.DIMENSION; x++) {
+				if(mapLayout.get(y).get(x).equals("H")) {
+					collection.spawn(objectFactory.createHardWall(new P2d(x*WorldImpl.FRAME, y*WorldImpl.FRAME)));
+				}
+			}
+		}
+	}
+	
+	/**
+	 * This method creates all HardWall in the World
+	 */
 	private void setBox() {
 		
 	}
