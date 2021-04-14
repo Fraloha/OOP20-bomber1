@@ -72,9 +72,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 
 	@Override
 	public void update(int elapsed) {
-		if(this.lifes == 0) {
-			this.isAlive = false;
-		}
+		this.setTimeElapsed(elapsed);
 	}
 
 	@Override
