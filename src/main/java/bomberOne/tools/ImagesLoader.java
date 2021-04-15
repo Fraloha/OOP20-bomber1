@@ -1,12 +1,17 @@
 package bomberOne.tools;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import javax.imageio.ImageIO;
 
 import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.maps.Map;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 
 
@@ -22,7 +27,7 @@ public class ImagesLoader {
 	public static void start() {
 		ImagesLoader.loadImages();
 		ImagesLoader.sliceSprite();
-		
+		ImagesLoader.loadMap();
 	}
 	
 	/**
@@ -42,6 +47,30 @@ public class ImagesLoader {
 		Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
 			try {
 				value.setImage(ImageIO.read(ClassLoader.getSystemResource(value.getFilePath())));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		});
+	}
+	
+	/**
+	 * This method load the the fixed map of the game
+	 * 
+	 * @throws IOException if it can't read the Files
+	 */
+	public static void loadMap() {
+		Arrays.stream(Map.values()).forEach(value -> {
+			try {
+				BufferedReader reader= new BufferedReader(new FileReader(value.getFilePath()));
+				List<List<String>> mapLayout=new ArrayList<>();
+				String currentLine;
+				while ((currentLine = reader.readLine()) != null) {
+					if (currentLine.isEmpty()) {
+						continue;
+					}
+					mapLayout.add(new ArrayList<>(Arrays.asList(currentLine.split(","))));
+				}
+				value.setList(mapLayout);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}

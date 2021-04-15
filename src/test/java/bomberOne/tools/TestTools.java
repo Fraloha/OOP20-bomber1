@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
 import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.maps.Map;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 
 public class TestTools {
@@ -85,5 +86,11 @@ public class TestTools {
 		assertNotNull(AnimatedObjectsSprites.PLAYER_4.getImage());
 		assertNotNull(AnimatedObjectsSprites.ENEMIES_HARD.getImage());
 		assertNotNull(AnimatedObjectsSprites.ENEMIES_STANDARD.getImage());
+	}
+	
+	@Test
+	public void testMapLoader() {
+		ImagesLoader.start();
+		assertNotNull(Map.MAP1.getList());
 	}
 }
