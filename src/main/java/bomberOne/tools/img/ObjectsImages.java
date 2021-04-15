@@ -26,10 +26,9 @@ public enum ObjectsImages {
 	POWER_SPEED("power_speed.png"),
 	POWER_PIERCE("power_pierce.png"),
 	POWER_TIMER("power_timer.png"),
-    HARDWALL("hardWall.png"),
-    FIRE("fire.png"),
+	HARDWALL("hardWall.png"),
+	FIRE("fire.png"),
 	SPAWN("spawn.png");
-
 
 	private static final String RES_PATH = "."  + File.separator + "images" + File.separator;
 	
