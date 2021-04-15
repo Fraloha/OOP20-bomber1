@@ -5,33 +5,33 @@ import bomberone.model.user.Controls;
 import bomberone.model.user.Difficulty;
 import bomberone.model.user.Skins;
 
-public class SetUpControllerImpl extends ControllerImpl implements SetUpController {
-	
-	@Override
-	public void setDifficulty(Difficulty diff) {
-		this.getModel().setDifficulty(diff);
-	}
+public final class SetUpControllerImpl extends ControllerImpl implements SetUpController {
 
-	@Override
-	public void setUser(String name) {
-		this.getModel().getUser().setName(name);
-	}
+    @Override
+    public void setDifficulty(final Difficulty diff) {
+        this.getModel().setDifficulty(diff);
+    }
 
-	@Override
-	public void setSkin(Skins skin) {
-		this.getModel().getUser().setSkin(skin);
-		
-	}
+    @Override
+    public void setUser(final String name) {
+        this.getModel().getUser().setName(name);
+    }
 
-	@Override
-	public void setControls(Controls choice) {
-		this.getModel().getUser().setControls(choice);
-		
-	}
+    @Override
+    public void setSkin(final Skins skin) {
+        this.getModel().getUser().setSkin(skin);
 
-	@Override
-	public void init() {
-		
-	}
+    }
+
+    @Override
+    public void setControls(final Controls choice) {
+        this.getModel().getUser().setControls(choice);
+
+    }
+
+    @Override
+    public void init() {
+
+    }
 
 }

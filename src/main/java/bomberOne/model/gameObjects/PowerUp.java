@@ -1,29 +1,48 @@
 package bomberone.model.gameObjects;
 
-public interface PowerUp extends GameObject{
+public interface PowerUp extends GameObject {
 
-	public enum type{
-		FirePower,
-		Speed,
-		Pierce,
-		Time,
-		Ammo;
-	}
-	
-	/**
-	 * 
-	 * @return True, if the PowerUp is dropped by the box
-	 */
-	public boolean isReleased();
-	
-	/**
-	 * When the Box is destroyed, it calls this method
-	 */
-	public void release();
-	
-	/**
-	 * 
-	 * @return The type of the PowerUp
-	 */
-	public PowerUp.type getType();
+    enum type {
+        /**
+         * 
+         */
+        FirePower, 
+
+        /**
+         * 
+         */
+        Speed, 
+
+        /**
+         * 
+         */
+        Pierce, 
+
+        /**
+         * 
+         */
+        Time, 
+
+        /**
+         * 
+         */
+        Ammo;
+    }
+
+    /**
+     * 
+     * @return True, if the PowerUp is dropped by the box
+     */
+    boolean isReleased();
+
+    /**
+     * When the Box is destroyed, it calls this method.
+     */
+    void release();
+
+    /**
+     * 
+     * @return The type of the PowerUp
+     */
+    PowerUp.type getType();
 }

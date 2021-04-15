@@ -22,7 +22,7 @@ public class FireImpl extends GameObjectImpl implements Fire {
 	@Override
 	public void update(int elapsed) {
 		if(this.thick++ == this.lifeTime) {
-			this.isAlive = false;
+			this.setAlive(false);
 		}
 	}
 

@@ -6,12 +6,12 @@ import bomberone.model.common.P2d;
 
 public class HardWall extends GameObjectImpl {
 
-	public HardWall(P2d pos, BufferedImage img, int lifes) {
-		super(pos, img, lifes);
-	}
+    public HardWall(final P2d pos, final BufferedImage img, final int lifes) {
+        super(pos, img, lifes);
+    }
 
-	@Override
-	public void update(int elapsed) {
-	}
+    @Override
+    public void update(final int elapsed) {
+    }
 
 }

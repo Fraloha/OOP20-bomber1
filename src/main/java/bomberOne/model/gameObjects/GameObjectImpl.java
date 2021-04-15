@@ -7,69 +7,115 @@ import bomberone.model.physics.BoundingBox;
 import bomberone.model.physics.BoundingBoxImpl;
 
 public abstract class GameObjectImpl implements GameObject {
-	
 
-	private static final int RECTDIMENTIONS = 32;
-	
-	protected BufferedImage img;
-	protected P2d position;
-	protected BoundingBox collider;
-	protected int lifes;
-	protected boolean isAlive;
-	
-	public GameObjectImpl(P2d pos, BufferedImage img, int lifes) {
-		this.position = pos;
-		this.img = img;
-		this.lifes = lifes;
-		this.isAlive = true;
-		this.collider = new BoundingBoxImpl(this.position, new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
-	}
-	
-	@Override
-	public BufferedImage getImage() {
-		return img;
-	}
+    private static final int RECTDIMENTIONS = 32;
 
-	@Override
-	public abstract void update(int elapsed);
+    private BufferedImage img;
+    private P2d position;
+    private BoundingBox collider;
+    private int lifes;
+    private boolean isAlive;
 
-	
-	@Override
-	public P2d getPosition() {
-		return this.position;
-	}
+    public GameObjectImpl(final P2d pos, final BufferedImage img, final int lifes) {
+        this.position = pos;
+        this.img = img;
+        this.lifes = lifes;
+        this.isAlive = true;
+        this.collider = new BoundingBoxImpl(this.position,
+                new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
+    }
 
-	@Override
-	public void setPosition(P2d newPos) {
-		this.position = newPos;
-	}
-	
-	@Override
-	public BoundingBox getBoundingBox() {
-		return this.collider;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BufferedImage getImage() {
+        return img;
+    }
 
-	@Override
-	public int getLifes() {
-		return this.lifes;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public P2d getPosition() {
+        return this.position;
+    }
 
-	@Override
-	public boolean isAlive() {
-		return this.isAlive;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BoundingBox getBoundingBox() {
+        return this.collider;
+    }
 
-	@Override
-	public void hitted() {
-		this.lifes--;
-		if(this.getLifes() == 0) {
-			this.isAlive = false;
-		}
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getLifes() {
+        return this.lifes;
+    }
 
-	@Override
-	public void setImage(BufferedImage img) {
-		this.img = img;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isAlive() {
+        return this.isAlive;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void hitted() {
+        this.lifes--;
+        if (this.getLifes() == 0) {
+            this.isAlive = false;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setImage(final BufferedImage img) {
+        this.img = img;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setPosition(final P2d position) {
+        this.position = position;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setBoundingBox(final BoundingBox collider) {
+        this.collider = collider;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setLifes(final int lifes) {
+        this.lifes = lifes;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    public void setAlive(final boolean isAlive) {
+        this.isAlive = isAlive;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public abstract void update(int elapsed);
 
 }

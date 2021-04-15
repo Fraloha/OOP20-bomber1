@@ -28,9 +28,9 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 
 	@Override
 	public Explosion explode() {
-		Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.position);
+		Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
 		this.explosion = Optional.of(boom);
-		this.lifes--;
+		this.setLifes(this.getLifes() - 1);
 		return boom;
 	}
 
@@ -45,7 +45,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
 			this.explode();
 		}
 		if(this.getLifes() == 0) {
-			this.isAlive = false;
+			this.setAlive(false);
 		}
 	}
 

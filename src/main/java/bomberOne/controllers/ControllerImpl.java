@@ -3,32 +3,44 @@ package bomberone.controllers;
 import bomberone.model.GameModel;
 import bomberone.views.View;
 
-public abstract class ControllerImpl implements Controller{
+public abstract class ControllerImpl implements Controller {
 
-	private GameModel model;
-	private View view;
-	
-	@Override
-	public void attachView(View view) {
-		this.view = view;
-	}
+    private GameModel model;
+    private View view;
 
-	@Override
-	public View getView() {
-		return this.view;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void attachView(final View view) {
+        this.view = view;
+    }
 
-	@Override
-	public void attachModel(GameModel model) {
-		this.model = model;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public View getView() {
+        return this.view;
+    }
 
-	@Override
-	public GameModel getModel() {
-		return this.model;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void attachModel(final GameModel model) {
+        this.model = model;
+    }
 
-	@Override
-	public abstract void init();
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public GameModel getModel() {
+        return this.model;
+    }
+
+    @Override
+    public abstract void init();
 
 }

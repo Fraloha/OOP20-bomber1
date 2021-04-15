@@ -20,11 +20,8 @@ public class PickPowerUpEvent implements WorldEvent {
         return this.powerUp;
     }
 
-    /*
-     * When the Bomber picks the PowerUp, this method applies the PowerUp to the
-     * Bomber
+    /**
      * 
-     * @param model
      */
     @Override
     public void process(final GameModel model) {

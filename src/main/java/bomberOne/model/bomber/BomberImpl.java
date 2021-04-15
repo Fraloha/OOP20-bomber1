@@ -48,8 +48,8 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public void respawn() {
 		this.setSpeed(SPEED);
 		this.setDir(DIR);
-		this.isAlive  = true;
-		this.position = startPosition;
+		this.setAlive(true);
+		this.setPosition(startPosition);
 		this.firePower  = FIRE_POWER;
 		this.pierce = false;
 		this.maxAmmo = AMMO;
@@ -61,7 +61,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void addLifes(int lifes) {
-		this.lifes += lifes;
+		this.setLifes(this.getLifes() + lifes);
 	}
 	
 	@Override
@@ -75,7 +75,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public Optional<Bomb> plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), ObjectsImages.BOMB.getImage(), 1, this.firePower, this.pierce));
+			return Optional.of(new BombImpl(new P2d(this.getPosition().getX(), this.getPosition().getY()), ObjectsImages.BOMB.getImage(), 1, this.firePower, this.pierce));
 		}
 		return Optional.empty();
 	}
@@ -109,7 +109,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public int getLifes() {
-		return this.lifes;
+		return this.getLifes();
 	}
 	
 	@Override
@@ -163,13 +163,13 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void hitted() {
-		this.lifes--;
-		this.isAlive = false;
+		this.setLifes(this.getLifes() - 1);
+		this.setAlive(false);
 	}
 
 	@Override
 	public void update(int elapsed) {
-		if(this.isAlive) {
+		if(this.isAlive()) {
 			switch (this.getDir()) {
 			case UP:
 				this.spriteIndex = 0;
