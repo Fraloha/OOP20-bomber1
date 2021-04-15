@@ -1,4 +1,4 @@
-package bomberOne.model.event;
+package bomberone.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

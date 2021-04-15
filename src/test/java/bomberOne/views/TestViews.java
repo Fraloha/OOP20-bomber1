@@ -1,4 +1,4 @@
-package bomberOne.views;
+package bomberone.views;
 
 
 
