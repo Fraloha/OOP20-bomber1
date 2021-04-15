@@ -1,31 +1,33 @@
 package bomberone.model.timer;
 
 /**
- * This interface simulates a timer that receives an amount of time and allows you to decrease or increase it
- * @author Luigi
+ * This interface simulates a timer that receives an amount of time and allows
+ * you to decrease or increase it.
+ * 
  *
  */
 public interface Timer {
 
-	/**
-	 * Set the Time attached to the timer, creates it by adding "time" seconds
-	 * @param time the total seconds that compose the Time
-	 */
-	public void setTimer(int time);
-	
-	/**
-	 * Decreases by one the Time attached to the timer
-	 */
-	public void decTime();
-	
-	/**
-	 * @return the Time attached to the timer
-	 */
-	public Time getTime();
-	
-	/**
-	 * 
-	 * @return The object through a String
-	 */
-	public String toString();
+    /**
+     * Set the Time attached to the timer, creates it by adding "time" seconds.
+     * 
+     * @param time the total seconds that compose the Time
+     */
+    void setTimer(int time);
+
+    /**
+     * Decreases by one the Time attached to the timer.
+     */
+    void decTime();
+
+    /**
+     * @return the Time attached to the timer
+     */
+    Time getTime();
+
+    /**
+     * 
+     * @return The object through a String
+     */
+    String toString();
 }

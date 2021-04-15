@@ -81,7 +81,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	}
 	
 	@Override
-	public void applyPowerUp(PowerUp.type typeOfPowerUp){
+	public void applyPowerUp(PowerUp.Type typeOfPowerUp){
 		switch (typeOfPowerUp) {
 			case FirePower:
 				this.activator.applyFirePower(FIRE_POWER_INC);

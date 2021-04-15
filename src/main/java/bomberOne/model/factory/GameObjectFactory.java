@@ -46,7 +46,7 @@ public interface GameObjectFactory {
      * @param type     The type of the PowerUp
      * @return the PowerUp
      */
-    GameObject createPowerUp(P2d position, PowerUp.type type);
+    GameObject createPowerUp(P2d position, PowerUp.Type type);
 
     /**
      * Create a new HardWall.

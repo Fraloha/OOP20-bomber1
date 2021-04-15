@@ -11,7 +11,7 @@ import bomberone.model.gameObjects.GameObject;
 import bomberone.model.gameObjects.HardWall;
 import bomberone.model.gameObjects.PowerUp;
 import bomberone.model.gameObjects.PowerUpImpl;
-import bomberone.model.gameObjects.PowerUp.type;
+import bomberone.model.gameObjects.PowerUp.Type;
 import bomberone.model.user.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.img.AnimatedObjectsSprites;
@@ -51,19 +51,19 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
     }
 
     @Override
-    public GameObject createPowerUp(final P2d position, final type type) {
+    public GameObject createPowerUp(final P2d position, final Type type) {
 
         BufferedImage powerUpImage = new BufferedImage(0, 0, 0);
-        if (type.equals(PowerUp.type.FirePower)) {
+        if (type.equals(PowerUp.Type.FirePower)) {
             powerUpImage = ObjectsImages.POWER_FIREPOWER.getImage();
         }
-        if (type.equals(PowerUp.type.Pierce)) {
+        if (type.equals(PowerUp.Type.Pierce)) {
             powerUpImage = ObjectsImages.POWER_PIERCE.getImage();
         }
-        if (type.equals(PowerUp.type.Speed)) {
+        if (type.equals(PowerUp.Type.Speed)) {
             powerUpImage = ObjectsImages.POWER_SPEED.getImage();
         }
-        if (type.equals(PowerUp.type.Time)) {
+        if (type.equals(PowerUp.Type.Time)) {
             powerUpImage = ObjectsImages.POWER_TIMER.getImage();
         }
         PowerUp pU = new PowerUpImpl(position, powerUpImage, 1, true, type);

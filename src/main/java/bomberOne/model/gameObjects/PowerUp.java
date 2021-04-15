@@ -2,7 +2,7 @@ package bomberone.model.gameObjects;
 
 public interface PowerUp extends GameObject {
 
-    enum type {
+    enum Type {
         /**
          * 
          */
@@ -44,5 +44,5 @@ public interface PowerUp extends GameObject {
      * 
      * @return The type of the PowerUp
      */
-    PowerUp.type getType();
+    PowerUp.Type getType();
 }

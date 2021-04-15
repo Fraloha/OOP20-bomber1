@@ -7,9 +7,9 @@ import bomberone.model.common.P2d;
 public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 
     private boolean released;
-    private PowerUp.type type;
+    private PowerUp.Type type;
 
-    public PowerUpImpl(final P2d pos, final BufferedImage img, final int lifes, final boolean isBreakable, final PowerUp.type type) {
+    public PowerUpImpl(final P2d pos, final BufferedImage img, final int lifes, final boolean isBreakable, final PowerUp.Type type) {
         super(pos, img, lifes);
         this.released = false;
         this.type = type;
@@ -43,7 +43,7 @@ public class PowerUpImpl extends GameObjectImpl implements PowerUp {
      * {@inheritDoc}
      */
     @Override
-    public bomberone.model.gameObjects.PowerUp.type getType() {
+    public bomberone.model.gameObjects.PowerUp.Type getType() {
         return this.type;
     }
 

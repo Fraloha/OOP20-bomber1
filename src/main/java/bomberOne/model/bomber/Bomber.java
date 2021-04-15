@@ -47,7 +47,7 @@ public interface Bomber extends AnimatedEntity {
 	 * Method that applies the 
 	 * @param PowerUp to the Bomber
 	 */
-	void applyPowerUp(PowerUp.type typeOfPowerUp);
+	void applyPowerUp(PowerUp.Type typeOfPowerUp);
 
 	/**
 	 * Method that
