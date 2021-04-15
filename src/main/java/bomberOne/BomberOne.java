@@ -14,8 +14,11 @@ public class BomberOne extends Application {
         launch(args);
     }
 
+    /**
+     * 
+     */
     @Override
-    public void start(Stage primaryStage) throws Exception {
+    public void start(final Stage primaryStage) throws Exception {
         primaryStage.setResizable(false);
         ResourcesLoader.start();
         DirectoryLoader.start();
