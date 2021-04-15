@@ -6,6 +6,7 @@ import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
+import bomberOne.model.user.UserImpl;
 
 public class GameModelImpl implements GameModel {
 
@@ -19,8 +20,8 @@ public class GameModelImpl implements GameModel {
 	private boolean gameOver = false;
 	private TimerThread thread = new TimerThread(timer);
 
-	public GameModelImpl(User user) {
-		this.user=user;
+	public GameModelImpl() {
+		this.user = new UserImpl();
 	}
 	
 	@Override

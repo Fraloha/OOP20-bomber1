@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 
 /**
@@ -24,7 +24,7 @@ public class TestBomber {
 	
 	@BeforeEach
 	public void init() {
-		ImagesLoader.start();
+		ResourcesLoader.start();
 		bomber = new BomberImpl(new P2d(0, 0), AnimatedObjectsSprites.PLAYER_1.getSprites(), 3);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);

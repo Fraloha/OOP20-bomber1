@@ -17,7 +17,7 @@ import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.ResourcesLoader;
 
 
 /**
@@ -38,7 +38,7 @@ public class TestWorldEventListener {
 	@BeforeEach
     public void init() {
 		listener = new WorldEventListenerImpl();
-		ImagesLoader.start();
+		ResourcesLoader.start();
 		world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
 		model = new GameModelImpl();
 		factory = new GameObjectFactoryImpl();

@@ -2,7 +2,7 @@ package bomberOne;
 
 import bomberOne.model.GameModelImpl;
 import bomberOne.tools.DirectoryLoader;
-import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import javafx.application.Application;
@@ -17,7 +17,7 @@ public class BomberOne extends Application{
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		primaryStage.setResizable(false);
-		ImagesLoader.start();
+		ResourcesLoader.start();
 		DirectoryLoader.start();
 		ViewsSwitcher.switchView(primaryStage, ViewType.GAME, new GameModelImpl());
 	}

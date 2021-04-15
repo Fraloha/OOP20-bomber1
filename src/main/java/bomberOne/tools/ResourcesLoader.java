@@ -11,11 +11,11 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import bomberOne.tools.img.ObjectsImages;
-import bomberOne.tools.maps.Map;
+import bomberOne.tools.maps.Maps;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 
 
-public class ImagesLoader {
+public class ResourcesLoader {
 	
 	private static final int ANIMATED_HEIGHT = 48;
 	private static final int OBJ_HEIGHT = 32;
@@ -25,9 +25,9 @@ public class ImagesLoader {
 	 * When this method is called, the ResourceLoader launch "loadImages() and sliceSprite()"
 	 */
 	public static void start() {
-		ImagesLoader.loadImages();
-		ImagesLoader.sliceSprite();
-		ImagesLoader.loadMap();
+		ResourcesLoader.loadImages();
+		ResourcesLoader.sliceSprite();
+		ResourcesLoader.loadMap();
 	}
 	
 	/**
@@ -59,7 +59,7 @@ public class ImagesLoader {
 	 * @throws IOException if it can't read the Files
 	 */
 	public static void loadMap() {
-		Arrays.stream(Map.values()).forEach(value -> {
+		Arrays.stream(Maps.values()).forEach(value -> {
 			try {
 				BufferedReader reader= new BufferedReader(new FileReader(value.getFilePath()));
 				List<List<String>> mapLayout=new ArrayList<>();

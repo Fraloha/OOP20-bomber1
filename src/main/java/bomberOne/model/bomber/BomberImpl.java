@@ -9,7 +9,7 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 import bomberOne.tools.img.ObjectsImages;
 
@@ -41,7 +41,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 		this.usedAmmo = 0;
 		this.spriteIndex = SPRITES;
 		this.animationIndex = 0;
-		ImagesLoader.start();
+		ResourcesLoader.start();
 	}
 	
 	@Override

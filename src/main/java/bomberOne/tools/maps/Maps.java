@@ -4,7 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-public enum Map {
+public enum Maps {
 
 	MAP1("mappa.csv");
 	
@@ -12,7 +12,7 @@ public enum Map {
 	private List<List<String>> list = new ArrayList<>();
 	private String fileName;
 	
-	Map(String string) {
+	Maps(String string) {
 		this.fileName=string;
 	}
 

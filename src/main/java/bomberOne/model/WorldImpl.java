@@ -24,7 +24,7 @@ import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.maps.Map;
+import bomberOne.tools.maps.Maps;
 
 
 public class WorldImpl implements World {
@@ -49,7 +49,7 @@ public class WorldImpl implements World {
 			this.respawn=true;
 		}
 		this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32,32), skin);
-		this.mapLayout = Map.MAP1.getList();
+		this.mapLayout = Maps.MAP1.getList();
 		this.setHardWall();
 		this.setBox();
 	}

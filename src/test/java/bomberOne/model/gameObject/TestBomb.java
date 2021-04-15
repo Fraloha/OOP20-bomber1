@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.Explosion;
-import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.ObjectsImages;
 
 /**
  * Tester for Bomb
@@ -24,7 +24,7 @@ public class TestBomb {
 	
 	@BeforeEach
 	public void init() {
-		this.bomb = new BombImpl(new P2d(0, 0), AnimatedObjectsSprites.BOMB.getImage(), 1, 3, false);
+		this.bomb = new BombImpl(new P2d(0, 0), ObjectsImages.BOMB.getImage(), 1, 3, false);
 	}
 	
 	@Test

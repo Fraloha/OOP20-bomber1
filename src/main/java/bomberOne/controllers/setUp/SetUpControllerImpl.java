@@ -6,7 +6,7 @@ import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 
 public class SetUpControllerImpl extends ControllerImpl implements SetUpController {
-
+	
 	@Override
 	public void setDifficulty(Difficulty diff) {
 		this.getModel().setDifficulty(diff);
