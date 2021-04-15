@@ -1,11 +1,11 @@
-package bomberOne.controllers.game;
+package bomberone.controllers.game;
 
-import bomberOne.controllers.ControllerImpl;
-import bomberOne.model.event.WorldEventListener;
-import bomberOne.model.event.WorldEventListenerImpl;
-import bomberOne.model.input.CommandListener;
-import bomberOne.model.input.CommandListenerImpl;
-import bomberOne.views.game.GameView;
+import bomberone.controllers.ControllerImpl;
+import bomberone.model.event.WorldEventListener;
+import bomberone.model.event.WorldEventListenerImpl;
+import bomberone.model.input.CommandListener;
+import bomberone.model.input.CommandListenerImpl;
+import bomberone.views.game.GameView;
 
 public class GameControllerImpl extends ControllerImpl implements GameController, Runnable{
 

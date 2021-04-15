@@ -1,16 +1,16 @@
-package bomberOne.views.game.movement;
+package bomberone.views.game.movement;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import bomberOne.controllers.game.GameController;
-import bomberOne.model.input.PlantBomb;
-import bomberOne.model.input.movement.MoveDown;
-import bomberOne.model.input.movement.MoveLeft;
-import bomberOne.model.input.movement.MoveRight;
-import bomberOne.model.input.movement.MoveUp;
-import bomberOne.model.user.Controls;
-import bomberOne.views.View;
+import bomberone.controllers.game.GameController;
+import bomberone.model.input.PlantBomb;
+import bomberone.model.input.movement.MoveDown;
+import bomberone.model.input.movement.MoveLeft;
+import bomberone.model.input.movement.MoveRight;
+import bomberone.model.input.movement.MoveUp;
+import bomberone.model.user.Controls;
+import bomberone.views.View;
 
 /**
  * A map that attach for each Key (key-code of the keyPressed/released) an action to perform

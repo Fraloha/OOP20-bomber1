@@ -1,9 +1,9 @@
-package bomberOne.model.input;
+package bomberone.model.input;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import bomberOne.model.GameModel;
+import bomberone.model.GameModel;
 
 public class CommandListenerImpl implements CommandListener{
 	private List<Command> commandList;

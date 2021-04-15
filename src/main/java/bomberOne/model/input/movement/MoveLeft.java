@@ -1,7 +1,7 @@
-package bomberOne.model.input.movement;
+package bomberone.model.input.movement;
 
-import bomberOne.model.GameModel;
-import bomberOne.model.input.Command;
+import bomberone.model.GameModel;
+import bomberone.model.input.Command;
 
 public class MoveLeft implements Command {
 

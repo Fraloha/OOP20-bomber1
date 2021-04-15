@@ -1,8 +1,8 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 
-import bomberOne.model.common.P2d;
+import bomberone.model.common.P2d;
 
 public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 
@@ -33,7 +33,7 @@ public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 	}
 
 	@Override
-	public bomberOne.model.gameObjects.PowerUp.type getType() {
+	public bomberone.model.gameObjects.PowerUp.type getType() {
 		return this.type;
 	}
 	

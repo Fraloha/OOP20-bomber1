@@ -1,7 +1,7 @@
-package bomberOne.model.factory;
+package bomberone.model.factory;
 
-import bomberOne.model.World;
-import bomberOne.model.user.User;
+import bomberone.model.World;
+import bomberone.model.user.User;
 
 public interface WorldFactory {
 

@@ -1,12 +1,12 @@
-package bomberOne.model;
+package bomberone.model;
 
-import bomberOne.model.factory.WorldFactory;
-import bomberOne.model.timer.Timer;
-import bomberOne.model.timer.TimerImpl;
-import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Difficulty;
-import bomberOne.model.user.User;
-import bomberOne.model.user.UserImpl;
+import bomberone.model.factory.WorldFactory;
+import bomberone.model.timer.Timer;
+import bomberone.model.timer.TimerImpl;
+import bomberone.model.timer.TimerThread;
+import bomberone.model.user.Difficulty;
+import bomberone.model.user.User;
+import bomberone.model.user.UserImpl;
 
 public class GameModelImpl implements GameModel {
 

@@ -1,16 +1,17 @@
-package bomberOne.model.event;
+package bomberone.model.event;
 
-import bomberOne.model.GameModel;
+import bomberone.model.GameModel;
 
 /**
- * Generic interface for Every WorldEvent
- * @author Luigi
+ * Generic interface for Every WorldEvent.
+ * 
  *
  */
 public interface WorldEvent {
- 
-	/**
-	 * In this method is done the routine to handle the Event
-	 */
-	public void process(GameModel model);
+
+    /**
+     * In this method is done the routine to handle the Event.
+     * @param model to apply the event
+     */
+    void process(GameModel model);
 }

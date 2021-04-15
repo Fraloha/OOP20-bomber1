@@ -5,7 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.common.P2d;
+import bomberone.model.common.P2d;
+import bomberone.model.physics.BoundingBox;
+import bomberone.model.physics.BoundingBoxImpl;
 
 /**
  * Test if "object" collide with other Objects in every directions

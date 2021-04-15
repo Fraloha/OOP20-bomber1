@@ -1,6 +1,6 @@
-package bomberOne.model.input;
+package bomberone.model.input;
 
-import bomberOne.model.GameModel;
+import bomberone.model.GameModel;
 
 public interface Command {
 	

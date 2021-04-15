@@ -1,4 +1,4 @@
-package bomberOne.model.user;
+package bomberone.model.user;
 
 import java.io.Serializable;
 

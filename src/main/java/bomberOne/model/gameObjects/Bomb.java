@@ -1,4 +1,4 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
 import java.util.Optional;
 

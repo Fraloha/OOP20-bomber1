@@ -1,7 +1,8 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
 import java.util.List;
-import bomberOne.model.enemy.Enemy;
+
+import bomberone.model.enemy.Enemy;
 
 /**
  * This interface's implementation must contains a list of GameObject.

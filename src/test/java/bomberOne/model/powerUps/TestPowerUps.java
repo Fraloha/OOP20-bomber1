@@ -1,14 +1,14 @@
 package bomberOne.model.powerUps;
-import bomberOne.tools.img.ObjectsImages;
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
-import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
+
+import bomberone.model.common.P2d;
+import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.PowerUpImpl;
+import bomberone.tools.img.ObjectsImages;
 
 public class TestPowerUps {
 

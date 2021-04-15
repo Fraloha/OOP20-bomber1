@@ -1,4 +1,4 @@
-package bomberOne.model.bomber;
+package bomberone.model.bomber;
 
 public interface PowerUpHandler {
 	/**

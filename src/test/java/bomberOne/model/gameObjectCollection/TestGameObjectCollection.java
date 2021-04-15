@@ -5,19 +5,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
+import bomberone.model.common.P2d;
+import bomberone.model.gameObjects.Bomb;
+import bomberone.model.gameObjects.BombImpl;
+import bomberone.model.gameObjects.Box;
+import bomberone.model.gameObjects.BoxImpl;
+import bomberone.model.gameObjects.GameObject;
+import bomberone.model.gameObjects.GameObjectCollection;
+import bomberone.model.gameObjects.GameObjectCollectionImpl;
+import bomberone.model.gameObjects.HardWall;
+
 import java.util.LinkedList;
 import java.util.List;
 
 import java.awt.image.BufferedImage;
-import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.Bomb;
-import bomberOne.model.gameObjects.BombImpl;
-import bomberOne.model.gameObjects.Box;
-import bomberOne.model.gameObjects.BoxImpl;
-import bomberOne.model.gameObjects.GameObject;
-import bomberOne.model.gameObjects.GameObjectCollection;
-import bomberOne.model.gameObjects.GameObjectCollectionImpl;
-import bomberOne.model.gameObjects.HardWall;
 
 /**
  * Test if the gameObjectCollection is ok

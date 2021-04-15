@@ -1,6 +1,6 @@
-package bomberOne.model.observation;
+package bomberone.model.observation;
 
-import bomberOne.model.common.P2d;
+import bomberone.model.common.P2d;
 
 public interface Observation {
 	

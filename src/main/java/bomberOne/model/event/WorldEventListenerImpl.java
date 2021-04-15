@@ -1,42 +1,41 @@
-package bomberOne.model.event;
+package bomberone.model.event;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bomberOne.model.GameModel;
+import bomberone.model.GameModel;
 
-public class WorldEventListenerImpl implements WorldEventListener {
-	
-	private GameModel model;
-	private List<WorldEvent> eventList = new ArrayList<>();
-	
-	@Override
-	public void notifyEvent(WorldEvent event) {
-		this.eventList.add(event);
-	}
+public final class WorldEventListenerImpl implements WorldEventListener {
 
-	@Override
-	public List<WorldEvent> getEventList() {
-		return this.eventList;
-	}
+    private GameModel model;
+    private List<WorldEvent> eventList = new ArrayList<>();
 
-	@Override
-	public void processEvents() {
-		this.eventList.stream().forEach(event -> {
-			event.process(model);
-		});
-		this.eventList.clear();
-	}
+    @Override
+    public void notifyEvent(final WorldEvent event) {
+        this.eventList.add(event);
+    }
 
-	@Override
-	public void setGameModel(GameModel game) {
-		this.model = game;
-	}
+    @Override
+    public List<WorldEvent> getEventList() {
+        return this.eventList;
+    }
 
-	@Override
-	public GameModel getGameModel() {
-		return this.model;
-	}
+    @Override
+    public void processEvents() {
+        this.eventList.stream().forEach(event -> {
+            event.process(model);
+        });
+        this.eventList.clear();
+    }
+
+    @Override
+    public void setGameModel(final GameModel game) {
+        this.model = game;
+    }
+
+    @Override
+    public GameModel getGameModel() {
+        return this.model;
+    }
 
 }
-

@@ -1,7 +1,7 @@
-package bomberOne.model.enemy.actions;
+package bomberone.model.enemy.actions;
 
-import bomberOne.model.common.P2d;
-import bomberOne.model.enemy.actions.movements.*;
+import bomberone.model.common.P2d;
+import bomberone.model.enemy.actions.movements.*;
 
 /**
  * This interface defines the actions of an enemy.

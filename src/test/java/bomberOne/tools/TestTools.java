@@ -9,11 +9,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.user.User;
-import bomberOne.model.user.UserImpl;
-import bomberOne.tools.img.ObjectsImages;
-import bomberOne.tools.maps.Maps;
-import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberone.model.user.User;
+import bomberone.model.user.UserImpl;
+import bomberone.tools.DirectoryLoader;
+import bomberone.tools.RankLoader;
+import bomberone.tools.ResourcesLoader;
+import bomberone.tools.img.AnimatedObjectsSprites;
+import bomberone.tools.img.ObjectsImages;
+import bomberone.tools.maps.Maps;
 
 public class TestTools {
 

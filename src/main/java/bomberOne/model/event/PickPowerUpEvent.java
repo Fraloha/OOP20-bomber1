@@ -1,34 +1,39 @@
-package bomberOne.model.event;
+package bomberone.model.event;
 
-import bomberOne.model.GameModel;
-import bomberOne.model.gameObjects.PowerUp;
+import bomberone.model.GameModel;
+import bomberone.model.gameObjects.PowerUp;
 
-public class PickPowerUpEvent implements WorldEvent{
-	
+public class PickPowerUpEvent implements WorldEvent {
 
-	private static final int TIMER_INC = 30;
-	private PowerUp powerUp;
-	
-	public PickPowerUpEvent(PowerUp pU) {
-		this.powerUp = pU;
-	}
-	
-	public PowerUp getPowerUp() {
-		return this.powerUp;
-	}
+    private static final int TIMER_INC = 30;
+    private PowerUp powerUp;
 
-	/*
-	 * When the Bomber picks the PowerUp, this method applies the PowerUp to the Bomber
-	 */
-	@Override
-	public void process(GameModel model) {
-		if(this.powerUp.getType().equals(PowerUp.type.Time)) {
-			model.getTimer().setTimer(model.getTimer().getTime().getTotal() + TIMER_INC);
-		}
-		else {
-			model.getWorld().getBomber().applyPowerUp(this.powerUp.getType());			
-		}
-		this.powerUp.hitted();
-	}
+    public PickPowerUpEvent(final PowerUp pU) {
+        this.powerUp = pU;
+    }
+
+    /**
+     * 
+     * @return the PowerUp picked
+     */
+    public PowerUp getPowerUp() {
+        return this.powerUp;
+    }
+
+    /*
+     * When the Bomber picks the PowerUp, this method applies the PowerUp to the
+     * Bomber
+     * 
+     * @param model
+     */
+    @Override
+    public void process(final GameModel model) {
+        if (this.powerUp.getType().equals(PowerUp.type.Time)) {
+            model.getTimer().setTimer(model.getTimer().getTime().getTotal() + TIMER_INC);
+        } else {
+            model.getWorld().getBomber().applyPowerUp(this.powerUp.getType());
+        }
+        this.powerUp.hitted();
+    }
 
 }

@@ -1,4 +1,4 @@
-package bomberOne.tools;
+package bomberone.tools;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -11,7 +11,7 @@ import java.io.ObjectOutput;
 import java.io.ObjectOutputStream;
 import java.util.List;
 
-import bomberOne.model.user.User;
+import bomberone.model.user.User;
 
 public class RankLoader {
 	

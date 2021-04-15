@@ -1,4 +1,4 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
 public interface PowerUp extends GameObject{
 

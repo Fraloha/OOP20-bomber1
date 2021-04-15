@@ -1,6 +1,6 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
-import bomberOne.model.common.P2d;
+import bomberone.model.common.P2d;
 
 /**
  * This class implements a single Explosion

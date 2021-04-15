@@ -1,4 +1,4 @@
-package bomberOne.model.timer;
+package bomberone.model.timer;
 
 public class TimerImpl implements Timer{
 

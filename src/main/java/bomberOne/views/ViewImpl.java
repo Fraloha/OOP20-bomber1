@@ -1,6 +1,6 @@
-package bomberOne.views;
+package bomberone.views;
 
-import bomberOne.controllers.Controller;
+import bomberone.controllers.Controller;
 import javafx.stage.Stage;
 
 public abstract class ViewImpl implements View {

@@ -1,9 +1,9 @@
-package bomberOne.model.gameObjects;
+package bomberone.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 
-import bomberOne.model.common.Direction;
-import bomberOne.model.common.P2d;
+import bomberone.model.common.Direction;
+import bomberone.model.common.P2d;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 

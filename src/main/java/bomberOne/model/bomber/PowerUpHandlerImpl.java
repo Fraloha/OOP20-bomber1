@@ -1,4 +1,4 @@
-package bomberOne.model.bomber;
+package bomberone.model.bomber;
 
 /**
  * This class apply the powerUp at the Bomber

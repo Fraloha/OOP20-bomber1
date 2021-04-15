@@ -1,6 +1,6 @@
-package bomberOne.model.physics;
+package bomberone.model.physics;
 
-import bomberOne.model.common.P2d;
+import bomberone.model.common.P2d;
 
 public class BoundingBoxImpl implements BoundingBox {
 

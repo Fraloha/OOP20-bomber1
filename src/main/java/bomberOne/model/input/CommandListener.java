@@ -1,8 +1,8 @@
-package bomberOne.model.input;
+package bomberone.model.input;
 
 import java.util.List;
 
-import bomberOne.model.GameModel;
+import bomberone.model.GameModel;
 
 public interface CommandListener {
 	

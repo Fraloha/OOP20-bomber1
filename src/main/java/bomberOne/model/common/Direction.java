@@ -1,4 +1,4 @@
-package bomberOne.model.common;
+package bomberone.model.common;
 
 public enum Direction {
 		UP,

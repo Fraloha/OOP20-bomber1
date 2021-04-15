@@ -1,10 +1,10 @@
-package bomberOne.model.factory;
+package bomberone.model.factory;
 
-import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.GameObject;
-import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.user.Difficulty;
-import bomberOne.model.user.Skins;
+import bomberone.model.common.P2d;
+import bomberone.model.gameObjects.GameObject;
+import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.user.Difficulty;
+import bomberone.model.user.Skins;
 
 /**
  * A Factory class for create every GameObject

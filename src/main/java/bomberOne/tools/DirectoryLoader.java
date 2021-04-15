@@ -1,4 +1,4 @@
-package bomberOne.tools;
+package bomberone.tools;
 
 import java.io.File;
 import java.io.IOException;
