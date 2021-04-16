@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
@@ -27,6 +28,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	private int spriteIndex; //0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
 	private int animationIndex;
 	private BufferedImage[][] animations;
+	private boolean isChangedDir = false;
 
 	public BomberImpl(P2d pos, BufferedImage[][] img, int lifes, boolean isBreakable) {
 		super(pos, img[0][1], lifes, isBreakable);
@@ -74,7 +76,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public Optional<Bomb> plantBomb() {
 		if(this.maxAmmo>this.usedAmmo) {
 			usedAmmo++;
-			return Optional.of(new BombImpl(new P2d(this.position.getX(), this.position.getY()), SpriteMapsObj.BOMB.getImage(), 1, true, this.firePower, this.pierce));
+			return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(new P2d(this.getPosition().getX(), this.getPosition().getY()), this.firePower, this.pierce));
 		}
 		return Optional.empty();
 	}
@@ -100,6 +102,7 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 				break;
 		}
 	}
+	
 	
 	@Override
 	public BufferedImage getImage() {
@@ -138,25 +141,37 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	
 	@Override
 	public void moveUp() {
-		this.setDir(Direction.UP);
+		if(this.getDirection() != Direction.UP) {
+			this.isChangedDir = true;
+			this.setDir(Direction.UP);
+		}
 		super.moveUp();
 	}
 
 	@Override
 	public void moveDown() {
-		this.setDir(Direction.DOWN);
+		if(this.getDirection() != Direction.DOWN) {
+			this.isChangedDir = true;
+			this.setDir(Direction.DOWN);
+		}
 		super.moveDown();
 	}
 
 	@Override
 	public void moveLeft() {
-		this.setDir(Direction.LEFT);
+		if(this.getDirection() != Direction.LEFT) {
+			this.isChangedDir = true;
+			this.setDir(Direction.LEFT);
+		}
 		super.moveLeft();
 	}
 
 	@Override
 	public void moveRight() {
-		this.setDir(Direction.RIGHT);
+		if(this.getDirection() != Direction.RIGHT) {
+			this.isChangedDir = true;
+			this.setDir(Direction.RIGHT);
+		}
 		super.moveRight();
 	}
 	
@@ -169,23 +184,26 @@ public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	@Override
 	public void update(int elapsed) {
 		if(this.isAlive) {
-			switch (this.getDir()) {
-			case UP:
-				this.spriteIndex = 0;
-				this.animationIndex = 0;
-				break;
-			case DOWN:
-				this.spriteIndex  = 1;
-				this.animationIndex = 0;
-				break;
-			case LEFT:
-				this.spriteIndex = 2;
-				this.animationIndex = 0;
-				break;
-			case RIGHT:
-				this.spriteIndex = 3;
-				this.animationIndex = 0;
-				break;
+			if(this.isChangedDir) {
+				switch (this.getDir()) {
+				case UP:
+					this.spriteIndex = 0;
+					this.animationIndex = 0;
+					break;
+				case DOWN:
+					this.spriteIndex  = 1;
+					this.animationIndex = 0;
+					break;
+				case LEFT:
+					this.spriteIndex = 2;
+					this.animationIndex = 0;
+					break;
+				case RIGHT:
+					this.spriteIndex = 3;
+					this.animationIndex = 0;
+					break;
+				}
+				this.isChangedDir = false;
 			}
 		} else {
 			this.spriteIndex = 4;
