@@ -50,6 +50,9 @@ public final class GameViewImpl extends ViewImpl implements GameView {
     @FXML
     private ImageView lifeThree;
 
+    @FXML
+    private ImageView clockImageView;
+
     private GraphicsContext gCForeground;
     private GraphicsContext gCBackground;
     private ControlsMap controlsMap;
@@ -59,14 +62,15 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.drawGame();
-        this.getController().init();
+      //  this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
     }
 
     @Override
     public void drawGame() {
+        this.clockImageView.setImage(SwingFXUtils.toFXImage(ObjectsImages.CLOCK.getImage(), null));
         this.drawBomberOnScoreBoard();
-        this.drawLifes();
+//        this.drawLifes();
 
         // Draw the background
         for (int i = 0; i < WORLD_CELLS; i++) {
@@ -79,12 +83,12 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         double spawnCord = CELL_SIZE * WORLD_CELLS / 2 - CELL_SIZE / 2;
         gCBackground.drawImage(SwingFXUtils.toFXImage(ObjectsImages.SPAWN.getImage(), null), spawnCord, spawnCord);
 
-        // Draw the Walls
-        this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
-                .forEach(wall -> {
-                    gCBackground.drawImage(SwingFXUtils.toFXImage(wall.getImage(), null), wall.getPosition().getX(),
-                            wall.getPosition().getY());
-                });
+//        // Draw the Walls
+//        this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
+//                .forEach(wall -> {
+//                    gCBackground.drawImage(SwingFXUtils.toFXImage(wall.getImage(), null), wall.getPosition().getX(),
+//                            wall.getPosition().getY());
+//                });
 
     }
 

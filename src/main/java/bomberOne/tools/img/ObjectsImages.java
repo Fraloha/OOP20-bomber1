@@ -98,6 +98,11 @@ public enum ObjectsImages {
     /**
      * 
      */
+    CLOCK("clock.png"),
+
+    /**
+     * 
+     */
     SPAWN("spawn.png");
 
     private static final String RES_PATH = "." + File.separator + "images" + File.separator;

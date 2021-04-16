@@ -16,6 +16,7 @@ import bomberOne.model.user.User;
 public final class RankLoader {
 
     private RankLoader() {
+
     }
 
     /**

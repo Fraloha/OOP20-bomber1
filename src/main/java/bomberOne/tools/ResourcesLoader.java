@@ -59,7 +59,7 @@ public final class ResourcesLoader {
     }
 
     /**
-     * This method load the the fixed map of the game
+     * This method load the the fixed map of the game.
      * 
      * @throws IOException if it can't read the Files
      */
@@ -103,7 +103,7 @@ public final class ResourcesLoader {
      * @param spriteHeight Height of each individual sprite
      * @return Two-dimensional array of sprites
      */
-    private static BufferedImage[][] sliceSpriteMap(BufferedImage spriteMap, int spriteWidth, int spriteHeight) {
+    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth, final int spriteHeight) {
         int rows = spriteMap.getHeight() / spriteHeight;
         int cols = spriteMap.getWidth() / spriteWidth;
         BufferedImage[][] sprites = new BufferedImage[rows][cols];
