@@ -1,4 +1,4 @@
-package bomberone.model.gameObject;
+package bomberOne.model.gameObject;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

@@ -110,7 +110,7 @@ public class ExplosionEvent implements WorldEvent {
                 break;
             }
         }
-        model.getWorld().getBomber().incAmmo(1);
+        model.getWorld().getBomber().restoreAmmo();
     }
 
 }

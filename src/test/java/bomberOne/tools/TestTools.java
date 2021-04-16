@@ -1,4 +1,4 @@
-package bomberone.tools;
+package bomberOne.tools;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;

@@ -1,4 +1,4 @@
-package bomberone.model.observation;
+package bomberOne.model.observation;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.observation.EnemyObservation;

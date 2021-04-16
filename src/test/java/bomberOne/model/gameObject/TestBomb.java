@@ -1,4 +1,4 @@
-package bomberone.model.gameObject;
+package bomberOne.model.gameObject;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,7 +19,6 @@ import bomberOne.tools.img.ObjectsImages;
  *
  */
 public class TestBomb {
-<<<<<<< HEAD
 	BombImpl bomb;
 	Optional<Explosion> explosion;
 	
@@ -47,26 +46,4 @@ public class TestBomb {
 		assertFalse(this.bomb.isAlive());
 		assertFalse(this.bomb.getExplosion().equals(Optional.empty()));
 	}
-	
-	
-=======
-    private BombImpl bomb;
-    private Optional<Explosion> explosion;
-
-    /**
-     * 
-     */
-    @BeforeEach
-    public void init() {
-        this.bomb = new BombImpl(new P2d(0, 0), ObjectsImages.BOMB.getImage(), 1, 3, false);
-    }
-
-    @Test
-    public void testOptionalExplosion() {
-        this.explosion = Optional.empty();
-        assertTrue(this.bomb.getExplosion() == this.explosion);
-        this.explosion = Optional.of(this.bomb.explode());
-        assertTrue(this.bomb.getExplosion().equals(this.explosion));
-    }
->>>>>>> develop
 }

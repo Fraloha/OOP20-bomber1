@@ -1,4 +1,4 @@
-package bomberone.controllers;
+package bomberOne.controllers;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

@@ -1,4 +1,4 @@
-package bomberone.model.bomber;
+package bomberOne.model.bomber;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -13,14 +13,9 @@ import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.PowerUp;
-<<<<<<< HEAD
 import bomberOne.model.user.Skins;
-import bomberOne.tools.ImagesLoader;
-import bomberOne.tools.img.SpriteMapsObj;
-=======
 import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.img.AnimatedObjectsSprites;
->>>>>>> develop
 
 /**
  * Tester for Bomber
@@ -34,13 +29,8 @@ public class TestBomber {
 	
 	@BeforeEach
 	public void init() {
-<<<<<<< HEAD
-		ImagesLoader.start();
-		bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
-=======
 		ResourcesLoader.start();
-		bomber = new BomberImpl(new P2d(0, 0), AnimatedObjectsSprites.PLAYER_1.getSprites(), 3);
->>>>>>> develop
+		bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);
 	}
