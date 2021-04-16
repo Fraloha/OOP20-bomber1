@@ -31,4 +31,8 @@ public class EnemyImpl extends AnimatedEntityImpl implements Enemy{
 		//Set the enemy's behavior to intermediate.
 		this.executor = new BehaviorExecutor(behavior);
 	}
+	
+	public void keepTrack(P2d playerPosition) {
+		
+	}
 }

@@ -11,12 +11,14 @@ public class IntermediateBehavior implements Actions{
 	private EnemyTriggeredObservation triggeredObs;
 	private BasicBehavior basicActions;
 	private Enemy selectedEnemy;
+	private boolean following;
 	
 	/* Constructor. */
 	public IntermediateBehavior(P2d playerPosition, Enemy newEnemy) {
 		this.triggeredObs = new EnemyTriggeredObservation(playerPosition);
 		this.selectedEnemy = newEnemy;
 		this.basicActions = new BasicBehavior(this.selectedEnemy);
+		this.following = false;
 	}
 	
 	/* Methods. */
@@ -24,9 +26,5 @@ public class IntermediateBehavior implements Actions{
 	@Override
 	public void doActions() {
 		
-	}
-	
-	public void setPlayerPosition(P2d position) {
-		this.triggeredObs.setDestination(position);
 	}
 }

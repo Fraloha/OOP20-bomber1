@@ -26,4 +26,11 @@ public interface Enemy extends AnimatedEntity{
 	 * (see the keepTrack method documentation to learn more about the following process.)
 	 */
 	public void setIntermediateEnemy(P2d playerPosition);
+	
+	/**
+	 * This method set the destination field of an Observation class or the classes
+	 * that extends it.
+	 * @param playerPosition The current player position.
+	 */
+	public void keepTrack(P2d playerPosition);
 }
