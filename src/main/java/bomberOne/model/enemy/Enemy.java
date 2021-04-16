@@ -1,6 +1,6 @@
-package bomberone.model.enemy;
+package bomberOne.model.enemy;
 
-import bomberone.model.gameObjects.AnimatedEntity;
+import bomberOne.model.gameObjects.AnimatedEntity;
 
 
 /**

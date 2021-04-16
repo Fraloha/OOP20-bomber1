@@ -7,21 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.GameModel;
-import bomberone.model.GameModelImpl;
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
-import bomberone.model.common.P2d;
-import bomberone.model.event.ExplosionEvent;
-import bomberone.model.event.HitFireEvent;
-import bomberone.model.event.WorldEventListener;
-import bomberone.model.event.WorldEventListenerImpl;
-import bomberone.model.factory.GameObjectFactory;
-import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.ExplosionImpl;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.Skins;
-import bomberone.tools.ResourcesLoader;
+import bomberOne.model.GameModel;
+import bomberOne.model.GameModelImpl;
+import bomberOne.model.World;
+import bomberOne.model.WorldImpl;
+import bomberOne.model.common.P2d;
+import bomberOne.model.event.ExplosionEvent;
+import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.event.WorldEventListenerImpl;
+import bomberOne.model.factory.GameObjectFactory;
+import bomberOne.model.factory.GameObjectFactoryImpl;
+import bomberOne.model.gameObjects.ExplosionImpl;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
+import bomberOne.tools.ResourcesLoader;
 
 
 /**

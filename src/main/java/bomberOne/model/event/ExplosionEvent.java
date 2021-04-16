@@ -1,12 +1,12 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bomberone.model.GameModel;
-import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.Explosion;
+import bomberOne.model.GameModel;
+import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.Explosion;
 
 /**
  * When a bomb explode, it generates an ExplosionEvent.

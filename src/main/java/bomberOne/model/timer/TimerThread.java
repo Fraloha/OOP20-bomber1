@@ -1,4 +1,4 @@
-package bomberone.model.timer;
+package bomberOne.model.timer;
 
 public class TimerThread extends Thread {
 

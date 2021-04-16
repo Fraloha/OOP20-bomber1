@@ -1,9 +1,9 @@
-package bomberone.model.factory;
+package bomberOne.model.factory;
 
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.User;
+import bomberOne.model.World;
+import bomberOne.model.WorldImpl;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.User;
 
 public class WorldFactoryImpl implements WorldFactory {
 	

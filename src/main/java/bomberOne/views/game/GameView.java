@@ -1,6 +1,6 @@
-package bomberone.views.game;
+package bomberOne.views.game;
 
-import bomberone.views.View;
+import bomberOne.views.View;
 
 public interface GameView extends View {
 

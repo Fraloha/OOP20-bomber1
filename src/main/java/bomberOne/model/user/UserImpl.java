@@ -1,4 +1,4 @@
-package bomberone.model.user;
+package bomberOne.model.user;
 
 public final class UserImpl implements User {
 

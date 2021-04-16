@@ -1,4 +1,4 @@
-package bomberone.tools;
+package bomberOne.tools;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
@@ -10,9 +10,9 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import bomberone.tools.img.AnimatedObjectsSprites;
-import bomberone.tools.img.ObjectsImages;
-import bomberone.tools.maps.Maps;
+import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.maps.Maps;
 
 
 public class ResourcesLoader {

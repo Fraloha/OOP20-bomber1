@@ -1,7 +1,7 @@
-package bomberone.controllers;
+package bomberOne.controllers;
 
-import bomberone.model.GameModel;
-import bomberone.views.View;
+import bomberOne.model.GameModel;
+import bomberOne.views.View;
 
 public abstract class ControllerImpl implements Controller {
 

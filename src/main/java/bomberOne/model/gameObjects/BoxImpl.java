@@ -1,9 +1,9 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 
 public final class BoxImpl extends GameObjectImpl implements Box {
 

@@ -1,4 +1,4 @@
-package bomberone.tools.maps;
+package bomberOne.tools.maps;
 
 import java.io.File;
 import java.util.ArrayList;

@@ -1,8 +1,8 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
 import java.util.List;
 
-import bomberone.model.GameModel;
+import bomberOne.model.GameModel;
 
 /**
  * This class Handle every type of event in the World.

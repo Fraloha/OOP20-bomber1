@@ -1,6 +1,6 @@
-package bomberone.model.enemy.actions.movements;
+package bomberOne.model.enemy.actions.movements;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 
 /**
  * This class define the enemy down movement.

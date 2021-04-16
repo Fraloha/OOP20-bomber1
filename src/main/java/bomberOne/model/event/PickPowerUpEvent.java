@@ -1,7 +1,7 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
-import bomberone.model.GameModel;
-import bomberone.model.gameObjects.PowerUp;
+import bomberOne.model.GameModel;
+import bomberOne.model.gameObjects.PowerUp;
 
 public class PickPowerUpEvent implements WorldEvent {
 

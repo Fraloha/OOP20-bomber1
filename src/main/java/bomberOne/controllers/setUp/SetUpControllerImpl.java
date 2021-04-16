@@ -1,9 +1,9 @@
-package bomberone.controllers.setUp;
+package bomberOne.controllers.setUp;
 
-import bomberone.controllers.ControllerImpl;
-import bomberone.model.user.Controls;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.Skins;
+import bomberOne.controllers.ControllerImpl;
+import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 
 public final class SetUpControllerImpl extends ControllerImpl implements SetUpController {
 

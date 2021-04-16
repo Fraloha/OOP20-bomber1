@@ -1,9 +1,9 @@
-package bomberone.views;
+package bomberOne.views;
 
 import java.io.IOException;
 
-import bomberone.controllers.Controller;
-import bomberone.model.GameModel;
+import bomberOne.controllers.Controller;
+import bomberOne.model.GameModel;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
