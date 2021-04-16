@@ -1,6 +1,6 @@
-package bomberone.model.physics;
+package bomberOne.model.physics;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 
 public interface BoundingBox {
 

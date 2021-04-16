@@ -1,6 +1,6 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
-import bomberone.model.GameModel;
+import bomberOne.model.GameModel;
 
 /**
  * Generic interface for Every WorldEvent.

@@ -1,12 +1,12 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
-import bomberone.model.GameModel;
-import bomberone.model.common.Direction;
-import bomberone.model.common.P2d;
-import bomberone.model.enemy.Enemy;
-import bomberone.model.enemy.EnemyImpl;
-import bomberone.model.gameObjects.AnimatedEntity;
-import bomberone.model.gameObjects.GameObject;
+import bomberOne.model.GameModel;
+import bomberOne.model.common.Direction;
+import bomberOne.model.common.P2d;
+import bomberOne.model.enemy.Enemy;
+import bomberOne.model.enemy.EnemyImpl;
+import bomberOne.model.gameObjects.AnimatedEntity;
+import bomberOne.model.gameObjects.GameObject;
 
 /**
  * This event is Triggered when the Bomber or the Enemy hit a Box or an HardWall.

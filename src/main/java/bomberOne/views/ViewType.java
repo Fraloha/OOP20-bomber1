@@ -1,10 +1,10 @@
-package bomberone.views;
+package bomberOne.views;
 
 import java.io.File;
 
-import bomberone.controllers.*;
-import bomberone.controllers.game.GameControllerImpl;
-import bomberone.controllers.setUp.*;;
+import bomberOne.controllers.*;
+import bomberOne.controllers.game.GameControllerImpl;
+import bomberOne.controllers.setUp.*;;
 
 /**
  * Enum for the Views, each one has her StyleFile and her specific Controller Type

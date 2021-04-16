@@ -1,10 +1,10 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 
-import bomberone.model.common.P2d;
-import bomberone.model.physics.BoundingBox;
-import bomberone.model.physics.BoundingBoxImpl;
+import bomberOne.model.common.P2d;
+import bomberOne.model.physics.BoundingBox;
+import bomberOne.model.physics.BoundingBoxImpl;
 
 public abstract class GameObjectImpl implements GameObject {
 

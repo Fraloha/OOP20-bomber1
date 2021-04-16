@@ -1,4 +1,4 @@
-package bomberone.model.timer;
+package bomberOne.model.timer;
 
 /**
  * This interface simulates a timer that receives an amount of time and allows

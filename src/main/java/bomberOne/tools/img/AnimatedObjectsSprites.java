@@ -1,4 +1,4 @@
-package bomberone.tools.img;
+package bomberOne.tools.img;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

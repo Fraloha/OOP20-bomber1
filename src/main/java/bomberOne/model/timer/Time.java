@@ -1,4 +1,4 @@
-package bomberone.model.timer;
+package bomberOne.model.timer;
 
 /**
  * This interface let's the user to manage a quantity of time through minutes

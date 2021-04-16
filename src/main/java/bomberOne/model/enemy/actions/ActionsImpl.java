@@ -1,7 +1,7 @@
-package bomberone.model.enemy.actions;
+package bomberOne.model.enemy.actions;
 
-import bomberone.model.common.P2d;
-import bomberone.model.enemy.actions.movements.*;
+import bomberOne.model.common.P2d;
+import bomberOne.model.enemy.actions.movements.*;
 
 public class ActionsImpl implements Actions{
 	

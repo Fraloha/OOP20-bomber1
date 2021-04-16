@@ -1,6 +1,6 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
-import bomberone.model.common.Direction;
+import bomberOne.model.common.Direction;
 
 public interface AnimatedEntity extends GameObject {
 

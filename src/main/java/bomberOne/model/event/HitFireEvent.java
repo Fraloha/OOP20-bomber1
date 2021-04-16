@@ -1,9 +1,9 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
-import bomberone.model.GameModel;
-import bomberone.model.enemy.EnemyImpl;
-import bomberone.model.gameObjects.BoxImpl;
-import bomberone.model.gameObjects.GameObject;
+import bomberOne.model.GameModel;
+import bomberOne.model.enemy.EnemyImpl;
+import bomberOne.model.gameObjects.BoxImpl;
+import bomberOne.model.gameObjects.GameObject;
 
 public class HitFireEvent implements WorldEvent {
 

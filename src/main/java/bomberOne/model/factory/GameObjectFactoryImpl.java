@@ -1,21 +1,21 @@
-package bomberone.model.factory;
+package bomberOne.model.factory;
 
 import java.awt.image.BufferedImage;
 
-import bomberone.model.bomber.BomberImpl;
-import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.BoxImpl;
-import bomberone.model.gameObjects.FireImpl;
-import bomberone.model.gameObjects.GameObject;
-import bomberone.model.gameObjects.HardWall;
-import bomberone.model.gameObjects.PowerUp;
-import bomberone.model.gameObjects.PowerUpImpl;
-import bomberone.model.gameObjects.PowerUp.Type;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.Skins;
-import bomberone.tools.img.AnimatedObjectsSprites;
-import bomberone.tools.img.ObjectsImages;
+import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.BombImpl;
+import bomberOne.model.gameObjects.BoxImpl;
+import bomberOne.model.gameObjects.FireImpl;
+import bomberOne.model.gameObjects.GameObject;
+import bomberOne.model.gameObjects.HardWall;
+import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.model.gameObjects.PowerUpImpl;
+import bomberOne.model.gameObjects.PowerUp.Type;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
+import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.ObjectsImages;
 
 public final class GameObjectFactoryImpl implements GameObjectFactory {
 

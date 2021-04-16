@@ -1,8 +1,8 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 /**
  * This class implements a simple Fire who extends a GameObject
  * @author Gustavo Mazzanti

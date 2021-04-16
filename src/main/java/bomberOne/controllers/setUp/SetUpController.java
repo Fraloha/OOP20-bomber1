@@ -1,9 +1,9 @@
-package bomberone.controllers.setUp;
+package bomberOne.controllers.setUp;
 
-import bomberone.controllers.Controller;
-import bomberone.model.user.Controls;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.Skins;
+import bomberOne.controllers.Controller;
+import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
 
 /**
  * This Controller sets some settings of the GameModel by the choice of the User

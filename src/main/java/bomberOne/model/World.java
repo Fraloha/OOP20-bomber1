@@ -1,9 +1,9 @@
-package bomberone.model;
+package bomberOne.model;
 
-import bomberone.model.bomber.BomberImpl;
-import bomberone.model.event.WorldEventListener;
-import bomberone.model.factory.GameObjectFactory;
-import bomberone.model.gameObjects.GameObjectCollection;
+import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.factory.GameObjectFactory;
+import bomberOne.model.gameObjects.GameObjectCollection;
 
 /**
  * The world of gameplay

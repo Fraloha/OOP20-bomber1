@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.Explosion;
-import bomberone.tools.img.ObjectsImages;
+import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.BombImpl;
+import bomberOne.model.gameObjects.Explosion;
+import bomberOne.tools.img.ObjectsImages;
 
 /**
  * Tester for Bomb.

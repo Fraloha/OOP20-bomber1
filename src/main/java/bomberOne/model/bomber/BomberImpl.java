@@ -1,17 +1,17 @@
-package bomberone.model.bomber;
+package bomberOne.model.bomber;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-import bomberone.model.common.Direction;
-import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.AnimatedEntityImpl;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.PowerUp;
-import bomberone.tools.ResourcesLoader;
-import bomberone.tools.img.AnimatedObjectsSprites;
-import bomberone.tools.img.ObjectsImages;
+import bomberOne.model.common.Direction;
+import bomberOne.model.common.P2d;
+import bomberOne.model.gameObjects.AnimatedEntityImpl;
+import bomberOne.model.gameObjects.Bomb;
+import bomberOne.model.gameObjects.BombImpl;
+import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.tools.ResourcesLoader;
+import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.ObjectsImages;
 
 public class BomberImpl extends AnimatedEntityImpl implements Bomber {
 	public static final double SPEED_INC = 2;

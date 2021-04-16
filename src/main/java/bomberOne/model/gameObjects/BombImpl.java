@@ -1,9 +1,9 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 /**
  * This class implements a simple Bomb who extends a GameObject
  * @author Gustavo Mazzanti

@@ -1,9 +1,9 @@
-package bomberone.model.event;
+package bomberOne.model.event;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import bomberone.model.GameModel;
+import bomberOne.model.GameModel;
 
 public final class WorldEventListenerImpl implements WorldEventListener {
 

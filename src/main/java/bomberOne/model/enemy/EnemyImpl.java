@@ -1,4 +1,4 @@
-package bomberone.model.enemy;
+package bomberOne.model.enemy;
 
 public class EnemyImpl {
 

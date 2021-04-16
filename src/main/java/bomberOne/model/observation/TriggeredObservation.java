@@ -1,6 +1,6 @@
-package bomberone.model.observation;
+package bomberOne.model.observation;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 
 public interface TriggeredObservation extends SimpleObservation{
 	

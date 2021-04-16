@@ -1,8 +1,8 @@
-package bomberone.model.gameObjects;
+package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
 
-import bomberone.model.common.P2d;
+import bomberOne.model.common.P2d;
 
 public class HardWall extends GameObjectImpl {
 

@@ -1,8 +1,8 @@
-package bomberone.model;
+package bomberOne.model;
 
-import bomberone.model.timer.Timer;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.User;
+import bomberOne.model.timer.Timer;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.User;
 
 /**
  * The Model of the Game

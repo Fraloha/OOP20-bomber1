@@ -1,4 +1,4 @@
-package bomberone;
+package bomberOne;
 
 public class Launcher {
 

@@ -1,16 +1,16 @@
-package bomberone.views.game;
+package bomberOne.views.game;
 
 import java.awt.event.KeyEvent;
 
-import bomberone.model.bomber.Bomber;
-import bomberone.model.enemy.EnemyImpl;
-import bomberone.model.gameObjects.HardWall;
-import bomberone.model.user.Skins;
-import bomberone.tools.img.ObjectsImages;
-import bomberone.views.ViewImpl;
-import bomberone.views.ViewType;
-import bomberone.views.ViewsSwitcher;
-import bomberone.views.game.movement.ControlsMap;
+import bomberOne.model.bomber.Bomber;
+import bomberOne.model.enemy.EnemyImpl;
+import bomberOne.model.gameObjects.HardWall;
+import bomberOne.model.user.Skins;
+import bomberOne.tools.img.ObjectsImages;
+import bomberOne.views.ViewImpl;
+import bomberOne.views.ViewType;
+import bomberOne.views.ViewsSwitcher;
+import bomberOne.views.game.movement.ControlsMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;

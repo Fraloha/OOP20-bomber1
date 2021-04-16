@@ -1,30 +1,30 @@
-package bomberone.model;
+package bomberOne.model;
 
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import bomberone.model.bomber.BomberImpl;
-import bomberone.model.common.P2d;
-import bomberone.model.enemy.Enemy;
-import bomberone.model.event.ExplosionEvent;
-import bomberone.model.event.HitBorderEvent;
-import bomberone.model.event.HitFireEvent;
-import bomberone.model.event.PickPowerUpEvent;
-import bomberone.model.event.WorldEventListener;
-import bomberone.model.event.WorldEventListenerImpl;
-import bomberone.model.factory.GameObjectFactory;
-import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.Fire;
-import bomberone.model.gameObjects.GameObject;
-import bomberone.model.gameObjects.GameObjectCollection;
-import bomberone.model.gameObjects.GameObjectCollectionImpl;
-import bomberone.model.gameObjects.PowerUp;
-import bomberone.model.user.Difficulty;
-import bomberone.model.user.Skins;
-import bomberone.tools.maps.Maps;
+import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.P2d;
+import bomberOne.model.enemy.Enemy;
+import bomberOne.model.event.ExplosionEvent;
+import bomberOne.model.event.HitBorderEvent;
+import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.PickPowerUpEvent;
+import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.event.WorldEventListenerImpl;
+import bomberOne.model.factory.GameObjectFactory;
+import bomberOne.model.factory.GameObjectFactoryImpl;
+import bomberOne.model.gameObjects.Bomb;
+import bomberOne.model.gameObjects.Fire;
+import bomberOne.model.gameObjects.GameObject;
+import bomberOne.model.gameObjects.GameObjectCollection;
+import bomberOne.model.gameObjects.GameObjectCollectionImpl;
+import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.Skins;
+import bomberOne.tools.maps.Maps;
 
 
 public class WorldImpl implements World {
