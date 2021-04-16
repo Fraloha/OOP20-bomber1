@@ -1,10 +1,7 @@
 package bomberOne.model.enemy.actions;
 
 import java.util.Random;
-import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
-import bomberOne.model.gameObjects.GameObject;
-import java.util.LinkedList;
 
 public class BasicBehavior implements Actions{
 	

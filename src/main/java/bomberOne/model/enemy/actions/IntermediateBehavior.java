@@ -3,6 +3,7 @@ package bomberOne.model.enemy.actions;
 import bomberOne.model.common.P2d;
 import bomberOne.model.observation.EnemyTriggeredObservation;
 import bomberOne.model.enemy.Enemy;
+import bomberOne.model.common.Direction;
 
 public class IntermediateBehavior implements Actions{
 	
@@ -23,5 +24,9 @@ public class IntermediateBehavior implements Actions{
 	@Override
 	public void doActions() {
 		
+	}
+	
+	public void setPlayerPosition(P2d position) {
+		this.triggeredObs.setDestination(position);
 	}
 }
