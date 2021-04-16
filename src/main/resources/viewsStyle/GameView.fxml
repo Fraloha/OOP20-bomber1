@@ -48,12 +48,12 @@
                         <Insets top="15.0" />
                      </HBox.margin>
                   </ImageView>
-                  <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="34.0" prefWidth="166.0" style="-fx-border-color: yellow; -fx-border-width: 4; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 30;" text="Score" textAlignment="RIGHT" textFill="WHITE">
+                  <Label fx:id="scoreLabel" alignment="CENTER_RIGHT" contentDisplay="CENTER" prefHeight="34.0" prefWidth="166.0" style="-fx-border-color: yellow; -fx-border-width: 4; -fx-border-radius: 10; -fx-background-color: black; -fx-background-radius: 30;" text="1350" textAlignment="RIGHT" textFill="WHITE">
                      <HBox.margin>
                         <Insets bottom="7.0" left="12.0" top="9.0" />
                      </HBox.margin>
                      <font>
-                        <Font size="17.0" />
+                        <Font name="Lucida Sans Unicode" size="17.0" />
                      </font>
                      <padding>
                         <Insets right="15.0" />
@@ -66,7 +66,7 @@
                         <Image url="@../images/imgbin_clock-red-circle-alarm-clock-line-art-png.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="102.0" style="-fx-border-color: red; -fx-border-radius: 10; -fx-border-width: 4; -fx-background-color: black; -fx-background-radius: 30;" text="Time" textAlignment="CENTER" textFill="WHITE">
+                  <Label fx:id="timeLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="34.0" prefWidth="102.0" style="-fx-border-color: red; -fx-border-radius: 10; -fx-border-width: 4; -fx-background-color: black; -fx-background-radius: 30;" text="01:30" textAlignment="CENTER" textFill="WHITE">
                      <font>
                         <Font size="17.0" />
                      </font>

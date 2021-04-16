@@ -6,12 +6,12 @@ import bomberOne.model.common.P2d;
 
 public class HardWall extends GameObjectImpl {
 
-	public HardWall(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
-	}
+    public HardWall(final P2d pos, final BufferedImage img, final int lifes) {
+        super(pos, img, lifes);
+    }
 
-	@Override
-	public void update(int elapsed) {
-	}
+    @Override
+    public void update(final int elapsed) {
+    }
 
 }

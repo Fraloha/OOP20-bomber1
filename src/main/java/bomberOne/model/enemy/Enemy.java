@@ -9,5 +9,5 @@ import bomberOne.model.gameObjects.AnimatedEntity;
  *
  */
 public interface Enemy extends AnimatedEntity{
-	
+	void changeDir();
 }

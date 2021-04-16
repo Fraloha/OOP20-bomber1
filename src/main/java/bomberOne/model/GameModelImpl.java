@@ -4,9 +4,9 @@ import bomberOne.model.factory.WorldFactory;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
+import bomberOne.model.user.UserImpl;
 
 public class GameModelImpl implements GameModel {
 
@@ -16,9 +16,13 @@ public class GameModelImpl implements GameModel {
 	private Difficulty difficulty;
 	private int score=0;
 	private WorldFactory factory;
-	private TimerImpl timer = new TimerImpl(GameModelImpl.TIME);
+	private Timer timer = new TimerImpl(GameModelImpl.TIME);
 	private boolean gameOver = false;
 	private TimerThread thread = new TimerThread(timer);
+
+	public GameModelImpl() {
+		this.user = new UserImpl();
+	}
 	
 	@Override
 	public void init() {
@@ -28,15 +32,15 @@ public class GameModelImpl implements GameModel {
 		} else {
 			this.world=factory.createWorldHard(this.user);
 		}
-		thread.start();
+		this.thread.start();
 	}
 
-	@Override
+		@Override
 	public void setUser(User user) {
 		// TODO Auto-generated method stub
 		this.user=user;
 	}
-
+	
 	@Override
 	public User getUser() {
 		// TODO Auto-generated method stub
@@ -93,11 +97,14 @@ public class GameModelImpl implements GameModel {
 	public void checkGameOver() {
 		// TODO Auto-generated method stub
 		if(this.world.getBomber().getLifes()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else if (this.world.getGameObjectCollection().getBoxList().size()==0 && 
 					this.world.getGameObjectCollection().getEnemyList().size()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else if(this.timer.getTime().getTotal()==0) {
+			this.thread.interrupt();
 			this.gameOver=true;
 		} else {
 			this.gameOver=false;
@@ -105,14 +112,9 @@ public class GameModelImpl implements GameModel {
 	}
 
 	@Override
-	public Timer getTime() {
+	public Timer getTimer() {
 		// TODO Auto-generated method stub
 		return this.timer;
 	}
-
-	@Override
-	public Controls getControls() {
-		// TODO Auto-generated method stub
-		return this.user.getControls();
-	}
+	
 }

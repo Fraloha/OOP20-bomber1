@@ -13,4 +13,9 @@ public interface GameView extends View {
 	 * Render the view every Frame
 	 */
 	public void render();
+	
+	/**
+	 * When the Game ends, it switch the View to the RankView
+	 */
+	public void switchToRank();
 }

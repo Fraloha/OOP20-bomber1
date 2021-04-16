@@ -1,6 +1,9 @@
-package bomberOne.model.observation;
+package bomberone.model.observation;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.observation.EnemyObservation;
+import bomberOne.model.observation.EnemySimpleObservation;
+import bomberOne.model.observation.EnemyTriggeredObservation;
 
 public class BasicTestPerception {
 

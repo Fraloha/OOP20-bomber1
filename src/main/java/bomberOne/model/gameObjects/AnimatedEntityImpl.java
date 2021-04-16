@@ -7,83 +7,118 @@ import bomberOne.model.common.P2d;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-	private int elapsed;
-	private Direction dir;
-	private double speed;
-	private boolean isStatic;
-	
-	public AnimatedEntityImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
-		this.dir = Direction.DOWN;
-		this.isStatic = true;
-	}
-	
-	
-	
-	@Override
-	public void setTimeElapsed(int elapsed) {
-		this.elapsed = elapsed;
-	}
-	
-	@Override
-	public int getTimeElapsed() {
-		return this.elapsed;
-	}
-	
-	@Override
-	public void setSpeed(double speed) {
-		this.speed = speed;
-	}
-	
-	@Override
-	public double getSpeed() {
-		return this.speed;
-	}
-	
-	@Override
-	public void moveUp() {
-		this.position.update(elapsed, 0, (-this.speed));
-	}
-	
-	@Override
-	public void moveDown() {
-		this.position.update(elapsed, 0, this.speed);
-	}
-	
-	@Override
-	public void moveLeft() {
-		this.position.update(elapsed, (-this.speed), 0);
-	}
-	
-	@Override
-	public void moveRight() {
-		this.position.update(elapsed, this.speed, 0);
-	}
-	
-	@Override
-	public void setDir(Direction dir) {
-		this.dir = dir;
-	}
-	
-	@Override
-	public Direction getDir() {
-		return this.dir;
-	}
+    private int elapsed;
+    private Direction dir;
+    private double speed;
+    private boolean isStatic;
 
-	@Override
-	public void update(int elapsed) {
-		if(this.lifes == 0) {
-			this.isAlive = false;
-		}
-	}
+    public AnimatedEntityImpl(final P2d pos, final BufferedImage img, final int lifes) {
+        super(pos, img, lifes);
+        this.dir = Direction.DOWN;
+        this.isStatic = true;
+    }
 
-	@Override
-	public boolean isStatic() {
-		return this.isStatic;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setTimeElapsed(final int elapsed) {
+        this.elapsed = elapsed;
+    }
 
-	@Override
-	public void setStatic(boolean value) {
-		this.isStatic = value;
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getTimeElapsed() {
+        return this.elapsed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSpeed(final double speed) {
+        this.speed = speed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public double getSpeed() {
+        return this.speed;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void moveUp() {
+        this.getPosition().update(elapsed, 0, (-this.speed));
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void moveDown() {
+        this.getPosition().update(elapsed, 0, this.speed);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void moveLeft() {
+        this.getPosition().update(elapsed, (-this.speed), 0);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void moveRight() {
+        this.getPosition().update(elapsed, this.speed, 0);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setDir(final Direction dir) {
+        this.dir = dir;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Direction getDir() {
+        return this.dir;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void update(final int elapsed) {
+        this.setTimeElapsed(elapsed);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public boolean isStatic() {
+        return this.isStatic;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setStatic(final boolean value) {
+        this.isStatic = value;
+    }
 }

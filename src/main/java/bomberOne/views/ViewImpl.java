@@ -1,10 +1,12 @@
 package bomberOne.views;
 
 import bomberOne.controllers.Controller;
+import javafx.stage.Stage;
 
 public abstract class ViewImpl implements View {
 
 	private Controller controller;
+	private Stage stage;
 	
 	@Override
 	public void attachController(Controller controller) {
@@ -16,6 +18,16 @@ public abstract class ViewImpl implements View {
 		return this.controller;
 	}
 
+	@Override
+	public void setStage(Stage stage) {
+		this.stage = stage;
+	}
+	
+	@Override
+	public Stage getStage() {
+		return this.stage;
+	}
+	
 	@Override
 	public abstract void init();
 

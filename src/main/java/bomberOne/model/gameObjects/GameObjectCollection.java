@@ -1,6 +1,7 @@
 package bomberOne.model.gameObjects;
 
 import java.util.List;
+
 import bomberOne.model.enemy.Enemy;
 
 /**

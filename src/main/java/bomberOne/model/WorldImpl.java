@@ -24,18 +24,22 @@ import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.maps.Maps;
 
 
 public class WorldImpl implements World {
 
 	private static int ENEMYNUMBER = 3;
+	private static int DIMENSION = 18;
+	private static int FRAME = 32;
 	
 	private GameObjectCollection collection = new GameObjectCollectionImpl();
 	private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
 	private WorldEventListener listener = new WorldEventListenerImpl();
 	private BomberImpl bomberMan;
-	boolean respawn;
-	Difficulty difficulty;
+	private boolean respawn;
+	private Difficulty difficulty;
+	private List<List<String>> mapLayout;
 		
 	public WorldImpl(Difficulty difficulty, Skins skin) {
 		this.difficulty=difficulty;
@@ -44,51 +48,59 @@ public class WorldImpl implements World {
 		} else {
 			this.respawn=true;
 		}
-		this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(0,0), skin);
-		//TODO Riempire il World
+		this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32,32), skin);
+		this.mapLayout = Maps.MAP1.getList();
 		this.setHardWall();
+		this.setBox();
+	}
+		
+	/**
+	 * This method creates all HardWall in the World
+	 */
+	private void setHardWall() {
+		for(int y=0; y<WorldImpl.DIMENSION; y++) {
+			for(int x=0; x<WorldImpl.DIMENSION; x++) {
+				if(mapLayout.get(y).get(x).equals("H")) {
+					collection.spawn(objectFactory.createHardWall(new P2d(x*WorldImpl.FRAME, y*WorldImpl.FRAME)));
+				}
+			}
+		}
 	}
 	
 	/**
-	 * This method create all HardWall and Box in the World
+	 * This method creates all HardWall in the World
 	 */
-	private void setHardWall() {
+	private void setBox() {
 		
 	}
-
+	
 	@Override
 	public boolean getRespawn() {
-		// TODO Auto-generated method stub
 		return this.respawn;
 	}
 
 	@Override
 	public GameObjectCollection getGameObjectCollection() {
-		// TODO Auto-generated method stub
 		return collection;
 	}
 
 	@Override
 	public GameObjectFactory getGameObjectFactory() {
-		// TODO Auto-generated method stub
 		return objectFactory;
 	}
 
 	@Override
 	public void setEventListener(WorldEventListener event) {
-		// TODO Auto-generated method stub
 		this.listener=event;
 	}
 
 	@Override
 	public BomberImpl getBomber() {
-		// TODO Auto-generated method stub
 		return this.bomberMan;
 	}
 
 	@Override
 	public void updateState(int time) {
-		// TODO Auto-generated method stub
 		this.bomberMan.update(time);
 		for(GameObject obj : collection.getGameObjectCollection()) {
 			obj.update(time);
@@ -102,7 +114,6 @@ public class WorldImpl implements World {
 
 	@Override
 	public void checkCollision() {
-		// TODO Auto-generated method stub
 		List<Fire> fireList = collection.getFireList();
 		List<GameObject> list = new LinkedList<>();
 		list.add(bomberMan);
@@ -126,7 +137,6 @@ public class WorldImpl implements World {
 
 	@Override
 	public void checkRespawn() {
-		// TODO Auto-generated method stub
 		if(collection.getBoxList().size() == 0) {
 				this.respawn=false;
 		}
@@ -139,7 +149,6 @@ public class WorldImpl implements World {
 
 	@Override
 	public void checkBoundary() {
-		// TODO Auto-generated method stub
 		List<Enemy> enemyList = collection.getEnemyList();
 		List<GameObject> wallBoxList = new LinkedList<>();
 		wallBoxList.addAll(collection.getHardWallList());
@@ -160,7 +169,6 @@ public class WorldImpl implements World {
 
 	@Override
 	public void checkExplosion() {
-		// TODO Auto-generated method stub
 		List<Bomb> bombList= collection.getBombList();
 		for(Bomb bomb : bombList) {
 			if(!bomb.getExplosion().equals(Optional.empty())) {

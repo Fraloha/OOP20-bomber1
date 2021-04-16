@@ -1,4 +1,4 @@
-package bomberOne.model.physics;
+package bomberone.model.physics;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.physics.BoundingBox;
+import bomberOne.model.physics.BoundingBoxImpl;
 
 /**
  * Test if "object" collide with other Objects in every directions

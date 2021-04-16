@@ -1,7 +1,6 @@
 package bomberOne.model;
 
 import bomberOne.model.timer.Timer;
-import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 
@@ -18,14 +17,14 @@ public interface GameModel {
 	void init();
 	
 	/**
-	 * Saved the username to add it in the ranking
-	 * @param user
+	 * set the User of this game
 	 */
 	void setUser(User user);
 	
+	
 	/**
 	 * 
-	 * @return the username
+	 * @return the user
 	 */
 	User getUser();
 	
@@ -71,7 +70,5 @@ public interface GameModel {
 	
 	void checkGameOver();
 	
-	Controls getControls();
-	
-	Timer getTime();
+	Timer getTimer();
 }

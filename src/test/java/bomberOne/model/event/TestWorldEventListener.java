@@ -1,4 +1,4 @@
-package bomberOne.model.event;
+package bomberone.model.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,12 +12,16 @@ import bomberOne.model.GameModelImpl;
 import bomberOne.model.World;
 import bomberOne.model.WorldImpl;
 import bomberOne.model.common.P2d;
+import bomberOne.model.event.ExplosionEvent;
+import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.WorldEventListener;
+import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.ImagesLoader;
+import bomberOne.tools.ResourcesLoader;
 
 
 /**
@@ -38,7 +42,7 @@ public class TestWorldEventListener {
 	@BeforeEach
     public void init() {
 		listener = new WorldEventListenerImpl();
-		ImagesLoader.start();
+		ResourcesLoader.start();
 		world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
 		model = new GameModelImpl();
 		factory = new GameObjectFactoryImpl();

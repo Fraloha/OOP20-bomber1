@@ -1,31 +1,36 @@
 package bomberOne.model.timer;
 
-public class TimeImpl implements Time {
+public final class TimeImpl implements Time {
 
-	private int totalSec;
-	private int minutes;
-	private int seconds;
-	
-	public void setTotal(int tot) {
-		this.totalSec = tot;
-	}
-	
-	public TimeImpl(int tot) {
-		this.totalSec = tot;
-	}
-	
-	public int getTotal() {
-		return this.totalSec;
-	}
-	
-	public int getMinutes() {
-		this.minutes = this.totalSec / 60;
-		return minutes;
-	}
-	
-	public int getSeconds() {
-		this.seconds = this.totalSec % 60;
-		return this.seconds;
-	}
-	
+    private static final int SECONDS_IN_A_MINUTE = 60;
+    private int totalSec;
+    private int minutes;
+    private int seconds;
+
+    public TimeImpl(final int tot) {
+        this.totalSec = tot;
+    }
+
+    @Override
+    public void setTotal(final int tot) {
+        this.totalSec = tot;
+    }
+
+    @Override
+    public int getTotal() {
+        return this.totalSec;
+    }
+
+    @Override
+    public int getMinutes() {
+        this.minutes = this.totalSec / SECONDS_IN_A_MINUTE;
+        return minutes;
+    }
+
+    @Override
+    public int getSeconds() {
+        this.seconds = this.totalSec % SECONDS_IN_A_MINUTE;
+        return this.seconds;
+    }
+
 }
