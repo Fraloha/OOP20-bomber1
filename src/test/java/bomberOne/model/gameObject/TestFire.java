@@ -7,6 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
+import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.FireImpl;
 import bomberOne.tools.img.SpriteMapsObj;
 
@@ -15,7 +16,7 @@ public class TestFire {
 	
 	@BeforeEach
 	public void init() {
-		this.fire = new FireImpl(new P2d(0, 0), SpriteMapsObj.EXPLOSION_SPRITEMAP.getImage(), 1, false);
+		this.fire = (FireImpl) new GameObjectFactoryImpl().createFire(new P2d(10, 10));
 	}
 	
 	@Test
