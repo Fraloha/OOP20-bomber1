@@ -10,7 +10,11 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.FireImpl;
 import bomberOne.tools.img.SpriteMapsObj;
-
+/**
+ * Tester for Fire
+ * @author Gustavo Mazzanti
+ *
+ */
 public class TestFire {
 	FireImpl fire;
 	

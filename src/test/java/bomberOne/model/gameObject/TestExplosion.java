@@ -7,7 +7,11 @@ import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.ExplosionImpl;
-
+/**
+ * Tester for Explosion
+ * @author Gustavo Mazzanti
+ *
+ */
 public class TestExplosion {
 	ExplosionImpl explosion;
 	

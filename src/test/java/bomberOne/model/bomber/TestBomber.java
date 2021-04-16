@@ -8,12 +8,14 @@ import org.junit.jupiter.api.Test;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.model.user.Skins;
 import bomberOne.tools.ImagesLoader;
 import bomberOne.tools.img.SpriteMapsObj;
 
 /**
- * Tester for BomberImpl
+ * Tester for Bomber
  * @author Gustavo Mazzanti
  *
  */
@@ -25,7 +27,7 @@ public class TestBomber {
 	@BeforeEach
 	public void init() {
 		ImagesLoader.start();
-		bomber = new BomberImpl(new P2d(0, 0), SpriteMapsObj.PLAYER_1.getSprites(), 3, true);
+		bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);
 	}
