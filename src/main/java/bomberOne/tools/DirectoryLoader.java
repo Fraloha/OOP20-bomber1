@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class DirectoryLoader {
+public final class DirectoryLoader {
 
     private static final String CONFIGURATION_DIRECTORY_NAME = ".bomberOne";
     private static final String RANK_STANDARD_NAME = "rankStd.txt";
@@ -16,6 +16,11 @@ public class DirectoryLoader {
                                                                                 + CONFIGURATION_DIRECTORY_NAME;
     private static final String RANK_STANDARD_PATH = CONFIGURATION_DIRECTORY_PATH + SEPARATOR + RANK_STANDARD_NAME;
     private static final String RANK_HARD_PATH = CONFIGURATION_DIRECTORY_PATH + SEPARATOR + RANK_HARD_NAME;
+
+
+    private DirectoryLoader() {
+
+    }
 
     /**
      * This Method checks if the directory ".bomberOne/" in the Home Directory

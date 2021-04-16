@@ -34,6 +34,7 @@ public interface GameController extends Controller {
 
     /**
      * Return the command Listener attached to the controller.
+     * 
      * @return the listener
      */
     CommandListener getCommandListener();
