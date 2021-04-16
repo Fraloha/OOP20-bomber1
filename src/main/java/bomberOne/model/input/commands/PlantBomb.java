@@ -1,4 +1,4 @@
-package bomberOne.model.input;
+package bomberOne.model.input.commands;
 
 import bomberOne.model.GameModel;
 
@@ -6,8 +6,7 @@ public class PlantBomb implements Command{
 
 	@Override
 	public void execute(GameModel gameModel) {
-		// TODO Auto-generated method stub
-		
+		gameModel.getWorld().getBomber().plantBomb();		
 	}
 
 }

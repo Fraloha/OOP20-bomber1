@@ -1,7 +1,6 @@
-package bomberOne.model.input.movement;
+package bomberOne.model.input.commands;
 
 import bomberOne.model.GameModel;
-import bomberOne.model.input.Command;
 
 public class MoveRight implements Command {
 

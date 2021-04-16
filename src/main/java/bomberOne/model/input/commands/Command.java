@@ -1,4 +1,4 @@
-package bomberOne.model.input;
+package bomberOne.model.input.commands;
 
 import bomberOne.model.GameModel;
 
