@@ -6,17 +6,20 @@ import java.util.List;
 
 public enum Maps {
 
+    /**
+     * 
+     */
     MAP1("mappa.csv");
 
-    private static final String RES_PATH = "." + File.separator;
+    private static final String RES_PATH = "src" + File.separator + "main" + File.separator + "resources" + File.separator;
     private List<List<String>> list = new ArrayList<>();
     private String fileName;
 
-    Maps(String string) {
+    Maps(final String string) {
         this.fileName = string;
     }
 
-    public void setList(List<List<String>> list) {
+    public void setList(final List<List<String>> list) {
         this.list = list;
     }
 
