@@ -2,6 +2,7 @@ package bomberOne.tools;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -95,6 +96,9 @@ public class TestTools {
     @Test
     public void testMapLoader() {
         ResourcesLoader.start();
-        assertNotNull(Maps.MAP1.getList());
+        List<List<String>> list = Maps.MAP1.getList();
+        assertNotNull(list);
+        assertTrue(list.get(0).get(0).equals("H"));
+        assertFalse(list.get(9).get(9).equals("H"));
     }
 }

@@ -26,155 +26,154 @@ import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.maps.Maps;
 
-
 public class WorldImpl implements World {
 
-	private static int ENEMYNUMBER = 3;
-	private static int DIMENSION = 18;
-	private static int FRAME = 32;
-	
-	private GameObjectCollection collection = new GameObjectCollectionImpl();
-	private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
-	private WorldEventListener listener = new WorldEventListenerImpl();
-	private BomberImpl bomberMan;
-	private boolean respawn;
-	private Difficulty difficulty;
-	private List<List<String>> mapLayout;
-		
-	public WorldImpl(Difficulty difficulty, Skins skin) {
-		this.difficulty=difficulty;
-		if(difficulty.equals(Difficulty.STANDARD)) {
-			this.respawn=false;
-		} else {
-			this.respawn=true;
-		}
-		this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32,32), skin);
-		this.mapLayout = Maps.MAP1.getList();
-		this.setHardWall();
-		this.setBox();
-	}
-		
-	/**
-	 * This method creates all HardWall in the World
-	 */
-	private void setHardWall() {
-		for(int y=0; y<WorldImpl.DIMENSION; y++) {
-			for(int x=0; x<WorldImpl.DIMENSION; x++) {
-				if(mapLayout.get(y).get(x).equals("H")) {
-					collection.spawn(objectFactory.createHardWall(new P2d(x*WorldImpl.FRAME, y*WorldImpl.FRAME)));
-				}
-			}
-		}
-	}
-	
-	/**
-	 * This method creates all HardWall in the World
-	 */
-	private void setBox() {
-		
-	}
-	
-	@Override
-	public boolean getRespawn() {
-		return this.respawn;
-	}
+    private static final int ENEMYNUMBER = 3;
+    private static final int DIMENSION = 18;
+    private static final int FRAME = 32;
 
-	@Override
-	public GameObjectCollection getGameObjectCollection() {
-		return collection;
-	}
+    private GameObjectCollection collection = new GameObjectCollectionImpl();
+    private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
+    private WorldEventListener listener = new WorldEventListenerImpl();
+    private BomberImpl bomberMan;
+    private boolean respawn;
+    private Difficulty difficulty;
+    private List<List<String>> mapLayout;
 
-	@Override
-	public GameObjectFactory getGameObjectFactory() {
-		return objectFactory;
-	}
+    public WorldImpl(final Difficulty difficulty, final Skins skin) {
+        this.difficulty = difficulty;
+        if (difficulty.equals(Difficulty.STANDARD)) {
+            this.respawn = false;
+        } else {
+            this.respawn = true;
+        }
+        this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
+        this.mapLayout = Maps.MAP1.getList();
+        this.setHardWall();
+        this.setBox();
+    }
 
-	@Override
-	public void setEventListener(WorldEventListener event) {
-		this.listener=event;
-	}
+    /**
+     * This method creates all HardWall in the World.
+     */
+    private void setHardWall() {
+        for (int y = 0; y < WorldImpl.DIMENSION; y++) {
+            for (int x = 0; x < WorldImpl.DIMENSION; x++) {
+                if (mapLayout.get(y).get(x).equals("H")) {
+                    collection.spawn(objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
+                }
+            }
+        }
+    }
 
-	@Override
-	public BomberImpl getBomber() {
-		return this.bomberMan;
-	}
+    /**
+     * This method creates all HardWall in the World.
+     */
+    private void setBox() {
 
-	@Override
-	public void updateState(int time) {
-		this.bomberMan.update(time);
-		for(GameObject obj : collection.getGameObjectCollection()) {
-			obj.update(time);
-		}
-		List<GameObject> deathObject = collection.getGameObjectCollection().stream()
-				.filter(p -> p.isAlive() == false).collect(Collectors.toList());
-		for(GameObject obj : deathObject) {
-			collection.despawn(obj);
-		}
-	}
+    }
 
-	@Override
-	public void checkCollision() {
-		List<Fire> fireList = collection.getFireList();
-		List<GameObject> list = new LinkedList<>();
-		list.add(bomberMan);
-		list.addAll(collection.getBoxList());
-		list.addAll(collection.getEnemyList());
-		for(GameObject obj : list) {
-			for(Fire fire : fireList) {
-				if(fire.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
-					this.listener.notifyEvent(new HitFireEvent(obj));
-				}
-			}
-		}
-		List<PowerUp> powerUpList = collection.getPowerUpList().stream()
-				.filter(p -> p.isReleased() == true).collect(Collectors.toList());
-		for(PowerUp power : powerUpList) {
-			if(power.getBoundingBox().isCollidingWith(bomberMan.getBoundingBox())) {
-				this.listener.notifyEvent(new PickPowerUpEvent(power));
-			}
-		}
-	}
+    @Override
+    public final boolean getRespawn() {
+        return this.respawn;
+    }
 
-	@Override
-	public void checkRespawn() {
-		if(collection.getBoxList().size() == 0) {
-				this.respawn=false;
-		}
-		if(this.respawn) {
-			if(collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-				collection.spawn(objectFactory.createEnemy(new P2d(32,32), this.difficulty)); //da mettere in mezzo alla mappa
-			}
-		}
-	}
+    @Override
+    public final GameObjectCollection getGameObjectCollection() {
+        return collection;
+    }
 
-	@Override
-	public void checkBoundary() {
-		List<Enemy> enemyList = collection.getEnemyList();
-		List<GameObject> wallBoxList = new LinkedList<>();
-		wallBoxList.addAll(collection.getHardWallList());
-		wallBoxList.addAll(collection.getBoxList());
-		for(GameObject wall : wallBoxList) {
-			if(wall.getBoundingBox().isCollidingWith(this.bomberMan.getBoundingBox())) {
-				listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
-			}
-		}
-		for(Enemy enemy : enemyList) {
-			for(GameObject wall : wallBoxList) {
-				if(wall.getBoundingBox().isCollidingWith(enemy.getBoundingBox())) {
-					listener.notifyEvent(new HitBorderEvent(enemy, wall));
-				}
-			}
-		}
-	}
+    @Override
+    public final GameObjectFactory getGameObjectFactory() {
+        return objectFactory;
+    }
 
-	@Override
-	public void checkExplosion() {
-		List<Bomb> bombList= collection.getBombList();
-		for(Bomb bomb : bombList) {
-			if(!bomb.getExplosion().equals(Optional.empty())) {
-				listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
-			}
-		}
-	}
+    @Override
+    public final void setEventListener(final WorldEventListener event) {
+        this.listener = event;
+    }
+
+    @Override
+    public final BomberImpl getBomber() {
+        return this.bomberMan;
+    }
+
+    @Override
+    public final void updateState(final int time) {
+        this.bomberMan.update(time);
+        for (GameObject obj : collection.getGameObjectCollection()) {
+            obj.update(time);
+        }
+        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
+                .collect(Collectors.toList());
+        for (GameObject obj : deathObject) {
+            collection.despawn(obj);
+        }
+    }
+
+    @Override
+    public final void checkCollision() {
+        List<Fire> fireList = collection.getFireList();
+        List<GameObject> list = new LinkedList<>();
+        list.add(bomberMan);
+        list.addAll(collection.getBoxList());
+        list.addAll(collection.getEnemyList());
+        for (GameObject obj : list) {
+            for (Fire fire : fireList) {
+                if (fire.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
+                    this.listener.notifyEvent(new HitFireEvent(obj));
+                }
+            }
+        }
+        List<PowerUp> powerUpList = collection.getPowerUpList().stream().filter(p -> p.isReleased())
+                .collect(Collectors.toList());
+        for (PowerUp power : powerUpList) {
+            if (power.getBoundingBox().isCollidingWith(bomberMan.getBoundingBox())) {
+                this.listener.notifyEvent(new PickPowerUpEvent(power));
+            }
+        }
+    }
+
+    @Override
+    public final void checkRespawn() {
+        if (collection.getBoxList().size() == 0) {
+            this.respawn = false;
+        }
+        if (this.respawn) {
+            if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
+                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty)); 
+            }
+        }
+    }
+
+    @Override
+    public final void checkBoundary() {
+        List<Enemy> enemyList = collection.getEnemyList();
+        List<GameObject> wallBoxList = new LinkedList<>();
+        wallBoxList.addAll(collection.getHardWallList());
+        wallBoxList.addAll(collection.getBoxList());
+        for (GameObject wall : wallBoxList) {
+            if (wall.getBoundingBox().isCollidingWith(this.bomberMan.getBoundingBox())) {
+                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
+            }
+        }
+        for (Enemy enemy : enemyList) {
+            for (GameObject wall : wallBoxList) {
+                if (wall.getBoundingBox().isCollidingWith(enemy.getBoundingBox())) {
+                    listener.notifyEvent(new HitBorderEvent(enemy, wall));
+                }
+            }
+        }
+    }
+
+    @Override
+    public final void checkExplosion() {
+        List<Bomb> bombList = collection.getBombList();
+        for (Bomb bomb : bombList) {
+            if (!bomb.getExplosion().equals(Optional.empty())) {
+                listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
+            }
+        }
+    }
 
 }
