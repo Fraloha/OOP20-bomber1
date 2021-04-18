@@ -16,7 +16,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private int frameCounter;
 
         /* Constructors. */
-        public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, P2d playerPosition) {
+        public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
             super(position, img, lifes, img[0][0]);
             
             //Setting the number of frames that the enemy has to wait before start moving.
@@ -25,7 +25,18 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
         /* Methods. */
 
+        /**
+         * {@inheritDoc}
+         */
         @Override
         public void keepTrack(final P2d playerPosition) {
+        }
+        
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public void changePath() {
+            
         }
 }

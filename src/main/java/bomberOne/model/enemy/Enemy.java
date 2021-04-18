@@ -32,4 +32,6 @@ public interface Enemy extends AnimatedEntity {
 	 * @param playerPosition The current player position.
 	 */
 	void keepTrack(P2d playerPosition);
+	
+	void changePath();
 }
