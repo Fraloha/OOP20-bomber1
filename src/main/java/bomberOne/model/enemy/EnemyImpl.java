@@ -6,6 +6,8 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.enemy.actions.Actions;
 import bomberOne.model.enemy.actions.IntermediateBehavior;
 import bomberOne.model.enemy.actions.BasicBehavior;
+import java.util.LinkedList;
+import java.util.Queue;
 
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
@@ -14,22 +16,25 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private static final int FRAME_PER_SECOND = 60;
         private Actions behavior;
         private int frameCounter;
-
+        private Queue<P2d> badPath;
+        
         /* Constructors. */
-        public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
+        public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes) {
             super(position, img, lifes, img[0][0]);
             
             //Setting the number of frames that the enemy has to wait before start moving.
             this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
+            
+            this.badPath = new LinkedList<P2d>();
         }
 
         /* Methods. */
-
+        
         /**
          * {@inheritDoc}
          */
-        @Override
-        public void keepTrack(final P2d playerPosition) {
+        public void update(P2d playerPosition) {
+            super.update(0);
         }
         
         /**
@@ -37,6 +42,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
          */
         @Override
         public void changePath() {
-            
+
         }
 }

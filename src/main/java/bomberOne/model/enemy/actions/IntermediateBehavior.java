@@ -14,8 +14,8 @@ public class IntermediateBehavior implements Actions {
 	private boolean following;
 
 	/* Constructor. */
-	public IntermediateBehavior(final Enemy newEnemy, final P2d playerPosition) {
-		this.triggeredObs = new EnemyTriggeredObservation(playerPosition);
+	public IntermediateBehavior(final Enemy newEnemy) {
+		this.triggeredObs = new EnemyTriggeredObservation();
 		this.selectedEnemy = newEnemy;
 		this.basicActions = new BasicBehavior(this.selectedEnemy);
 		this.following = false;

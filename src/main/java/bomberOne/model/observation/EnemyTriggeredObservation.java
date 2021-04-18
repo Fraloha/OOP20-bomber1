@@ -6,6 +6,10 @@ import bomberOne.model.common.Direction;
 public final class EnemyTriggeredObservation extends EnemySimpleObservation implements TriggeredObservation {
 	
 	/* Constructors. */
+        public EnemyTriggeredObservation() {
+            super();
+        }
+
 	public EnemyTriggeredObservation(final P2d destination) {
 		super(destination);
 	}
