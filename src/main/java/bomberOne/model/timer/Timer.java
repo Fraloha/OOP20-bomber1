@@ -1,26 +1,33 @@
 package bomberOne.model.timer;
 
-public class Timer {
+/**
+ * This interface simulates a timer that receives an amount of time and allows
+ * you to decrease or increase it.
+ * 
+ *
+ */
+public interface Timer {
 
-	private Time time;
-	
-	public Timer(int tot) {
-		this.time = new Time(tot);
-	}
-	
-	public void setTimer(int time) {
-		this.time.setTotal(time);
-	}
-	
-	public synchronized void decTime() {
-		this.time.setTotal(time.getTotal() - 1);
-	}
-	
-	public Time getTime() {
-		return this.time;
-	}
-	
-	public String toString() {
-		return this.getTime().getMinutes() + ":" + this.getTime().getSeconds();
-	}
+    /**
+     * Set the Time attached to the timer, creates it by adding "time" seconds.
+     * 
+     * @param time the total seconds that compose the Time
+     */
+    void setTimer(int time);
+
+    /**
+     * Decreases by one the Time attached to the timer.
+     */
+    void decTime();
+
+    /**
+     * @return the Time attached to the timer
+     */
+    Time getTime();
+
+    /**
+     * 
+     * @return The object through a String
+     */
+    String toString();
 }

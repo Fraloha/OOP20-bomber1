@@ -13,8 +13,8 @@ public class FireImpl extends GameObjectImpl implements Fire {
 	private int lifeTime;
 	private int thick;
 	
-	public FireImpl(P2d pos, BufferedImage img, int lifes, boolean isBreakable) {
-		super(pos, img, lifes, isBreakable);
+	public FireImpl(P2d pos, BufferedImage img, int lifes) {
+		super(pos, img, lifes);
 		this.lifeTime = 210;
 		this.thick = 0;
 	}
@@ -22,7 +22,7 @@ public class FireImpl extends GameObjectImpl implements Fire {
 	@Override
 	public void update(int elapsed) {
 		if(this.thick++ == this.lifeTime) {
-			this.isAlive = false;
+			this.setAlive(false);
 		}
 	}
 

@@ -1,31 +1,35 @@
 package bomberOne.model.timer;
 
-public class Time {
+/**
+ * This interface let's the user to manage a quantity of time through minutes
+ * and seconds.
+ * 
+ * 
+ *
+ */
+public interface Time {
 
-	private int totalSec;
-	private int minutes;
-	private int seconds;
-	
-	public void setTotal(int tot) {
-		this.totalSec = tot;
-	}
-	
-	public Time(int tot) {
-		this.totalSec = tot;
-	}
-	
-	public int getTotal() {
-		return this.totalSec;
-	}
-	
-	public int getMinutes() {
-		this.minutes = this.totalSec / 60;
-		return minutes;
-	}
-	
-	public int getSeconds() {
-		this.seconds = this.totalSec % 60;
-		return this.seconds;
-	}
-	
+    /**
+     * Sets the total time.
+     * 
+     * @param tot The total seconds to set
+     */
+    void setTotal(int tot);
+
+    /**
+     * @return the total number of seconds remained
+     */
+    int getTotal();
+
+    /**
+     * 
+     * @return the total number of minutes remained
+     */
+    int getMinutes();
+
+    /**
+     * 
+     * @return the total number of seconds remained
+     */
+    int getSeconds();
 }

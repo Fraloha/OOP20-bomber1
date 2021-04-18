@@ -2,49 +2,76 @@ package bomberOne.model.gameObjects;
 
 import bomberOne.model.common.Direction;
 
-public interface AnimatedEntity extends GameObject{
+public interface AnimatedEntity extends GameObject {
 
-	/**
-	 * Method to set TimeElapsed at
-	 * @param elapsed
-	 */
-	void setTimeElapsed(int elapsed);
-	
-	/**
-	 * Method that
-	 * @return TimeElapsed
-	 */
-	int getTimeElapsed();
-	
-	/**
-	 * 
-	 * @return speed of the Object
-	 */
-	double getSpeed();
-	
-	/**
-	 * Method to moveUp the Entity
-	 */
-	void moveUp();
+    /**
+     * Method to set TimeElapsed every frame.
+     * 
+     * @param elapsed
+     */
+    void setTimeElapsed(int elapsed);
 
-	/**
-	 * Method to moveDown the Entity
-	 */
-	void moveDown();
+    /**
+     * 
+     * 
+     * @return TimeElapsed
+     */
+    int getTimeElapsed();
 
-	/**
-	 * Method to moveLeft the Entity
-	 */
-	void moveLeft();
+    /**
+     * Method to set speed.
+     * 
+     * @param speed
+     */
+    void setSpeed(double speed);
 
-	/**
-	 * Method to moveRight the Entity
-	 */
-	void moveRight();
+    /**
+     * 
+     * @return speed of the Object
+     */
+    double getSpeed();
 
-	/**
-	 * Method that
-	 * @return Direction of the Entity
-	 */
-	Direction getDir();
+    /**
+     * Method to moveUp the Entity.
+     */
+    void moveUp();
+
+    /**
+     * Method to moveDown the Entity.
+     */
+    void moveDown();
+
+    /**
+     * Method to moveLeft the Entity.
+     */
+    void moveLeft();
+
+    /**
+     * Method to moveRight the Entity.
+     */
+    void moveRight();
+
+    /**
+     * Method to set the direction.
+     * 
+     * @param dir
+     */
+    void setDir(Direction dir);
+
+    /**
+     * 
+     * @return Direction of the Entity.
+     */
+    Direction getDir();
+
+    /**
+     * @return True if the Animated Entity is static
+     */
+    boolean isStatic();
+
+    /**
+     * Set the isStatic propriety as "value".
+     * @param value
+     */
+    void setStatic(boolean value);
 }

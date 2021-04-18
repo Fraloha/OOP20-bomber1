@@ -6,12 +6,22 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bomberOne.model.bomber.Bomber;
+import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.bomber.PowerUpHandlerImpl;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.tools.ImagesLoader;
-import bomberOne.tools.img.SpriteMapsObj;
+import bomberOne.model.user.Skins;
+import bomberOne.tools.ResourcesLoader;
+import bomberOne.tools.img.AnimatedObjectsSprites;
 
+/**
+ * Tester for Bomber
+ * @author Gustavo Mazzanti
+ *
+ */
 public class TestBomber {
 	
 	BomberImpl bomber;
@@ -19,8 +29,8 @@ public class TestBomber {
 	
 	@BeforeEach
 	public void init() {
-		ImagesLoader.start();
-		bomber = new BomberImpl(new P2d(0, 0), SpriteMapsObj.PLAYER_1.getSprites(), 3, true);
+		ResourcesLoader.start();
+		bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
 		activator = new PowerUpHandlerImpl(bomber);
 		bomber.setUpHandler(activator);
 	}
@@ -33,6 +43,7 @@ public class TestBomber {
 	
 	@Test
 	public void testLifes() {
+		System.out.println(bomber.getLifes());
 		assertTrue(bomber.getLifes() == 3);
 		bomber.addLifes(1);
 		assertTrue(bomber.getLifes() == 4);
@@ -52,7 +63,7 @@ public class TestBomber {
 	@Test
 	public void testAmmo() {
 		assertTrue(this.bomber.getAmmo() == Bomber.AMMO);
-		this.bomber.applyPowerUp(PowerUp.type.Ammo);
+		this.bomber.applyPowerUp(PowerUp.Type.Ammo);
 		assertTrue(this.bomber.getAmmo() == Bomber.AMMO + BomberImpl.AMMO_INC);
 		this.bomber.plantBomb();
 		assertTrue(this.bomber.getAmmo() == Bomber.AMMO + BomberImpl.AMMO_INC - 1);
@@ -70,17 +81,17 @@ public class TestBomber {
 	@Test
 	public void testPowerUp() {
 		assertTrue(this.bomber.getFirePower() == Bomber.FIRE_POWER);
-		this.bomber.applyPowerUp(PowerUp.type.FirePower);
+		this.bomber.applyPowerUp(PowerUp.Type.FirePower);
 		assertTrue(this.bomber.getFirePower() == Bomber.FIRE_POWER + BomberImpl.FIRE_POWER_INC);
-		this.bomber.applyPowerUp(PowerUp.type.FirePower);
+		this.bomber.applyPowerUp(PowerUp.Type.FirePower);
 		assertTrue(this.bomber.getFirePower() == Bomber.FIRE_POWER + (2 * BomberImpl.FIRE_POWER_INC));
 		assertFalse(this.bomber.isPierced());
-		this.bomber.applyPowerUp(PowerUp.type.Pierce);
+		this.bomber.applyPowerUp(PowerUp.Type.Pierce);
 		assertTrue(this.bomber.isPierced());
 		assertTrue(this.bomber.getSpeed() == Bomber.SPEED);
-		this.bomber.applyPowerUp(PowerUp.type.Speed);
+		this.bomber.applyPowerUp(PowerUp.Type.Speed);
 		assertTrue(this.bomber.getSpeed() == Bomber.SPEED + BomberImpl.SPEED_INC);
-		this.bomber.applyPowerUp(PowerUp.type.Speed);
+		this.bomber.applyPowerUp(PowerUp.Type.Speed);
 		assertTrue(this.bomber.getSpeed() == Bomber.SPEED + (2 * BomberImpl.SPEED_INC));
 		this.bomber.respawn();
 		assertTrue(this.bomber.getFirePower() == Bomber.FIRE_POWER);

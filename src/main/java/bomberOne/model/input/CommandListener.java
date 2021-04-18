@@ -3,6 +3,7 @@ package bomberOne.model.input;
 import java.util.List;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.input.commands.Command;
 
 public interface CommandListener {
 	

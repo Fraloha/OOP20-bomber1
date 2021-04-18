@@ -1,85 +1,110 @@
 package bomberOne.model;
 
+import bomberOne.model.factory.WorldFactory;
 import bomberOne.model.timer.Timer;
+import bomberOne.model.timer.TimerImpl;
+import bomberOne.model.timer.TimerThread;
+import bomberOne.model.user.Difficulty;
+import bomberOne.model.user.User;
+import bomberOne.model.user.UserImpl;
 
 public class GameModelImpl implements GameModel {
 
-	World world;
-	
-	@Override
-	public void init() {
-		// TODO Auto-generated method stub
-		
-	}
+    private static final int TIME = 30;
+    private User user;
+    private World world;
+    private Difficulty difficulty;
+    private int score = 0;
+    private WorldFactory factory;
+    private Timer timer = new TimerImpl(GameModelImpl.TIME);
+    private boolean gameOver = false;
+    private TimerThread thread = new TimerThread(timer);
 
-	@Override
-	public void setUser(User user) {
-		// TODO Auto-generated method stub
-		
-	}
+    public GameModelImpl() {
+        this.user = new UserImpl();
+    }
 
-	@Override
-	public User getUser() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public final void init() {
+        // TODO Auto-generated method stub
+        if (this.difficulty.equals(Difficulty.STANDARD)) {
+            this.world = factory.createWorldStandard(this.user);
+        } else {
+            this.world = factory.createWorldHard(this.user);
+        }
+        this.thread.start();
+    }
 
-	@Override
-	public void setDifficulty(Difficulty difficulty) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public final void setUser(final User user) {
+        this.user = user;
+    }
 
-	@Override
-	public World getWorld() {
-		return this.world;
-	}
+    @Override
+    public final User getUser() {
+        return this.user;
+    }
 
-	@Override
-	public int getScore() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+    @Override
+    public final void setDifficulty(final Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
 
-	@Override
-	public void setWorld(World world) {
-		this.world = world;
-	}
+    @Override
+    public final World getWorld() {
+        return this.world;
+    }
 
-	@Override
-	public void decScore(int dec) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public final int getScore() {
+        return this.score;
+    }
 
-	@Override
-	public void incScore(int inc) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public final void setWorld(final World world) {
+        this.world = world;
+    }
 
-	@Override
-	public void updateGame(int elapsed) {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public final void decScore(final int dec) {
+        this.score -= dec;
+    }
 
-	@Override
-	public boolean getGameOver() {
-		// TODO Auto-generated method stub
-		return false;
-	}
+    @Override
+    public final void incScore(final int inc) {
+        this.score += inc;
+    }
 
-	@Override
-	public void checkGameOver() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public final void updateGame(final int elapsed) {
+        world.updateState(elapsed);
+    }
 
-	@Override
-	public Timer getTime() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public final boolean getGameOver() {
+        return this.gameOver;
+    }
+
+    @Override
+    public final void checkGameOver() {
+        if (this.world.getBomber().getLifes() == 0) {
+            this.gameOver = true;
+        } else if (this.world.getGameObjectCollection().getBoxList().size() == 0
+                && this.world.getGameObjectCollection().getEnemyList().size() == 0) {
+            this.gameOver = true;
+        } else if (this.timer.getTime().getTotal() == 0) {
+            this.gameOver = true;
+        } else {
+            this.gameOver = false;
+        }
+        if (this.gameOver) {
+            this.thread.interrupt();
+        }
+    }
+
+    @Override
+    public final Timer getTimer() {
+        return this.timer;
+    }
 
 }
