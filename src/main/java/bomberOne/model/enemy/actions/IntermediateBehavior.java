@@ -5,7 +5,7 @@ import bomberOne.model.observation.EnemyTriggeredObservation;
 import bomberOne.model.enemy.Enemy;
 import bomberOne.model.common.Direction;
 
-public class IntermediateBehavior implements Actions{
+public class IntermediateBehavior implements Actions {
 	
 	/* Fields. */
 	private EnemyTriggeredObservation triggeredObs;
@@ -14,7 +14,7 @@ public class IntermediateBehavior implements Actions{
 	private boolean following;
 	
 	/* Constructor. */
-	public IntermediateBehavior(P2d playerPosition, Enemy newEnemy) {
+	public IntermediateBehavior(final Enemy newEnemy, final P2d playerPosition) {
 		this.triggeredObs = new EnemyTriggeredObservation(playerPosition);
 		this.selectedEnemy = newEnemy;
 		this.basicActions = new BasicBehavior(this.selectedEnemy);
@@ -25,6 +25,5 @@ public class IntermediateBehavior implements Actions{
 	
 	@Override
 	public void doActions() {
-		
 	}
 }

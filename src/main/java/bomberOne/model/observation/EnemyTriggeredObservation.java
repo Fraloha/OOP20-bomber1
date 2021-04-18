@@ -1,12 +1,12 @@
 package bomberOne.model.observation;
 
-import bomberOne.model.common.*;
+import bomberOne.model.common.P2d;
+import bomberOne.model.common.Direction;
 
-public class EnemyTriggeredObservation extends EnemySimpleObservation implements TriggeredObservation{
+public final class EnemyTriggeredObservation extends EnemySimpleObservation implements TriggeredObservation {
 	
 	/* Constructor. */
-	public EnemyTriggeredObservation(P2d destination) {
-		
+	public EnemyTriggeredObservation(final P2d destination) {
 		super(destination);
 	}
 	
@@ -18,8 +18,8 @@ public class EnemyTriggeredObservation extends EnemySimpleObservation implements
 	 * @param position The 2D point to check.
 	 * @return true if the points have the first component equal to each other, otherwise false.
 	 */
-	private boolean sameRow(P2d position) {
-		return (int)this.getDestination().getX() == (int)position.getX() ? true : false;
+	private boolean sameRow(final P2d position) {
+		return (int) this.getDestination().getX() == (int) position.getX() ? true : false;
 	}
 	
 	/**
@@ -28,34 +28,34 @@ public class EnemyTriggeredObservation extends EnemySimpleObservation implements
 	 * @param position The 2D point to check.
 	 * @return True if the points have the second component equal to each other, otherwise false.
 	 */
-	private boolean sameColumn(P2d position) {
-		return (int)this.getDestination().getY() == (int)position.getY() ? true : false;
+	private boolean sameColumn(final P2d position) {
+		return (int) this.getDestination().getY() == (int) position.getY() ? true : false;
 	}
-	
-	public boolean found(P2d position, Direction currentDirection) {
-		
+
+	@Override
+	public boolean found(final P2d position, final Direction currentDirection) {
 		/* Variables declaration. */
 		boolean result = false;
-		
+
 		//Checking if the 2D point parameter is on the same row.
-		if(sameRow(position)) {
-			
+		if (sameRow(position)) {
+
 			//Checking if the enemy can see the player.
-			if(currentDirection == Direction.UP) {
-				result = (int)this.getDestination().getY() > (int)position.getY() ? true : false; 
-			}else if(currentDirection == Direction.DOWN) {
-				result = (int)this.getDestination().getY() < (int)position.getY() ? true : false;
+			if (currentDirection == Direction.UP) {
+				result = (int) this.getDestination().getY() > (int) position.getY() ? true : false; 
+			} else if (currentDirection == Direction.DOWN) {
+				result = (int) this.getDestination().getY() < (int) position.getY() ? true : false;
 			}
-		}else if(sameColumn(position)) {
-			
+		} else if (sameColumn(position)) {
+
 			//Checking if the enemy can see the player.
-			if(currentDirection == Direction.RIGHT) {
-				result = (int)this.getDestination().getX() > (int)position.getX() ? true : false;
-			}else if(currentDirection == Direction.LEFT) {
-				result = (int)this.getDestination().getX() < (int)position.getX() ? true : false;
+			if (currentDirection == Direction.RIGHT) {
+				result = (int) this.getDestination().getX() > (int) position.getX() ? true : false;
+			} else if (currentDirection == Direction.LEFT) {
+				result = (int) this.getDestination().getX() < (int) position.getX() ? true : false;
 			}
 		}
-		
+
 		return result;
 	}
 }
