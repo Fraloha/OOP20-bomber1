@@ -11,9 +11,13 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     private Direction dir;
     private double speed;
     private boolean isStatic;
+    private int spriteIndex; //UP DOWN RIGHT LEFT
+    private int animationsIndex;
+    private BufferedImage [][] sprites;
 
-    public AnimatedEntityImpl(final P2d pos, final BufferedImage img, final int lifes) {
-        super(pos, img, lifes);
+    public AnimatedEntityImpl(final P2d pos, final BufferedImage [][] img, final int lifes, BufferedImage initialSprite) {
+        super(pos, initialSprite, lifes);
+        this.sprites = img;
         this.dir = Direction.DOWN;
         this.isStatic = true;
     }
@@ -120,5 +124,45 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     @Override
     public void setStatic(final boolean value) {
         this.isStatic = value;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public BufferedImage getImage() {
+        return this.sprites[this.spriteIndex][this.animationsIndex];
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSpriteIndex(int index) {
+        this.spriteIndex = index;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAnimationIndex(int index) {
+        this.animationsIndex = index;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getSpriteIndex() {
+        return this.spriteIndex;
+    }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getAnimationIndex() {
+        return this.animationsIndex;
     }
 }

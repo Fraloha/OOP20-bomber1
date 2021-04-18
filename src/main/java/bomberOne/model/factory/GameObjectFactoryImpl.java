@@ -7,6 +7,7 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.FireImpl;
+import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
@@ -41,8 +42,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public GameObject createEnemy(final P2d position, final Difficulty diff) {
-        // TODO Auto-generated method stub
-        return null;
+        
     }
 
     @Override
