@@ -23,7 +23,18 @@ public class IntermediateBehavior implements Actions {
 	
 	/* Methods. */
 	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doActions() {
+	}
+	
+	/**
+	 * This method sets the TriggeredObservation object destination.
+	 * @param playerPosition The current player position to let the enemy to follow him.
+	 */
+	public void setPlayerPosition(P2d playerPosition) {
+	    this.triggeredObs.setDestination(playerPosition);
 	}
 }
