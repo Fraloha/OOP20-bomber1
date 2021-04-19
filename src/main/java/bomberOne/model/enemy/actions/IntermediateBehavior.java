@@ -15,7 +15,6 @@ public class IntermediateBehavior implements Actions {
 	private EnemyTriggeredObservation triggeredObs;
 	private BasicBehavior basicActions;
 	private Enemy selectedEnemy;
-	private boolean following;
 
 	/* Constructor. */
 	public IntermediateBehavior(final Enemy newEnemy) {
@@ -23,7 +22,6 @@ public class IntermediateBehavior implements Actions {
 		this.triggeredObs = new EnemyTriggeredObservation();
 		this.selectedEnemy = newEnemy;
 		this.basicActions = new BasicBehavior(this.selectedEnemy);
-		this.following = false;
 	}
 	
 	/* Methods. */
@@ -48,6 +46,9 @@ public class IntermediateBehavior implements Actions {
 	        
 	        //Following the player.
 	        this.follow(computedDirection);
+	    } else {
+	        //If the enemy have not seen the player, it acts randomly.
+	        this.basicActions.doActions();
 	    }
 	}
 	
@@ -61,14 +62,28 @@ public class IntermediateBehavior implements Actions {
 
 	private void follow(Direction direction) {
 
+	    this.selectedEnemy.setDir(direction);
+
 	    if (direction.equals(Direction.RIGHT)) {
+
+	        this.selectedEnemy.setSpriteIndex(2);
 	        this.selectedEnemy.moveRight();
+
 	    } else if (direction.equals(Direction.LEFT)) {
+
+	        this.selectedEnemy.setSpriteIndex(1);
 	        this.selectedEnemy.moveLeft();
+
 	    } else if (direction.equals(Direction.UP)) {
+
+	        this.selectedEnemy.setSpriteIndex(3);
 	        this.selectedEnemy.moveUp();
+
 	    } else if (direction.equals(Direction.DOWN)) {
+
+	        this.selectedEnemy.setSpriteIndex(0);
 	        this.selectedEnemy.moveDown();
+
 	    }
 	}
 }
