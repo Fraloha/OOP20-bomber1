@@ -2,6 +2,7 @@ package bomberOne.model.observation;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.common.Direction;
+import bomberOne.model.observation.DirectionComparator;
 
 public final class EnemyTriggeredObservation extends EnemySimpleObservation implements TriggeredObservation {
 	
@@ -20,7 +21,7 @@ public final class EnemyTriggeredObservation extends EnemySimpleObservation impl
 	 * This method checks if the first component of the destination 2D point is equal
 	 * to the first component of the 2D point passed as parameter.
 	 * @param position The 2D point to check.
-	 * @return true if the points have the first component equal to each other, otherwise false.
+s	 * @return true if the points have the first component equal to each other, otherwise false.
 	 */
 	private boolean sameRow(final P2d position) {
 		return (int) this.getDestination().getX() == (int) position.getX() ? true : false;
@@ -61,5 +62,35 @@ public final class EnemyTriggeredObservation extends EnemySimpleObservation impl
 		}
 
 		return result;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Direction computeDestinationDirection(P2d enemyPosition, DirectionComparator comparator) {
+	    /* Variables declaration. */
+	    int directionValue = comparator.compare(this.getDestination(), enemyPosition);
+	    Direction direction = Direction.DOWN;
+	    
+	    switch(directionValue) {
+	    case 0:
+	        direction = Direction.UP;
+	        break;
+	        
+	    case 1:
+	        direction = Direction.DOWN;
+	        break;
+	        
+	    case 2:
+	        direction = Direction.LEFT;
+	        break;
+	        
+	    case 3:
+	        direction = Direction.RIGHT;
+	        break;
+	    }
+	    
+	    return direction;
 	}
 }

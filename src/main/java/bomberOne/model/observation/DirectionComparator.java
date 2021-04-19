@@ -19,7 +19,7 @@ public class DirectionComparator implements Comparator<P2d> {
         int directionValue;
         
         //Checking which mode was chosen.
-        if (this.mode.equals(FollowingModes.Horinzotally)) {
+        if (this.mode.equals(FollowingModes.HORINZONTALLY)) {
             directionValue = playerPosition.getX() > enemyPosition.getX() ? Direction.RIGHT.ordinal() : Direction.LEFT.ordinal();
         }else {
             directionValue = playerPosition.getY() > enemyPosition.getY() ? Direction.UP.ordinal() : Direction.DOWN.ordinal();
