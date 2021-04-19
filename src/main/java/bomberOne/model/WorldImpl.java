@@ -109,6 +109,10 @@ public class WorldImpl implements World {
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
         }
+        this.checkExplosion();
+        this.checkCollision();
+        this.checkRespawn();
+        this.checkBoundary();
     }
 
     @Override
