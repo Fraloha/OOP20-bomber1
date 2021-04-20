@@ -12,6 +12,10 @@ public class EnemyObservation implements Observation {
 	private P2d nextStep;
 	
 	/* Constructors. */
+	public EnemyObservation() {
+	    
+	}
+
 	public EnemyObservation(final P2d destination) {
 		this.destination = destination;
 	}

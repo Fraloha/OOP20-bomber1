@@ -2,6 +2,7 @@ package bomberOne.model.observation;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.common.Direction;
+import bomberOne.model.observation.DirectionComparator;
 
 /*
  * A class that can perform a sort of simulation allowing the enemy to check
@@ -20,4 +21,12 @@ public interface TriggeredObservation extends SimpleObservation {
          * and is pointed towards the destination.
          */
          boolean found(P2d position, Direction currentDirection);
+         
+         /**
+          * This method computes the direction that the enemy have to take to reach the destination.
+          * @param enemyPosition The enemy's position.
+          * @param comparator A DirectionComparator object.
+          * @return the direction to reach the destination.
+          */
+         Direction computeDestinationDirection(P2d enemyPosition, DirectionComparator comparator);
 }
