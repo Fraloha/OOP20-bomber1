@@ -5,6 +5,7 @@ import java.awt.event.KeyEvent;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
+import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ObjectsImages;
 import bomberOne.views.ViewImpl;
@@ -62,7 +63,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.drawGame();
-      //  this.getController().init();
+        this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
     }
 
@@ -83,12 +84,12 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         double spawnCord = CELL_SIZE * WORLD_CELLS / 2 - CELL_SIZE / 2;
         gCBackground.drawImage(SwingFXUtils.toFXImage(ObjectsImages.SPAWN.getImage(), null), spawnCord, spawnCord);
 
-//        // Draw the Walls
-//        this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
-//                .forEach(wall -> {
-//                    gCBackground.drawImage(SwingFXUtils.toFXImage(wall.getImage(), null), wall.getPosition().getX(),
-//                            wall.getPosition().getY());
-//                });
+        // Draw the Walls
+        this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
+                .forEach(wall -> {
+                    gCBackground.drawImage(SwingFXUtils.toFXImage(wall.getImage(), null), wall.getPosition().getX(),
+                            wall.getPosition().getY());
+                });
 
     }
 
@@ -104,15 +105,18 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         /* Draw all the updateable Objects but not enemies */
         this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection().stream()
                 .filter(elem -> !elem.getClass().equals(HardWall.class))
-                .filter(elem -> !elem.getClass().equals(EnemyImpl.class))
-                .forEach(obj -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
-                        obj.getPosition().getX(), obj.getPosition().getY()));
-        /* Draw the enemies */
-        this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream().forEach(enemy -> {
-            this.gCForeground.drawImage(SwingFXUtils.toFXImage(enemy.getImage(), null), enemy.getPosition().getX(),
-                    enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
-
-        });
+                .forEach(obj ->{
+                    if(obj.getClass().equals(EnemyImpl.class)) {
+                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+                    }
+                    if(obj.getClass().equals(PowerUpImpl.class)) {
+                        if(((PowerUpImpl) obj).isReleased()) {
+                            this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
+                        }
+                    } else {
+                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
+                    }
+                });
 
     }
 

@@ -1,6 +1,7 @@
 package bomberOne.model;
 
 import bomberOne.model.factory.WorldFactory;
+import bomberOne.model.factory.WorldFactoryImpl;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
@@ -22,6 +23,7 @@ public class GameModelImpl implements GameModel {
 
     public GameModelImpl() {
         this.user = new UserImpl();
+        this.factory = new WorldFactoryImpl();
     }
 
     @Override

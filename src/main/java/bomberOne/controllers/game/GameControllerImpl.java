@@ -1,3 +1,4 @@
+
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
@@ -13,6 +14,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
 
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
+    private Thread game;
 
     @Override
     public void run() {
@@ -20,7 +22,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         final double ns = 1000000000.0 / 60.0; // Locked ticks per second to 60
         double delta = 0;
         // Count FPS, Ticks, and execute updates
-        while (this.getModel().getGameOver()) {
+        while (!this.getModel().getGameOver()) {
             long currentTime = System.nanoTime();
             delta += (currentTime - lastTime) / ns;
             int elapsed = (int) (currentTime - lastTime);
@@ -67,8 +69,9 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
     public void init() {
         this.eventHandler = new WorldEventListenerImpl();
         this.commandHandler = new CommandListenerImpl();
-        this.getModel().init();
-        this.run();
+       // this.getModel().init();
+        this.game = new Thread(this);
+        this.game.start();
     }
 
     @Override
