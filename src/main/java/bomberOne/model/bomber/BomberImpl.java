@@ -162,14 +162,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      * {@inheritDoc}
      */
     @Override
-    public int getLifes() {
-        return this.getLifes();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int getAmmo() {
         return this.maxAmmo - this.usedAmmo;
     }
