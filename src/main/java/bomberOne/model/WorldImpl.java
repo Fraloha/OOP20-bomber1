@@ -3,6 +3,7 @@ package bomberOne.model;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 import bomberOne.model.bomber.BomberImpl;
@@ -17,11 +18,13 @@ import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.Bomb;
+import bomberOne.model.gameObjects.Box;
 import bomberOne.model.gameObjects.Fire;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
+import bomberOne.model.gameObjects.PowerUp.Type;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.maps.Maps;
@@ -31,6 +34,9 @@ public class WorldImpl implements World {
     private static final int ENEMYNUMBER = 3;
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
+    private static final int NORMALBOX = 80;
+    //private static final int HARDBOX = 100;
+    private static final int NUMTYPEPOWERUP = 5;
 
     private GameObjectCollection collection = new GameObjectCollectionImpl();
     private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
@@ -50,7 +56,7 @@ public class WorldImpl implements World {
         this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
-        this.setBox();
+        this.setBox(this.difficulty);
     }
 
     /**
@@ -69,8 +75,47 @@ public class WorldImpl implements World {
     /**
      * This method creates all HardWall in the World.
      */
-    private void setBox() {
-
+    private void setBox(final Difficulty difficulty) {
+        int powerUpCount = 0;
+        int boxCount = 0;
+        List<P2d> objectList = this.collection.getGameObjectCollection().stream()
+                .map(e -> e.getPosition()).collect(Collectors.toList());
+        Random rand = new Random();
+        while (boxCount < WorldImpl.NORMALBOX) {
+            int col = rand.nextInt(WorldImpl.DIMENSION);
+            int line = rand.nextInt(WorldImpl.DIMENSION);
+            P2d pos = new P2d(line * WorldImpl.FRAME, col * WorldImpl.FRAME);
+            if (!objectList.contains(pos)) {
+                objectList.add(pos);
+                Box box = (Box) this.objectFactory.createBox(pos);
+                if (boxCount % 4 == 0) {
+                    PowerUp powerUp = null;
+                    switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
+                    case 0 :
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Time);
+                        break;
+                    case 1 :
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Speed);
+                        break;
+                    case 2 : 
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Pierce);
+                        break;
+                    case 3 :
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.FirePower);
+                        break;
+                    case 4 :
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Ammo);
+                        break;
+                    default:
+                        break;
+                    }
+                    powerUpCount++;
+                    box.addPowerUp(powerUp);
+                    this.collection.spawn(box);
+                }
+                boxCount++;
+            }
+        }
     }
 
     @Override
