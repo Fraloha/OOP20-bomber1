@@ -24,9 +24,10 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUp.Type;
+import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.img.ObjectsImages;
 import bomberOne.tools.maps.Maps;
 
 public class WorldImpl implements World {
@@ -89,30 +90,34 @@ public class WorldImpl implements World {
                 objectList.add(pos);
                 Box box = (Box) this.objectFactory.createBox(pos);
                 if (boxCount % 4 == 0) {
-                    PowerUp powerUp = null;
+                    PowerUp powerUp;
                     switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
                     case 0 :
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Time);
+                      //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     case 1 :
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Speed);
+                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Speed);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     case 2 : 
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Pierce);
+                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     case 3 :
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.FirePower);
-                        break;
-                    case 4 :
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, Type.Ammo);
+                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     default:
+                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     }
                     powerUpCount++;
                     box.addPowerUp(powerUp);
-                    this.collection.spawn(box);
+                    this.collection.spawn(powerUp);
                 }
+                this.collection.spawn(box);
                 boxCount++;
             }
         }
