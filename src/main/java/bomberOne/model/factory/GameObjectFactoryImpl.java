@@ -42,7 +42,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public GameObject createEnemy(final P2d position, final Difficulty diff) {
-        return null;
+        
     }
 
     @Override
