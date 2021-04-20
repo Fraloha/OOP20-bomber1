@@ -4,9 +4,12 @@ import bomberOne.model.GameModel;
 
 public class MoveLeft implements Command {
 
-	@Override
-	public void execute(GameModel gameModel) {
-		gameModel.getWorld().getBomber().moveLeft();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void execute(final GameModel gameModel) {
+        gameModel.getWorld().getBomber().moveLeft();
+    }
 
 }

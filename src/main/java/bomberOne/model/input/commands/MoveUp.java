@@ -4,9 +4,12 @@ import bomberOne.model.GameModel;
 
 public class MoveUp implements Command {
 
-	@Override
-	public void execute(GameModel gameModel) {
-		gameModel.getWorld().getBomber().moveUp();
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void execute(final GameModel gameModel) {
+        gameModel.getWorld().getBomber().moveUp();
+    }
 
 }

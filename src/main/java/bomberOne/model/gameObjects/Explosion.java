@@ -3,23 +3,23 @@ package bomberOne.model.gameObjects;
 
 import bomberOne.model.common.P2d;
 
-public interface Explosion{
+public interface Explosion {
 	
 	/**
 	 * 
 	 * @return the range of the Explosion
 	 */
-	public int getFirePower();
+	int getFirePower();
 	
 	/**
 	 * 
 	 * @return true if @this Explosion can go across the wall
 	 */
-	public boolean getPierce();
+	boolean getPierce();
 	
 	/**
 	 * 
 	 * @return the Fire referring to the center of @this Explosion
 	 */
-	public P2d getCenter();
+	P2d getCenter();
 }
