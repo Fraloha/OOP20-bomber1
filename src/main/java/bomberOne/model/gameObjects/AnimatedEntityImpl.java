@@ -11,7 +11,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     private Direction dir;
     private double speed;
     private boolean isStatic;
-    private int spriteIndex; //UP DOWN RIGHT LEFT
+    private int spriteIndex; //0:UP 1:DOWN 2:LEFT 3:RIGHT 4:DEATH
     private int animationsIndex;
     private BufferedImage [][] sprites;
 
