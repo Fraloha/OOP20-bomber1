@@ -39,7 +39,7 @@ public class CommandListenerImpl implements CommandListener {
         @Override
         public void executeAll() {
             this.commandList.stream().forEach(i -> {
-                i.execute(this.game); 
+                i.execute(this.game);
             });
             this.commandList.clear();
         }
