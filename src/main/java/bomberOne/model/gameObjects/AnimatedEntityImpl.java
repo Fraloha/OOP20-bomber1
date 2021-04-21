@@ -1,7 +1,7 @@
 package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
-
+import bomberOne.model.physics.BoundingBoxImpl;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 
@@ -107,7 +107,9 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void update(final int elapsed) {
+        BoundingBoxImpl newBoundingBox = new BoundingBoxImpl(this.getPosition(), new P2d(this.getPosition().getX() + 32, this.getPosition().getY() + 32));
         this.setTimeElapsed(elapsed);
+        this.setBoundingBox(newBoundingBox);
     }
 
     /**
