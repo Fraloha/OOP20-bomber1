@@ -203,13 +203,11 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveUp() {
-        this.setStatic(false);
         if (this.getDirection() != Direction.UP) {
             this.isChangedDir = true;
             this.setDir(Direction.UP);
         }
         super.moveUp();
-        this.setStatic(true);
     }
 
     /**
@@ -217,13 +215,11 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveDown() {
-        this.setStatic(false);
         if (this.getDirection() != Direction.DOWN) {
             this.isChangedDir = true;
             this.setDir(Direction.DOWN);
         }
         super.moveDown();
-        this.setStatic(true);
     }
 
     /**
@@ -231,13 +227,11 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveLeft() {
-        this.setStatic(false);
         if (this.getDirection() != Direction.LEFT) {
             this.isChangedDir = true;
             this.setDir(Direction.LEFT);
         }
         super.moveLeft();
-        this.setStatic(true);
     }
 
     /**
@@ -245,13 +239,11 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveRight() {
-        this.setStatic(false);
         if (this.getDirection() != Direction.RIGHT) {
             this.isChangedDir = true;
             this.setDir(Direction.RIGHT);
         }
         super.moveRight();
-        this.setStatic(true);
     }
 
     /**
