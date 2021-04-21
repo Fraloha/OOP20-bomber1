@@ -81,6 +81,15 @@ public class WorldImpl implements World {
         int boxCount = 0;
         List<P2d> objectList = this.collection.getGameObjectCollection().stream()
                 .map(e -> e.getPosition()).collect(Collectors.toList());
+        objectList.add(this.bomberMan.getPosition());
+        int center = (WorldImpl.DIMENSION / 2) - 1;
+        for (int i = center; i <= (WorldImpl.DIMENSION / 2) + 1; i++) {
+            for (int j = center; j <= (WorldImpl.DIMENSION / 2) + 1; j++) {
+                objectList.add(new P2d(i * WorldImpl.FRAME, j * WorldImpl.FRAME));
+            }
+        }
+        objectList.add(new P2d(this.bomberMan.getPosition().getX() + WorldImpl.FRAME, this.bomberMan.getPosition().getY()));
+        objectList.add(new P2d(this.bomberMan.getPosition().getX(), this.bomberMan.getPosition().getY() + WorldImpl.FRAME));
         Random rand = new Random();
         while (boxCount < WorldImpl.NORMALBOX) {
             int col = rand.nextInt(WorldImpl.DIMENSION);
@@ -153,11 +162,6 @@ public class WorldImpl implements World {
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
-        }
-        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
-                .collect(Collectors.toList());
-        for (GameObject obj : deathObject) {
-            collection.despawn(obj);
         }
         this.checkExplosion();
         this.checkCollision();

@@ -79,4 +79,10 @@ public interface GameObjectCollection {
      * @param obj 
      */
     void despawn(GameObject obj);
+
+    /**
+     * This method return the list of all eliminated object.
+     * @return a List of object
+     */
+    List<GameObject> getDespawnedObject();
 }
