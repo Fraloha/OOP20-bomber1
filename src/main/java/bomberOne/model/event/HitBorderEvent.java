@@ -65,11 +65,7 @@ public class HitBorderEvent implements WorldEvent {
                     new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.wall.getPosition().getY()));
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
-<<<<<<< HEAD
-            //((Enemy) this.entity).changeDir();
-=======
             ((Enemy) this.entity).changePath();
->>>>>>> 00571f6f70083814fb10992e57b09a135b03e173
         }
     }
 
