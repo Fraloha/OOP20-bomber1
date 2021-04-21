@@ -3,8 +3,7 @@ package bomberOne.model.gameObjects;
 import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.P2d;
-import bomberOne.model.physics.BoundingBox;
-import bomberOne.model.physics.BoundingBoxImpl;
+import javafx.geometry.Rectangle2D;
 
 public abstract class GameObjectImpl implements GameObject {
 
@@ -12,7 +11,7 @@ public abstract class GameObjectImpl implements GameObject {
 
     private BufferedImage img;
     private P2d position;
-    private BoundingBox collider;
+    private Rectangle2D collider;
     private int lifes;
     private boolean isAlive;
 
@@ -21,8 +20,7 @@ public abstract class GameObjectImpl implements GameObject {
         this.img = img;
         this.lifes = lifes;
         this.isAlive = true;
-        this.collider = new BoundingBoxImpl(this.position,
-                new P2d(this.position.getX() + RECTDIMENTIONS, this.position.getY() + RECTDIMENTIONS));
+        this.collider = new Rectangle2D(this.position.getX(), this.position.getY(), RECTDIMENTIONS, RECTDIMENTIONS);
     }
 
     /**
@@ -45,7 +43,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public BoundingBox getBoundingBox() {
+    public Rectangle2D getBoundingBox() {
         return this.collider;
     }
 
@@ -94,7 +92,7 @@ public abstract class GameObjectImpl implements GameObject {
     /**
      * {@inheritDoc}
      */
-    public void setBoundingBox(final BoundingBox collider) {
+    public void setBoundingBox(final Rectangle2D collider) {
         this.collider = collider;
     }
 

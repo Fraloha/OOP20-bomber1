@@ -41,7 +41,7 @@ public class WorldImpl implements World {
 
     private GameObjectCollection collection = new GameObjectCollectionImpl();
     private GameObjectFactory objectFactory = new GameObjectFactoryImpl();
-    private WorldEventListener listener = new WorldEventListenerImpl();
+    private WorldEventListener listener;
     private BomberImpl bomberMan;
     private boolean respawn;
     private Difficulty difficulty;
@@ -194,7 +194,7 @@ public class WorldImpl implements World {
         list.addAll(collection.getEnemyList());
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
-                if (fire.getBoundingBox().isCollidingWith(obj.getBoundingBox())) {
+                if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
                     this.listener.notifyEvent(new HitFireEvent(obj));
                 }
             }
@@ -202,7 +202,7 @@ public class WorldImpl implements World {
         List<PowerUp> powerUpList = collection.getPowerUpList().stream().filter(p -> p.isReleased())
                 .collect(Collectors.toList());
         for (PowerUp power : powerUpList) {
-            if (power.getBoundingBox().isCollidingWith(bomberMan.getBoundingBox())) {
+            if (power.getBoundingBox().intersects(bomberMan.getBoundingBox())) {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
@@ -228,13 +228,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getHardWallList());
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
-            if (wall.getBoundingBox().isCollidingWith(this.bomberMan.getBoundingBox())) {
+            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
                 listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
-                if (wall.getBoundingBox().isCollidingWith(enemy.getBoundingBox())) {
+                if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
                     listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }

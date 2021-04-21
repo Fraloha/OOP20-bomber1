@@ -22,6 +22,7 @@ public class HitBorderEvent implements WorldEvent {
 
     public HitBorderEvent(final AnimatedEntity entity, final GameObject wall) {
         this.entity = entity;
+        this.wall = wall;
     }
 
     /**
@@ -58,11 +59,11 @@ public class HitBorderEvent implements WorldEvent {
 
         if (this.entity.getDir().equals(Direction.LEFT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.wall.getPosition().getY()));
+                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }
         if (this.entity.getDir().equals(Direction.RIGHT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.wall.getPosition().getY()));
+                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
             ((Enemy) this.entity).changePath();

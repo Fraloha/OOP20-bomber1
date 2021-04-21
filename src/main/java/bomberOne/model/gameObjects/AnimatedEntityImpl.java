@@ -1,13 +1,14 @@
 package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
-import bomberOne.model.physics.BoundingBoxImpl;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
+import javafx.geometry.BoundingBox;
+import javafx.geometry.Rectangle2D;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-    private final static double TIME_QUOTIENT = 1000.0;
+    private final static double TIME_QUOTIENT = 500.0;
     private int elapsed;
     private Direction dir;
     private double speed;
@@ -21,8 +22,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
         this.sprites = img;
         this.dir = Direction.DOWN;
         this.isStatic = true;
-        this.setBoundingBox(new BoundingBoxImpl(this.getPosition(), new P2d(this.getPosition().getX() + 32,  this.getPosition().getY() + 32)));
-    }
+     }
 
     /**
      * {@inheritDoc}
@@ -109,7 +109,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void update(final int elapsed) {
-        BoundingBoxImpl newBoundingBox = new BoundingBoxImpl(this.getPosition(), new P2d(this.getPosition().getX() + 32, this.getPosition().getY() + 32));
+        Rectangle2D newBoundingBox = new Rectangle2D(this.getPosition().getX(), this.getPosition().getY(), 32,  32);
         this.setTimeElapsed(elapsed);
         this.setBoundingBox(newBoundingBox);
     }

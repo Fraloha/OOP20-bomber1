@@ -19,9 +19,9 @@ public class BoundingBoxImpl implements BoundingBox {
     public boolean isCollidingWith(final BoundingBox obj) {
         // obj collide on top
         if (this.lTCorner.getY() < obj.getRightBottomCorner().getY()
-                && this.rBCorner.getY() > obj.getRightBottomCorner().getY()
+                && this.rBCorner.getY() >= obj.getRightBottomCorner().getY()
                 && this.lTCorner.getX() <= obj.getLeftTopCorner().getX()
-                && this.rBCorner.getX() >= obj.getLeftTopCorner().getX()
+                && this.rBCorner.getX() > obj.getLeftTopCorner().getX()
                 || this.lTCorner.getY() < obj.getRightBottomCorner().getY()
                         && this.rBCorner.getY() > obj.getRightBottomCorner().getY()
                         && this.lTCorner.getX() >= obj.getLeftTopCorner().getX()
