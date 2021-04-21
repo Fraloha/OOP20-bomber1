@@ -10,17 +10,8 @@ import bomberOne.model.gameObjects.PowerUp;
 /**
  * This is the interface of the Bomber.
  * 
- *
  */
 public interface Bomber extends AnimatedEntity {
-    /**
-     * Constants to initialize the Bomber.
-     */
-    int FIRE_POWER = 1;
-    double SPEED = 100;
-    int AMMO = 1;
-    int SPRITES = 1;
-    Direction DIR = Direction.DOWN;
 
     /**
      * Method for the respawn of the Bomber who initialize all the parameter.
@@ -33,66 +24,87 @@ public interface Bomber extends AnimatedEntity {
      * @param lifes
      */
     void addLifes(int lifes);
-
     /**
-     * Method for restore the usedAmmo to 0
+     * Method for restore the usedAmmo to 0.
      */
     void restoreAmmo();
 
     /**
-     * Method that generates new Bomb
+     * Method that generates new Bomb.
      * 
      * @return Bomb
      */
     Optional<Bomb> plantBomb();
 
     /**
-     * Method that applies the
+     * Method that applies the powerUp to Bomber.
      * 
-     * @param PowerUp to the Bomber
+     * @param typeOfPowerUp to apply
      */
     void applyPowerUp(PowerUp.Type typeOfPowerUp);
 
     /**
-     * Method that
+     * Method that return the number of the resumed lifes.
      * 
-     * @return number of the Life
+     * @return number Life
      */
     int getLifes();
 
     /**
-     * Method that
+     * Method that return the number of maxAmmo aviable.
      * 
-     * @return number of maxAmmo
+     * @return number maxAmmo
      */
     int getAmmo();
 
     /**
-     * Method that
+     * Method that return the firePower generated for the next Bomb.
      * 
-     * @return dimension of the bomb's explosion
+     * @return number firePower
      */
     int getFirePower();
 
     /**
-     * Method that
+     * Method that return current direction of Bomber.
      * 
      * @return Direction current
      */
     Direction getDirection();
 
     /**
-     * Method that
+     * Method that return true if Bomber is Pierced (PowerUp).
      * 
-     * @return true if Bomber is Pierced (PowerUp)
+     * @return boolean isPierced
      */
     boolean isPierced();
 
     /**
-     * Method for attaching
+     * Method for attaching the PowerUpHandler.
      * 
-     * @param PowerUpHandler
+     * @param activator
      */
     void setUpHandler(PowerUpHandler activator);
 
+    /**
+     * Method that increment the Bomber's speed.
+     * @param increment
+     */
+    void incSpeed(double increment);
+
+    /**
+     * Method that increment the Bomber's ammo.
+     * @param increment
+     */
+    void incAmmo(int increment);
+
+    /**
+     * Method that increment the Bomber's firePower.
+     * @param increment
+     */
+    void incFirePower(int increment);
+
+    /**
+     * Method to activate Bomber's pierce (PowerUp).
+     */
+    void activatePierce();
 }

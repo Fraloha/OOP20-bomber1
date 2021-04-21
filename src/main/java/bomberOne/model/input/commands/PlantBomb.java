@@ -2,11 +2,14 @@ package bomberOne.model.input.commands;
 
 import bomberOne.model.GameModel;
 
-public class PlantBomb implements Command{
+public class PlantBomb implements Command {
 
-	@Override
-	public void execute(GameModel gameModel) {
-		gameModel.getWorld().getBomber().plantBomb();		
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void execute(final GameModel gameModel) {
+        gameModel.getWorld().getBomber().plantBomb();
+    }
 
 }

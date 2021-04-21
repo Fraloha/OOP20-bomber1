@@ -3,6 +3,7 @@ package bomberOne;
 import bomberOne.model.GameModel;
 import bomberOne.model.GameModelImpl;
 import bomberOne.model.user.Controls;
+import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.ResourcesLoader;
@@ -21,17 +22,17 @@ public final class BomberOne extends Application {
     public void start(final Stage primaryStage) throws Exception {
 
         primaryStage.setResizable(false);
-       // ResourcesLoader.start();
+        ResourcesLoader.start();
         DirectoryLoader.start();
 
-        //UNCOMMENT TO TEST
-//        ResourcesLoader.loadImages();
-//        ResourcesLoader.sliceSprite();
+        // UNCOMMENT TO TEST
 //
-//        GameModel test = new GameModelImpl();
-//        test.getUser().setControls(Controls.ARROW);
-//        test.getUser().setSkin(Skins.RED);
- //       ViewsSwitcher.switchView(primaryStage, ViewType.GAME, test);
+        GameModel test = new GameModelImpl();
+        test.getUser().setControls(Controls.ARROW);
+        test.getUser().setSkin(Skins.RED);
+        test.setDifficulty(Difficulty.STANDARD);
+        test.init();
+        ViewsSwitcher.switchView(primaryStage, ViewType.GAME, test);
     }
 
 }

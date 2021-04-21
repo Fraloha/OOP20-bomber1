@@ -2,6 +2,7 @@ package bomberOne.model.gameObjects;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import bomberOne.model.enemy.Enemy;
 
@@ -89,6 +90,12 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final void despawn(final GameObject obj) {
         gameObjectList.remove(obj);
+    }
+
+    @Override
+    public final List<GameObject> getDespawnedObject() {
+        return this.gameObjectList.stream()
+                .filter(e -> !e.isAlive()).collect(Collectors.toList());
     }
 
 }
