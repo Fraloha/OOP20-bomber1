@@ -14,7 +14,6 @@ import bomberOne.model.event.HitBorderEvent;
 import bomberOne.model.event.HitFireEvent;
 import bomberOne.model.event.PickPowerUpEvent;
 import bomberOne.model.event.WorldEventListener;
-import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.Bomb;
@@ -170,14 +169,17 @@ public class WorldImpl implements World {
 
     @Override
     public final void updateState(final int time) {
-        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> p.isAlive() == false)
+        this.bomberMan.update(time);
+        for (GameObject obj : collection.getGameObjectCollection()) {
+            obj.update(time);
+        }
+        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
         }
-        this.bomberMan.update(time);
-        for (GameObject obj : collection.getGameObjectCollection()) {
-            obj.update(time);
+        for (Enemy enemy : collection.getEnemyList()) {
+            enemy.update(this.bomberMan.getPosition());
         }
         this.checkExplosion();
         this.checkCollision();

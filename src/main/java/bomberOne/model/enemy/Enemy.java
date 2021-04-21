@@ -11,4 +11,6 @@ public interface Enemy extends AnimatedEntity {
 
         /* Methods. */
 	void changePath();
+	
+	void update(P2d playerPosition);
 }
