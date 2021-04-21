@@ -42,7 +42,16 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public GameObject createEnemy(final P2d position, final Difficulty diff) {
-        
+        BufferedImage[][] sprites = null;
+
+        //Choosing the enemy sprites on the basis of the difficulty game mode chosen.
+        if (diff.equals(Difficulty.STANDARD)) {
+            sprites = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
+        } else if (diff.equals(Difficulty.HARD)) {
+            sprites = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
+        }
+
+        return new EnemyImpl(position, sprites, 1, diff);
     }
 
     @Override
