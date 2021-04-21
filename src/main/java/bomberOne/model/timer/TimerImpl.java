@@ -19,7 +19,7 @@ public final class TimerImpl implements Timer {
     }
 
     @Override
-    public Time getTime() {
+    public synchronized Time getTime() {
         return this.time;
     }
 

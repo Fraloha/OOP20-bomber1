@@ -12,6 +12,7 @@ import bomberOne.views.ViewImpl;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.game.movement.ControlsMap;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -95,15 +96,17 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     @Override
     public void render() {
-        this.timeLabel.setText(this.getController().getModel().getTimer().getTime().toString());
-        this.scoreLabel.setText(this.getController().getModel().getScore() + "");
-        this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+        System.out.println("Sono in render");
+        Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
+        Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
+        Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
+        Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
-        this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
-                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+        Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
+                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
         /* Draw all the updateable Objects but not enemies */
-        this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection().stream()
+        Platform.runLater(() -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection().stream()
                 .filter(elem -> !elem.getClass().equals(HardWall.class))
                 .forEach(obj ->{
                     if(obj.getClass().equals(EnemyImpl.class)) {
@@ -116,7 +119,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                     } else {
                         this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
                     }
-                });
+                }));
 
     }
 
