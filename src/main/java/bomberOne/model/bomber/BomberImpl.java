@@ -21,7 +21,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     /**
      * Constant to initialize the Bomber.
      */
-    public static final double SPEED = 100;
+    public static final double SPEED = 200;
     /**
      * Constant to initialize the Bomber.
      */

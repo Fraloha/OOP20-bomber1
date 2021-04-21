@@ -202,32 +202,6 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     }
 
-    /* INPUT */
-
-    /**
-     * Read the user's input and notify the command to the CommandListener.
-     * 
-     * @param e
-     */
-    public void keyPressed(final KeyEvent e) {
-        if (this.controlsMap.getControlMap().containsKey(e.getCode())) {
-            this.controlsMap.getControlMap().get(e.getCode()).run();
-            this.getController().getModel().getWorld().getBomber().setStatic(false);
-        }
-
-    }
-
-    /**
-     * Reads the keys released and performs certain actions based on the key.
-     * 
-     * @param e The key released
-     */
-    public void keyReleased(final KeyEvent e) {
-        if (this.controlsMap.getControlMap().containsKey(e.getCode())) {
-            this.getController().getModel().getWorld().getBomber().setStatic(true);
-        }
-    }
-
     @Override
     public void switchToRank() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());

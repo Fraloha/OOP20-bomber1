@@ -26,7 +26,7 @@ public class TestCollision {
     @Test
     public void testCollisionOnTop() {
         assertTrue(object.isCollidingWith(new BoundingBoxImpl(new P2d(COORD_32, 1), new P2d(COORD_64, COORD_33))));
-        assertFalse(object.isCollidingWith(new BoundingBoxImpl(new P2d(COORD_32, 0), new P2d(COORD_64, COORD_32))));
+        assertFalse(object.isCollidingWith(new BoundingBoxImpl(new P2d(0, COORD_64), new P2d(0, COORD_96))));
     }
 
     @Test

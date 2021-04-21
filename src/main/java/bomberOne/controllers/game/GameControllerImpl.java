@@ -24,8 +24,8 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
             long current = System.currentTimeMillis();
             int elapsed = (int) (current - lastTime);
             this.processInput();
-            this.processEvent();
             this.updateGame(elapsed);
+            this.processEvent();
             this.render();
             this.waitForNextFrame(current);
             lastTime = current;
@@ -67,6 +67,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         
         this.eventHandler.setGameModel(this.getModel());
         this.commandHandler.setGameModel(this.getModel());
+        this.getModel().getWorld().setEventListener(this.eventHandler);
         // this.getModel().init();
         this.game = new Thread(this);
         this.game.start();
