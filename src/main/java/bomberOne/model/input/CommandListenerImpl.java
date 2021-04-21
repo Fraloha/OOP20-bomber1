@@ -38,8 +38,10 @@ public class CommandListenerImpl implements CommandListener {
          */
         @Override
         public void executeAll() {
+            //List<Command> tmp = new LinkedList<>(this.commandList);
             this.commandList.stream().forEach(i -> {
                 i.execute(this.game);
+                //this.commandList.remove(i);
             });
             this.commandList.clear();
         }

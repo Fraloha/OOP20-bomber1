@@ -206,7 +206,10 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.UP) {
             this.isChangedDir = true;
             this.setDir(Direction.UP);
+            //this.fpAgg = 0;
         }
+        System.out.println("moveUP");
+        //this.fpAgg++;
         super.moveUp();
     }
 
@@ -218,7 +221,10 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.DOWN) {
             this.isChangedDir = true;
             this.setDir(Direction.DOWN);
+            //this.fpAgg = 0;
         }
+        System.out.println("moveDOWN");
+        //this.fpAgg++;
         super.moveDown();
     }
 
@@ -230,7 +236,10 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.LEFT) {
             this.isChangedDir = true;
             this.setDir(Direction.LEFT);
+            //this.fpAgg = 0;
         }
+        System.out.println("moveLEFT");
+        //this.fpAgg++;
         super.moveLeft();
     }
 
@@ -242,7 +251,10 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.RIGHT) {
             this.isChangedDir = true;
             this.setDir(Direction.RIGHT);
+            //this.fpAgg = 0;
         }
+        System.out.println("moveRIGHT");
+        //this.fpAgg++;
         super.moveRight();
     }
 
@@ -288,7 +300,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             this.spriteIndex = 4;
             this.animationIndex = 0;
         }
-        if (!this.isStatic() && ++this.fpAgg == 4) {
+        if (!this.isStatic() && ++this.fpAgg == 10) {
             this.fpAgg = 0;
             this.animationIndex++;
         }

@@ -1,7 +1,5 @@
 package bomberOne.views.game;
 
-
-
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
@@ -68,28 +66,22 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.drawGame();
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
-        this.getStage().getScene().setOnKeyPressed(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        if(controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
-                            controlsMap.getControlMap().get(e.getCode().getCode()).run();
-                            getController().getModel().getWorld().getBomber().setStatic(false);
-                        }
-                    }
-                });
-        
-        this.getStage().getScene().setOnKeyReleased(
-                new EventHandler<KeyEvent>()
-                {
-                    public void handle(KeyEvent e)
-                    {
-                        if(controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
-                            getController().getModel().getWorld().getBomber().setStatic(true);
-                        }
-                    }
-                });
+        this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                    controlsMap.getControlMap().get(e.getCode().getCode()).run();
+                    getController().getModel().getWorld().getBomber().setStatic(false);
+                }
+            }
+        });
+
+        this.getStage().getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
+            public void handle(KeyEvent e) {
+                if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                    getController().getModel().getWorld().getBomber().setStatic(true);
+                }
+            }
+        });
     }
 
     @Override
@@ -129,22 +121,24 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
         /* Draw all the updateable Objects but not enemies */
-        Platform.runLater(() -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection().stream()
-                .filter(elem -> !elem.getClass().equals(HardWall.class))
-                .forEach(obj ->{
-                    if(obj.getClass().equals(EnemyImpl.class)) {
-                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
-                    }
-                    if(obj.getClass().equals(PowerUpImpl.class)) {
-                        if(((PowerUpImpl) obj).isReleased()) {
-                            this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
-                        }
-                    } else {
-                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
-                    }
-                }));
-        
-        
+        Platform.runLater(
+                () -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection()
+                        .stream().filter(elem -> !elem.getClass().equals(HardWall.class)).forEach(obj -> {
+                            if (obj.getClass().equals(EnemyImpl.class)) {
+                                this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
+                                        obj.getPosition().getX(),
+                                        obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+                            }
+                            if (obj.getClass().equals(PowerUpImpl.class)) {
+                                if (((PowerUpImpl) obj).isReleased()) {
+                                    this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
+                                            obj.getPosition().getX(), obj.getPosition().getY());
+                                }
+                            } else {
+                                this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
+                                        obj.getPosition().getX(), obj.getPosition().getY());
+                            }
+                        }));
 
     }
 
