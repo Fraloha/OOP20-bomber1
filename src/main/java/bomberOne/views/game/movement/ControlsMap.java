@@ -24,8 +24,8 @@ public class ControlsMap {
     private static final int KEY_A = 65;
     private static final int KEY_S = 83;
     private static final int KEY_W = 87;
-    private static final int KEY_ARROW_RIGHT = 37;
-    private static final int KEY_ARROW_LEFT = 39;
+    private static final int KEY_ARROW_RIGHT = 39;
+    private static final int KEY_ARROW_LEFT = 37;
     private static final int KEY_ARROW_DOWN = 40;
     private static final int KEY_ARROW_UP = 38;
     private static final int KEY_SPACE_BAR = 32;

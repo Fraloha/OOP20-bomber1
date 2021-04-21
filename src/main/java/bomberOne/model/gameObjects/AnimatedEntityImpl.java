@@ -7,6 +7,7 @@ import bomberOne.model.common.P2d;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
+    private final static double TIME_QUOTIENT = 1000.0;
     private int elapsed;
     private Direction dir;
     private double speed;
@@ -20,6 +21,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
         this.sprites = img;
         this.dir = Direction.DOWN;
         this.isStatic = true;
+        this.setBoundingBox(new BoundingBoxImpl(this.getPosition(), new P2d(this.getPosition().getX() + 32,  this.getPosition().getY() + 32)));
     }
 
     /**
@@ -59,7 +61,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveUp() {
-        this.getPosition().update(elapsed, 0, (-this.speed));
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - this.speed * (elapsed/TIME_QUOTIENT)));
     }
 
     /**
@@ -67,7 +69,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveDown() {
-        this.getPosition().update(elapsed, 0, this.speed);
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + this.speed * (elapsed/TIME_QUOTIENT)));
     }
 
     /**
@@ -75,7 +77,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveLeft() {
-        this.getPosition().update(elapsed, (-this.speed), 0);
+        this.setPosition(new P2d(this.getPosition().getX() - this.speed * (elapsed/TIME_QUOTIENT), this.getPosition().getY()));
     }
 
     /**
@@ -83,7 +85,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveRight() {
-        this.getPosition().update(elapsed, this.speed, 0);
+        this.setPosition(new P2d(this.getPosition().getX() + this.speed * (elapsed/TIME_QUOTIENT), this.getPosition().getY()));
     }
 
     /**

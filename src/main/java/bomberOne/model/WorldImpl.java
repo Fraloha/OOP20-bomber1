@@ -36,7 +36,7 @@ public class WorldImpl implements World {
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
     private static final int NORMALBOX = 80;
-    //private static final int HARDBOX = 100;
+    // private static final int HARDBOX = 100;
     private static final int NUMTYPEPOWERUP = 5;
 
     private GameObjectCollection collection = new GameObjectCollectionImpl();
@@ -79,8 +79,8 @@ public class WorldImpl implements World {
     private void setBox(final Difficulty difficulty) {
         int powerUpCount = 0;
         int boxCount = 0;
-        List<P2d> objectList = this.collection.getGameObjectCollection().stream()
-                .map(e -> e.getPosition()).collect(Collectors.toList());
+        List<P2d> objectList = this.collection.getGameObjectCollection().stream().map(e -> e.getPosition())
+                .collect(Collectors.toList());
         objectList.add(this.bomberMan.getPosition());
         int center = (WorldImpl.DIMENSION / 2) - 1;
         for (int i = center; i <= (WorldImpl.DIMENSION / 2) + 1; i++) {
@@ -88,8 +88,10 @@ public class WorldImpl implements World {
                 objectList.add(new P2d(i * WorldImpl.FRAME, j * WorldImpl.FRAME));
             }
         }
-        objectList.add(new P2d(this.bomberMan.getPosition().getX() + WorldImpl.FRAME, this.bomberMan.getPosition().getY()));
-        objectList.add(new P2d(this.bomberMan.getPosition().getX(), this.bomberMan.getPosition().getY() + WorldImpl.FRAME));
+        objectList.add(
+                new P2d(this.bomberMan.getPosition().getX() + WorldImpl.FRAME, this.bomberMan.getPosition().getY()));
+        objectList.add(
+                new P2d(this.bomberMan.getPosition().getX(), this.bomberMan.getPosition().getY() + WorldImpl.FRAME));
         Random rand = new Random();
         while (boxCount < WorldImpl.NORMALBOX) {
             int col = rand.nextInt(WorldImpl.DIMENSION);
@@ -101,25 +103,34 @@ public class WorldImpl implements World {
                 if (boxCount % 4 == 0) {
                     PowerUp powerUp;
                     switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
-                    case 0 :
-                      //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
+                    case 0:
+                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
+                        // PowerUp.Type.FirePower);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
+                                PowerUp.Type.Time);
                         break;
-                    case 1 :
-                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Speed);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
+                    case 1:
+                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
+                        // PowerUp.Type.Speed);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
+                                PowerUp.Type.Time);
                         break;
-                    case 2 : 
-                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
+                    case 2:
+                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
+                        // PowerUp.Type.Pierce);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
+                                PowerUp.Type.Time);
                         break;
-                    case 3 :
-                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
+                    case 3:
+                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
+                        // PowerUp.Type.FirePower);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
+                                PowerUp.Type.Time);
                         break;
                     default:
-                        //powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
+                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
+                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
+                                PowerUp.Type.Time);
                         break;
                     }
                     powerUpCount++;
@@ -159,6 +170,11 @@ public class WorldImpl implements World {
 
     @Override
     public final void updateState(final int time) {
+        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> p.isAlive() == false)
+                .collect(Collectors.toList());
+        for (GameObject obj : deathObject) {
+            collection.despawn(obj);
+        }
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
@@ -199,7 +215,8 @@ public class WorldImpl implements World {
         }
         if (this.respawn) {
             if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty)); 
+                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME,
+                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty));
             }
         }
     }

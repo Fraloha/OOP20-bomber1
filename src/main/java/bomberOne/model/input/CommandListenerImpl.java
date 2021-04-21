@@ -40,8 +40,8 @@ public class CommandListenerImpl implements CommandListener {
         public void executeAll() {
             this.commandList.stream().forEach(i -> {
                 i.execute(this.game); 
-                this.commandList.remove(i);
             });
+            this.commandList.clear();
         }
 
         /**

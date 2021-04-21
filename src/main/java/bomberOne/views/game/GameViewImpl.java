@@ -1,6 +1,6 @@
 package bomberOne.views.game;
 
-import java.awt.event.KeyEvent;
+
 
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
@@ -14,11 +14,13 @@ import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.game.movement.ControlsMap;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.KeyEvent;
 
 public final class GameViewImpl extends ViewImpl implements GameView {
 
@@ -66,6 +68,28 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.drawGame();
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
+        this.getStage().getScene().setOnKeyPressed(
+                new EventHandler<KeyEvent>()
+                {
+                    public void handle(KeyEvent e)
+                    {
+                        if(controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                            controlsMap.getControlMap().get(e.getCode().getCode()).run();
+                            getController().getModel().getWorld().getBomber().setStatic(false);
+                        }
+                    }
+                });
+        
+        this.getStage().getScene().setOnKeyReleased(
+                new EventHandler<KeyEvent>()
+                {
+                    public void handle(KeyEvent e)
+                    {
+                        if(controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                            getController().getModel().getWorld().getBomber().setStatic(true);
+                        }
+                    }
+                });
     }
 
     @Override
@@ -96,7 +120,6 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     @Override
     public void render() {
-        System.out.println("Sono in render");
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
@@ -120,6 +143,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                         this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null), obj.getPosition().getX(), obj.getPosition().getY());
                     }
                 }));
+        
+        
 
     }
 
@@ -185,8 +210,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
      * @param e
      */
     public void keyPressed(final KeyEvent e) {
-        if (this.controlsMap.getControlMap().containsKey(e.getKeyCode())) {
-            this.controlsMap.getControlMap().get(e.getKeyCode()).run();
+        if (this.controlsMap.getControlMap().containsKey(e.getCode())) {
+            this.controlsMap.getControlMap().get(e.getCode()).run();
             this.getController().getModel().getWorld().getBomber().setStatic(false);
         }
 
@@ -198,7 +223,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
      * @param e The key released
      */
     public void keyReleased(final KeyEvent e) {
-        if (this.controlsMap.getControlMap().containsKey(e.getKeyCode())) {
+        if (this.controlsMap.getControlMap().containsKey(e.getCode())) {
             this.getController().getModel().getWorld().getBomber().setStatic(true);
         }
     }
