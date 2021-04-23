@@ -19,12 +19,10 @@ public class HitBorderEvent implements WorldEvent {
     private static final int OBJ_DIMETIONS = 32;
     private AnimatedEntity entity;
     private GameObject wall;
-    private Direction direction;
 
-    public HitBorderEvent(final AnimatedEntity entity, final GameObject wall, final Direction dir) {
+    public HitBorderEvent(final AnimatedEntity entity, final GameObject wall) {
         this.entity = entity;
         this.wall = wall;
-        this.direction = dir;
     }
 
     /**
@@ -48,46 +46,22 @@ public class HitBorderEvent implements WorldEvent {
      * 
      * 
      */
-//    @Override
-//    public void process(final GameModel model) {
-//        if (this.entity.getDir().equals(Direction.UP)) {
-//            this.entity.setPosition(
-//                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() + OBJ_DIMETIONS));
-//        }
-//        if (this.entity.getDir().equals(Direction.DOWN)) {
-//            this.entity.setPosition(
-//                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() - OBJ_DIMETIONS));
-//        }
-//
-//        if (this.entity.getDir().equals(Direction.LEFT)) {
-//            this.entity.setPosition(
-//                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
-//        }
-//        if (this.entity.getDir().equals(Direction.RIGHT)) {
-//            this.entity.setPosition(
-//                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
-//        }
-//        if (this.entity.getClass().equals(EnemyImpl.class)) {
-//            ((Enemy) this.entity).changePath();
-//        }
-//    }
-
     @Override
     public void process(final GameModel model) {
-        if (this.direction.equals(Direction.UP)) {
+        if (this.entity.getDir().equals(Direction.UP)) {
             this.entity.setPosition(
                     new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() + OBJ_DIMETIONS));
         }
-        if (this.direction.equals(Direction.DOWN)) {
+        if (this.entity.getDir().equals(Direction.DOWN)) {
             this.entity.setPosition(
                     new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() - OBJ_DIMETIONS));
         }
 
-        if (this.direction.equals(Direction.LEFT)) {
+        if (this.entity.getDir().equals(Direction.LEFT)) {
             this.entity.setPosition(
                     new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }
-        if (this.direction.equals(Direction.RIGHT)) {
+        if (this.entity.getDir().equals(Direction.RIGHT)) {
             this.entity.setPosition(
                     new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }

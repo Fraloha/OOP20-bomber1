@@ -64,7 +64,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
 
     public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
         super(pos, img, lifes, img[0][1]);
-        this.setBoundingBox(new Rectangle2D(pos.getX(), pos.getY(), 30, 30));
         this.setSpeed(SPEED);
         this.setDir(DIR);
         this.animations = img;
