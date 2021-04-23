@@ -70,7 +70,6 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             public void handle(KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).run();
-                    getController().getModel().getWorld().getBomber().setStatic(false);
                 }
             }
         });
@@ -126,7 +125,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                         obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
                             }
                             if (obj.getClass().equals(PowerUpImpl.class)) {
-                                if (((PowerUpImpl) obj).isReleased()) {
+                                if (!((PowerUpImpl) obj).isReleased()) {
                                     this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
                                             obj.getPosition().getX(), obj.getPosition().getY());
                                 }

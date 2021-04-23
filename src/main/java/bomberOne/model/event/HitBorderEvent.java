@@ -48,22 +48,27 @@ public class HitBorderEvent implements WorldEvent {
      */
     @Override
     public void process(final GameModel model) {
+        int roundBitX = (int) (this.getEntity().getPosition().getX() % 32);
+        int roundBitY = (int) (this.getEntity().getPosition().getY() % 32);
+        int roundX = (roundBitX == 0) ? 0 : ((roundBitX < 16) ? -1 : 1);
+        int roundY= (roundBitY == 0) ? 0 : ((roundBitY < 16) ? -1 : 1);
+        
         if (this.entity.getDir().equals(Direction.UP)) {
             this.entity.setPosition(
-                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() + OBJ_DIMETIONS));
+                    new P2d(this.entity.getPosition().getX() + roundX, this.wall.getPosition().getY() + OBJ_DIMETIONS));
         }
         if (this.entity.getDir().equals(Direction.DOWN)) {
             this.entity.setPosition(
-                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() - OBJ_DIMETIONS));
+                    new P2d(this.entity.getPosition().getX() + roundX, this.wall.getPosition().getY() - OBJ_DIMETIONS));
         }
 
         if (this.entity.getDir().equals(Direction.LEFT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
+                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY() + roundY));
         }
         if (this.entity.getDir().equals(Direction.RIGHT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
+                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY() +  roundY));
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
             ((Enemy) this.entity).changePath();
