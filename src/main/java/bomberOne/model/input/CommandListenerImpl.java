@@ -23,7 +23,9 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void addCommand(final Command command) {
-        this.commandList.add(command);
+        if(this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
+            this.commandList.add(command);            
+        }
     }
 
     /**
