@@ -231,13 +231,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
             if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
-                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
+                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall, this.bomberMan.getDir()));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
                 if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
-                    listener.notifyEvent(new HitBorderEvent(enemy, wall));
+                    listener.notifyEvent(new HitBorderEvent(enemy, wall, enemy.getDir()));
                 }
             }
         }

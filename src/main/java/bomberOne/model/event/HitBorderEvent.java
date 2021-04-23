@@ -19,10 +19,12 @@ public class HitBorderEvent implements WorldEvent {
     private static final int OBJ_DIMETIONS = 32;
     private AnimatedEntity entity;
     private GameObject wall;
+    private Direction direction;
 
-    public HitBorderEvent(final AnimatedEntity entity, final GameObject wall) {
+    public HitBorderEvent(final AnimatedEntity entity, final GameObject wall, final Direction dir) {
         this.entity = entity;
         this.wall = wall;
+        this.direction = dir;
     }
 
     /**
@@ -46,22 +48,46 @@ public class HitBorderEvent implements WorldEvent {
      * 
      * 
      */
+//    @Override
+//    public void process(final GameModel model) {
+//        if (this.entity.getDir().equals(Direction.UP)) {
+//            this.entity.setPosition(
+//                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() + OBJ_DIMETIONS));
+//        }
+//        if (this.entity.getDir().equals(Direction.DOWN)) {
+//            this.entity.setPosition(
+//                    new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() - OBJ_DIMETIONS));
+//        }
+//
+//        if (this.entity.getDir().equals(Direction.LEFT)) {
+//            this.entity.setPosition(
+//                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
+//        }
+//        if (this.entity.getDir().equals(Direction.RIGHT)) {
+//            this.entity.setPosition(
+//                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
+//        }
+//        if (this.entity.getClass().equals(EnemyImpl.class)) {
+//            ((Enemy) this.entity).changePath();
+//        }
+//    }
+
     @Override
     public void process(final GameModel model) {
-        if (this.entity.getDir().equals(Direction.UP)) {
+        if (this.direction.equals(Direction.UP)) {
             this.entity.setPosition(
                     new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() + OBJ_DIMETIONS));
         }
-        if (this.entity.getDir().equals(Direction.DOWN)) {
+        if (this.direction.equals(Direction.DOWN)) {
             this.entity.setPosition(
                     new P2d(this.entity.getPosition().getX(), this.wall.getPosition().getY() - OBJ_DIMETIONS));
         }
 
-        if (this.entity.getDir().equals(Direction.LEFT)) {
+        if (this.direction.equals(Direction.LEFT)) {
             this.entity.setPosition(
                     new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }
-        if (this.entity.getDir().equals(Direction.RIGHT)) {
+        if (this.direction.equals(Direction.RIGHT)) {
             this.entity.setPosition(
                     new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY()));
         }
@@ -69,5 +95,4 @@ public class HitBorderEvent implements WorldEvent {
             ((Enemy) this.entity).changePath();
         }
     }
-
 }

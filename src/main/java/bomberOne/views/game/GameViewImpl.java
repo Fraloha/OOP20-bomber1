@@ -116,10 +116,6 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
-        /* Draw the BomberMan */
-        Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
-        Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
-                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
         /* Draw all the updateable Objects but not enemies */
         Platform.runLater(
                 () -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection()
@@ -139,6 +135,10 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                         obj.getPosition().getX(), obj.getPosition().getY());
                             }
                         }));
+        /* Draw the BomberMan */
+        Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
+        Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
+                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
     }
 

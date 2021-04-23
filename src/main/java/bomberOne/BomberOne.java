@@ -28,7 +28,7 @@ public final class BomberOne extends Application {
         // UNCOMMENT TO TEST
 //
         GameModel test = new GameModelImpl();
-        test.getUser().setControls(Controls.ARROW);
+        test.getUser().setControls(Controls.WASD);
         test.getUser().setSkin(Skins.RED);
         test.setDifficulty(Difficulty.STANDARD);
         test.init();

@@ -11,6 +11,7 @@ import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp.Type;
 import bomberOne.tools.ResourcesLoader;
+import javafx.geometry.Rectangle2D;
 
 public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
 
@@ -63,6 +64,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
 
     public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
         super(pos, img, lifes, img[0][1]);
+        this.setBoundingBox(new Rectangle2D(pos.getX(), pos.getY(), 30, 30));
         this.setSpeed(SPEED);
         this.setDir(DIR);
         this.animations = img;
@@ -73,7 +75,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.usedAmmo = 0;
         this.spriteIndex = SPRITES;
         this.animationIndex = 0;
-        ResourcesLoader.start();
     }
 
     /**
