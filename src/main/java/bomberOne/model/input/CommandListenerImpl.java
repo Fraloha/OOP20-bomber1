@@ -2,6 +2,7 @@ package bomberOne.model.input;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.input.commands.Command;
@@ -13,6 +14,8 @@ import bomberOne.model.input.commands.Command;
 public class CommandListenerImpl implements CommandListener {
     private List<Command> commandList;
     private GameModel game;
+    private Command lastCommand;
+    private boolean first = true;
 
     public CommandListenerImpl() {
         this.commandList = new LinkedList<>();
@@ -23,7 +26,9 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void addCommand(final Command command) {
-        this.commandList.add(command);
+        if(this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
+            this.commandList.add(command);
+        }
     }
 
     /**
@@ -41,10 +46,10 @@ public class CommandListenerImpl implements CommandListener {
     public void executeAll() {
 
         List<Command> tmp = new LinkedList<>(this.commandList);
-        this.commandList.stream().forEach(i -> {
-            i.execute(this.game);
-            tmp.add(i);
-        });
+        for (var elem : this.commandList) {
+            elem.execute(this.game);
+            tmp.add(elem);
+        }
         this.commandList.removeAll(tmp);
         tmp.clear();
 

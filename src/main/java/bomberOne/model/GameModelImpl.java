@@ -34,6 +34,7 @@ public class GameModelImpl implements GameModel {
         } else {
             this.world = factory.createWorldHard(this.user);
         }
+        this.world.setModel(this);
         this.thread.start();
     }
 
