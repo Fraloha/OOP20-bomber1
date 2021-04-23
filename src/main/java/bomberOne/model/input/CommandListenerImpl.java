@@ -5,6 +5,7 @@ import java.util.List;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.input.commands.Command;
+import bomberOne.model.input.commands.PlantBomb;
 
 /**
  * That class is the CommandListner of the game.
@@ -23,7 +24,7 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void addCommand(final Command command) {
-        if(this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
+        if(command.getClass().equals(PlantBomb.class) || this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
             this.commandList.add(command);            
         }
     }
