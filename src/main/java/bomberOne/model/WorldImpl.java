@@ -34,7 +34,7 @@ public class WorldImpl implements World {
     private static final int ENEMYNUMBER = 3;
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
-    private static final int NORMALBOX = 80;
+    private static final int NORMALBOX = /*8*/0;
     // private static final int HARDBOX = 100;
     private static final int NUMTYPEPOWERUP = 5;
 

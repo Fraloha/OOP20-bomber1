@@ -67,18 +67,24 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
-                if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
-                    controlsMap.getControlMap().get(e.getCode().getCode()).run();
-                    getController().getModel().getWorld().getBomber().setStatic(false);
+            public void handle(final KeyEvent e) {
+                if (e.getCode().getCode() != 32) {
+                    if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                        controlsMap.getControlMap().get(e.getCode().getCode()).run();
+                        getController().getModel().getWorld().getBomber().setStatic(false);
+                    }
                 }
             }
         });
 
         this.getStage().getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
-                if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
-                    getController().getModel().getWorld().getBomber().setStatic(true);
+            public void handle(final KeyEvent e) {
+                if (e.getCode().getCode() != 32) {
+                    if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                        getController().getModel().getWorld().getBomber().setStatic(true);
+                    }
+                } else {
+                    controlsMap.getControlMap().get(e.getCode().getCode()).run();
                 }
             }
         });
