@@ -48,27 +48,28 @@ public class HitBorderEvent implements WorldEvent {
      */
     @Override
     public void process(final GameModel model) {
+        //Slipping effect
         int roundBitX = (int) (this.getEntity().getPosition().getX() % 32);
         int roundBitY = (int) (this.getEntity().getPosition().getY() % 32);
-        int roundX = (roundBitX == 0) ? 0 : ((roundBitX < 16) ? -1 : 1);
-        int roundY= (roundBitY == 0) ? 0 : ((roundBitY < 16) ? -1 : 1);
+        int slippingX = (roundBitX == 0) ? 0 : ((roundBitX < 16) ? -1 : 1);
+        int slippingY= (roundBitY == 0) ? 0 : ((roundBitY < 16) ? -1 : 1);
         
         if (this.entity.getDir().equals(Direction.UP)) {
             this.entity.setPosition(
-                    new P2d(this.entity.getPosition().getX() + roundX, this.wall.getPosition().getY() + OBJ_DIMETIONS));
+                    new P2d(this.entity.getPosition().getX() + slippingX, this.wall.getPosition().getY() + OBJ_DIMETIONS));
         }
         if (this.entity.getDir().equals(Direction.DOWN)) {
             this.entity.setPosition(
-                    new P2d(this.entity.getPosition().getX() + roundX, this.wall.getPosition().getY() - OBJ_DIMETIONS));
+                    new P2d(this.entity.getPosition().getX() + slippingX, this.wall.getPosition().getY() - OBJ_DIMETIONS));
         }
 
         if (this.entity.getDir().equals(Direction.LEFT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY() + roundY));
+                    new P2d(this.wall.getPosition().getX() + OBJ_DIMETIONS, this.entity.getPosition().getY() + slippingY));
         }
         if (this.entity.getDir().equals(Direction.RIGHT)) {
             this.entity.setPosition(
-                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY() +  roundY));
+                    new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS, this.entity.getPosition().getY() +  slippingY));
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
             ((Enemy) this.entity).changePath();
