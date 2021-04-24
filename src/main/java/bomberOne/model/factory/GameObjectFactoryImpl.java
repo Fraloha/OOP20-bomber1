@@ -88,7 +88,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public GameObject createFire(final P2d position) {
-        return new FireImpl(position, ObjectsImages.FIRE.getImage(), 1);
+        return new FireImpl(position, AnimatedObjectsSprites.FIRE.getSprites(), 1);
     }
 
     @Override

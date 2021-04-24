@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.bomber.PlayerBehaviour;
 import bomberOne.model.input.commands.Command;
 import bomberOne.model.input.commands.MoveDown;
 import bomberOne.model.input.commands.MoveLeft;
@@ -50,19 +51,20 @@ public class CommandListenerImpl implements CommandListener {
     @Override
     public void executeCommands() {
 
-        if(Player.isToggleDownPressed()) {
+        PlayerBehaviour actions = this.game.getWorld().getBomber().getPlayerBehaviour();
+        if(actions.isToggleDownPressed()) {
             new MoveDown().execute(game);
         }
-        if(Player.isToggleUpPressed()) {
+        if(actions.isToggleUpPressed()) {
             new MoveUp().execute(game);
         }
-        if(Player.isToggleLeftPressed()) {
+        if(actions.isToggleLeftPressed()) {
             new MoveLeft().execute(game);
         }
-        if(Player.isToggleRightPressed()) {
+        if(actions.isToggleRightPressed()) {
             new MoveRight().execute(game);
         }
-        if(Player.isToggleActionPressed()) {
+        if(actions.isToggleActionPressed()) {
             new PlantBomb().execute(game);
         }
 
