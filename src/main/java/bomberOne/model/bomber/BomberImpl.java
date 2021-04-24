@@ -2,6 +2,7 @@ package bomberOne.model.bomber;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
+import java.util.concurrent.TimeUnit;
 
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
@@ -119,8 +120,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     public Optional<Bomb> plantBomb() {
         if (this.maxAmmo > this.usedAmmo) {
             usedAmmo++;
-            return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(
-                    new P2d(this.getPosition().getX(), this.getPosition().getY()), this.firePower, this.pierce));
+            return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(getPosition()),
+                    this.firePower, this.pierce));
         }
         return Optional.empty();
     }
@@ -206,10 +207,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.UP) {
             this.isChangedDir = true;
             this.setDir(Direction.UP);
-            //this.fpAgg = 0;
         }
         System.out.println("moveUP");
-        //this.fpAgg++;
         super.moveUp();
     }
 
@@ -221,10 +220,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.DOWN) {
             this.isChangedDir = true;
             this.setDir(Direction.DOWN);
-            //this.fpAgg = 0;
         }
         System.out.println("moveDOWN");
-        //this.fpAgg++;
         super.moveDown();
     }
 
@@ -236,10 +233,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.LEFT) {
             this.isChangedDir = true;
             this.setDir(Direction.LEFT);
-            //this.fpAgg = 0;
         }
         System.out.println("moveLEFT");
-        //this.fpAgg++;
         super.moveLeft();
     }
 
@@ -251,10 +246,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (this.getDirection() != Direction.RIGHT) {
             this.isChangedDir = true;
             this.setDir(Direction.RIGHT);
-            //this.fpAgg = 0;
         }
         System.out.println("moveRIGHT");
-        //this.fpAgg++;
         super.moveRight();
     }
 
@@ -305,7 +298,15 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             this.animationIndex++;
         }
         if (this.spriteIndex == 4 && this.animationIndex % 4 == 3) {
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
             this.respawn();
+        }
+        if (this.isStatic() && this.spriteIndex != 4) {
+            this.animationIndex = 0;
         }
         super.update(elapsed);
     }
@@ -340,5 +341,29 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public void activatePierce() {
         this.pierce = true;
+    }
+
+    /**
+     * Method that get in input the current position of the bomber, and return the
+     * position rounded when the Bomber can plant a bomb.
+     * 
+     * @param actualPos
+     * @return P2d
+     */
+    private P2d roundingBombPos(final P2d actualPos) {
+        double x, y;
+        double mX = actualPos.getX() % 32;
+        double mY = actualPos.getY() % 32;
+        if (mX < 16) {
+            x = actualPos.getX() - mX;
+        } else {
+            x = actualPos.getX() - (32 - mX);
+        }
+        if (mY < 16) {
+            y = actualPos.getY() - mY;
+        } else {
+            y = actualPos.getY() - (32 - mY);
+        }
+        return new P2d(x, y);
     }
 }
