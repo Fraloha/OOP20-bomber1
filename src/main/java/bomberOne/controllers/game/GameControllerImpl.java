@@ -64,7 +64,6 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
     public void init() {
         this.eventHandler = new WorldEventListenerImpl();
         this.commandHandler = new CommandListenerImpl();
-        
         this.eventHandler.setGameModel(this.getModel());
         this.commandHandler.setGameModel(this.getModel());
         this.getModel().getWorld().setEventListener(this.eventHandler);

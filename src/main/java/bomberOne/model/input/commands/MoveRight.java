@@ -22,6 +22,7 @@ public class MoveRight implements Command {
     @Override
     public void execute(final GameModel gameModel) {
         gameModel.getWorld().getBomber().moveRight();
+        gameModel.getWorld().getBomber().setStatic(false);
     }
 
 }

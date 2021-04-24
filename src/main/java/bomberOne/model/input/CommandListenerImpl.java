@@ -6,6 +6,11 @@ import java.util.Optional;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.input.commands.Command;
+import bomberOne.model.input.commands.MoveDown;
+import bomberOne.model.input.commands.MoveLeft;
+import bomberOne.model.input.commands.MoveRight;
+import bomberOne.model.input.commands.MoveUp;
+import bomberOne.model.input.commands.PlantBomb;
 
 /**
  * That class is the CommandListner of the game.
@@ -26,8 +31,13 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void addCommand(final Command command) {
+<<<<<<< HEAD
         if(this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
             this.commandList.add(command);
+=======
+        if(command.getClass().equals(PlantBomb.class) || this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
+            this.commandList.add(command);            
+>>>>>>> develop
         }
     }
 
@@ -45,6 +55,7 @@ public class CommandListenerImpl implements CommandListener {
     @Override
     public void executeAll() {
 
+<<<<<<< HEAD
         List<Command> tmp = new LinkedList<>(this.commandList);
         for (var elem : this.commandList) {
             elem.execute(this.game);
@@ -52,6 +63,27 @@ public class CommandListenerImpl implements CommandListener {
         }
         this.commandList.removeAll(tmp);
         tmp.clear();
+=======
+        if(Player.isToggleDownPressed()) {
+            new MoveDown().execute(game);
+        }
+        if(Player.isToggleUpPressed()) {
+            new MoveUp().execute(game);
+        }
+        if(Player.isToggleLeftPressed()) {
+            new MoveLeft().execute(game);
+        }
+        if(Player.isToggleRightPressed()) {
+            new MoveRight().execute(game);
+        }
+//        List<Command> tmp = new LinkedList<>(this.commandList);
+//        this.commandList.stream().forEach(i -> {
+//            i.execute(this.game);
+//            tmp.add(i);
+//        });
+//        this.commandList.removeAll(tmp);
+//        tmp.clear();
+>>>>>>> develop
 
     }
 

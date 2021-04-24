@@ -109,33 +109,19 @@ public class WorldImpl implements World {
                     PowerUp powerUp;
                     switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
                     case 0:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
                         break;
                     case 1:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.Speed);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Speed);
                         break;
                     case 2:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.Pierce);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
                         break;
                     case 3:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
                         break;
                     default:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
                         break;
                     }
                     powerUpCount++;
@@ -237,13 +223,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
             if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
-                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall, this.bomberMan.getDir()));
+                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
                 if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
-                    listener.notifyEvent(new HitBorderEvent(enemy, wall, enemy.getDir()));
+                    listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }
         }

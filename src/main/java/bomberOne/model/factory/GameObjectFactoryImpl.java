@@ -61,7 +61,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
     @Override
     public GameObject createPowerUp(final P2d position, final Type type) {
 
-        BufferedImage powerUpImage = new BufferedImage(0, 0, 0);
+        BufferedImage powerUpImage = null;
         if (type.equals(PowerUp.Type.FirePower)) {
             powerUpImage = ObjectsImages.POWER_FIREPOWER.getImage();
         }

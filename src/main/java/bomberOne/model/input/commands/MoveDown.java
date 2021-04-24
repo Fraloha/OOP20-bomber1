@@ -22,6 +22,7 @@ public class MoveDown implements Command {
     @Override
     public void execute(final GameModel gameModel) {
         gameModel.getWorld().getBomber().moveDown();
+        gameModel.getWorld().getBomber().setStatic(false);            
     }
 
     

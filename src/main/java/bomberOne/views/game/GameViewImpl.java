@@ -4,12 +4,14 @@ import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUpImpl;
+import bomberOne.model.input.Player;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ObjectsImages;
 import bomberOne.views.ViewImpl;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.game.movement.ControlsMap;
+import bomberOne.views.game.movement.ControlsMap2;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
@@ -57,7 +59,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     private GraphicsContext gCForeground;
     private GraphicsContext gCBackground;
-    private ControlsMap controlsMap;
+    // private ControlsMap controlsMap;
+    private ControlsMap2 controlsMap;
 
     @Override
     public void init() {
@@ -65,19 +68,24 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.drawGame();
         this.getController().init();
-        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
+//        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
+        this.controlsMap = new ControlsMap2(this.getController().getModel().getUser().getControls(), this);
+
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).run();
-                    getController().getModel().getWorld().getBomber().setStatic(false);
                 }
             }
         });
 
         this.getStage().getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
+            public void handle(final KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                    Player.setToggleDownPressed(false);
+                    Player.setToggleLeftPressed(false);
+                    Player.setToggleUpPressed(false);
+                    Player.setToggleRightPressed(false);
                     getController().getModel().getWorld().getBomber().setStatic(true);
                 }
             }
@@ -126,7 +134,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                         obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
                             }
                             if (obj.getClass().equals(PowerUpImpl.class)) {
-                                if (((PowerUpImpl) obj).isReleased()) {
+                                if (!((PowerUpImpl) obj).isReleased()) {
                                     this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
                                             obj.getPosition().getX(), obj.getPosition().getY());
                                 }
