@@ -1,8 +1,11 @@
 package bomberOne.views.game;
 
+import java.util.List;
+
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
+import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.input.Player;
 import bomberOne.model.user.Skins;
@@ -19,11 +22,13 @@ import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
 public final class GameViewImpl extends ViewImpl implements GameView {
 
+    private static final int IMAGE_SIZE = 32;
     private static final int ANIMATED_ENTITY_IMAGE_HEIGHT = 16;
     private static final int WORLD_CELLS = 18;
     private static final int CELL_SIZE = 32;
@@ -121,34 +126,46 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     @Override
     public void render() {
+
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
-        /* Draw all the updateable Objects but not enemies */
-        Platform.runLater(
-                () -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection()
-                        .stream().filter(elem -> !elem.getClass().equals(HardWall.class)).forEach(obj -> {
-                            if (obj.getClass().equals(EnemyImpl.class)) {
-                                this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
-                                        obj.getPosition().getX(),
-                                        obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
-                            }
-                            if (obj.getClass().equals(PowerUpImpl.class)) {
-                                if (!((PowerUpImpl) obj).isReleased()) {
-                                    this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
-                                            obj.getPosition().getX(), obj.getPosition().getY());
-                                }
-                            } else {
-                                this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
-                                        obj.getPosition().getX(), obj.getPosition().getY());
-                            }
-                        }));
+        /* Draw enemies */
+        Platform.runLater(() -> {
+            this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
+                    .forEach(enemy -> {
+                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(enemy.getImage(), null),
+                                enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+                    });
+        });
+        // Draw the boxes
+        Platform.runLater(() -> {
+            Image boxImage = SwingFXUtils.toFXImage(ObjectsImages.BOX.getImage(), null);
+            this.getController().getModel().getWorld().getGameObjectCollection().getBoxList().forEach(box -> {
+                this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE, IMAGE_SIZE);
+            });
+        });
+        // Draw the powerUp
+        Platform.runLater(() -> {
+            this.getController().getModel().getWorld().getGameObjectCollection().getPowerUpList().stream()
+            .filter(PowerUp::isReleased)        
+            .forEach(pUp -> {
+                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(pUp.getImage(), null),
+                                pUp.getPosition().getX(), pUp.getPosition().getY());
+                    });
+        });
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
-
+     // Draw the fire
+        Platform.runLater(() -> {
+            Image fireImage = SwingFXUtils.toFXImage(ObjectsImages.FIRE.getImage(), null);
+            this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
+                this.gCForeground.drawImage(fireImage, fire.getPosition().getX(), fire.getPosition().getY());
+            });
+        });
     }
 
     /**
