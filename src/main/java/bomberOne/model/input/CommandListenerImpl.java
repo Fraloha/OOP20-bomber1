@@ -31,13 +31,8 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void addCommand(final Command command) {
-<<<<<<< HEAD
-        if(this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
-            this.commandList.add(command);
-=======
         if(command.getClass().equals(PlantBomb.class) || this.commandList.isEmpty() || this.commandList.get(0).getClass().equals(command.getClass())) {
             this.commandList.add(command);            
->>>>>>> develop
         }
     }
 
@@ -55,15 +50,6 @@ public class CommandListenerImpl implements CommandListener {
     @Override
     public void executeAll() {
 
-<<<<<<< HEAD
-        List<Command> tmp = new LinkedList<>(this.commandList);
-        for (var elem : this.commandList) {
-            elem.execute(this.game);
-            tmp.add(elem);
-        }
-        this.commandList.removeAll(tmp);
-        tmp.clear();
-=======
         if(Player.isToggleDownPressed()) {
             new MoveDown().execute(game);
         }
@@ -83,7 +69,6 @@ public class CommandListenerImpl implements CommandListener {
 //        });
 //        this.commandList.removeAll(tmp);
 //        tmp.clear();
->>>>>>> develop
 
     }
 
