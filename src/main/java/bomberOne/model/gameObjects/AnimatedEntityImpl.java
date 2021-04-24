@@ -8,7 +8,7 @@ import javafx.geometry.Rectangle2D;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-    private final static double TIME_QUOTIENT = 500.0;
+    private final static double TIME_QUOTIENT = 900.0;
     private int elapsed;
     private Direction dir;
     private double speed;
@@ -61,7 +61,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveUp() {
-        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - this.speed * (elapsed/TIME_QUOTIENT)));
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
+        this.setStatic(false);
     }
 
     /**
@@ -69,7 +70,10 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveDown() {
-        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + this.speed * (elapsed/TIME_QUOTIENT)));
+       
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
+        this.setStatic(false);
+        
     }
 
     /**
@@ -77,7 +81,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveLeft() {
-        this.setPosition(new P2d(this.getPosition().getX() - this.speed * (elapsed/TIME_QUOTIENT), this.getPosition().getY()));
+        this.setPosition(new P2d(this.getPosition().getX() - Math.round(this.speed * (elapsed/TIME_QUOTIENT)), this.getPosition().getY()));
+        this.setStatic(false);
     }
 
     /**
@@ -85,7 +90,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveRight() {
-        this.setPosition(new P2d(this.getPosition().getX() + this.speed * (elapsed/TIME_QUOTIENT), this.getPosition().getY()));
+        this.setPosition(new P2d(this.getPosition().getX() + Math.round(this.speed * (elapsed/TIME_QUOTIENT)), this.getPosition().getY()));
+        this.setStatic(false);
     }
 
     /**
@@ -109,9 +115,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void update(final int elapsed) {
-        Rectangle2D newBoundingBox = new Rectangle2D(this.getPosition().getX(), this.getPosition().getY(), 32,  32);
+        this.setBoundingBox(new Rectangle2D(this.getPosition().getX(), this.getPosition().getY(), 32, 32));
         this.setTimeElapsed(elapsed);
-        this.setBoundingBox(newBoundingBox);
     }
 
     /**

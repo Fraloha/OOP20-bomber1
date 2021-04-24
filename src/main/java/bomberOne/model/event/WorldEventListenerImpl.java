@@ -22,9 +22,12 @@ public final class WorldEventListenerImpl implements WorldEventListener {
 
     @Override
     public void processEvents() {
+        List<WorldEvent> eventProcessed = new ArrayList<>();
         this.eventList.stream().forEach(event -> {
+            eventProcessed.add(event);
             event.process(model);
         });
+       // this.eventList.removeAll(eventProcessed);
         this.eventList.clear();
     }
 

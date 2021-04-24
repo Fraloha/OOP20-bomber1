@@ -70,15 +70,19 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             public void handle(KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).run();
-                    getController().getModel().getWorld().getBomber().setStatic(false);
+
                 }
             }
         });
 
         this.getStage().getScene().setOnKeyReleased(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
-                if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
-                    getController().getModel().getWorld().getBomber().setStatic(true);
+            public void handle(final KeyEvent e) {
+                if (e.getCode().getCode() != 32) {
+                    if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
+                        getController().getModel().getWorld().getBomber().setStatic(true);
+                    }
+                } else {
+                    controlsMap.getControlMap().get(e.getCode().getCode()).run();
                 }
             }
         });
@@ -116,10 +120,6 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
-        /* Draw the BomberMan */
-        Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
-        Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
-                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
         /* Draw all the updateable Objects but not enemies */
         Platform.runLater(
                 () -> this.getController().getModel().getWorld().getGameObjectCollection().getGameObjectCollection()
@@ -130,7 +130,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                         obj.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
                             }
                             if (obj.getClass().equals(PowerUpImpl.class)) {
-                                if (((PowerUpImpl) obj).isReleased()) {
+                                if (!((PowerUpImpl) obj).isReleased()) {
                                     this.gCForeground.drawImage(SwingFXUtils.toFXImage(obj.getImage(), null),
                                             obj.getPosition().getX(), obj.getPosition().getY());
                                 }
@@ -139,6 +139,10 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                         obj.getPosition().getX(), obj.getPosition().getY());
                             }
                         }));
+        /* Draw the BomberMan */
+        Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
+        Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
+                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
     }
 
