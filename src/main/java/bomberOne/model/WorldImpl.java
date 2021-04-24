@@ -104,27 +104,18 @@ public class WorldImpl implements World {
                     switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
                     case 0:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
-                        // powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false, PowerUp.Type.Time);
                         break;
                     case 1:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Speed);
-                        //powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                               // PowerUp.Type.Time);
                         break;
                     case 2:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
-                        //powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                //PowerUp.Type.Time);
                         break;
                     case 3:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
-                        //powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                //PowerUp.Type.Time);
                         break;
                     default:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
-                        //powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                //PowerUp.Type.Time);
                         break;
                     }
                     powerUpCount++;
