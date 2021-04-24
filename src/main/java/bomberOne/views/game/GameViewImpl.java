@@ -86,6 +86,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                     Player.setToggleLeftPressed(false);
                     Player.setToggleUpPressed(false);
                     Player.setToggleRightPressed(false);
+                    Player.setToggleActionPressed(false);
                     getController().getModel().getWorld().getBomber().setStatic(true);
                 }
             }

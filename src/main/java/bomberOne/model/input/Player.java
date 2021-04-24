@@ -6,13 +6,15 @@ public class Player {
     private static boolean toggleDownPressed;
     private static boolean toggleLeftPressed;
     private static boolean toggleRightPressed;
-    
+    private static boolean toggleActionPressed;
+
     public static boolean isToggleUpPressed() {
         return toggleUpPressed;
     }
 
     public static void setToggleUpPressed(boolean toggleUpPressed) {
-        if(!toggleUpPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed && !Player.toggleUpPressed) {
+        if (!toggleUpPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed
+                && !Player.toggleUpPressed) {
             Player.toggleUpPressed = toggleUpPressed;
         }
     }
@@ -22,7 +24,8 @@ public class Player {
     }
 
     public static void setToggleDownPressed(boolean toggleDownPressed) {
-        if(!toggleDownPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed && !Player.toggleUpPressed) {
+        if (!toggleDownPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed
+                && !Player.toggleUpPressed) {
             Player.toggleDownPressed = toggleDownPressed;
         }
     }
@@ -32,7 +35,8 @@ public class Player {
     }
 
     public static void setToggleLeftPressed(boolean toggleLeftPressed) {
-        if(!toggleLeftPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed && !Player.toggleUpPressed) {
+        if (!toggleLeftPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed
+                && !Player.toggleUpPressed) {
             Player.toggleLeftPressed = toggleLeftPressed;
         }
     }
@@ -42,18 +46,21 @@ public class Player {
     }
 
     public static void setToggleRightPressed(boolean toggleRightPressed) {
-        if(!toggleRightPressed ||!Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed && !Player.toggleUpPressed) {
+        if (!toggleRightPressed || !Player.toggleDownPressed && !Player.toggleLeftPressed && !Player.toggleRightPressed
+                && !Player.toggleUpPressed) {
             Player.toggleRightPressed = toggleRightPressed;
         }
     }
-    
-    public Player() {
-//        this.toggleDownPressed = false;
-//        this.toggleLeftPressed = false;
-//        this.toggleUpPressed = false;
-//        this.toggleRightPressed = false;
+
+    public static boolean isToggleActionPressed() {
+        return toggleActionPressed;
     }
-    
-    
-    
+
+    public static void setToggleActionPressed(boolean toggleActionPressed) {
+        Player.toggleActionPressed = toggleActionPressed;
+    }
+
+    public Player() {
+    }
+
 }

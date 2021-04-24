@@ -47,7 +47,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
 
     @Override
     public void processInput() {
-        commandHandler.executeAll();
+        commandHandler.executeCommands();
     }
 
     @Override
