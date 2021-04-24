@@ -37,6 +37,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
         if (color.equals(Skins.BLUE)) {
             images = AnimatedObjectsSprites.PLAYER_4.getSprites();
         }
+        
         return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES);
     }
 
@@ -73,6 +74,9 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
         }
         if (type.equals(PowerUp.Type.Time)) {
             powerUpImage = ObjectsImages.POWER_TIMER.getImage();
+        }
+        if (type.equals(PowerUp.Type.Ammo)) {
+            powerUpImage = ObjectsImages.POWER_BOMB.getImage();
         }
         PowerUp pU = new PowerUpImpl(position, powerUpImage, 1, true, type);
         return pU;
