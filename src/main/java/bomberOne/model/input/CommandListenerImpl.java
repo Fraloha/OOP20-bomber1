@@ -5,6 +5,10 @@ import java.util.List;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.input.commands.Command;
+import bomberOne.model.input.commands.MoveDown;
+import bomberOne.model.input.commands.MoveLeft;
+import bomberOne.model.input.commands.MoveRight;
+import bomberOne.model.input.commands.MoveUp;
 import bomberOne.model.input.commands.PlantBomb;
 
 /**
@@ -43,13 +47,25 @@ public class CommandListenerImpl implements CommandListener {
     @Override
     public void executeAll() {
 
-        List<Command> tmp = new LinkedList<>(this.commandList);
-        this.commandList.stream().forEach(i -> {
-            i.execute(this.game);
-            tmp.add(i);
-        });
-        this.commandList.removeAll(tmp);
-        tmp.clear();
+        if(Player.isToggleDownPressed()) {
+            new MoveDown().execute(game);
+        }
+        if(Player.isToggleUpPressed()) {
+            new MoveUp().execute(game);
+        }
+        if(Player.isToggleLeftPressed()) {
+            new MoveLeft().execute(game);
+        }
+        if(Player.isToggleRightPressed()) {
+            new MoveRight().execute(game);
+        }
+//        List<Command> tmp = new LinkedList<>(this.commandList);
+//        this.commandList.stream().forEach(i -> {
+//            i.execute(this.game);
+//            tmp.add(i);
+//        });
+//        this.commandList.removeAll(tmp);
+//        tmp.clear();
 
     }
 

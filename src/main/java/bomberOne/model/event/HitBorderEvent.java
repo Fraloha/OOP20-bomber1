@@ -1,5 +1,7 @@
 package bomberOne.model.event;
 
+import java.awt.geom.Rectangle2D;
+
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
@@ -75,4 +77,48 @@ public class HitBorderEvent implements WorldEvent {
             ((Enemy) this.entity).changePath();
         }
     }
+//    Rectangle2D intersection = this.collider.createIntersection(obj.collider);
+//    // Vertical collision
+//    if (intersection.getWidth() >= intersection.getHeight()) {
+//        // From the top
+//        if (intersection.getMaxY() >= this.collider.getMaxY()) {
+//            this.position.setLocation(this.position.x, this.position.y - intersection.getHeight());
+//        }
+//        // From the bottom
+//        if (intersection.getMaxY() >= obj.collider.getMaxY()) {
+//            this.position.setLocation(this.position.x, this.position.y + intersection.getHeight());
+//        }
+//
+//        // Smoothing around corners
+//        if (intersection.getWidth() < 16) {
+//            if (intersection.getMaxX() >= this.collider.getMaxX()) {
+//                this.position.setLocation(this.position.x - 0.5, this.position.y);
+//            }
+//            if (intersection.getMaxX() >= obj.collider.getMaxX()) {
+//                this.position.setLocation(this.position.x + 0.5, this.position.y);
+//            }
+//        }
+//    }
+//
+//    // Horizontal collision
+//    if (intersection.getHeight() >= intersection.getWidth()) {
+//        // From the left
+//        if (intersection.getMaxX() >= this.collider.getMaxX()) {
+//            this.position.setLocation(this.position.x - intersection.getWidth(), this.position.y);
+//        }
+//        // From the right
+//        if (intersection.getMaxX() >= obj.collider.getMaxX()) {
+//            this.position.setLocation(this.position.x + intersection.getWidth(), this.position.y);
+//        }
+//
+//        // Smoothing around corners
+//        if (intersection.getHeight() < 16) {
+//            if (intersection.getMaxY() >= this.collider.getMaxY()) {
+//                this.position.setLocation(this.position.x, this.position.y - 0.5);
+//            }
+//            if (intersection.getMaxY() >= obj.collider.getMaxY()) {
+//                this.position.setLocation(this.position.x, this.position.y + 0.5);
+//            }
+//        }
+//    }
 }

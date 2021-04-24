@@ -8,7 +8,7 @@ import javafx.geometry.Rectangle2D;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-    private final static double TIME_QUOTIENT = 900.0;
+    private final static double TIME_QUOTIENT = 5000.0;
     private int elapsed;
     private Direction dir;
     private double speed;
