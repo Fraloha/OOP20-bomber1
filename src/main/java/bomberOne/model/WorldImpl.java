@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
 import bomberOne.model.event.ExplosionEvent;
@@ -45,6 +46,7 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
+    private GameModel model;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -57,6 +59,10 @@ public class WorldImpl implements World {
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
         this.setBox(this.difficulty);
+    }
+    
+    public void setModel(final GameModel model) {
+        this.model = model;
     }
 
     /**
@@ -228,6 +234,7 @@ public class WorldImpl implements World {
             }
         }
     }
+    
 
     @Override
     public final void checkExplosion() {
@@ -237,6 +244,20 @@ public class WorldImpl implements World {
                 listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
             }
         }
+    }
+
+    @Override
+    public boolean checkBounds() {
+        List<GameObject> wallBoxList = new LinkedList<>();
+        wallBoxList.addAll(collection.getHardWallList());
+        wallBoxList.addAll(collection.getBoxList());
+        for (GameObject wall : wallBoxList) {
+            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+               // listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall, this.bomberMan.getDir()));
+                return true;
+            }
+        }
+        return false;
     }
 
 }

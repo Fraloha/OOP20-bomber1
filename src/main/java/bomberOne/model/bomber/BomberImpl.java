@@ -62,6 +62,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     private int animationIndex;
     private BufferedImage[][] animations;
     private boolean isChangedDir = false;
+    private PlayerBehaviour behaviour;
 
     public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
         super(pos, img, lifes, img[0][1]);
@@ -75,6 +76,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.usedAmmo = 0;
         this.spriteIndex = SPRITES;
         this.animationIndex = 0;
+        this.behaviour = new PlayerBehaviour();
     }
 
     /**
@@ -258,6 +260,10 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     public void hitted() {
         this.setLifes(this.getLifes() - 1);
         this.setAlive(false);
+    }
+    
+    public PlayerBehaviour getPlayerBehaviour() {
+        return this.behaviour;
     }
 
     /**

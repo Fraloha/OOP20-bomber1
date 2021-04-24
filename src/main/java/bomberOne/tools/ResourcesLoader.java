@@ -87,7 +87,7 @@ public final class ResourcesLoader {
      */
     public static void sliceSprite() {
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
-            if (value.equals(AnimatedObjectsSprites.EXPLOSION)) {
+            if (value.equals(AnimatedObjectsSprites.FIRE)) {
                 value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, OBJ_HEIGHT));
             } else {
                 value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, ANIMATED_HEIGHT));
