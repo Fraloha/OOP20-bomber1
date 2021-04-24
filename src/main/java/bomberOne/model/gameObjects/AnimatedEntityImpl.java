@@ -61,7 +61,9 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveUp() {
-        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - 1));
+        
+        //this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() - Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
         this.setStatic(false);
     }
 
@@ -70,8 +72,9 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void moveDown() {
-       
-        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
+        this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + 1));
+        
+       // this.setPosition(new P2d(this.getPosition().getX(), this.getPosition().getY() + Math.round(this.speed * (elapsed/TIME_QUOTIENT))));
         this.setStatic(false);
         
     }
