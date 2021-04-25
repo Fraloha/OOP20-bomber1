@@ -29,11 +29,11 @@ public enum AnimatedObjectsSprites {
      * 
      */
     PLAYER_4("bomber4.png"),
-    // BOMB(""),
+    
     /**
      * 
      */
-    EXPLOSION("explosion.png"), 
+    FIRE("FIRE.png"), 
 
     /**
      * 

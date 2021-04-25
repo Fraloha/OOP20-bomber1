@@ -1,6 +1,7 @@
 package bomberOne.model.input.commands;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.common.Direction;
 
 public interface Command {
 
@@ -10,4 +11,6 @@ public interface Command {
      * @param gameModel
      */
     void execute(GameModel gameModel);
+    
+    Direction dir();
 }

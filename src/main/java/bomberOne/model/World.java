@@ -1,6 +1,7 @@
 package bomberOne.model;
 
 import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.Direction;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.gameObjects.GameObjectCollection;
@@ -46,7 +47,7 @@ public interface World {
     void updateState(int time);
 
     /**
-     * Check if some of object breakable is colliding with fire and if the bomber picks up one PowerUp.
+     * Check if some of object breakable is colliding with fire, if the bomber picks up one PowerUp or if enemy hit Bomber.
      */
     void checkCollision();
 
@@ -59,9 +60,11 @@ public interface World {
      * Check if bomber or enemy is colliding with Wall or Box.
      */
     void checkBoundary();
-
+    
     /**
      * Check if a bomb is exploded.
      */
     void checkExplosion();
+    
+    void setModel(GameModel model);
 }

@@ -24,7 +24,7 @@
                      <image>
                         <Image url="@../images/b1SB.png" />
                      </image></ImageView>
-                  <ImageView id="lifeOne" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="lifeOne" fx:id="lifeOne" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/lifeYes.png" />
                      </image>
@@ -32,7 +32,7 @@
                         <Insets top="13.0" />
                      </HBox.margin>
                   </ImageView>
-                  <ImageView id="lifeTwo" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView id="lifeTwo" fx:id="lifeTwo" fitHeight="26.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/lifeYes.png" />
                      </image>

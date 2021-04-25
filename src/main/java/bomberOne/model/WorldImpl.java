@@ -11,7 +11,7 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
 import bomberOne.model.event.ExplosionEvent;
 import bomberOne.model.event.HitBorderEvent;
-import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.HitEntityEvent;
 import bomberOne.model.event.PickPowerUpEvent;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
@@ -23,10 +23,8 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.ObjectsImages;
 import bomberOne.tools.maps.Maps;
 
 public class WorldImpl implements World {
@@ -45,6 +43,7 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
+    private GameModel model;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -57,6 +56,10 @@ public class WorldImpl implements World {
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
         this.setBox(this.difficulty);
+    }
+
+    public void setModel(final GameModel model) {
+        this.model = model;
     }
 
     /**
@@ -103,33 +106,19 @@ public class WorldImpl implements World {
                     PowerUp powerUp;
                     switch (powerUpCount % WorldImpl.NUMTYPEPOWERUP) {
                     case 0:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
                         break;
                     case 1:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.Speed);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Speed);
                         break;
                     case 2:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.Pierce);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
                         break;
                     case 3:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos,
-                        // PowerUp.Type.FirePower);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
                         break;
                     default:
-                        // powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
-                        powerUp = new PowerUpImpl(pos, ObjectsImages.POWER_TIMER.getImage(), 1, false,
-                                PowerUp.Type.Time);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
                         break;
                     }
                     powerUpCount++;
@@ -175,13 +164,13 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        for (GameObject obj : deathObject) {
-            collection.despawn(obj);
-        }
         for (Enemy enemy : collection.getEnemyList()) {
             enemy.update(this.bomberMan.getPosition());
         }
         this.checkExplosion();
+        for (GameObject obj : deathObject) {
+            collection.despawn(obj);
+        }
         this.checkCollision();
         this.checkRespawn();
         this.checkBoundary();
@@ -197,7 +186,7 @@ public class WorldImpl implements World {
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
                 if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
-                    this.listener.notifyEvent(new HitFireEvent(obj));
+                    this.listener.notifyEvent(new HitEntityEvent(obj));
                 }
             }
         }
@@ -208,6 +197,12 @@ public class WorldImpl implements World {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
+        /* Check if enemy hit Bomberman */
+        this.collection.getEnemyList().stream().forEach(enemy -> {
+            if (enemy.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+                this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
+            }
+        });
     }
 
     @Override

@@ -17,13 +17,23 @@ public class FireImpl extends GameObjectImpl implements Fire {
 
     private int lifeTime;
     private int thick;
+    private int animationIndex = 0;
+    private BufferedImage [][] img;
 
-    public FireImpl(final P2d pos, final BufferedImage img, final int lifes) {
-        super(pos, img, lifes);
-        this.lifeTime = this.LIFE_TIME;
+    public FireImpl(final P2d pos, final BufferedImage [][] img, final int lifes) {
+        super(pos, img[0][0], lifes);
+        this.img = img;
+        this.lifeTime = LIFE_TIME;
         this.thick = 0;
     }
 
+    /**
+     * @return the correct animation of the Fire
+     */
+    public BufferedImage getImage() {
+        return this.img[0][animationIndex];
+    }
+    
     /**
      * {@inheritDoc}
      */
