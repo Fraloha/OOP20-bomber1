@@ -58,7 +58,7 @@ public class TestWorldEventListener {
         this.listener.setGameModel(model);
         assertEquals(this.model.getScore(), 0);
         world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
-        this.listener.notifyEvent(new HitFireEvent(world.getGameObjectCollection().getBoxList().get(0)));
+        this.listener.notifyEvent(new HitEntityEvent(world.getGameObjectCollection().getBoxList().get(0)));
         this.listener.processEvents();
         assertEquals(this.model.getScore(), EXPECTED_SCORE);
         assertFalse(world.getGameObjectCollection().getBoxList().get(0).isAlive());

@@ -93,7 +93,7 @@ public enum ObjectsImages {
     /**
      * 
      */
-    FIRE("fire.png"),
+  //  FIRE("fire.png"),
 
     /**
      * 

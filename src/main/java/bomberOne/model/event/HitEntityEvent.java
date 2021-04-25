@@ -5,13 +5,13 @@ import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.GameObject;
 
-public class HitFireEvent implements WorldEvent {
+public class HitEntityEvent implements WorldEvent {
 
     private static final int BOX_INC_SCORE = 50;
     private static final int ENEMY_INC_SCORE = 150;
     private GameObject entity;
 
-    public HitFireEvent(final GameObject entity) {
+    public HitEntityEvent(final GameObject entity) {
         this.entity = entity;
     }
 
