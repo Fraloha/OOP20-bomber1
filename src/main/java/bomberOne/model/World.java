@@ -47,7 +47,7 @@ public interface World {
     void updateState(int time);
 
     /**
-     * Check if some of object breakable is colliding with fire and if the bomber picks up one PowerUp.
+     * Check if some of object breakable is colliding with fire, if the bomber picks up one PowerUp or if enemy hit Bomber.
      */
     void checkCollision();
 

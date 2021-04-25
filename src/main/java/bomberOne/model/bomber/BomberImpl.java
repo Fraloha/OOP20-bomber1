@@ -358,12 +358,12 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         if (mX < 16) {
             x = actualPos.getX() - mX;
         } else {
-            x = actualPos.getX() - (32 - mX);
+            x = actualPos.getX() + (32 - mX);
         }
         if (mY < 16) {
             y = actualPos.getY() - mY;
         } else {
-            y = actualPos.getY() - (32 - mY);
+            y = actualPos.getY() + (32 - mY);
         }
         return new P2d(x, y);
     }

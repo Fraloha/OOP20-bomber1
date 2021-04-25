@@ -78,7 +78,14 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
+        this.setKeyListener();
+        
+    }
 
+    /**
+     * Prepare the KeyListener
+     */
+    private void setKeyListener() {
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
@@ -96,7 +103,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             }
         });
     }
-
+    
     @Override
     public void drawGame() {
         this.clockImageView.setImage(SwingFXUtils.toFXImage(ObjectsImages.CLOCK.getImage(), null));
@@ -151,7 +158,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             this.getController().getModel().getWorld().getGameObjectCollection().getBombList().stream()
                     .forEach(bomb -> {
                         this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomb.getImage(), null),
-                                bomb.getPosition().getX(), bomb.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+                                bomb.getPosition().getX(), bomb.getPosition().getY());
                     });
         });
         /* Draw enemies */
