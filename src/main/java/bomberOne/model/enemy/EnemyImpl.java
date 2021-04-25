@@ -37,8 +37,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
          * {@inheritDoc}
          */
         public void update(P2d playerPosition) {
-            super.update(this.getTimeElapsed());
-
             //The enemy before acts has to wait four second that are 240 frames.
             //Checking if the frame counter is greater than zero.
             if (this.frameCounter > 0) {
@@ -53,6 +51,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
                 //Executing the behavior.
                 this.behavior.doActions();
+                super.update(this.getTimeElapsed());
             }
         }
 }
