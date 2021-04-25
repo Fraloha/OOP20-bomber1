@@ -74,9 +74,6 @@ public class HitBorderEvent implements WorldEvent {
             this.entity.setPosition(new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS,
                     this.entity.getPosition().getY() + slippingY));
         }
-        if (this.entity.getClass().equals(EnemyImpl.class)) {
-            ((Enemy) this.entity).changePath();
-        }
     }
 //    Rectangle2D intersection = this.collider.createIntersection(obj.collider);
 //    // Vertical collision
