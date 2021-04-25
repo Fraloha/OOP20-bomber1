@@ -164,9 +164,6 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        for (GameObject obj : deathObject) {
-            collection.despawn(obj);
-        }
         for (Enemy enemy : collection.getEnemyList()) {
             enemy.update(this.bomberMan.getPosition());
         }
@@ -174,6 +171,9 @@ public class WorldImpl implements World {
         this.checkCollision();
         this.checkRespawn();
         this.checkBoundary();
+        for (GameObject obj : deathObject) {
+            collection.despawn(obj);
+        }
     }
 
     @Override

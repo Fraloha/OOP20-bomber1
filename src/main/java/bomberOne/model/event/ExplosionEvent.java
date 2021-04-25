@@ -48,7 +48,7 @@ public class ExplosionEvent implements WorldEvent {
                 .map(e -> e.getPosition()).collect(Collectors.toList()));
 
         // Left Direction
-        for (int i = 1; i < exp.getFirePower(); i++) {
+        for (int i = 0; i < exp.getFirePower(); i++) {
             P2d newPos = new P2d(exp.getCenter().getX() - OBJ_DIMETIONS, exp.getCenter().getY());
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
@@ -64,7 +64,7 @@ public class ExplosionEvent implements WorldEvent {
         }
 
         // Right Direction
-        for (int i = 1; i < exp.getFirePower(); i++) {
+        for (int i = 0; i < exp.getFirePower(); i++) {
             P2d newPos = new P2d(exp.getCenter().getX() + OBJ_DIMETIONS, exp.getCenter().getY());
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
@@ -80,7 +80,7 @@ public class ExplosionEvent implements WorldEvent {
         }
 
         // Up Directions
-        for (int i = 1; i < exp.getFirePower(); i++) {
+        for (int i = 0; i < exp.getFirePower(); i++) {
             P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() - OBJ_DIMETIONS);
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
@@ -96,7 +96,7 @@ public class ExplosionEvent implements WorldEvent {
         }
 
         // Down Directions
-        for (int i = 1; i < exp.getFirePower(); i++) {
+        for (int i = 0; i < exp.getFirePower(); i++) {
             P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() + OBJ_DIMETIONS);
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
