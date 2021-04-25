@@ -78,14 +78,14 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
-        this.setKeyListener();
+        this.setUpKeyListener();
 
     }
 
     /**
      * Prepare the KeyListener
      */
-    private void setKeyListener() {
+    private void setUpKeyListener() {
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
