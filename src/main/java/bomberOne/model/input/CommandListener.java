@@ -3,36 +3,46 @@ package bomberOne.model.input;
 import java.util.List;
 
 import bomberOne.model.GameModel;
+import bomberOne.model.input.commands.Command;
 
 public interface CommandListener {
-	
-	/**
-	 * This method add the 
-	 * @param command in the commandList
-	 */
-	public void addCommand(Command command);
-	
-	/**
-	 * 
-	 * @return the commandList
-	 */
-	public List<Command> getCommandList();
-	
-	/**
-	 * Scroll all the commandList and call the method execute()
-	 * on all the command of the commandList
-	 */
-	public void executeAll();
-	
-	/**
-	 * Attach the 
-	 * @param game at gameModel 
-	 */
-	public void setGameModel(GameModel game);
-	
-	/**
-	 * 
-	 * @return the GameModel attached
-	 */
-	public GameModel getGameModel();
+
+    /**
+     * This method add the "command" to the CommandList.
+     * 
+     * @param command
+     */
+    void addCommand(Command command);
+
+    /**
+     * Method that return the CommandList.
+     * 
+     * @return commandList
+     */
+    List<Command> getCommandList();
+
+    /**
+     * Scroll all the commandList and call the method execute() on all the command of the commandList.
+     */
+    void executeCommands();
+
+    /**
+     * Attach the "game" at the GameModel.
+     * 
+     * @param game
+     */
+    void setGameModel(GameModel game);
+
+    /**
+     * Method that return the GameModel attached.
+     * 
+     * @return GameModel
+     */
+    GameModel getGameModel();
+    
+    /**
+     * 
+     * @return the PlayerBeaviour
+     */
+    PlayerBehaviour getPlayerBehaviour();
 }

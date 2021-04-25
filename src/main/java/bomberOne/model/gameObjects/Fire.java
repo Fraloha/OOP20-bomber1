@@ -1,8 +1,9 @@
 package bomberOne.model.gameObjects;
 
 /**
-* A simple GameObject
-*/
+ * A simple GameObject.
+ */
 public interface Fire extends GameObject {
-	
+
+    
 }

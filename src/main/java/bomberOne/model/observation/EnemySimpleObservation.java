@@ -5,6 +5,10 @@ import bomberOne.model.common.P2d;
 public class EnemySimpleObservation extends EnemyObservation implements SimpleObservation{
 	
 	/* Constructor. */
+        public EnemySimpleObservation() {
+            super();
+        }
+
 	public EnemySimpleObservation(P2d destination) {
 		super(destination);
 	}

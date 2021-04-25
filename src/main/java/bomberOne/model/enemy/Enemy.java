@@ -1,13 +1,16 @@
+/**
+ * This interface define a basic enemy.
+ */
+
 package bomberOne.model.enemy;
 
 import bomberOne.model.gameObjects.AnimatedEntity;
+import bomberOne.model.common.P2d;
 
+public interface Enemy extends AnimatedEntity {
 
-/**
- * This interface define a basic enemy.
- * @author Francesco
- *
- */
-public interface Enemy extends AnimatedEntity{
-	void changeDir();
+        /* Methods. */
+	void changePath();
+	
+	void update(P2d playerPosition);
 }

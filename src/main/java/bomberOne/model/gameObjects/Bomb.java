@@ -5,7 +5,7 @@ import java.util.Optional;
 public interface Bomb extends GameObject {
 
     /**
-     * This method generate the explosion of @this Bomb, and it fill the Optional with the Explosion.
+     * Method that generate the explosion of @this Bomb, and it fill the Optional with the Explosion.
      * 
      * @return the Explosion
      */

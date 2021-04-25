@@ -1,3 +1,4 @@
+
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
@@ -6,32 +7,28 @@ import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
 import bomberOne.model.input.CommandListenerImpl;
 import bomberOne.views.game.GameView;
+import javafx.application.Platform;
 
 public final class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
 
-    private static final int PERIOD = 20;
+    private static final double PERIOD = 16.6666;
 
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
+    private Thread game;
 
     @Override
     public void run() {
-        long lastTime = System.nanoTime();
-        final double ns = 1000000000.0 / 60.0; // Locked ticks per second to 60
-        double delta = 0;
-        // Count FPS, Ticks, and execute updates
-        while (this.getModel().getGameOver()) {
-            long currentTime = System.nanoTime();
-            delta += (currentTime - lastTime) / ns;
-            int elapsed = (int) (currentTime - lastTime);
-            lastTime = currentTime;
-            if (delta >= 1) {
-                this.updateGame(elapsed);
-                this.processEvent();
-                this.processInput();
-                delta--;
-            }
+        long lastTime = System.currentTimeMillis();
+        while (!this.getModel().getGameOver()) {
+            long current = System.currentTimeMillis();
+            int elapsed = (int) (current - lastTime);
+            this.processInput();
+            this.updateGame(elapsed);
+            this.processEvent();
             this.render();
+            this.waitForNextFrame(current);
+            lastTime = current;
         }
         ((GameView) this.getView()).switchToRank();
 
@@ -41,7 +38,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         long dt = System.currentTimeMillis() - current;
         if (dt < PERIOD) {
             try {
-                Thread.sleep(PERIOD - dt);
+                Thread.sleep((long) (PERIOD - dt));
             } catch (Exception ex) {
 
             }
@@ -50,7 +47,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
 
     @Override
     public void processInput() {
-        commandHandler.executeAll();
+        commandHandler.executeCommands();
     }
 
     @Override
@@ -67,8 +64,12 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
     public void init() {
         this.eventHandler = new WorldEventListenerImpl();
         this.commandHandler = new CommandListenerImpl();
-        this.getModel().init();
-        this.run();
+        this.eventHandler.setGameModel(this.getModel());
+        this.commandHandler.setGameModel(this.getModel());
+        this.getModel().getWorld().setEventListener(this.eventHandler);
+        // this.getModel().init();
+        this.game = new Thread(this);
+        this.game.start();
     }
 
     @Override

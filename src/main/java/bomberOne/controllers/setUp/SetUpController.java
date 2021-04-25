@@ -30,7 +30,7 @@ public interface SetUpController extends Controller {
     /**
      * Set the skin of the Bomberman.
      * 
-     * @param skin 
+     * @param skin
      */
     void setSkin(Skins skin);
 

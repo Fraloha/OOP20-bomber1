@@ -7,6 +7,7 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.FireImpl;
+import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
@@ -36,13 +37,21 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
         if (color.equals(Skins.BLUE)) {
             images = AnimatedObjectsSprites.PLAYER_4.getSprites();
         }
+        
         return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES);
     }
 
     @Override
     public GameObject createEnemy(final P2d position, final Difficulty diff) {
-        // TODO Auto-generated method stub
-        return null;
+        BufferedImage[][] sprites = null;
+        //Choosing the enemy sprites on the basis of the difficulty game mode chosen.
+        if (diff.equals(Difficulty.STANDARD)) {
+            sprites = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
+        } else if (diff.equals(Difficulty.HARD)) {
+            sprites = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
+        }
+
+        return new EnemyImpl(position, sprites, 1, diff);
     }
 
     @Override
@@ -53,7 +62,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
     @Override
     public GameObject createPowerUp(final P2d position, final Type type) {
 
-        BufferedImage powerUpImage = new BufferedImage(0, 0, 0);
+        BufferedImage powerUpImage = null;
         if (type.equals(PowerUp.Type.FirePower)) {
             powerUpImage = ObjectsImages.POWER_FIREPOWER.getImage();
         }
@@ -66,6 +75,9 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
         if (type.equals(PowerUp.Type.Time)) {
             powerUpImage = ObjectsImages.POWER_TIMER.getImage();
         }
+        if (type.equals(PowerUp.Type.Ammo)) {
+            powerUpImage = ObjectsImages.POWER_BOMB.getImage();
+        }
         PowerUp pU = new PowerUpImpl(position, powerUpImage, 1, true, type);
         return pU;
     }
@@ -77,7 +89,7 @@ public final class GameObjectFactoryImpl implements GameObjectFactory {
 
     @Override
     public GameObject createFire(final P2d position) {
-        return new FireImpl(position, ObjectsImages.FIRE.getImage(), 1);
+        return new FireImpl(position, AnimatedObjectsSprites.FIRE.getSprites(), 1);
     }
 
     @Override

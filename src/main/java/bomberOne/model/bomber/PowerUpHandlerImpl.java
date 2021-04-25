@@ -1,35 +1,47 @@
 package bomberOne.model.bomber;
 
 /**
- * This class apply the powerUp at the Bomber
- * @author Gustavo Mazzanti
+ * This class apply the powerUp at the Bomber.
+ * 
  *
  */
 public class PowerUpHandlerImpl implements PowerUpHandler {
-	
-	private final BomberImpl bomber;
-		
-	public PowerUpHandlerImpl(BomberImpl bomber) {
-		this.bomber = bomber;
-	}
-	
-	@Override
-	public void applyFirePower(int increment) {
-		this.bomber.incFirePower(increment);
-	}
 
-	@Override
-	public void applySpeed(double increment) {
-		this.bomber.incSpeed(increment);
-	}
+    private final BomberImpl bomber;
 
-	@Override
-	public void applyPierce() {
-		this.bomber.activatePierce();
-	}
+    public PowerUpHandlerImpl(final BomberImpl bomber) {
+        this.bomber = bomber;
+    }
 
-	@Override
-	public void applyMultiAmmo(int increment) {
-		this.bomber.incAmmo(increment);
-	}
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyFirePower(final int increment) {
+        this.bomber.incFirePower(increment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applySpeed(final double increment) {
+        this.bomber.incSpeed(increment);
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyPierce() {
+        this.bomber.activatePierce();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void applyMultiAmmo(final int increment) {
+        this.bomber.incAmmo(increment);
+    }
 }
