@@ -1,5 +1,6 @@
 package bomberOne.model.enemy;
 
+import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import java.awt.image.BufferedImage;
@@ -18,6 +19,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private Actions behavior;
         private int frameCounter;
         private Queue<P2d> badPath;
+        private Queue<P2d> normalPath;
+        private Queue<Direction> nextDirections;
         
         /* Constructors. */
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
@@ -25,6 +28,10 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             
             //Setting the number of frames that the enemy has to wait before start moving.
             this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
+            
+            this.badPath = new LinkedList<P2d>();
+            this.normalPath = new LinkedList<P2d>();
+            this.nextDirections = new LinkedList<Direction>();
             
             //Creating the enemy behavior on the basis of the mode chosen by the user.
             if (mode.equals(Difficulty.STANDARD)) {
@@ -40,29 +47,33 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
          * {@inheritDoc}
          */
         public void update(P2d playerPosition) {
-            super.update(0);
-            
+            super.update(this.getTimeElapsed());
+
             //The enemy before acts has to wait four second that are 240 frames.
             //Checking if the frame counter is greater than zero.
             if (this.frameCounter > 0) {
                 this.frameCounter--;
-            }else {
+            } else {
                 //If the enemy has an IntermediateBehavior, the player position
                 //has to be passed.
                 if(this.behavior instanceof IntermediateBehavior) {
                     ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition);
+                    ((IntermediateBehavior) this.behavior).isFound(playerPosition);
                 }
-                
+
                 //Executing the behavior.
                 this.behavior.doActions();
             }
         }
-        
+
         /**
          * {@inheritDoc}
          */
         @Override
         public void changePath() {
-
+            //Setting the bad path to not walk through the path that makes the enemy
+            //collide.
+            this.badPath = this.normalPath;
+            this.normalPath.clear();
         }
 }

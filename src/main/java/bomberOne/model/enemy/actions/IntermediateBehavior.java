@@ -15,6 +15,7 @@ public class IntermediateBehavior implements Actions {
 	private EnemyTriggeredObservation triggeredObs;
 	private BasicBehavior basicActions;
 	private Enemy selectedEnemy;
+	private boolean playerFound;
 
 	/* Constructor. */
 	public IntermediateBehavior(final Enemy newEnemy) {
@@ -22,6 +23,7 @@ public class IntermediateBehavior implements Actions {
 		this.triggeredObs = new EnemyTriggeredObservation();
 		this.selectedEnemy = newEnemy;
 		this.basicActions = new BasicBehavior(this.selectedEnemy);
+		this.playerFound = false;
 	}
 	
 	/* Methods. */
@@ -32,20 +34,8 @@ public class IntermediateBehavior implements Actions {
 	@Override
 	public void doActions() {
 	    //Checking if the enemy can see the player.
-	    if (this.triggeredObs.found(this.selectedEnemy.getPosition(), this.selectedEnemy.getDir())) {
+	    if (this.playerFound) {
 	        
-	        //Generating the following mode.
-	        int mode = this.randomGenerator.nextInt(2);
-	        Direction computedDirection;
-	        
-	        if(mode == 0) {
-	            computedDirection = this.triggeredObs.computeDestinationDirection(this.selectedEnemy.getPosition(), new DirectionComparator(FollowingModes.HORINZONTALLY));
-	        }else {
-	            computedDirection = this.triggeredObs.computeDestinationDirection(this.selectedEnemy.getPosition(), new DirectionComparator(FollowingModes.VERTICALLY));
-	        }
-	        
-	        //Following the player.
-	        this.follow(computedDirection);
 	    } else {
 	        //If the enemy have not seen the player, it acts randomly.
 	        this.basicActions.doActions();
@@ -84,6 +74,12 @@ public class IntermediateBehavior implements Actions {
 	        this.selectedEnemy.setSpriteIndex(0);
 	        this.selectedEnemy.moveDown();
 
+	    }
+	}
+	
+	public void isFound(P2d playerPosition) {
+	    if(!this.playerFound) {
+	        this.triggeredObs.found(playerPosition, this.selectedEnemy.getDir());
 	    }
 	}
 }
