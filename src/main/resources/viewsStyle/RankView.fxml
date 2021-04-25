@@ -10,7 +10,7 @@
 
 <AnchorPane prefHeight="559.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane fx:id="rankingBorderPane" layoutX="-2.0" layoutY="1.0" prefHeight="560.0" prefWidth="412.0">
+      <BorderPane fx:id="rankingBorderPane" stylesheets="./StyleSheets/RankViewStyleSheet.css" layoutX="-2.0" layoutY="1.0" prefHeight="560.0" prefWidth="412.0">
          <center>
             <TableView fx:id="rankingList" prefHeight="482.0" prefWidth="347.0" BorderPane.alignment="CENTER">
               <columns>
