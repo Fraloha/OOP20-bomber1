@@ -76,6 +76,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.usedAmmo = 0;
         this.spriteIndex = SPRITES;
         this.animationIndex = 0;
+        this.setUpHandler(new PowerUpHandlerImpl(this));
     }
 
     /**

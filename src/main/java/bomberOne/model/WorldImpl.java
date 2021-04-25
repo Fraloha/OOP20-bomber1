@@ -168,12 +168,12 @@ public class WorldImpl implements World {
             enemy.update(this.bomberMan.getPosition());
         }
         this.checkExplosion();
-        this.checkCollision();
-        this.checkRespawn();
-        this.checkBoundary();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
         }
+        this.checkCollision();
+        this.checkRespawn();
+        this.checkBoundary();
     }
 
     @Override

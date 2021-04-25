@@ -79,7 +79,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setKeyListener();
-        
+
     }
 
     /**
@@ -103,7 +103,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             }
         });
     }
-    
+
     @Override
     public void drawGame() {
         this.clockImageView.setImage(SwingFXUtils.toFXImage(ObjectsImages.CLOCK.getImage(), null));
@@ -145,6 +145,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                         IMAGE_SIZE);
             });
         });
+
         /* Draw the powerUp */
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getPowerUpList().stream()
@@ -153,7 +154,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                 pUp.getPosition().getX(), pUp.getPosition().getY());
                     });
         });
-        /* Draw bomb */
+
+        /* Draw bombs */
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getBombList().stream()
                     .forEach(bomb -> {
@@ -161,6 +163,15 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                 bomb.getPosition().getX(), bomb.getPosition().getY());
                     });
         });
+
+        /* Draw the fire */
+        Platform.runLater(() -> {
+            this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
+                this.gCForeground.drawImage(SwingFXUtils.toFXImage(fire.getImage(), null), fire.getPosition().getX(),
+                        fire.getPosition().getY());
+            });
+        });
+
         /* Draw enemies */
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
@@ -169,17 +180,11 @@ public final class GameViewImpl extends ViewImpl implements GameView {
                                 enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
                     });
         });
+
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(SwingFXUtils.toFXImage(bomberTemp.getImage(), null),
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
-        /* Draw the fire */
-        Platform.runLater(() -> {
-            this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
-                this.gCForeground.drawImage(SwingFXUtils.toFXImage(fire.getImage(), null), fire.getPosition().getX(),
-                        fire.getPosition().getY());
-            });
-        });
 
     }
 
