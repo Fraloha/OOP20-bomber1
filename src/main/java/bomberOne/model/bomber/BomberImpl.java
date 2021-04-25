@@ -41,7 +41,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     /**
      * Constant for set the upgrade from powerUp Bomber.
      */
-    public static final double SPEED_INC = 2;
+    public static final double SPEED_INC = 500;
     /**
      * Constant for set the upgrade from powerUp Bomber .
      */

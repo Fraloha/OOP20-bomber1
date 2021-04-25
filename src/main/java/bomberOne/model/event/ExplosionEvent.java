@@ -48,8 +48,8 @@ public class ExplosionEvent implements WorldEvent {
                 .map(e -> e.getPosition()).collect(Collectors.toList()));
 
         // Left Direction
-        for (int i = 0; i < exp.getFirePower(); i++) {
-            P2d newPos = new P2d(exp.getCenter().getX() - OBJ_DIMETIONS, exp.getCenter().getY());
+        for (int i = 1; i <= exp.getFirePower(); i++) {
+            P2d newPos = new P2d(exp.getCenter().getX() - (OBJ_DIMETIONS * i), exp.getCenter().getY());
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
@@ -64,8 +64,8 @@ public class ExplosionEvent implements WorldEvent {
         }
 
         // Right Direction
-        for (int i = 0; i < exp.getFirePower(); i++) {
-            P2d newPos = new P2d(exp.getCenter().getX() + OBJ_DIMETIONS, exp.getCenter().getY());
+        for (int i = 1; i <= exp.getFirePower(); i++) {
+            P2d newPos = new P2d(exp.getCenter().getX() + (OBJ_DIMETIONS * i), exp.getCenter().getY());
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
@@ -74,14 +74,14 @@ public class ExplosionEvent implements WorldEvent {
             } else {
                 break;
             }
-            if (boxListPos.contains(newPos) || !exp.getPierce()) {
+            if (boxListPos.contains(newPos) && !exp.getPierce()) {
                 break;
             }
         }
 
         // Up Directions
-        for (int i = 0; i < exp.getFirePower(); i++) {
-            P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() - OBJ_DIMETIONS);
+        for (int i = 1; i <= exp.getFirePower(); i++) {
+            P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() - (OBJ_DIMETIONS * i));
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
@@ -90,14 +90,14 @@ public class ExplosionEvent implements WorldEvent {
             } else {
                 break;
             }
-            if (boxListPos.contains(newPos) || !exp.getPierce()) {
+            if (boxListPos.contains(newPos) && !exp.getPierce()) {
                 break;
             }
         }
 
         // Down Directions
-        for (int i = 0; i < exp.getFirePower(); i++) {
-            P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() + OBJ_DIMETIONS);
+        for (int i = 1; i <= exp.getFirePower(); i++) {
+            P2d newPos = new P2d(exp.getCenter().getX(), exp.getCenter().getY() + (OBJ_DIMETIONS * i));
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
