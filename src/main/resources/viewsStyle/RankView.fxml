@@ -10,20 +10,20 @@
 
 <AnchorPane prefHeight="559.0" prefWidth="412.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <BorderPane layoutX="-2.0" layoutY="1.0" prefHeight="560.0" prefWidth="412.0">
+      <BorderPane fx:id="rankingBorderPane" layoutX="-2.0" layoutY="1.0" prefHeight="560.0" prefWidth="412.0">
          <center>
-            <TableView prefHeight="482.0" prefWidth="347.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="rankingList" prefHeight="482.0" prefWidth="347.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn prefWidth="205.0" text="Player" />
-                <TableColumn prefWidth="206.0" text="Score" />
+                <TableColumn fx:id="rankingListPlayerColumn" prefWidth="205.0" text="Player" />
+                <TableColumn fx:id="rankingListScoreColumn" prefWidth="206.0" text="Score" />
               </columns>
             </TableView>
          </center>
          <bottom>
-            <ButtonBar prefHeight="40.0" prefWidth="248.0" BorderPane.alignment="CENTER">
+            <ButtonBar fx:id="rankingButtonBar" prefHeight="40.0" prefWidth="248.0" BorderPane.alignment="CENTER">
               <buttons>
-                  <Button text="Exit" ButtonBar.buttonData="LEFT" />
-                  <Button text="Main menu" ButtonBar.buttonData="RIGHT" />
+                  <Button fx:id="rankingExitButton" text="Exit" ButtonBar.buttonData="LEFT" />
+                  <Button fx:id="rankingMainMenuButton" text="Main menu" ButtonBar.buttonData="RIGHT" />
               </buttons>
             </ButtonBar>
          </bottom>
