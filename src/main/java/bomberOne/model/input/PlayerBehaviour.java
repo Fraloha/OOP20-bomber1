@@ -1,4 +1,4 @@
-package bomberOne.model.bomber;
+package bomberOne.model.input;
 
 
 public class PlayerBehaviour {

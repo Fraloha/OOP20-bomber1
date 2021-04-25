@@ -3,18 +3,18 @@ package bomberOne.views.game;
 import java.util.List;
 
 import bomberOne.model.bomber.Bomber;
-import bomberOne.model.bomber.PlayerBehaviour;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUpImpl;
+import bomberOne.model.input.PlayerBehaviour;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ObjectsImages;
 import bomberOne.views.ViewImpl;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.game.movement.ControlsMap;
-import bomberOne.views.game.movement.ControlsMap;
+import bomberOne.controllers.game.*;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
@@ -28,6 +28,9 @@ import javafx.scene.input.KeyEvent;
 
 public final class GameViewImpl extends ViewImpl implements GameView {
 
+    private static final int N_LIFES_ONE = 1;
+    private static final int N_LIFES_TWO = 2;
+    private static final int N_LIFES_THREE = 3;
     private static final int IMAGE_SIZE = 32;
     private static final int ANIMATED_ENTITY_IMAGE_HEIGHT = 16;
     private static final int WORLD_CELLS = 18;
@@ -73,8 +76,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.drawGame();
         this.getController().init();
-//        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this);
-        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(), this.getController().getModel().getWorld().getBomber().getPlayerBehaviour());
+        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
+                ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
 
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
             public void handle(KeyEvent e) {
@@ -98,7 +101,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
     public void drawGame() {
         this.clockImageView.setImage(SwingFXUtils.toFXImage(ObjectsImages.CLOCK.getImage(), null));
         this.drawBomberOnScoreBoard();
-        // this.drawLifes();
+        this.drawLifes();
         /* Draw the background */
         Image backgroundImage = SwingFXUtils.toFXImage(ObjectsImages.BACKGROUND.getImage(), null);
         for (int i = 0; i < WORLD_CELLS; i++) {
@@ -127,7 +130,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
-        // Draw the boxes
+        /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = SwingFXUtils.toFXImage(ObjectsImages.BOX.getImage(), null);
             this.getController().getModel().getWorld().getGameObjectCollection().getBoxList().forEach(box -> {
@@ -200,31 +203,11 @@ public final class GameViewImpl extends ViewImpl implements GameView {
      */
     private void drawLifes() {
         int nLifes = this.getController().getModel().getWorld().getBomber().getLifes();
-        switch (nLifes) {
-        case 3:
-            this.lifeOne.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            this.lifeTwo.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            this.lifeThree.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            break;
-        case 2:
-            this.lifeOne.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            this.lifeTwo.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            this.lifeThree.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            break;
-        case 1:
-            this.lifeOne.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null));
-            this.lifeTwo.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            this.lifeThree.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            break;
-        case 0:
-            this.lifeOne.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            this.lifeTwo.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            this.lifeThree.setImage(SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null));
-            break;
-        default:
-            break;
-        }
-
+        Image lifeYes = SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null);
+        Image lifeNo = SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null);
+        this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo);
+        this.lifeTwo.setImage((nLifes >= N_LIFES_TWO) ? lifeYes : lifeNo);
+        this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo);
     }
 
     @Override

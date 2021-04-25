@@ -60,8 +60,6 @@ public interface World {
      * Check if bomber or enemy is colliding with Wall or Box.
      */
     void checkBoundary();
-
-    boolean checkBounds();
     
     /**
      * Check if a bomb is exploded.

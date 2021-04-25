@@ -7,12 +7,11 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import bomberOne.model.bomber.BomberImpl;
-import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
 import bomberOne.model.event.ExplosionEvent;
 import bomberOne.model.event.HitBorderEvent;
-import bomberOne.model.event.HitFireEvent;
+import bomberOne.model.event.HitEntityEvent;
 import bomberOne.model.event.PickPowerUpEvent;
 import bomberOne.model.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
@@ -24,10 +23,8 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.ObjectsImages;
 import bomberOne.tools.maps.Maps;
 
 public class WorldImpl implements World {
@@ -60,7 +57,7 @@ public class WorldImpl implements World {
         this.setHardWall();
         this.setBox(this.difficulty);
     }
-    
+
     public void setModel(final GameModel model) {
         this.model = model;
     }
@@ -189,7 +186,7 @@ public class WorldImpl implements World {
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
                 if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
-                    this.listener.notifyEvent(new HitFireEvent(obj));
+                    this.listener.notifyEvent(new HitEntityEvent(obj));
                 }
             }
         }
@@ -200,6 +197,12 @@ public class WorldImpl implements World {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
+        /* Check if enemy hit Bomberman */
+        this.collection.getEnemyList().stream().forEach(enemy -> {
+            if (enemy.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+                this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
+            }
+        });
     }
 
     @Override
@@ -234,7 +237,6 @@ public class WorldImpl implements World {
             }
         }
     }
-    
 
     @Override
     public final void checkExplosion() {
@@ -244,20 +246,6 @@ public class WorldImpl implements World {
                 listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
             }
         }
-    }
-
-    @Override
-    public boolean checkBounds() {
-        List<GameObject> wallBoxList = new LinkedList<>();
-        wallBoxList.addAll(collection.getHardWallList());
-        wallBoxList.addAll(collection.getBoxList());
-        for (GameObject wall : wallBoxList) {
-            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
-               // listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall, this.bomberMan.getDir()));
-                return true;
-            }
-        }
-        return false;
     }
 
 }

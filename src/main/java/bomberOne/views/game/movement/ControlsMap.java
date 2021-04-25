@@ -5,7 +5,7 @@ import java.util.Map;
 import java.util.function.Consumer;
 
 import bomberOne.controllers.game.GameController;
-import bomberOne.model.bomber.PlayerBehaviour;
+import bomberOne.model.input.PlayerBehaviour;
 import bomberOne.model.input.commands.MoveDown;
 import bomberOne.model.input.commands.MoveLeft;
 import bomberOne.model.input.commands.MoveRight;

@@ -39,4 +39,10 @@ public interface CommandListener {
      * @return GameModel
      */
     GameModel getGameModel();
+    
+    /**
+     * 
+     * @return the PlayerBeaviour
+     */
+    PlayerBehaviour getPlayerBehaviour();
 }

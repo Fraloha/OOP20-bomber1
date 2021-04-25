@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 
 import bomberOne.model.GameModel;
-import bomberOne.model.bomber.PlayerBehaviour;
 import bomberOne.model.input.commands.Command;
 import bomberOne.model.input.commands.MoveDown;
 import bomberOne.model.input.commands.MoveLeft;
@@ -20,11 +19,11 @@ import bomberOne.model.input.commands.PlantBomb;
 public class CommandListenerImpl implements CommandListener {
     private List<Command> commandList;
     private GameModel game;
-    private Command lastCommand;
-    private boolean first = true;
+    private PlayerBehaviour behaviour;
 
     public CommandListenerImpl() {
         this.commandList = new LinkedList<>();
+        this.behaviour = new PlayerBehaviour();
     }
 
     /**
@@ -51,21 +50,19 @@ public class CommandListenerImpl implements CommandListener {
      */
     @Override
     public void executeCommands() {
-
-        PlayerBehaviour actions = this.game.getWorld().getBomber().getPlayerBehaviour();
-        if(actions.isToggleDownPressed()) {
+        if(this.behaviour.isToggleDownPressed()) {
             new MoveDown().execute(game);
         }
-        if(actions.isToggleUpPressed()) {
+        if(this.behaviour.isToggleUpPressed()) {
             new MoveUp().execute(game);
         }
-        if(actions.isToggleLeftPressed()) {
+        if(this.behaviour.isToggleLeftPressed()) {
             new MoveLeft().execute(game);
         }
-        if(actions.isToggleRightPressed()) {
+        if(this.behaviour.isToggleRightPressed()) {
             new MoveRight().execute(game);
         }
-        if(actions.isToggleActionPressed()) {
+        if(this.behaviour.isToggleActionPressed()) {
             new PlantBomb().execute(game);
         }
 
@@ -85,5 +82,10 @@ public class CommandListenerImpl implements CommandListener {
     @Override
     public GameModel getGameModel() {
         return this.game;
+    }
+
+    @Override
+    public PlayerBehaviour getPlayerBehaviour() {
+        return this.behaviour;
     }
 }
