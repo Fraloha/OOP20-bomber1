@@ -24,7 +24,7 @@ public class HitEntityEvent implements WorldEvent {
     }
 
     /**
-     * When an GameObject is Colliding with the fire, it calls "hitted()" on the
+     * When an GameObject is Colliding with the fire or when a enemy hit the Bomber, it calls "hitted()" on the
      * Object.
      * 
      */
