@@ -174,7 +174,8 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
                     .forEach(enemy -> {
                         this.gCForeground.drawImage(SwingFXUtils.toFXImage(enemy.getImage(), null),
-                                enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_WIDTH, ENEMY_HEIGHT);
+                                enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
+                                ENEMY_WIDTH, ENEMY_HEIGHT);
                     });
         });
 
@@ -192,18 +193,22 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         Skins color = this.getController().getModel().getUser().getSkin();
         // Draw the icon of the Bomber
         if (color.equals(Skins.WHITE)) {
-            Platform.runLater(() -> miniBomber.setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER1SCOREBOARD.getImage(), null)));
+            Platform.runLater(() -> miniBomber
+                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER1SCOREBOARD.getImage(), null)));
         }
         if (color.equals(Skins.BLACK)) {
-            Platform.runLater(() -> miniBomber.setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER2SCOREBOARD.getImage(), null)));
+            Platform.runLater(() -> miniBomber
+                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER2SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.RED)) {
-            Platform.runLater(() -> miniBomber.setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER3SCOREBOARD.getImage(), null)));
+            Platform.runLater(() -> miniBomber
+                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER3SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.BLUE)) {
-            Platform.runLater(() -> miniBomber.setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER4SCOREBOARD.getImage(), null)));
+            Platform.runLater(() -> miniBomber
+                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER4SCOREBOARD.getImage(), null)));
         }
     }
 

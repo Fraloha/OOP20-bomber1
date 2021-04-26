@@ -57,7 +57,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
 
     @Override
     public void updateGame(final int elapsedTime) {
-        this.getModel().getWorld().updateState(elapsedTime);
+        this.getModel().updateGame(elapsedTime);
     }
 
     @Override
