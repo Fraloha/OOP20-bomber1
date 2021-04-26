@@ -44,6 +44,13 @@ public final class ExitAlertBox implements DialogBox{
         //Setting the visual objects in the layout.
         this.windowLayout.getChildren().addAll(this.message, this.confirmExit, this.cancelExit);
         this.windowLayout.setAlignment(Pos.CENTER);
+        
+        //Creating the scene.
+        this.scene = new Scene(windowLayout);
+        
+        //Setting the scene into the stage.
+        this.window.setScene(this.scene);
+        this.window.showAndWait();
     }
     
     /* Methods. */
