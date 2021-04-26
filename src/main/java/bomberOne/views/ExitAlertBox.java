@@ -11,7 +11,7 @@ import javafx.scene.layout.VBox;
 public final class ExitAlertBox implements DialogBox{
     
     /* Fields. */
-    private static boolean answer;
+    private boolean answer;
     private Stage window;
     private Scene scene;
     private Label message;
@@ -19,8 +19,12 @@ public final class ExitAlertBox implements DialogBox{
     private Button cancelExit;
     private VBox windowLayout;
     
-    /* Constructors. */
-    public ExitAlertBox(final String title, final String message, 
+    /* Methods. */
+    
+    /**
+     * {@inheritDoc}
+     */
+    public boolean display(final String title, final String message, 
             final String confirmExitButtonText, final String cancelButtonText) {
 
         this.window = new Stage();
@@ -51,9 +55,10 @@ public final class ExitAlertBox implements DialogBox{
         //Setting the scene into the stage.
         this.window.setScene(this.scene);
         this.window.showAndWait();
+        
+        return answer;
     }
-    
-    /* Methods. */
+
     private void onClickConfirmExitButton() {
         this.answer = true;
         window.close();
