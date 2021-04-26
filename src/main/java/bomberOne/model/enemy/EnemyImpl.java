@@ -26,6 +26,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
             super(position, img, lifes, img[0][0]);
             
+            System.out.println("Enemy created");
+            
             //Setting the number of frames that the enemy has to wait before start moving.
             this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
             
@@ -64,11 +66,25 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             }
         }
         
+        /**
+         * {@inheritDoc}
+         */
         public Direction getPreviousDirection() {
             return this.previousDirection;
         }
         
+        /**
+         * {@inheritDoc}
+         */
         public void setPreviousDirection(Direction newDirection) {
             this.previousDirection = newDirection;
+        }
+        
+        /**
+         * {@inheritDoc}
+         */
+        @Override
+        public BufferedImage getImage() {
+            return this.getSprites()[this.getSpriteIndex()][this.getAnimationIndex() % 6];
         }
 }

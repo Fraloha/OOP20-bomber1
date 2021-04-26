@@ -178,4 +178,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     public int getAnimationIndex() {
         return this.animationsIndex;
     }
+    
+    public BufferedImage[][] getSprites(){
+        return this.sprites;
+    }
 }
