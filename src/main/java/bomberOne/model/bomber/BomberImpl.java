@@ -58,24 +58,19 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     private int usedAmmo;
     private PowerUpHandler activator;
     private int fpAgg = 0;
-    // Images and animations
-    private int spriteIndex; // 0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
-    private int animationIndex;
-    private BufferedImage[][] animations;
     private boolean isChangedDir = false;
 
     public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
         super(pos, img, lifes, img[0][1]);
         this.setSpeed(SPEED);
         this.setDir(DIR);
-        this.animations = img;
         this.startPosition = pos;
         this.firePower = FIRE_POWER;
         this.pierce = false;
         this.maxAmmo = AMMO;
         this.usedAmmo = 0;
-        this.spriteIndex = SPRITES;
-        this.animationIndex = 0;
+        this.setSpriteIndex(SPRITES);
+        this.setAnimationIndex(0);
         this.setUpHandler(new PowerUpHandlerImpl(this));
     }
 
@@ -92,8 +87,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.pierce = false;
         this.maxAmmo = AMMO;
         this.usedAmmo = 0;
-        this.spriteIndex = SPRITES;
-        this.animationIndex = 0;
+        this.setSpriteIndex(SPRITES);
+        this.setAnimationIndex(0);
         this.fpAgg = 0;
     }
 
@@ -152,14 +147,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         default:
             break;
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BufferedImage getImage() {
-        return this.animations[this.spriteIndex][this.animationIndex % 4];
     }
 
     /**
@@ -280,20 +267,20 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             if (this.isChangedDir) {
                 switch (this.getDir()) {
                 case UP:
-                    this.spriteIndex = 0;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(0);
                     break;
                 case DOWN:
-                    this.spriteIndex = 1;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(1);
                     break;
                 case LEFT:
-                    this.spriteIndex = 2;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(2);
                     break;
                 case RIGHT:
-                    this.spriteIndex = 3;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(3);
                     break;
                 default:
                     break;
@@ -302,18 +289,18 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             }
             if (!this.isStatic() && ++this.fpAgg == 10) {
                 this.fpAgg = 0;
-                this.animationIndex++;
+                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
         } else {
-            if (this.spriteIndex != 4) {
-                this.spriteIndex = 4;
-                this.animationIndex = 0;
+            if (this.getSpriteIndex() != 4) {
+                this.setAnimationIndex(0);
+                this.setSpriteIndex(4);
                 this.fpAgg = 0;
             } else if (++this.fpAgg == 10) {
                 this.fpAgg = 0;
-                this.animationIndex++;
+                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
-            if (this.spriteIndex == 4 && this.animationIndex == 3) {
+            if (this.getSpriteIndex() == 4 && this.getAnimationIndex() == 3) {
                 try {
                     TimeUnit.SECONDS.sleep(1);
                 } catch (InterruptedException e) {
@@ -322,8 +309,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.respawn();
             }
         }
-        if (this.isStatic() && this.spriteIndex != 4) {
-            this.animationIndex = 0;
+        if (this.isStatic() && this.getSpriteIndex() != 4) {
+            this.setAnimationIndex(0);
         }
         super.update(elapsed);
     }

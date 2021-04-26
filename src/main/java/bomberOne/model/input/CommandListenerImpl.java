@@ -19,6 +19,7 @@ public class CommandListenerImpl implements CommandListener {
     private List<Command> commandList;
     private GameModel game;
     private PlayerBehaviour behaviour;
+    private boolean isActionCompleted;
 
     public CommandListenerImpl() {
         this.commandList = new LinkedList<>();
@@ -62,7 +63,13 @@ public class CommandListenerImpl implements CommandListener {
             new MoveRight().execute(game);
         }
         if (this.behaviour.isToggleActionPressed()) {
-            new PlantBomb().execute(game);
+            if(!this.isActionCompleted) {
+                new PlantBomb().execute(game);
+                this.isActionCompleted = true;
+            }
+        }
+        else {
+            this.isActionCompleted = false;
         }
 
     }
