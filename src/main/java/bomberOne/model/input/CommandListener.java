@@ -22,7 +22,8 @@ public interface CommandListener {
     List<Command> getCommandList();
 
     /**
-     * Scroll all the commandList and call the method execute() on all the command of the commandList.
+     * Scroll all the commandList and call the method execute() on all the command
+     * of the commandList.
      */
     void executeCommands();
 
@@ -39,7 +40,7 @@ public interface CommandListener {
      * @return GameModel
      */
     GameModel getGameModel();
-    
+
     /**
      * 
      * @return the PlayerBeaviour

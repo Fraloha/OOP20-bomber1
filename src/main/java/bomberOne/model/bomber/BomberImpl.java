@@ -206,12 +206,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveUp() {
-        if (this.getDirection() != Direction.UP) {
-            this.isChangedDir = true;
-            this.setDir(Direction.UP);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.UP) {
+                this.isChangedDir = true;
+                this.setDir(Direction.UP);
+            }
+            System.out.println("moveUP");
+            super.moveUp();
         }
-        System.out.println("moveUP");
-        super.moveUp();
     }
 
     /**
@@ -219,12 +221,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveDown() {
-        if (this.getDirection() != Direction.DOWN) {
-            this.isChangedDir = true;
-            this.setDir(Direction.DOWN);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.DOWN) {
+                this.isChangedDir = true;
+                this.setDir(Direction.DOWN);
+            }
+            System.out.println("moveDOWN");
+            super.moveDown();
         }
-        System.out.println("moveDOWN");
-        super.moveDown();
     }
 
     /**
@@ -232,12 +236,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveLeft() {
-        if (this.getDirection() != Direction.LEFT) {
-            this.isChangedDir = true;
-            this.setDir(Direction.LEFT);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.LEFT) {
+                this.isChangedDir = true;
+                this.setDir(Direction.LEFT);
+            }
+            System.out.println("moveLEFT");
+            super.moveLeft();
         }
-        System.out.println("moveLEFT");
-        super.moveLeft();
     }
 
     /**
@@ -245,12 +251,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveRight() {
-        if (this.getDirection() != Direction.RIGHT) {
-            this.isChangedDir = true;
-            this.setDir(Direction.RIGHT);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.RIGHT) {
+                this.isChangedDir = true;
+                this.setDir(Direction.RIGHT);
+            }
+            System.out.println("moveRIGHT");
+            super.moveRight();
         }
-        System.out.println("moveRIGHT");
-        super.moveRight();
     }
 
     /**
@@ -291,21 +299,27 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 }
                 this.isChangedDir = false;
             }
-        } else {
-            this.spriteIndex = 4;
-            this.animationIndex = 0;
-        }
-        if (!this.isStatic() && ++this.fpAgg == 10) {
-            this.fpAgg = 0;
-            this.animationIndex++;
-        }
-        if (this.spriteIndex == 4 && this.animationIndex % 4 == 3) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (!this.isStatic() && ++this.fpAgg == 10) {
+                this.fpAgg = 0;
+                this.animationIndex++;
             }
-            this.respawn();
+        } else {
+            if (this.spriteIndex != 4) {
+                this.spriteIndex = 4;
+                this.animationIndex = 0;
+                this.fpAgg = 0;
+            } else if (++this.fpAgg == 10) {
+                this.fpAgg = 0;
+                this.animationIndex++;
+            }
+            if (this.spriteIndex == 4 && this.animationIndex == 3) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.respawn();
+            }
         }
         if (this.isStatic() && this.spriteIndex != 4) {
             this.animationIndex = 0;
