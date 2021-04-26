@@ -136,7 +136,9 @@ public class WorldImpl implements World {
      * This method create the enemies at the start of the game.
      */
     private void setEnemy() {
-        this.collection.spawn(this.objectFactory.createEnemy(new P2d((this.DIMENSION-2)*this.FRAME, 1*this.FRAME), this.difficulty));
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d(1 * WorldImpl.FRAME, WorldImpl.DIMENSION * WorldImpl.FRAME), this.difficulty));
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, 1 * WorldImpl.FRAME), this.difficulty));
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION - 2) * WorldImpl.FRAME), this.difficulty));
     }
 
     @Override
