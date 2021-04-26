@@ -6,6 +6,8 @@ import javafx.scene.control.TableView;
 import javafx.stage.Stage;
 import bomberOne.tools.RankLoader;
 import bomberOne.model.user.UserImpl;
+import bomberOne.views.ExitAlertBox;
+
 import java.util.LinkedList;
 
 public final class RankView extends Application {
@@ -27,6 +29,6 @@ public final class RankView extends Application {
 	}
 	
 	private void onExitClickButton() {
-	    
+	    //Creating the alert box.
 	}
 }

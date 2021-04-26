@@ -8,7 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Button;
 import javafx.scene.layout.VBox;
 
-public final class ExitAlertBox implements DialogBox{
+public class ExitAlertBox implements DialogBox{
     
     /* Fields. */
     private boolean answer;
