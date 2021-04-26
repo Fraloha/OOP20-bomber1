@@ -26,8 +26,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
             super(position, img, lifes, img[0][0]);
             
-            System.out.println("Enemy created");
-            
             //Setting the number of frames that the enemy has to wait before start moving.
             this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
             
@@ -44,6 +42,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
                 this.behavior = new IntermediateBehavior(this);
                 this.setSpeed(HIGH_SPEED);
             }
+            
+            System.out.println("Enemy created.");
         }
 
         /* Methods. */
