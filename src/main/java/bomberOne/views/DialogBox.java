@@ -1,4 +1,4 @@
-package bomberOne.views.game;
+package bomberOne.views;
 
 public interface DialogBox {
     

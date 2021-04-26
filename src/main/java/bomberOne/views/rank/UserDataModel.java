@@ -1,4 +1,4 @@
-package bomberOne.views.game;
+package bomberOne.views.rank;
 
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
