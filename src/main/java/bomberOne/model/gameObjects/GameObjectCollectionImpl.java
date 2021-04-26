@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import bomberOne.model.enemy.Enemy;
+import bomberOne.model.enemy.EnemyImpl;
 
 public class GameObjectCollectionImpl implements GameObjectCollection {
 
@@ -67,7 +68,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Enemy> getEnemyList() {
         List<Enemy> enemyList = new LinkedList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(Enemy.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p.getClass().equals(EnemyImpl.class)).forEach(e -> {
             enemyList.add((Enemy) e);
         });
         return enemyList;

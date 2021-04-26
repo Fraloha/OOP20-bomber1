@@ -1,13 +1,7 @@
 package bomberOne.views.game;
 
-import java.util.List;
-
 import bomberOne.model.bomber.Bomber;
-import bomberOne.model.enemy.EnemyImpl;
-import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
-import bomberOne.model.input.PlayerBehaviour;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.img.ObjectsImages;
 import bomberOne.views.ViewImpl;
@@ -29,7 +23,7 @@ import javafx.scene.input.KeyEvent;
 public final class GameViewImpl extends ViewImpl implements GameView {
 
     private static final int ENEMY_WIDTH = 32;
-    private static final int ENEMY_HEIGHT = 48;
+    private static final int ENEMY_HEIGHT = 32;
     private static final int N_LIFES_ONE = 1;
     private static final int N_LIFES_TWO = 2;
     private static final int N_LIFES_THREE = 3;
@@ -180,7 +174,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
             this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
                     .forEach(enemy -> {
                         this.gCForeground.drawImage(SwingFXUtils.toFXImage(enemy.getImage(), null),
-                                enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_HEIGHT, ENEMY_WIDTH);
+                                enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_WIDTH, ENEMY_HEIGHT);
                     });
         });
 

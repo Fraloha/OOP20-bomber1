@@ -54,8 +54,8 @@ public class WorldImpl implements World {
         }
         this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
         this.mapLayout = Maps.MAP1.getList();
-        this.setEnemy();
         this.setHardWall();
+        this.setEnemy();
         this.setBox(this.difficulty);
     }
 
