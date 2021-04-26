@@ -13,7 +13,7 @@ public class FireImpl extends GameObjectImpl implements Fire {
     /**
      * Constant LifeTime.
      */
-    public static final int LIFE_TIME = 210;
+    public static final int LIFE_TIME = 100;
 
     private int lifeTime;
     private int thick;

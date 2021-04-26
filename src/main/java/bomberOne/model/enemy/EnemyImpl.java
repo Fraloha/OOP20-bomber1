@@ -46,25 +46,25 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             System.out.println("Enemy created.");
         }
 
-        /* Methods. */
-        
-        /**
-         * {@inheritDoc}
-         */
-        public void update(int elapsed) {
-            //The enemy before acts has to wait four second that are 240 frames.
-            //Checking if the frame counter is greater than zero.
-            if (this.frameCounter > 0) {
-                this.frameCounter--;
-            } else {
-                //The enemy has to wait some frames before the next move.
-                if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
-                    this.nextMoveFrameCounter = 0;
-                    this.behavior.doActions();
-                    super.update(elapsed);
-                }
+    /* Methods. */
+
+    /**
+     * {@inheritDoc}
+     */
+    public void update(int elapsed) {
+        // The enemy before acts has to wait four second that are 240 frames.
+        // Checking if the frame counter is greater than zero.
+        if (this.frameCounter > 0) {
+            this.frameCounter--;
+        } else {
+            // The enemy has to wait some frames before the next move.
+            if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
+                this.nextMoveFrameCounter = 0;
+                this.behavior.doActions();
+                super.update(elapsed);
             }
         }
+    }
         
         /**
          * {@inheritDoc}

@@ -55,6 +55,7 @@ public class WorldImpl implements World {
         this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
+        this.setEnemy();
         this.setBox(this.difficulty);
     }
 
@@ -129,6 +130,15 @@ public class WorldImpl implements World {
                 boxCount++;
             }
         }
+    }
+
+    /**
+     * This method create the enemies at the start of the game.
+     */
+    private void setEnemy() {
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d(1 * WorldImpl.FRAME, WorldImpl.DIMENSION * WorldImpl.FRAME), this.difficulty));
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, 1 * WorldImpl.FRAME), this.difficulty));
+        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION - 2) * WorldImpl.FRAME), this.difficulty));
     }
 
     @Override
