@@ -12,6 +12,7 @@ import bomberOne.model.user.Difficulty;
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
         /* Fields. */
+        private static final int NEXT_MOVE_FRAME_QUANTITY = 4;
         private static final int SECONDS_TO_WAIT = 4;
         private static final int FRAME_PER_SECOND = 60;
         private static final int LOW_SPEED = 200;
@@ -19,6 +20,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private Actions behavior;
         private Direction previousDirection;
         private int frameCounter;
+        private int nextMoveFrameCounter;
         
         /* Constructors. */
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
@@ -26,6 +28,9 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             
             //Setting the number of frames that the enemy has to wait before start moving.
             this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
+            
+            //Setting the frames number that the enemy has to wait to perform the next move.
+            this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
             
             this.previousDirection = Direction.DOWN;
             
@@ -50,9 +55,12 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             if (this.frameCounter > 0) {
                 this.frameCounter--;
             } else {
-                //Executing the behavior.
-                this.behavior.doActions();
-                super.update(elapsed);
+                //The enemy has to wait some frames before the next move.
+                if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
+                    this.nextMoveFrameCounter = 0;
+                    this.behavior.doActions();
+                    super.update(elapsed);
+                }
             }
         }
         
