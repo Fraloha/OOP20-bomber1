@@ -29,6 +29,6 @@ public class TestWorld {
         assertEquals(world.getBomber().getPosition(), new P2d(32,32));
         assertEquals(world.getGameObjectCollection().getBoxList().size(), 80);
         assertEquals(world.getGameObjectCollection().getPowerUpList().size(), 20);
-        
+        assertEquals(world.getGameObjectCollection().getEnemyList().size(), 0);
     }
 }

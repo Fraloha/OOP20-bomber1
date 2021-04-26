@@ -7,6 +7,7 @@ import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.FireImpl;
+import bomberOne.model.enemy.Enemy;
 import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.HardWall;
