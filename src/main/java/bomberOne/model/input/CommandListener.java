@@ -24,7 +24,7 @@ public interface CommandListener {
     /**
      * Scroll all the commandList and call the method execute() on all the command of the commandList.
      */
-    void executeAll();
+    void executeCommands();
 
     /**
      * Attach the "game" at the GameModel.
@@ -39,4 +39,10 @@ public interface CommandListener {
      * @return GameModel
      */
     GameModel getGameModel();
+    
+    /**
+     * 
+     * @return the PlayerBeaviour
+     */
+    PlayerBehaviour getPlayerBehaviour();
 }

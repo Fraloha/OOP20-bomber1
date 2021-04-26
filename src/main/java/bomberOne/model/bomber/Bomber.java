@@ -24,6 +24,7 @@ public interface Bomber extends AnimatedEntity {
      * @param lifes
      */
     void addLifes(int lifes);
+    
     /**
      * Method for restore the usedAmmo to 0.
      */
