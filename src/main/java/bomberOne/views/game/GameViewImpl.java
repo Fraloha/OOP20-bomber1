@@ -23,7 +23,7 @@ import javafx.scene.input.KeyEvent;
 public final class GameViewImpl extends ViewImpl implements GameView {
 
     private static final int ENEMY_WIDTH = 32;
-    private static final int ENEMY_HEIGHT = 32;
+    private static final int ENEMY_HEIGHT = 48;
     private static final int N_LIFES_ONE = 1;
     private static final int N_LIFES_TWO = 2;
     private static final int N_LIFES_THREE = 3;
