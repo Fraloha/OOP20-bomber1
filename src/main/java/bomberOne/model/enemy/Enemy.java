@@ -10,5 +10,5 @@ import bomberOne.model.common.P2d;
 public interface Enemy extends AnimatedEntity {
 
         /* Methods. */
-	void update(P2d playerPosition);
+	void update(int elapsed);
 }

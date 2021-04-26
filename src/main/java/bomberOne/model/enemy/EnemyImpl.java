@@ -13,6 +13,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         /* Fields. */
         private static final int SECONDS_TO_WAIT = 4;
         private static final int FRAME_PER_SECOND = 60;
+        private static final int LOW_SPEED = 200;
+        private static final int HIGH_SPEED = 300;
         private Actions behavior;
         private int frameCounter;
         
@@ -26,8 +28,10 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             //Creating the enemy behavior on the basis of the mode chosen by the user.
             if (mode.equals(Difficulty.STANDARD)) {
                 this.behavior = new BasicBehavior(this);
+                this.setSpeed(LOW_SPEED);
             } else if (mode.equals(Difficulty.HARD)){
                 this.behavior = new IntermediateBehavior(this);
+                this.setSpeed(HIGH_SPEED);
             }
         }
 
@@ -36,22 +40,15 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         /**
          * {@inheritDoc}
          */
-        public void update(P2d playerPosition) {
+        public void update(int elapsed) {
             //The enemy before acts has to wait four second that are 240 frames.
             //Checking if the frame counter is greater than zero.
             if (this.frameCounter > 0) {
                 this.frameCounter--;
             } else {
-                //If the enemy has an IntermediateBehavior, the player position
-                //has to be passed.
-                if(this.behavior instanceof IntermediateBehavior) {
-                    ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition);
-                    ((IntermediateBehavior) this.behavior).isFound(playerPosition);
-                }
-
                 //Executing the behavior.
                 this.behavior.doActions();
-                super.update(this.getTimeElapsed());
+                super.update(elapsed);
             }
         }
 }
