@@ -2,7 +2,7 @@ package bomberOne.model.enemy.actions;
 
 import bomberOne.model.common.P2d;
 import bomberOne.model.observation.EnemyTriggeredObservation;
-import bomberOne.model.enemy.Enemy;
+import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.common.Direction;
 import bomberOne.model.observation.DirectionComparator;
 import bomberOne.model.observation.FollowingModes;
@@ -14,11 +14,11 @@ public class IntermediateBehavior implements Actions {
         private Random randomGenerator;
 	private EnemyTriggeredObservation triggeredObs;
 	private BasicBehavior basicActions;
-	private Enemy selectedEnemy;
+	private EnemyImpl selectedEnemy;
 	private boolean playerFound;
 
 	/* Constructor. */
-	public IntermediateBehavior(final Enemy newEnemy) {
+	public IntermediateBehavior(final EnemyImpl newEnemy) {
 	        this.randomGenerator = new Random();
 		this.triggeredObs = new EnemyTriggeredObservation();
 		this.selectedEnemy = newEnemy;
