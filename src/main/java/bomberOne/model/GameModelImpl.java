@@ -81,6 +81,7 @@ public class GameModelImpl implements GameModel {
     @Override
     public final void updateGame(final int elapsed) {
         world.updateState(elapsed);
+        this.checkGameOver();
     }
 
     @Override
