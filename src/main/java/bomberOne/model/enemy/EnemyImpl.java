@@ -33,8 +33,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             //Setting the frames number that the enemy has to wait to perform the next move.
             this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
             
-            this.previousDirection = Direction.NONE;
-            
             //Creating the enemy behavior on the basis of the mode chosen by the user.
             if (mode.equals(Difficulty.STANDARD)) {
                 this.behavior = new BasicBehavior(this);

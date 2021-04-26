@@ -7,12 +7,16 @@ import bomberOne.model.enemy.EnemyImpl;
 public final class BasicBehavior implements Actions{
 	
 	/* Fields. */
+        private static final int FRAMES_TO_CHANGE_DIRECTION = 420;
+        
 	private Random randomGenerator = new Random();
 	private EnemyImpl selectedEnemy;
+	private int nextDirectionCounter;
 	
 	/* Constructors. */
 	public BasicBehavior(final EnemyImpl newEnemy) {
 		this.selectedEnemy = newEnemy;
+		this.nextDirectionCounter = 0;
 	}
 	
 	/* Methods. */
@@ -22,11 +26,22 @@ public final class BasicBehavior implements Actions{
 	 */
 	@Override
 	public void doActions() {
-	    int newMovement = this.randomGenerator.nextInt(4);
-	    if (newMovement != this.selectedEnemy.getDir().ordinal()) {
-	        this.selectedEnemy.setDir(Direction.values()[newMovement]);
+	    //Checking if the enemy has to change the direction.
+	    if(++this.nextDirectionCounter == BasicBehavior.FRAMES_TO_CHANGE_DIRECTION) {
 	        
-	        //Setting the sprite.
+	        this.nextDirectionCounter = 0;
+	        
+                //Generating a new random direction.
+	        int newDirection;
+	        do {
+	            newDirection = this.randomGenerator.nextInt(4);
+	        } while(newDirection == this.selectedEnemy.getDir().ordinal());
+	        
+	        System.out.println("newDirection : " + newDirection + "\t getDir() : " + this.selectedEnemy.getDir().ordinal());
+	        //Setting the new direction and the sprite.
+	        this.selectedEnemy.setDir(Direction.values()[newDirection]);
+	        this.selectedEnemy.setAnimationIndex(0);
+	        
 	        switch(this.selectedEnemy.getDir()) {
 	        case UP:
 	            this.selectedEnemy.setSpriteIndex(0);
@@ -44,16 +59,17 @@ public final class BasicBehavior implements Actions{
 	            this.selectedEnemy.setSpriteIndex(3);
 	            break;
 	        }
-	        
-	        this.selectedEnemy.setAnimationIndex(0);
-	        
 	    } else {
 	        if (this.selectedEnemy.getFrameCounterAnimation() == 5) {
 	            this.selectedEnemy.setFrameCounterAnimation(0);
-	        } else {
+	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1) % 3);
+	        }else {
 	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }
 	    }
+	    
+	    //Moving the enemy.
+	    this.nextMove();
 	}
 	
 	/**
