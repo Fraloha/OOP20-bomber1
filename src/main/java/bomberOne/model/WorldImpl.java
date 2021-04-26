@@ -139,6 +139,7 @@ public class WorldImpl implements World {
         this.collection.spawn(this.objectFactory.createEnemy(new P2d(1 * WorldImpl.FRAME, (WorldImpl.DIMENSION - 2) * WorldImpl.FRAME), this.difficulty));
         this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, 1 * WorldImpl.FRAME), this.difficulty));
         this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION - 2) * WorldImpl.FRAME), this.difficulty));
+    
     }
 
     @Override
