@@ -55,10 +55,11 @@ public class BasicBehavior implements Actions{
 	        }
 	    } else {
 	        //Animating the enemy.
-	        if(this.selectedEnemy.getAnimationIndex() > 5) {
-	            this.selectedEnemy.setAnimationIndex(0);
-	        }else {
-	            this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
+	        if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
+	            this.selectedEnemy.setFrameCounterAnimation(0);
+	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1) % 4);
+	        } else {
+	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }
 	    }
 	}

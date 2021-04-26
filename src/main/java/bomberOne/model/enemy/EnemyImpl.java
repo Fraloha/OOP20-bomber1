@@ -21,6 +21,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private Direction previousDirection;
         private int frameCounter;
         private int nextMoveFrameCounter;
+        private int frameCounterAnimation;
         
         /* Constructors. */
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
@@ -85,6 +86,14 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
          */
         @Override
         public BufferedImage getImage() {
-            return this.getSprites()[this.getSpriteIndex()][this.getAnimationIndex() % 6];
+            return this.getSprites()[this.getSpriteIndex()][this.getAnimationIndex() % 3];
+        }
+        
+        public int getFrameCounterAnimation() {
+            return this.frameCounterAnimation;
+        }
+        
+        public void setFrameCounterAnimation(int value) {
+            this.frameCounterAnimation = value;
         }
 }
