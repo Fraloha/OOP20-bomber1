@@ -14,7 +14,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     /**
      * Constant TimeToExplode.
      */
-    public static final int TIME_TO_EXPLODE = 270;
+    public static final int TIME_TO_EXPLODE = 200;
 
     private int timeToExplode;
     private int thicks;
