@@ -75,7 +75,6 @@ public class TestTools {
         assertNotNull(ObjectsImages.BACKGROUND.getImage());
         assertNotNull(ObjectsImages.BOMB.getImage());
         assertNotNull(ObjectsImages.BOX.getImage());
-        assertNotNull(ObjectsImages.FIRE.getImage());
         assertNotNull(ObjectsImages.HARDWALL.getImage());
         assertNotNull(ObjectsImages.ICON.getImage());
         assertNotNull(ObjectsImages.POWER_BOMB.getImage());
