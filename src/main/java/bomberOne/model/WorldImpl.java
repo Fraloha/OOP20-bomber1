@@ -67,7 +67,7 @@ public class WorldImpl implements World {
     private void setEnemy() {
         for (int i = 0; i < WorldImpl.ENEMYNUMBER; i++) {
             this.collection.spawn(this.objectFactory.createEnemy(
-                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME),
+                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2) ,
                     this.difficulty));
         }
     }
