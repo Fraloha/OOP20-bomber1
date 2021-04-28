@@ -28,13 +28,11 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public final void init() {
-        // TODO Auto-generated method stub
         if (this.difficulty.equals(Difficulty.STANDARD)) {
             this.world = factory.createWorldStandard(this.user);
         } else {
             this.world = factory.createWorldHard(this.user);
         }
-        this.world.setModel(this);
         this.thread.start();
     }
 
@@ -83,7 +81,12 @@ public class GameModelImpl implements GameModel {
         world.updateState(elapsed);
         this.checkGameOver();
     }
-
+    
+    @Override
+    public void setGameOver(boolean gameOver) {
+        this.gameOver=gameOver;
+    }
+    
     @Override
     public final boolean getGameOver() {
         return this.gameOver;
@@ -110,5 +113,4 @@ public class GameModelImpl implements GameModel {
     public final Timer getTimer() {
         return this.timer;
     }
-
 }
