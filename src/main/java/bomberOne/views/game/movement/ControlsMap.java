@@ -4,16 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import bomberOne.controllers.game.GameController;
-import bomberOne.model.input.PlayerBehaviour;
-import bomberOne.model.input.commands.MoveDown;
-import bomberOne.model.input.commands.MoveLeft;
-import bomberOne.model.input.commands.MoveRight;
-import bomberOne.model.input.commands.MoveUp;
-import bomberOne.model.input.commands.PlantBomb;
+import bomberOne.model.input.PlayerBehavior;
 import bomberOne.model.user.Controls;
-import bomberOne.views.View;
 
+/**
+ * Class that map to every specific KeyCode, an action to perform.
+ *
+ */
 public class ControlsMap {
 
     private static final int KEY_D = 68;
@@ -27,9 +24,9 @@ public class ControlsMap {
     private static final int KEY_SPACE_BAR = 32;
 
     private Map<Integer, Consumer<Boolean>> controlMap;
-    private PlayerBehaviour player;
+    private PlayerBehavior player;
 
-    public ControlsMap(final Controls type, PlayerBehaviour player) {
+    public ControlsMap(final Controls type, PlayerBehavior player) {
         this.controlMap = new HashMap<>();
         this.player = player;
         if (type.equals(Controls.ARROW)) {

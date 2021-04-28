@@ -5,7 +5,7 @@ import java.util.Optional;
 
 import bomberOne.model.common.P2d;
 
-public final class BoxImpl extends GameObjectImpl implements Box {
+public class BoxImpl extends GameObjectImpl implements Box {
 
     private Optional<PowerUp> powerUp;
 
@@ -14,15 +14,24 @@ public final class BoxImpl extends GameObjectImpl implements Box {
         this.powerUp = Optional.empty();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(final int elapsed) {
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Optional<PowerUp> getPowerUp() {
         return (this.powerUp.equals(Optional.empty())) ? Optional.empty() : this.powerUp;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addPowerUp(final PowerUp pU) {
         this.powerUp = Optional.of(pU);

@@ -29,7 +29,7 @@ public interface Time {
 
     /**
      * 
-     * @return the total number of seconds remained
+     * @return the total number of seconds in-a-minute remained
      */
     int getSeconds();
 }

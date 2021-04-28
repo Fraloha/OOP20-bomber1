@@ -1,6 +1,7 @@
 package bomberOne.controllers.setUp;
 
 import bomberOne.controllers.ControllerImpl;
+import bomberOne.model.GameModelImpl;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
@@ -31,7 +32,7 @@ public final class SetUpControllerImpl extends ControllerImpl implements SetUpCo
 
     @Override
     public void init() {
-
+        this.attachModel(new GameModelImpl());
     }
 
 }

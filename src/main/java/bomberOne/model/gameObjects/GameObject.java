@@ -3,9 +3,12 @@ package bomberOne.model.gameObjects;
 import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.P2d;
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Rectangle2D;
 
+/**
+ * Simple Object of the Game
+ *
+ */
 public interface GameObject {
 
     /**
@@ -45,13 +48,13 @@ public interface GameObject {
      * 
      * @return the Rectangle associated with the Object
      */
-    Rectangle2D getBoundingBox();
+    Rectangle2D getCollider();
 
     /**
      * Sets the BoundingBox.
      * @param bBox
      */
-    void setBoundingBox(Rectangle2D bBox);
+    void setCollider(Rectangle2D bBox);
 
     /**
      * 

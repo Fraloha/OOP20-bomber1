@@ -11,8 +11,6 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp.Type;
-import bomberOne.model.input.PlayerBehaviour;
-import bomberOne.tools.ResourcesLoader;
 import javafx.geometry.Rectangle2D;
 
 public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
@@ -50,6 +48,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      * Constant for set the upgrade from powerUp Bomber.
      */
     public static final int FIRE_POWER_INC = 2;
+    /**
+     * Constant for walking animation.
+     */
+    private static final int WALKING_TIME = 10;
+    /**
+     * Constant for death animation.
+     */
+    private static final int DEATH_TIME = 15;
 
     private final P2d startPosition;
     private int firePower;
@@ -58,24 +64,19 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     private int usedAmmo;
     private PowerUpHandler activator;
     private int fpAgg = 0;
-    // Images and animations
-    private int spriteIndex; // 0 UP, 1 DOWN, 2 LEFT, 3 RIGHT, 4 DEATH
-    private int animationIndex;
-    private BufferedImage[][] animations;
     private boolean isChangedDir = false;
 
     public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
         super(pos, img, lifes, img[0][1]);
         this.setSpeed(SPEED);
         this.setDir(DIR);
-        this.animations = img;
         this.startPosition = pos;
         this.firePower = FIRE_POWER;
         this.pierce = false;
         this.maxAmmo = AMMO;
         this.usedAmmo = 0;
-        this.spriteIndex = SPRITES;
-        this.animationIndex = 0;
+        this.setSpriteIndex(SPRITES);
+        this.setAnimationIndex(0);
         this.setUpHandler(new PowerUpHandlerImpl(this));
     }
 
@@ -92,8 +93,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.pierce = false;
         this.maxAmmo = AMMO;
         this.usedAmmo = 0;
-        this.spriteIndex = SPRITES;
-        this.animationIndex = 0;
+        this.setSpriteIndex(SPRITES);
+        this.setAnimationIndex(0);
         this.fpAgg = 0;
     }
 
@@ -120,6 +121,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public Optional<Bomb> plantBomb() {
+        System.out.println("maxAmmo: " + this.maxAmmo + " usedAmmo: " + this.usedAmmo);
         if (this.maxAmmo > this.usedAmmo) {
             usedAmmo++;
             return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(getPosition()),
@@ -151,14 +153,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         default:
             break;
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BufferedImage getImage() {
-        return this.animations[this.spriteIndex][this.animationIndex % 4];
     }
 
     /**
@@ -206,12 +200,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveUp() {
-        if (this.getDirection() != Direction.UP) {
-            this.isChangedDir = true;
-            this.setDir(Direction.UP);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.UP) {
+                this.isChangedDir = true;
+                this.setDir(Direction.UP);
+            }
+            System.out.println("moveUP");
+            super.moveUp();
         }
-        System.out.println("moveUP");
-        super.moveUp();
     }
 
     /**
@@ -219,12 +215,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveDown() {
-        if (this.getDirection() != Direction.DOWN) {
-            this.isChangedDir = true;
-            this.setDir(Direction.DOWN);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.DOWN) {
+                this.isChangedDir = true;
+                this.setDir(Direction.DOWN);
+            }
+            System.out.println("moveDOWN");
+            super.moveDown();
         }
-        System.out.println("moveDOWN");
-        super.moveDown();
     }
 
     /**
@@ -232,12 +230,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveLeft() {
-        if (this.getDirection() != Direction.LEFT) {
-            this.isChangedDir = true;
-            this.setDir(Direction.LEFT);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.LEFT) {
+                this.isChangedDir = true;
+                this.setDir(Direction.LEFT);
+            }
+            System.out.println("moveLEFT");
+            super.moveLeft();
         }
-        System.out.println("moveLEFT");
-        super.moveLeft();
     }
 
     /**
@@ -245,12 +245,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void moveRight() {
-        if (this.getDirection() != Direction.RIGHT) {
-            this.isChangedDir = true;
-            this.setDir(Direction.RIGHT);
+        if (this.isAlive()) {
+            if (this.getDirection() != Direction.RIGHT) {
+                this.isChangedDir = true;
+                this.setDir(Direction.RIGHT);
+            }
+            System.out.println("moveRIGHT");
+            super.moveRight();
         }
-        System.out.println("moveRIGHT");
-        super.moveRight();
     }
 
     /**
@@ -259,6 +261,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public void hitted() {
         this.setLifes(this.getLifes() - 1);
+        this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
     }
 
@@ -271,44 +274,50 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             if (this.isChangedDir) {
                 switch (this.getDir()) {
                 case UP:
-                    this.spriteIndex = 0;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(0);
                     break;
                 case DOWN:
-                    this.spriteIndex = 1;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(1);
                     break;
                 case LEFT:
-                    this.spriteIndex = 2;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(2);
                     break;
                 case RIGHT:
-                    this.spriteIndex = 3;
-                    this.animationIndex = 0;
+                    this.setAnimationIndex(0);
+                    this.setSpriteIndex(3);
                     break;
                 default:
                     break;
                 }
                 this.isChangedDir = false;
             }
-        } else {
-            this.spriteIndex = 4;
-            this.animationIndex = 0;
-        }
-        if (!this.isStatic() && ++this.fpAgg == 10) {
-            this.fpAgg = 0;
-            this.animationIndex++;
-        }
-        if (this.spriteIndex == 4 && this.animationIndex % 4 == 3) {
-            try {
-                TimeUnit.SECONDS.sleep(1);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            if (!this.isStatic() && ++this.fpAgg == WALKING_TIME) {
+                this.fpAgg = 0;
+                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
-            this.respawn();
+        } else {
+            if (this.getSpriteIndex() != 4) {
+                this.setAnimationIndex(0);
+                this.setSpriteIndex(4);
+                this.fpAgg = 0;
+            } else if (++this.fpAgg == DEATH_TIME) {
+                this.fpAgg = 0;
+                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
+            }
+            if (this.getSpriteIndex() == 4 && this.getAnimationIndex() == 3) {
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+                this.respawn();
+            }
         }
-        if (this.isStatic() && this.spriteIndex != 4) {
-            this.animationIndex = 0;
+        if (this.isStatic() && this.getSpriteIndex() != 4) {
+            this.setAnimationIndex(0);
         }
         super.update(elapsed);
     }

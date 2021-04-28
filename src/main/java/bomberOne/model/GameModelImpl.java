@@ -11,7 +11,7 @@ import bomberOne.model.user.UserImpl;
 
 public class GameModelImpl implements GameModel {
 
-    private static final int TIME = 30;
+    private static final int TIME = 120;
     private User user;
     private World world;
     private Difficulty difficulty;
@@ -81,6 +81,7 @@ public class GameModelImpl implements GameModel {
     @Override
     public final void updateGame(final int elapsed) {
         world.updateState(elapsed);
+        this.checkGameOver();
     }
 
     @Override

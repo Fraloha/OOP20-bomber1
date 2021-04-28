@@ -14,6 +14,8 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.HardWall;
+import bomberOne.tools.img.AnimatedObjectsSprites;
+import bomberOne.tools.img.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +33,7 @@ public class TestGameObjectCollection {
     @Test
     public void testSpawnDespawn() {
         List<GameObject> list = new LinkedList<>();
-        Bomb bomb = new BombImpl(new P2d(32, 1), new BufferedImage(3, 3, 3), 1, 1, true);
+        Bomb bomb = new BombImpl(new P2d(32, 1), AnimatedObjectsSprites.BOMB.getSprites(), 1, 1, true);
         list.add(bomb);
         collection.spawn(bomb);
         assertTrue(collection.getGameObjectCollection().equals(list));

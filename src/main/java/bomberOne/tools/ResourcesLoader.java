@@ -11,14 +11,14 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 import bomberOne.tools.maps.Maps;
 
+/**
+ * Utility class that load the Resources from the specific directories.
+ *
+ */
 public final class ResourcesLoader {
-
-    private static final int ANIMATED_HEIGHT = 48;
-    private static final int OBJ_HEIGHT = 32;
-    private static final int OBJ_WIDTH = 32;
 
     private ResourcesLoader() {
 
@@ -41,7 +41,7 @@ public final class ResourcesLoader {
      * @throws IOException if it can't read the Files
      */
     public static void loadImages() {
-        Arrays.stream(ObjectsImages.values()).forEach(value -> {
+        Arrays.stream(GameImages.values()).forEach(value -> {
             try {
                 value.setImage(ImageIO.read(ClassLoader.getSystemResource(value.getFilePath())));
             } catch (IOException e) {
@@ -87,11 +87,7 @@ public final class ResourcesLoader {
      */
     public static void sliceSprite() {
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
-            if (value.equals(AnimatedObjectsSprites.FIRE)) {
-                value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, OBJ_HEIGHT));
-            } else {
-                value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, ANIMATED_HEIGHT));
-            }
+            value.setSprite(sliceSpriteMap(value.getImage(), value.getWidth(), value.getHeight()));
         });
     }
 

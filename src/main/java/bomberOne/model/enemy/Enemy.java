@@ -5,12 +5,10 @@
 package bomberOne.model.enemy;
 
 import bomberOne.model.gameObjects.AnimatedEntity;
-import bomberOne.model.common.P2d;
+import bomberOne.model.common.Direction;
 
 public interface Enemy extends AnimatedEntity {
 
         /* Methods. */
-	void changePath();
-	
-	void update(P2d playerPosition);
+	void update(int elapsed);
 }
