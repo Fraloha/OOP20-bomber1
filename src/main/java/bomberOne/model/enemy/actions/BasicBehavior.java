@@ -62,7 +62,7 @@ public final class BasicBehavior implements Actions{
 	        //Resetting the counter.
 	        this.nextDirectionCounter = 0;
 	    } else {
-	        if (this.selectedEnemy.getFrameCounterAnimation() == 5) {
+	        if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
 	            this.selectedEnemy.setFrameCounterAnimation(0);
 	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1) % 3);
 	        }else {

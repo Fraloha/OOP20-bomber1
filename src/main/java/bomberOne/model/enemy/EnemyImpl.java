@@ -12,7 +12,7 @@ import bomberOne.model.user.Difficulty;
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
         /* Fields. */
-        private static final int NEXT_MOVE_FRAME_QUANTITY = 4;
+        private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
         private static final int SECONDS_TO_WAIT = 4;
         private static final int FRAME_PER_SECOND = 60;
         private static final int LOW_SPEED = 500;

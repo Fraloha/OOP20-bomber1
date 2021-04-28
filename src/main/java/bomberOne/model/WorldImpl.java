@@ -223,8 +223,8 @@ public class WorldImpl implements World {
         }
         if (this.respawn) {
             if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME,
-                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty));
+                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
+                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2), this.difficulty));
             }
         }
     }

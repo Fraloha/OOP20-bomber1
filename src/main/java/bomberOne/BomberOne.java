@@ -32,7 +32,7 @@ public final class BomberOne extends Application {
         GameModel test = new GameModelImpl();
         test.getUser().setControls(Controls.ARROW);
         test.getUser().setSkin(Skins.BLACK);
-        test.setDifficulty(Difficulty.STANDARD);
+        test.setDifficulty(Difficulty.HARD);
         test.init();
         ViewsSwitcher.switchView(primaryStage, ViewType.GAME, test);
     }
