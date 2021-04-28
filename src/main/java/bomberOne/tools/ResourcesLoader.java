@@ -16,10 +16,6 @@ import bomberOne.tools.maps.Maps;
 
 public final class ResourcesLoader {
 
-    private static final int ANIMATED_HEIGHT = 48;
-    private static final int OBJ_HEIGHT = 32;
-    private static final int OBJ_WIDTH = 32;
-
     private ResourcesLoader() {
 
     }
@@ -87,11 +83,7 @@ public final class ResourcesLoader {
      */
     public static void sliceSprite() {
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
-            if (value.equals(AnimatedObjectsSprites.FIRE) || value.equals(AnimatedObjectsSprites.BOMB)) {
-                value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, OBJ_HEIGHT));
-            } else {
-                value.setSprite(sliceSpriteMap(value.getImage(), OBJ_WIDTH, ANIMATED_HEIGHT));
-            }
+            value.setSprite(sliceSpriteMap(value.getImage(), value.getWidth(), value.getHeight()));
         });
     }
 

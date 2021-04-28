@@ -43,7 +43,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     public Explosion explode() {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
-        this.setLifes(this.getLifes() - 1);
         super.hitted();
         return boom;
     }
