@@ -1,9 +1,11 @@
 package bomberOne.tools;
 
 import java.awt.image.BufferedImage;
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -67,6 +69,7 @@ public final class ResourcesLoader {
         Arrays.stream(Maps.values()).forEach(value -> {
             try {
                 BufferedReader reader = new BufferedReader(new FileReader(value.getFilePath()));
+//                BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
                 List<List<String>> mapLayout = new ArrayList<>();
                 String currentLine;
                 while ((currentLine = reader.readLine()) != null) {
