@@ -24,22 +24,22 @@
          <bottom>
             <HBox fx:id="HBoxOptions" alignment="CENTER" prefHeight="68.0" prefWidth="432.0" spacing="20.0" styleClass="hBoxStyle" stylesheets="@../styleSheets/RankViewStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <Button fx:id="hBoxPrevious" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Previous" />
-                  <Button fx:id="hBoxExit" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Chiudi" />
-                  <Button fx:id="hBoxMainMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Torna al menù" />
-                  <Button fx:id="hBoxNext" mnemonicParsing="false" prefHeight="23.0" prefWidth="79.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Next" />
+                  <Button fx:id="hBoxButtonPrevious" mnemonicParsing="false" prefHeight="25.0" prefWidth="89.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Previous" />
+                  <Button fx:id="hBoxButtonExit" mnemonicParsing="false" prefHeight="25.0" prefWidth="66.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Chiudi" />
+                  <Button fx:id="hBoxButtonMainMenu" mnemonicParsing="false" prefHeight="25.0" prefWidth="114.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Torna al menù" />
+                  <Button fx:id="hBoxButtonNext" mnemonicParsing="false" prefHeight="23.0" prefWidth="79.0" styleClass="buttonStyle" stylesheets="@../styleSheets/RankViewStyle.css" text="Next" />
                </children>
             </HBox>
          </bottom>
          <top>
             <VBox fx:id="vBoxImages" alignment="CENTER" prefHeight="117.0" prefWidth="431.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="RankTitleImageView" fitHeight="94.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageViewRankTitle" fitHeight="94.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/RankViewImages/RankViewTitle.png" />
                      </image>
                   </ImageView>
-                  <ImageView fx:id="DifficultyImageView" fitHeight="127.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="imageViewDifficulty" fitHeight="127.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/RankViewImages/EasyModeImage.png" />
                      </image>
