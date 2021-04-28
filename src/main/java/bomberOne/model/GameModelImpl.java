@@ -28,13 +28,11 @@ public class GameModelImpl implements GameModel {
 
     @Override
     public final void init() {
-        // TODO Auto-generated method stub
         if (this.difficulty.equals(Difficulty.STANDARD)) {
             this.world = factory.createWorldStandard(this.user);
         } else {
             this.world = factory.createWorldHard(this.user);
         }
-        this.world.setModel(this);
         this.thread.start();
     }
 
