@@ -74,6 +74,12 @@ public interface GameModel {
     void updateGame(int elapsed);
 
     /**
+     * This method sets the boolean gameOver
+     * @param gameOver
+     */
+    void setGameOver(boolean gameOver);
+    
+    /**
      * @return the boolean gameOver
      */
     boolean getGameOver();

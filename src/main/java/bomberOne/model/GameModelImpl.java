@@ -81,7 +81,12 @@ public class GameModelImpl implements GameModel {
         world.updateState(elapsed);
         this.checkGameOver();
     }
-
+    
+    @Override
+    public void setGameOver(boolean gameOver) {
+        this.gameOver=gameOver;
+    }
+    
     @Override
     public final boolean getGameOver() {
         return this.gameOver;
@@ -108,5 +113,4 @@ public class GameModelImpl implements GameModel {
     public final Timer getTimer() {
         return this.timer;
     }
-
 }
