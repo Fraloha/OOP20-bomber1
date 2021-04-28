@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import bomberOne.controllers.Controller;
 import bomberOne.model.GameModel;
+import bomberOne.views.basic.View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -41,5 +42,6 @@ public final class ViewsSwitcher {
         view.init();
         stage.show();
     }
+    
 
 }

@@ -12,7 +12,7 @@ import bomberOne.model.input.commands.MoveRight;
 import bomberOne.model.input.commands.MoveUp;
 import bomberOne.model.input.commands.PlantBomb;
 import bomberOne.model.user.Controls;
-import bomberOne.views.View;
+import bomberOne.views.basic.View;
 
 public class ControlsMap {
 

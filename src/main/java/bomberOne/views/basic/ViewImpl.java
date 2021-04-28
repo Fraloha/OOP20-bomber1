@@ -1,4 +1,4 @@
-package bomberOne.views;
+package bomberOne.views.basic;
 
 import bomberOne.controllers.Controller;
 import javafx.stage.Stage;

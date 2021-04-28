@@ -73,6 +73,9 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         }
     }
 
+    /**
+     * @return the correct animation of the bomb
+     */
     @Override
     public BufferedImage getImage() {
         return this.sprites[0][this.indexAnimation];
