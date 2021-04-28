@@ -15,8 +15,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private static final int NEXT_MOVE_FRAME_QUANTITY = 4;
         private static final int SECONDS_TO_WAIT = 4;
         private static final int FRAME_PER_SECOND = 60;
-        private static final int LOW_SPEED = 200;
-        private static final int HIGH_SPEED = 300;
+        private static final int LOW_SPEED = 500;
+        private static final int HIGH_SPEED = 600;
         private Actions behavior;
         private Direction previousDirection;
         private int frameCounter;

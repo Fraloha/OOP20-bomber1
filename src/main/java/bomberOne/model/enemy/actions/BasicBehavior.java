@@ -7,7 +7,11 @@ import bomberOne.model.enemy.EnemyImpl;
 public final class BasicBehavior implements Actions{
 	
 	/* Fields. */
-        private static final int FRAMES_TO_CHANGE_DIRECTION = 420;
+        /**
+         * This constant is the number of frames that the enemy has to wait to
+         * change his direction.
+         */
+        private static final int FRAMES_TO_CHANGE_DIRECTION = 120;
         
 	private Random randomGenerator;
 	private EnemyImpl selectedEnemy;
@@ -17,7 +21,10 @@ public final class BasicBehavior implements Actions{
 	public BasicBehavior(final EnemyImpl newEnemy) {
 	        this.randomGenerator = new Random();
 		this.selectedEnemy = newEnemy;
-		this.nextDirectionCounter = 0;
+		
+		//The counter is set to the limit, because at the start of the game,
+		//it's better that the enemy change his direction.
+		this.nextDirectionCounter = BasicBehavior.FRAMES_TO_CHANGE_DIRECTION;
 	}
 	
 	/* Methods. */
@@ -27,39 +34,33 @@ public final class BasicBehavior implements Actions{
 	 */
 	@Override
 	public void doActions() {
+	    /* Variables declaration. */
+	    int newDirection;
+
 	    //Checking if the enemy has to change the direction.
-	    if(++this.nextDirectionCounter == BasicBehavior.FRAMES_TO_CHANGE_DIRECTION) {
-	        
-	        this.nextDirectionCounter = 0;
-	        
+	    if(this.nextDirectionCounter == BasicBehavior.FRAMES_TO_CHANGE_DIRECTION) {
                 //Generating a new random direction.
-	        int newDirection;
 	        do {
 	            newDirection = this.randomGenerator.nextInt(4);
 	        } while(newDirection == this.selectedEnemy.getDir().ordinal());
-	        
-	        System.out.println("newDirection : " + newDirection + "\t getDir() : " + this.selectedEnemy.getDir().ordinal());
-	        //Setting the new direction and the sprite.
+
+	        //Setting the new direction.
 	        this.selectedEnemy.setDir(Direction.values()[newDirection]);
 	        this.selectedEnemy.setAnimationIndex(0);
 	        
-	        switch(this.selectedEnemy.getDir()) {
-	        case UP:
-	            this.selectedEnemy.setSpriteIndex(0);
-	            break;
-	            
-	        case LEFT:
-	            this.selectedEnemy.setSpriteIndex(1);
-	            break;
-	            
-	        case RIGHT:
-	            this.selectedEnemy.setSpriteIndex(2);
-	            break;
-	            
-	        case DOWN:
+	        //Setting the sprite on the basis of the direction.
+	        if (this.selectedEnemy.getDir() == Direction.UP) {
 	            this.selectedEnemy.setSpriteIndex(3);
-	            break;
+	        } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
+	            this.selectedEnemy.setSpriteIndex(1);
+	        } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
+	            this.selectedEnemy.setSpriteIndex(2);
+	        } else {
+	            this.selectedEnemy.setSpriteIndex(0);
 	        }
+	        
+	        //Resetting the counter.
+	        this.nextDirectionCounter = 0;
 	    } else {
 	        if (this.selectedEnemy.getFrameCounterAnimation() == 5) {
 	            this.selectedEnemy.setFrameCounterAnimation(0);
@@ -67,11 +68,11 @@ public final class BasicBehavior implements Actions{
 	        }else {
 	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }
-	        System.out.println("Enemy animated.");
 	    }
 	    
 	    //Moving the enemy.
 	    this.nextMove();
+	    this.nextDirectionCounter++;
 	}
 	
 	/**
