@@ -26,8 +26,4 @@ public final class RankView extends Application {
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
-	private void onExitClickButton() {
-	    
-	}
 }
