@@ -44,6 +44,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         this.setLifes(this.getLifes() - 1);
+        super.hitted();
         return boom;
     }
 
@@ -63,9 +64,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         if (this.thicks++ == TIME_TO_EXPLODE) {
             this.explode();
         }
-        if (this.getLifes() == 0) {
-            this.setAlive(false);
-        }
+        
         /* Bomb pulse animation */
         if (this.animationTimer++ == BombImpl.ANIMATION_COUNTDOWN) {
             this.animationTimer = 0;
