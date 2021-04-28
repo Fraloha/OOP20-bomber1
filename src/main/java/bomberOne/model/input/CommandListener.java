@@ -45,5 +45,5 @@ public interface CommandListener {
      * 
      * @return the PlayerBeaviour
      */
-    PlayerBehaviour getPlayerBehaviour();
+    PlayerBehavior getPlayerBehaviour();
 }

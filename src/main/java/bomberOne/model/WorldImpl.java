@@ -32,8 +32,6 @@ public class WorldImpl implements World {
     private static final int ENEMYNUMBER = 3;
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
-    private static final int NORMALBOX = 80;
-    // private static final int HARDBOX = 100;
     private static final int NUMTYPEPOWERUP = 5;
 
     private GameObjectCollection collection = new GameObjectCollectionImpl();
@@ -64,6 +62,17 @@ public class WorldImpl implements World {
     }
 
     /**
+     * This method create the enemies at the start of the game.
+     */
+    private void setEnemy() {
+        for (int i = 0; i < WorldImpl.ENEMYNUMBER; i++) {
+            this.collection.spawn(this.objectFactory.createEnemy(
+                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2) ,
+                    this.difficulty));
+        }
+    }
+
+    /**
      * This method creates all HardWall in the World.
      */
     private void setHardWall() {
@@ -85,9 +94,9 @@ public class WorldImpl implements World {
         List<P2d> objectList = this.collection.getGameObjectCollection().stream().map(e -> e.getPosition())
                 .collect(Collectors.toList());
         objectList.add(this.bomberMan.getPosition());
-        int center = (WorldImpl.DIMENSION / 2) - 1;
-        for (int i = center; i <= (WorldImpl.DIMENSION / 2) + 1; i++) {
-            for (int j = center; j <= (WorldImpl.DIMENSION / 2) + 1; j++) {
+        int center = (WorldImpl.DIMENSION / 2) - 2;
+        for (int i = center; i <= (WorldImpl.DIMENSION / 2) + 2; i++) {
+            for (int j = center; j <= (WorldImpl.DIMENSION / 2) + 2; j++) {
                 objectList.add(new P2d(i * WorldImpl.FRAME, j * WorldImpl.FRAME));
             }
         }
@@ -96,7 +105,7 @@ public class WorldImpl implements World {
         objectList.add(
                 new P2d(this.bomberMan.getPosition().getX(), this.bomberMan.getPosition().getY() + WorldImpl.FRAME));
         Random rand = new Random();
-        while (boxCount < WorldImpl.NORMALBOX) {
+        while (boxCount < this.difficulty.getNumBox()) {
             int col = rand.nextInt(WorldImpl.DIMENSION);
             int line = rand.nextInt(WorldImpl.DIMENSION);
             P2d pos = new P2d(line * WorldImpl.FRAME, col * WorldImpl.FRAME);
@@ -116,7 +125,7 @@ public class WorldImpl implements World {
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Pierce);
                         break;
                     case 3:
-                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.FirePower);
+                        powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Time);
                         break;
                     default:
                         powerUp = (PowerUp) this.objectFactory.createPowerUp(pos, PowerUp.Type.Ammo);
@@ -130,15 +139,6 @@ public class WorldImpl implements World {
                 boxCount++;
             }
         }
-    }
-
-    /**
-     * This method create the enemies at the start of the game.
-     */
-    private void setEnemy() {
-        this.collection.spawn(this.objectFactory.createEnemy(new P2d(1 * WorldImpl.FRAME, WorldImpl.DIMENSION * WorldImpl.FRAME), this.difficulty));
-        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, 1 * WorldImpl.FRAME), this.difficulty));
-        this.collection.spawn(this.objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION - 2) * WorldImpl.FRAME, (WorldImpl.DIMENSION - 2) * WorldImpl.FRAME), this.difficulty));
     }
 
     @Override
@@ -174,9 +174,10 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        /*for (Enemy enemy : collection.getEnemyList()) {
-            enemy.update(this.bomberMan.getPosition());
-        }*/
+        /*
+         * for (Enemy enemy : collection.getEnemyList()) {
+         * enemy.update(this.bomberMan.getPosition()); }
+         */
         this.checkExplosion();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
@@ -195,7 +196,7 @@ public class WorldImpl implements World {
         list.addAll(collection.getEnemyList());
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
-                if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
+                if (fire.getCollider().intersects(obj.getCollider())) {
                     this.listener.notifyEvent(new HitEntityEvent(obj));
                 }
             }
@@ -203,13 +204,13 @@ public class WorldImpl implements World {
         List<PowerUp> powerUpList = collection.getPowerUpList().stream().filter(p -> p.isReleased())
                 .collect(Collectors.toList());
         for (PowerUp power : powerUpList) {
-            if (power.getBoundingBox().intersects(bomberMan.getBoundingBox())) {
+            if (power.getCollider().intersects(bomberMan.getCollider())) {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
         /* Check if enemy hit Bomberman */
         this.collection.getEnemyList().stream().forEach(enemy -> {
-            if (enemy.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (enemy.getCollider().intersects(this.bomberMan.getCollider())) {
                 this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
             }
         });
@@ -235,13 +236,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getHardWallList());
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
-            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (wall.getCollider().intersects(this.bomberMan.getCollider())) {
                 listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
-                if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
+                if (wall.getCollider().intersects(enemy.getCollider())) {
                     listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }

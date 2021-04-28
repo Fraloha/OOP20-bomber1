@@ -16,7 +16,7 @@ import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.RankLoader;
 import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 import bomberOne.tools.maps.Maps;
 
 public class TestTools {
@@ -71,19 +71,18 @@ public class TestTools {
     @Test
     public void testResourceLoader() {
         ResourcesLoader.start();
-        assertNotNull(ObjectsImages.BOMBER1SCOREBOARD.getImage());
-        assertNotNull(ObjectsImages.BACKGROUND.getImage());
-        assertNotNull(ObjectsImages.BOMB.getImage());
-        assertNotNull(ObjectsImages.BOX.getImage());
-        assertNotNull(ObjectsImages.FIRE.getImage());
-        assertNotNull(ObjectsImages.HARDWALL.getImage());
-        assertNotNull(ObjectsImages.ICON.getImage());
-        assertNotNull(ObjectsImages.POWER_BOMB.getImage());
-        assertNotNull(ObjectsImages.POWER_FIREPOWER.getImage());
-        assertNotNull(ObjectsImages.POWER_PIERCE.getImage());
-        assertNotNull(ObjectsImages.POWER_SPEED.getImage());
-        assertNotNull(ObjectsImages.POWER_TIMER.getImage());
-        assertNotNull(ObjectsImages.SPAWN.getImage());
+        assertNotNull(GameImages.BOMBER1SCOREBOARD.getImage());
+        assertNotNull(GameImages.BACKGROUND.getImage());
+        assertNotNull(GameImages.BOMB.getImage());
+        assertNotNull(GameImages.BOX.getImage());
+        assertNotNull(GameImages.HARDWALL.getImage());
+        assertNotNull(GameImages.ICON.getImage());
+        assertNotNull(GameImages.POWER_BOMB.getImage());
+        assertNotNull(GameImages.POWER_FIREPOWER.getImage());
+        assertNotNull(GameImages.POWER_PIERCE.getImage());
+        assertNotNull(GameImages.POWER_SPEED.getImage());
+        assertNotNull(GameImages.POWER_TIMER.getImage());
+        assertNotNull(GameImages.SPAWN.getImage());
 
         assertNotNull(AnimatedObjectsSprites.PLAYER_1.getImage());
         assertNotNull(AnimatedObjectsSprites.PLAYER_2.getImage());

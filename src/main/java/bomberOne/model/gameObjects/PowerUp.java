@@ -1,5 +1,9 @@
 package bomberOne.model.gameObjects;
 
+/**
+ * PowerUp that can change the Game's property.
+ *
+ */
 public interface PowerUp extends GameObject {
 
     enum Type {

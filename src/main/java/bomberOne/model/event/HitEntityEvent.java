@@ -1,8 +1,6 @@
 package bomberOne.model.event;
 
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.bomber.BomberImpl;
@@ -12,6 +10,10 @@ import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.Fire;
 import bomberOne.model.gameObjects.GameObject;
 
+/**
+ * This event is triggered when the fire hits an Object or if the Bomber collide with an Enemy
+ *
+ */
 public class HitEntityEvent implements WorldEvent {
 
     private static final int FIRST_CELL_COORD = 32;
@@ -57,6 +59,7 @@ public class HitEntityEvent implements WorldEvent {
             }
         }
         this.entity.hitted();
+        /* Increment the Score */
         if (this.entity.getClass().equals(BoxImpl.class)) {
             model.incScore(BOX_INC_SCORE);
         }

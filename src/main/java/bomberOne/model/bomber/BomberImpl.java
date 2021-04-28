@@ -11,8 +11,6 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp.Type;
-import bomberOne.model.input.PlayerBehaviour;
-import bomberOne.tools.ResourcesLoader;
 import javafx.geometry.Rectangle2D;
 
 public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
@@ -50,6 +48,14 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      * Constant for set the upgrade from powerUp Bomber.
      */
     public static final int FIRE_POWER_INC = 2;
+    /**
+     * Constant for walking animation.
+     */
+    private static final int WALKING_TIME = 10;
+    /**
+     * Constant for death animation.
+     */
+    private static final int DEATH_TIME = 15;
 
     private final P2d startPosition;
     private int firePower;
@@ -255,7 +261,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public void hitted() {
         this.setLifes(this.getLifes() - 1);
-        this.setBoundingBox(new Rectangle2D(32, 32, 0, 0 ));
+        this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
     }
 
@@ -288,7 +294,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 }
                 this.isChangedDir = false;
             }
-            if (!this.isStatic() && ++this.fpAgg == 10) {
+            if (!this.isStatic() && ++this.fpAgg == WALKING_TIME) {
                 this.fpAgg = 0;
                 this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
@@ -297,7 +303,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.setAnimationIndex(0);
                 this.setSpriteIndex(4);
                 this.fpAgg = 0;
-            } else if (++this.fpAgg == 10) {
+            } else if (++this.fpAgg == DEATH_TIME) {
                 this.fpAgg = 0;
                 this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
