@@ -9,12 +9,13 @@ public final class BasicBehavior implements Actions{
 	/* Fields. */
         private static final int FRAMES_TO_CHANGE_DIRECTION = 420;
         
-	private Random randomGenerator = new Random();
+	private Random randomGenerator;
 	private EnemyImpl selectedEnemy;
 	private int nextDirectionCounter;
 	
 	/* Constructors. */
 	public BasicBehavior(final EnemyImpl newEnemy) {
+	        this.randomGenerator = new Random();
 		this.selectedEnemy = newEnemy;
 		this.nextDirectionCounter = 0;
 	}
@@ -66,6 +67,7 @@ public final class BasicBehavior implements Actions{
 	        }else {
 	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }
+	        System.out.println("Enemy animated.");
 	    }
 	    
 	    //Moving the enemy.
