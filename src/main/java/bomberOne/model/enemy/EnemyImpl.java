@@ -18,7 +18,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private static final int LOW_SPEED = 500;
         private static final int HIGH_SPEED = 600;
         private Actions behavior;
-        private Direction previousDirection;
         private int frameCounter;
         private int nextMoveFrameCounter;
         private int frameCounterAnimation;
@@ -41,8 +40,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
                 this.behavior = new IntermediateBehavior(this);
                 this.setSpeed(HIGH_SPEED);
             }
-            
-            System.out.println("Enemy created.");
         }
 
     /* Methods. */
@@ -64,21 +61,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             }
         }
     }
-        
-        /**
-         * {@inheritDoc}
-         */
-        public Direction getPreviousDirection() {
-            return this.previousDirection;
-        }
-        
-        /**
-         * {@inheritDoc}
-         */
-        public void setPreviousDirection(Direction newDirection) {
-            this.previousDirection = newDirection;
-        }
-        
+   
         /**
          * {@inheritDoc}
          */
