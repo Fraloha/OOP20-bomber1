@@ -38,6 +38,11 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
+    BOMB("bombSprite.png"), 
+    
+    /**
+     * 
+     */
     ENEMIES_STANDARD("enemiesStandard.png"), 
 
     /**
