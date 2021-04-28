@@ -15,7 +15,7 @@ import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.HardWall;
 import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;

@@ -3,6 +3,10 @@ package bomberOne.views.basic;
 import bomberOne.controllers.Controller;
 import javafx.stage.Stage;
 
+/**
+ * Basic View
+ *
+ */
 public interface View {
 
     /**

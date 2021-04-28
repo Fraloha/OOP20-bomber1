@@ -13,6 +13,10 @@ import java.util.List;
 
 import bomberOne.model.user.User;
 
+/**
+ * Utility class that can read or write the Ranks on their specific file.
+ *
+ */
 public final class RankLoader {
 
     private RankLoader() {

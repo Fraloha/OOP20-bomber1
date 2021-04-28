@@ -3,6 +3,10 @@ package bomberOne.model.event;
 import bomberOne.model.GameModel;
 import bomberOne.model.gameObjects.PowerUp;
 
+/**
+ * This event is triggered when the Bomber picks a PowerUp
+ *
+ */
 public class PickPowerUpEvent implements WorldEvent {
 
     private static final int TIMER_INC = 30;
@@ -26,8 +30,10 @@ public class PickPowerUpEvent implements WorldEvent {
     @Override
     public void process(final GameModel model) {
         if (this.powerUp.getType().equals(PowerUp.Type.Time)) {
+            /* Timer PowerUp */
             model.getTimer().setTimer(model.getTimer().getTime().getTotal() + TIMER_INC);
         } else {
+            /* All other PowerUp */
             model.getWorld().getBomber().applyPowerUp(this.powerUp.getType());
         }
         this.powerUp.hitted();

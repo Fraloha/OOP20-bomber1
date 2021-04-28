@@ -2,6 +2,10 @@ package bomberOne.views.game;
 
 import bomberOne.views.basic.View;
 
+/**
+ * The View of the Game.
+ *
+ */
 public interface GameView extends View {
 
     /**

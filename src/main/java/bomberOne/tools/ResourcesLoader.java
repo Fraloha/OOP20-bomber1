@@ -11,9 +11,13 @@ import java.util.List;
 import javax.imageio.ImageIO;
 
 import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 import bomberOne.tools.maps.Maps;
 
+/**
+ * Utility class that load the Resources from the specific directories.
+ *
+ */
 public final class ResourcesLoader {
 
     private ResourcesLoader() {
@@ -37,7 +41,7 @@ public final class ResourcesLoader {
      * @throws IOException if it can't read the Files
      */
     public static void loadImages() {
-        Arrays.stream(ObjectsImages.values()).forEach(value -> {
+        Arrays.stream(GameImages.values()).forEach(value -> {
             try {
                 value.setImage(ImageIO.read(ClassLoader.getSystemResource(value.getFilePath())));
             } catch (IOException e) {

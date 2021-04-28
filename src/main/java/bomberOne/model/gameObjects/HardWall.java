@@ -4,6 +4,10 @@ import java.awt.image.BufferedImage;
 
 import bomberOne.model.common.P2d;
 
+/**
+ * Wall-Object in the Map
+ *
+ */
 public class HardWall extends GameObjectImpl {
 
     public HardWall(final P2d pos, final BufferedImage img, final int lifes) {

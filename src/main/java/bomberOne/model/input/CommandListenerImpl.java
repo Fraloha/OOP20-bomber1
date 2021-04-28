@@ -18,12 +18,12 @@ import bomberOne.model.input.commands.PlantBomb;
 public class CommandListenerImpl implements CommandListener {
     private List<Command> commandList;
     private GameModel game;
-    private PlayerBehaviour behaviour;
+    private PlayerBehavior behaviour;
     private boolean isActionCompleted;
 
     public CommandListenerImpl() {
         this.commandList = new LinkedList<>();
-        this.behaviour = new PlayerBehaviour();
+        this.behaviour = new PlayerBehavior();
     }
 
     /**
@@ -94,7 +94,7 @@ public class CommandListenerImpl implements CommandListener {
      * {@inheritDoc}
      */
     @Override
-    public PlayerBehaviour getPlayerBehaviour() {
+    public PlayerBehavior getPlayerBehaviour() {
         return this.behaviour;
     }
 }

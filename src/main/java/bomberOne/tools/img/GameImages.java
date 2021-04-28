@@ -4,12 +4,11 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 /**
- * 
- * This Resource loader use this enum to collect the Images of the objects.
+ * The Resource loader use this enum to collect the Images of the objects.
  * 
  *
  */
-public enum ObjectsImages {
+public enum GameImages {
 
     /**
      * 
@@ -110,7 +109,7 @@ public enum ObjectsImages {
     private String fileName;
     private BufferedImage image;
 
-    ObjectsImages(final String fileName) {
+    GameImages(final String fileName) {
         this.fileName = fileName;
     }
 

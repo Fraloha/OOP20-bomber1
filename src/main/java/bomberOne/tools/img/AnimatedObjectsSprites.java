@@ -67,30 +67,59 @@ public enum AnimatedObjectsSprites {
         this.height = height;
     }
 
+    /**
+     * 
+     * @return the path of Sprite's file.
+     */
     public String getFilePath() {
         return RES_PATH + this.fileName;
     }
 
+    /**
+     * 
+     * @param img to attach to the Value.
+     */
     public void setImage(final BufferedImage img) {
         this.image = img;
     }
 
+    /**
+     * Attach the images Matrix to the Value.
+     * 
+     * @param sprites to attach to the Value
+     */
     public void setSprite(final BufferedImage[][] sprites) {
         this.sprites = sprites;
     }
 
+    /**
+     * 
+     * @return the image attached to the Value.
+     */
     public BufferedImage getImage() {
         return this.image;
     }
 
+    /**
+     * 
+     * @return the images matrix attached to the Value.
+     */
     public BufferedImage[][] getSprites() {
         return this.sprites;
     }
     
+    /**
+     * 
+     * @return the Height of every single image of the Sprite
+     */
     public int getHeight() {
         return this.height;
     }
     
+    /**
+     * 
+     * @return the Width of every single image of the Sprite
+     */
     public int getWidth() {
         return this.width;
     }

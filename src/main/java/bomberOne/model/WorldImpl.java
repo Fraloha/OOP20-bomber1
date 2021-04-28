@@ -196,7 +196,7 @@ public class WorldImpl implements World {
         list.addAll(collection.getEnemyList());
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
-                if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
+                if (fire.getCollider().intersects(obj.getCollider())) {
                     this.listener.notifyEvent(new HitEntityEvent(obj));
                 }
             }
@@ -204,13 +204,13 @@ public class WorldImpl implements World {
         List<PowerUp> powerUpList = collection.getPowerUpList().stream().filter(p -> p.isReleased())
                 .collect(Collectors.toList());
         for (PowerUp power : powerUpList) {
-            if (power.getBoundingBox().intersects(bomberMan.getBoundingBox())) {
+            if (power.getCollider().intersects(bomberMan.getCollider())) {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
         /* Check if enemy hit Bomberman */
         this.collection.getEnemyList().stream().forEach(enemy -> {
-            if (enemy.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (enemy.getCollider().intersects(this.bomberMan.getCollider())) {
                 this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
             }
         });
@@ -236,13 +236,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getHardWallList());
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
-            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (wall.getCollider().intersects(this.bomberMan.getCollider())) {
                 listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
-                if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
+                if (wall.getCollider().intersects(enemy.getCollider())) {
                     listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }

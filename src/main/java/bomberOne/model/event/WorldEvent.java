@@ -3,7 +3,7 @@ package bomberOne.model.event;
 import bomberOne.model.GameModel;
 
 /**
- * Generic interface for Every WorldEvent.
+ * Interface for generic WorldEvent.
  * 
  *
  */

@@ -119,7 +119,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      */
     @Override
     public void update(final int elapsed) {
-        this.setBoundingBox(new Rectangle2D(this.getPosition().getX(), this.getPosition().getY(), 32, 32));
+        this.setCollider(new Rectangle2D(this.getPosition().getX(), this.getPosition().getY(), 32, 32));
         this.setTimeElapsed(elapsed);
     }
 

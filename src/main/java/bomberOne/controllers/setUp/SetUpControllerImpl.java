@@ -8,7 +8,6 @@ import bomberOne.model.user.Skins;
 
 public final class SetUpControllerImpl extends ControllerImpl implements SetUpController {
 
-    
     @Override
     public void setDifficulty(final Difficulty diff) {
         this.getModel().setDifficulty(diff);
@@ -29,10 +28,6 @@ public final class SetUpControllerImpl extends ControllerImpl implements SetUpCo
     public void setControls(final Controls choice) {
         this.getModel().getUser().setControls(choice);
 
-    }
-    
-    private void switchToGame() {
-        //((SetUpView) this.getView()).switchToGame();
     }
 
     @Override

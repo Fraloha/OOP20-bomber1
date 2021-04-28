@@ -34,7 +34,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
 
     }
 
-    protected void waitForNextFrame(final long current) {
+    private void waitForNextFrame(final long current) {
         long dt = System.currentTimeMillis() - current;
         if (dt < PERIOD) {
             try {
