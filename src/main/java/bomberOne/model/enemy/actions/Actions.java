@@ -15,4 +15,9 @@ public interface Actions {
      * and the IntermediateBehavior objects.
      */
     void doActions();
+    
+    /**
+     * This method computes the enemy next movement.
+     */
+    void nextMove();
 }

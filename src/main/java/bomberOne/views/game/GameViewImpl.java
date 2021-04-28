@@ -3,7 +3,7 @@ package bomberOne.views.game;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
-public final class GameViewImpl extends ViewImpl implements GameView {
+public class GameViewImpl extends ViewImpl implements GameView {
 
     private static final int ENEMY_WIDTH = 32;
     private static final int ENEMY_HEIGHT = 48;
@@ -63,9 +63,11 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     private GraphicsContext gCForeground;
     private GraphicsContext gCBackground;
-    // private ControlsMap controlsMap;
     private ControlsMap controlsMap;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
@@ -100,13 +102,16 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void drawGame() {
-        this.clockImageView.setImage(SwingFXUtils.toFXImage(ObjectsImages.CLOCK.getImage(), null));
+        this.clockImageView.setImage(SwingFXUtils.toFXImage(GameImages.CLOCK.getImage(), null));
         this.drawBomberOnScoreBoard();
         this.drawLifes();
         /* Draw the background */
-        Image backgroundImage = SwingFXUtils.toFXImage(ObjectsImages.BACKGROUND.getImage(), null);
+        Image backgroundImage = SwingFXUtils.toFXImage(GameImages.BACKGROUND.getImage(), null);
         for (int i = 0; i < WORLD_CELLS; i++) {
             for (int j = 0; j < WORLD_CELLS; j++) {
                 gCBackground.drawImage(backgroundImage, i * CELL_SIZE, j * CELL_SIZE);
@@ -114,10 +119,10 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         }
         /* Draw the spawner */
         double spawnCord = CELL_SIZE * WORLD_CELLS / 2 - CELL_SIZE / 2;
-        gCBackground.drawImage(SwingFXUtils.toFXImage(ObjectsImages.SPAWN.getImage(), null), spawnCord, spawnCord);
+        gCBackground.drawImage(SwingFXUtils.toFXImage(GameImages.SPAWN.getImage(), null), spawnCord, spawnCord);
 
         /* Draw the Walls */
-        Image wallImage = SwingFXUtils.toFXImage(ObjectsImages.HARDWALL.getImage(), null);
+        Image wallImage = SwingFXUtils.toFXImage(GameImages.HARDWALL.getImage(), null);
         this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
                 .forEach(wall -> {
                     gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
@@ -125,6 +130,9 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
 
@@ -136,7 +144,7 @@ public final class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the boxes */
         Platform.runLater(() -> {
-            Image boxImage = SwingFXUtils.toFXImage(ObjectsImages.BOX.getImage(), null);
+            Image boxImage = SwingFXUtils.toFXImage(GameImages.BOX.getImage(), null);
             this.getController().getModel().getWorld().getGameObjectCollection().getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
@@ -194,21 +202,21 @@ public final class GameViewImpl extends ViewImpl implements GameView {
         // Draw the icon of the Bomber
         if (color.equals(Skins.WHITE)) {
             Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER1SCOREBOARD.getImage(), null)));
+                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER1SCOREBOARD.getImage(), null)));
         }
         if (color.equals(Skins.BLACK)) {
             Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER2SCOREBOARD.getImage(), null)));
+                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER2SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.RED)) {
             Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER3SCOREBOARD.getImage(), null)));
+                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER3SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.BLUE)) {
             Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(ObjectsImages.BOMBER4SCOREBOARD.getImage(), null)));
+                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER4SCOREBOARD.getImage(), null)));
         }
     }
 
@@ -217,13 +225,16 @@ public final class GameViewImpl extends ViewImpl implements GameView {
      */
     private void drawLifes() {
         int nLifes = this.getController().getModel().getWorld().getBomber().getLifes();
-        Image lifeYes = SwingFXUtils.toFXImage(ObjectsImages.LIFE_YES.getImage(), null);
-        Image lifeNo = SwingFXUtils.toFXImage(ObjectsImages.LIFE_NO.getImage(), null);
+        Image lifeYes = SwingFXUtils.toFXImage(GameImages.LIFE_YES.getImage(), null);
+        Image lifeNo = SwingFXUtils.toFXImage(GameImages.LIFE_NO.getImage(), null);
         Platform.runLater(() -> this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo));
         Platform.runLater(() -> this.lifeTwo.setImage((nLifes >= N_LIFES_TWO) ? lifeYes : lifeNo));
         Platform.runLater(() -> this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void switchToRank() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());

@@ -261,7 +261,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public void hitted() {
         this.setLifes(this.getLifes() - 1);
-        this.setBoundingBox(new Rectangle2D(32, 32, 0, 0));
+        this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
     }
 

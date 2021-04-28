@@ -1,6 +1,6 @@
 package bomberOne.model.input;
 
-public class PlayerBehaviour {
+public class PlayerBehavior {
 
     private Boolean toggleUpPressed = Boolean.FALSE;
     private Boolean toggleDownPressed = Boolean.FALSE;

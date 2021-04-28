@@ -5,6 +5,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+/**
+ * Utility class that prepare the ".bomberOne" directory in the User's Home directory.
+ *
+ */
 public final class DirectoryLoader {
 
     private static final String CONFIGURATION_DIRECTORY_NAME = ".bomberOne";

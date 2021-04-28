@@ -1,7 +1,7 @@
 package bomberOne.model.gameObjects;
 
 /**
- * A simple GameObject.
+ * Represent the Fire triggered by the Explosion
  */
 public interface Fire extends GameObject {
 

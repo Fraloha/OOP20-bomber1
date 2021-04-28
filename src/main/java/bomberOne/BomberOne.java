@@ -7,7 +7,7 @@ import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.ResourcesLoader;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import javafx.application.Application;
@@ -26,13 +26,13 @@ public final class BomberOne extends Application {
         primaryStage.setResizable(false);
         ResourcesLoader.start();
         DirectoryLoader.start();
-        primaryStage.getIcons().add(SwingFXUtils.toFXImage(ObjectsImages.ICON.getImage(), null));
+        primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
         // UNCOMMENT TO TEST
 //
         GameModel test = new GameModelImpl();
         test.getUser().setControls(Controls.ARROW);
         test.getUser().setSkin(Skins.BLACK);
-        test.setDifficulty(Difficulty.STANDARD);
+        test.setDifficulty(Difficulty.HARD);
         test.init();
         ViewsSwitcher.switchView(primaryStage, ViewType.GAME, test);
     }

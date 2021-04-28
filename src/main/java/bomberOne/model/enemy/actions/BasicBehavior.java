@@ -4,62 +4,91 @@ import java.util.Random;
 import bomberOne.model.common.Direction;
 import bomberOne.model.enemy.EnemyImpl;
 
-public class BasicBehavior implements Actions{
+public final class BasicBehavior implements Actions{
 	
 	/* Fields. */
-	private Random randomGenerator = new Random();
+        /**
+         * This constant is the number of frames that the enemy has to wait to
+         * change his direction.
+         */
+        private static final int FRAMES_TO_CHANGE_DIRECTION = 120;
+        
+	private Random randomGenerator;
 	private EnemyImpl selectedEnemy;
+	private int nextDirectionCounter;
 	
 	/* Constructors. */
-	public BasicBehavior(EnemyImpl newEnemy) {
+	public BasicBehavior(final EnemyImpl newEnemy) {
+	        this.randomGenerator = new Random();
 		this.selectedEnemy = newEnemy;
+		
+		//The counter is set to the limit, because at the start of the game,
+		//it's better that the enemy change his direction.
+		this.nextDirectionCounter = BasicBehavior.FRAMES_TO_CHANGE_DIRECTION;
 	}
 	
 	/* Methods. */
+	
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
 	public void doActions() {
-	    //Checking if the enemy changed direction.
-	    if (this.selectedEnemy.getDir() != this.selectedEnemy.getPreviousDirection()) {
-	        this.selectedEnemy.setPreviousDirection(this.selectedEnemy.getDir());
+	    /* Variables declaration. */
+	    int newDirection;
+
+	    //Checking if the enemy has to change the direction.
+	    if(this.nextDirectionCounter == BasicBehavior.FRAMES_TO_CHANGE_DIRECTION) {
+                //Generating a new random direction.
+	        do {
+	            newDirection = this.randomGenerator.nextInt(4);
+	        } while(newDirection == this.selectedEnemy.getDir().ordinal());
+
+	        //Setting the new direction.
+	        this.selectedEnemy.setDir(Direction.values()[newDirection]);
+	        this.selectedEnemy.setAnimationIndex(0);
 	        
-	        //Moving the enemy on the basis of the generated random value.
-	        switch(this.randomGenerator.nextInt(4)) {
-	        
-	        case 0:
+	        //Setting the sprite on the basis of the direction.
+	        if (this.selectedEnemy.getDir() == Direction.UP) {
 	            this.selectedEnemy.setSpriteIndex(3);
-	            this.selectedEnemy.setAnimationIndex(0);
-	            this.selectedEnemy.setDir(Direction.UP);
-	            this.selectedEnemy.moveUp();
-	            break;
-	            
-	        case 1:
-	            this.selectedEnemy.setSpriteIndex(2);
-	            this.selectedEnemy.setAnimationIndex(0);
-	            this.selectedEnemy.setDir(Direction.RIGHT);
-	            this.selectedEnemy.moveRight();
-	            break;
-	            
-	        case 2:
+	        } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
 	            this.selectedEnemy.setSpriteIndex(1);
-	            this.selectedEnemy.setAnimationIndex(0);
-	            this.selectedEnemy.setDir(Direction.LEFT);
-	            this.selectedEnemy.moveLeft();
-	            break;
-	            
-	        case 3:
+	        } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
+	            this.selectedEnemy.setSpriteIndex(2);
+	        } else {
 	            this.selectedEnemy.setSpriteIndex(0);
-	            this.selectedEnemy.setAnimationIndex(0);
-	            this.selectedEnemy.setDir(Direction.DOWN);
-	            this.selectedEnemy.moveDown();
-	            break;
 	        }
+	        
+	        //Resetting the counter.
+	        this.nextDirectionCounter = 0;
 	    } else {
-	        //Animating the enemy.
-	        if(this.selectedEnemy.getAnimationIndex() > 5) {
-	            this.selectedEnemy.setAnimationIndex(0);
+	        if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
+	            this.selectedEnemy.setFrameCounterAnimation(0);
+	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1) % 3);
 	        }else {
-	            this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
+	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }
+	    }
+	    
+	    //Moving the enemy.
+	    this.nextMove();
+	    this.nextDirectionCounter++;
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void nextMove() {
+	    //Moving the enemy on the basis of the direction.
+	    if (this.selectedEnemy.getDir() == Direction.UP) {
+	        this.selectedEnemy.moveUp();
+	    } else if (this.selectedEnemy.getDir() == Direction.DOWN) {
+	        this.selectedEnemy.moveDown();
+	    } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
+	        this.selectedEnemy.moveRight();
+	    } else {
+	        this.selectedEnemy.moveLeft();
 	    }
 	}
 }

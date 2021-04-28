@@ -41,7 +41,6 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
-    private GameModel model;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -55,10 +54,6 @@ public class WorldImpl implements World {
         this.setHardWall();
         this.setEnemy();
         this.setBox(this.difficulty);
-    }
-
-    public void setModel(final GameModel model) {
-        this.model = model;
     }
 
     /**
@@ -174,10 +169,6 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        /*
-         * for (Enemy enemy : collection.getEnemyList()) {
-         * enemy.update(this.bomberMan.getPosition()); }
-         */
         this.checkExplosion();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
@@ -196,7 +187,7 @@ public class WorldImpl implements World {
         list.addAll(collection.getEnemyList());
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
-                if (fire.getBoundingBox().intersects(obj.getBoundingBox())) {
+                if (fire.getCollider().intersects(obj.getCollider())) {
                     this.listener.notifyEvent(new HitEntityEvent(obj));
                 }
             }
@@ -204,13 +195,13 @@ public class WorldImpl implements World {
         List<PowerUp> powerUpList = collection.getPowerUpList().stream().filter(p -> p.isReleased())
                 .collect(Collectors.toList());
         for (PowerUp power : powerUpList) {
-            if (power.getBoundingBox().intersects(bomberMan.getBoundingBox())) {
+            if (power.getCollider().intersects(bomberMan.getCollider())) {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
         /* Check if enemy hit Bomberman */
         this.collection.getEnemyList().stream().forEach(enemy -> {
-            if (enemy.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (enemy.getCollider().intersects(this.bomberMan.getCollider())) {
                 this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
             }
         });
@@ -223,8 +214,8 @@ public class WorldImpl implements World {
         }
         if (this.respawn) {
             if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME,
-                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty));
+                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
+                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2), this.difficulty));
             }
         }
     }
@@ -236,13 +227,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getHardWallList());
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
-            if (wall.getBoundingBox().intersects(this.bomberMan.getBoundingBox())) {
+            if (wall.getCollider().intersects(this.bomberMan.getCollider())) {
                 listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
-                if (wall.getBoundingBox().intersects(enemy.getBoundingBox())) {
+                if (wall.getCollider().intersects(enemy.getCollider())) {
                     listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }

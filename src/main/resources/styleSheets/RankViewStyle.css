@@ -1,0 +1,14 @@
+.buttonStyle{
+	-fx-background-color: #ad79ec;
+}
+
+.hBoxStyle{
+	-fx-background-color: #694486;
+}
+
+.tableViewColumnStyle{
+	-fx-background-color: #000000;
+}
+.anchorPaneStyle{
+	-fx-background-image: url('../images/RankViewImages/StarNignt.png');
+}

@@ -9,11 +9,11 @@ import org.junit.jupiter.api.Test;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUpImpl;
-import bomberOne.tools.img.ObjectsImages;
+import bomberOne.tools.img.GameImages;
 
 public class TestPowerUps {
 
-    private PowerUp pUp = new PowerUpImpl(new P2d(0, 0), ObjectsImages.POWER_FIREPOWER.getImage(), 1, false, PowerUp.Type.FirePower);
+    private PowerUp pUp = new PowerUpImpl(new P2d(0, 0), GameImages.POWER_FIREPOWER.getImage(), 1, false, PowerUp.Type.FirePower);
 
     @Test
     public void testReleased() {
@@ -25,7 +25,7 @@ public class TestPowerUps {
     @Test
     public void testType() {
         assertEquals(PowerUp.Type.FirePower, pUp.getType());
-        assertEquals(ObjectsImages.POWER_FIREPOWER.getImage(), pUp.getImage());
+        assertEquals(GameImages.POWER_FIREPOWER.getImage(), pUp.getImage());
     }
 
 }

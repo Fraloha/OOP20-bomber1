@@ -43,7 +43,7 @@ public abstract class GameObjectImpl implements GameObject {
      * {@inheritDoc}
      */
     @Override
-    public Rectangle2D getBoundingBox() {
+    public Rectangle2D getCollider() {
         return this.collider;
     }
 
@@ -92,7 +92,7 @@ public abstract class GameObjectImpl implements GameObject {
     /**
      * {@inheritDoc}
      */
-    public void setBoundingBox(final Rectangle2D collider) {
+    public void setCollider(final Rectangle2D collider) {
         this.collider = collider;
     }
 
