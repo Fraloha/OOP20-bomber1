@@ -308,11 +308,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
             }
             if (this.getSpriteIndex() == 4 && this.getAnimationIndex() == 3) {
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
                 this.respawn();
             }
         }
