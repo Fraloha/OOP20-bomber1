@@ -46,6 +46,28 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
     }
 
     @Override
+    public void resumeGame() {
+        synchronized(this.game) {
+     //       this.game.
+        }
+    }
+    
+    @Override
+    public synchronized void pauseGame() {
+        synchronized(this.game) {
+            try {
+                this.game.wait();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+    
+    public void quitGame() {
+        this.getModel().setGameOver(true);
+    }
+    
+    @Override
     public void processInput() {
         commandHandler.executeCommands();
     }

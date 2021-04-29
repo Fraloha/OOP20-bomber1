@@ -113,4 +113,9 @@ public class GameModelImpl implements GameModel {
     public final Timer getTimer() {
         return this.timer;
     }
+    
+    @Override
+    public final TimerThread getTimerThread() {
+        return this.thread;
+    }
 }

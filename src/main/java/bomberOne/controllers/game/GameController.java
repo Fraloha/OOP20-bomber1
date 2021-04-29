@@ -38,4 +38,14 @@ public interface GameController extends Controller {
      * @return the listener
      */
     CommandListener getCommandListener();
+    
+    /**
+     * Bring the gameloop status on Pause
+     */
+    void pauseGame();
+    
+    /**
+     *
+     */
+    void resumeGame();
 }

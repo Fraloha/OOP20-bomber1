@@ -60,11 +60,24 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
     @FXML
     private ImageView clockImageView;
+    
+    @FXML
+    private ImageView pauseButton;
 
     private GraphicsContext gCForeground;
     private GraphicsContext gCBackground;
     private ControlsMap controlsMap;
 
+    @FXML
+    public void pauseClicked() {
+         ((GameController) this.getController()).pauseGame();
+    }
+    
+    @FXML
+    public void resumeClicked() {
+         ((GameController) this.getController()).resumeGame();
+    }
+    
     /**
      * {@inheritDoc}
      */
