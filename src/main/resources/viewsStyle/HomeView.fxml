@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.GameViewImpl">
-	<children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
-      </BorderPane>
-   </children>
-</AnchorPane>
 
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="bomberOne.views.game.HomeViewImpl">
+	<!-- TODO Add Nodes -->
+</AnchorPane>

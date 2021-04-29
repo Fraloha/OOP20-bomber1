@@ -23,7 +23,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     }
 
     @Override
-    public void switchToGame() {
+    public void switchToCredits() {
         // TODO Auto-generated method stub
 
     }

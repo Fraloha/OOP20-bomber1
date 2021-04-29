@@ -10,7 +10,7 @@ public interface HomeView extends View {
 
     void switchToSetUp();
 
-    void switchToGame();
+    void switchToCredits();
 
     void switchToRank();
 }
