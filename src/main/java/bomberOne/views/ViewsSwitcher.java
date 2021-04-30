@@ -42,6 +42,6 @@ public final class ViewsSwitcher {
         view.init();
         stage.show();
     }
-    
+
 
 }
