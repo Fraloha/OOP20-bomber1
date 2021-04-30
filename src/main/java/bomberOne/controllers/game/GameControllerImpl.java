@@ -7,7 +7,6 @@ import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
 import bomberOne.model.input.CommandListenerImpl;
 import bomberOne.views.game.GameView;
-import javafx.application.Platform;
 
 public final class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
 
@@ -16,6 +15,7 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
     private Thread game;
+    public boolean wasStopped;
 
     @Override
     public void run() {
@@ -29,8 +29,11 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
             this.render();
             this.waitForNextFrame(current);
             lastTime = current;
+
         }
-        ((GameView) this.getView()).switchToRank();
+        if (!this.wasStopped) {
+            ((GameView) this.getView()).switchToRank();
+        }
 
     }
 
@@ -40,33 +43,17 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
             try {
                 Thread.sleep((long) (PERIOD - dt));
             } catch (Exception ex) {
-
             }
         }
     }
 
     @Override
-    public void resumeGame() {
-        synchronized(this.game) {
-     //       this.game.
-        }
-    }
-    
-    @Override
-    public synchronized void pauseGame() {
-        synchronized(this.game) {
-            try {
-                this.game.wait();
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
-    }
-    
     public void quitGame() {
+        this.getModel().getTimerThread().stopTimer();
         this.getModel().setGameOver(true);
+        this.wasStopped = true;
     }
-    
+
     @Override
     public void processInput() {
         commandHandler.executeCommands();
@@ -91,7 +78,9 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         this.getModel().getWorld().setEventListener(this.eventHandler);
         // this.getModel().init();
         this.game = new Thread(this);
+        this.game.setName("LOOP");
         this.game.start();
+        Thread.currentThread().interrupt();
     }
 
     @Override

@@ -62,6 +62,11 @@ public enum GameImages {
     /**
      * 
      */
+    QUIT_GAME("quitGame.png"),
+
+    /**
+     * 
+     */
     POWER_BOMB("power_bomb.png"),
 
     /**
@@ -92,7 +97,7 @@ public enum GameImages {
     /**
      * 
      */
-  //  FIRE("fire.png"),
+    // FIRE("fire.png"),
 
     /**
      * 

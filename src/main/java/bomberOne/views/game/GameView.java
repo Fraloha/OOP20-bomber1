@@ -22,4 +22,5 @@ public interface GameView extends View {
      * When the Game ends, it switch the View to the RankView.
      */
     void switchToRank();
+
 }
