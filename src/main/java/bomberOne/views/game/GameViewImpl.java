@@ -68,6 +68,9 @@ public class GameViewImpl extends ViewImpl implements GameView {
     private GraphicsContext gCBackground;
     private ControlsMap controlsMap;
 
+    /**
+     * When the quitButton is pressed, this method stop the Game.
+     */
     @FXML
     public void quitClicked() {
         ((GameController) this.getController()).quitGame();
@@ -90,11 +93,11 @@ public class GameViewImpl extends ViewImpl implements GameView {
     }
 
     /**
-     * Prepare the EventListener of the View
+     * Prepare the EventListener of the View.
      */
     private void setViewEventListener() {
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
+            public void handle(final KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).accept(Boolean.TRUE);
                 }

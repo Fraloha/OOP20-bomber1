@@ -4,7 +4,7 @@ import bomberOne.model.GameModel;
 import bomberOne.model.gameObjects.PowerUp;
 
 /**
- * This event is triggered when the Bomber picks a PowerUp
+ * This event is triggered when the Bomber picks a PowerUp.
  *
  */
 public class PickPowerUpEvent implements WorldEvent {

@@ -4,7 +4,7 @@ import bomberOne.model.common.Direction;
 import java.awt.image.BufferedImage;
 
 /**
- * This Entity represent every GameObject that can be moved in the World
+ * This Entity represent every GameObject that can be moved in the World.
  *
  */
 public interface AnimatedEntity extends GameObject {

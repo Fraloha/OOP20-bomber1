@@ -6,7 +6,7 @@ import bomberOne.model.common.P2d;
 import javafx.geometry.Rectangle2D;
 
 /**
- * Simple Object of the Game
+ * Simple Object of the Game.
  *
  */
 public interface GameObject {

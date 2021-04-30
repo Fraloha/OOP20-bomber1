@@ -4,7 +4,7 @@ import bomberOne.controllers.Controller;
 import javafx.stage.Stage;
 
 /**
- * Basic View
+ * Basic View.
  *
  */
 public interface View {

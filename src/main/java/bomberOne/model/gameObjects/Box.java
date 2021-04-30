@@ -3,7 +3,7 @@ package bomberOne.model.gameObjects;
 import java.util.Optional;
 
 /**
- * Represent every Box in the Game
+ * Represent every Box in the Game.
  *
  */
 public interface Box extends GameObject {

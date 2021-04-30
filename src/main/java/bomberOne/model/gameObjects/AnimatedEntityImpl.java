@@ -3,12 +3,11 @@ package bomberOne.model.gameObjects;
 import java.awt.image.BufferedImage;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
-import javafx.geometry.BoundingBox;
 import javafx.geometry.Rectangle2D;
 
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
-    private final static double TIME_QUOTIENT = 5000.0;
+    private static final double TIME_QUOTIENT = 5000.0;
     private int elapsed;
     private Direction dir;
     private double speed;
@@ -178,8 +177,11 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     public int getAnimationIndex() {
         return this.animationsIndex;
     }
-    
-    public BufferedImage[][] getSprites(){
+
+    /**
+     * {@inheritDoc}
+     */
+    public BufferedImage[][] getSprites() {
         return this.sprites;
     }
 }

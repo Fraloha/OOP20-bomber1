@@ -1,6 +1,6 @@
 package bomberOne.model.input;
 
-public class PlayerBehavior {
+public final class PlayerBehavior {
 
     private Boolean toggleUpPressed = Boolean.FALSE;
     private Boolean toggleDownPressed = Boolean.FALSE;
@@ -12,7 +12,7 @@ public class PlayerBehavior {
         return toggleUpPressed;
     }
 
-    public void setToggleUpPressed(boolean toggleUpPressed) {
+    public void setToggleUpPressed(final boolean toggleUpPressed) {
         if (!toggleUpPressed || !this.toggleDownPressed && !this.toggleLeftPressed && !this.toggleRightPressed
                 && !this.toggleUpPressed) {
             this.toggleUpPressed = toggleUpPressed;
@@ -23,7 +23,7 @@ public class PlayerBehavior {
         return toggleDownPressed;
     }
 
-    public void setToggleDownPressed(boolean toggleDownPressed) {
+    public void setToggleDownPressed(final boolean toggleDownPressed) {
         if (!toggleDownPressed || !this.toggleDownPressed && !this.toggleLeftPressed && !this.toggleRightPressed
                 && !this.toggleUpPressed) {
             this.toggleDownPressed = toggleDownPressed;
@@ -34,7 +34,7 @@ public class PlayerBehavior {
         return toggleLeftPressed;
     }
 
-    public void setToggleLeftPressed(boolean toggleLeftPressed) {
+    public void setToggleLeftPressed(final boolean toggleLeftPressed) {
         if (!toggleLeftPressed || !this.toggleDownPressed && !this.toggleLeftPressed && !this.toggleRightPressed
                 && !this.toggleUpPressed) {
             this.toggleLeftPressed = toggleLeftPressed;
@@ -45,7 +45,7 @@ public class PlayerBehavior {
         return toggleRightPressed;
     }
 
-    public void setToggleRightPressed(boolean toggleRightPressed) {
+    public void setToggleRightPressed(final boolean toggleRightPressed) {
         if (!toggleRightPressed || !this.toggleDownPressed && !this.toggleLeftPressed && !this.toggleRightPressed
                 && !this.toggleUpPressed) {
             this.toggleRightPressed = toggleRightPressed;
@@ -56,7 +56,7 @@ public class PlayerBehavior {
         return toggleActionPressed;
     }
 
-    public void setToggleActionPressed(boolean toggleActionPressed) {
+    public void setToggleActionPressed(final boolean toggleActionPressed) {
         this.toggleActionPressed = toggleActionPressed;
     }
 

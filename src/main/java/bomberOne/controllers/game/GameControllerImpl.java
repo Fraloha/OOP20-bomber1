@@ -8,15 +8,18 @@ import bomberOne.model.input.CommandListener;
 import bomberOne.model.input.CommandListenerImpl;
 import bomberOne.views.game.GameView;
 
-public final class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
+public class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
 
     private static final double PERIOD = 16.6666;
 
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
     private Thread game;
-    public boolean wasStopped;
+    private boolean wasStopped;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
@@ -47,6 +50,9 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void quitGame() {
         this.getModel().getTimerThread().stopTimer();
@@ -54,21 +60,33 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         this.wasStopped = true;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processInput() {
         commandHandler.executeCommands();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         ((GameView) this.getView()).render();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().updateGame(elapsedTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         this.eventHandler = new WorldEventListenerImpl();
@@ -83,11 +101,17 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         Thread.currentThread().interrupt();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processEvent() {
         this.eventHandler.processEvents();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandListener getCommandListener() {
         return this.commandHandler;

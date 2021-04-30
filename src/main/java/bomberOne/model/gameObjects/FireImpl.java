@@ -10,11 +10,8 @@ import bomberOne.model.common.P2d;
  */
 public class FireImpl extends GameObjectImpl implements Fire {
 
-    /**
-     * Constant LifeTime.
-     */
-    public static final int LIFE_TIME = 100;
-    public static final int ANIMATION_TIMER = 5;
+    private static final int LIFE_TIME = 100;
+    private static final int ANIMATION_TIMER = 5;
 
     private int lifeTime;
     private int thick;

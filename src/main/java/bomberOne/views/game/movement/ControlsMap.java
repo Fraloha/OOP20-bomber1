@@ -26,7 +26,7 @@ public class ControlsMap {
     private Map<Integer, Consumer<Boolean>> controlMap;
     private PlayerBehavior player;
 
-    public ControlsMap(final Controls type, PlayerBehavior player) {
+    public ControlsMap(final Controls type, final PlayerBehavior player) {
         this.controlMap = new HashMap<>();
         this.player = player;
         if (type.equals(Controls.ARROW)) {

@@ -13,47 +13,47 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
-    PLAYER_1("bomber1.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
+    PLAYER_1("bomber1.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_2("bomber2.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
+    PLAYER_2("bomber2.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_3("bomber3.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
+    PLAYER_3("bomber3.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_4("bomber4.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT),
-    
-    /**
-     * 
-     */
-    FIRE("FIRE.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
+    PLAYER_4("bomber4.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    BOMB("bombSprite.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
-    
-    /**
-     * 
-     */
-    ENEMIES_STANDARD("enemiesStandard.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT), 
+    FIRE("FIRE.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    ENEMIES_HARD("enemiesHard.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_HEIGHT);
+    BOMB("bombSprite.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
-    public static final int STD_HEIGHT = 32;
-    public static final int STD_WIDTH = 32;
-    public static final int ENTITY_HEIGHT = 48;
-    
+    /**
+     * 
+     */
+    ENEMIES_STANDARD("enemiesStandard.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+
+    /**
+     * 
+     */
+    ENEMIES_HARD("enemiesHard.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH);
+
+    private static final int STD_HEIGHT = 32;
+    private static final int STD_WIDTH = 32;
+    private static final int ENTITY_HEIGHT = 48;
+
     private static final String RES_PATH = "." + File.separator + "images" + File.separator;
     private BufferedImage image;
     private BufferedImage[][] sprites;
@@ -107,7 +107,7 @@ public enum AnimatedObjectsSprites {
     public BufferedImage[][] getSprites() {
         return this.sprites;
     }
-    
+
     /**
      * 
      * @return the Height of every single image of the Sprite
@@ -115,7 +115,7 @@ public enum AnimatedObjectsSprites {
     public int getHeight() {
         return this.height;
     }
-    
+
     /**
      * 
      * @return the Width of every single image of the Sprite

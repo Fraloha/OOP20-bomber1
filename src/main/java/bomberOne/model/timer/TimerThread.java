@@ -1,7 +1,7 @@
 package bomberOne.model.timer;
 
 /**
- * This Thread handles the Timer of the Game in parallel to the GameThread
+ * This Thread handles the Timer of the Game in parallel to the GameThread.
  *
  */
 public class TimerThread extends Thread {

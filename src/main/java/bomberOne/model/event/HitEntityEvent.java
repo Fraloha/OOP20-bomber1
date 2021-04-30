@@ -11,7 +11,7 @@ import bomberOne.model.gameObjects.Fire;
 import bomberOne.model.gameObjects.GameObject;
 
 /**
- * This event is triggered when the fire hits an Object or if the Bomber collide with an Enemy
+ * This event is triggered when the fire hits an Object or if the Bomber collide with an Enemy.
  *
  */
 public class HitEntityEvent implements WorldEvent {
