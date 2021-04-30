@@ -8,28 +8,31 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="200.0" prefWidth="201.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.HomeViewImpl">
+<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.HomeViewImpl">
    <children>
-      <Pane fx:id="homePane" layoutX="-86.0" style="-fx-background-color: black;">
+      <Pane fx:id="homePane" style="-fx-background-color: black;">
          <children>
-            <Canvas fx:id="homeCanvas" height="200.0" width="200.0" />
-            <ImageView fx:id="boxLogo" fitHeight="107.0" fitWidth="281.0" pickOnBounds="true" preserveRatio="true">
+            <Canvas fx:id="homeCanvas" height="612.0" layoutX="1.0" layoutY="-6.0" width="575.0" />
+            <ImageView fx:id="boxLogo" fitHeight="308.0" fitWidth="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo_BomberOne.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonPlay" layoutX="51.0" layoutY="100.0" mnemonicParsing="false" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" prefHeight="31.0" prefWidth="97.0" style="-fx-background-image: ..\images\HomeButtons\PLAY_unset.png;" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="OCR A Extended" size="15.0" />
-               </font></Button>
-            <Button fx:id="buttonRank" layoutX="51.0" layoutY="131.0" mnemonicParsing="false" onMouseEntered="#setRank" onMouseExited="#unsetRank" prefHeight="31.0" prefWidth="97.0" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="OCR A Extended" size="15.0" />
-               </font></Button>
-            <Button fx:id="buttonCredits" layoutX="51.0" layoutY="162.0" mnemonicParsing="false" onMouseEntered="#setTutorial" onMouseExited="#unsetTutorial" prefHeight="31.0" prefWidth="97.0" textAlignment="CENTER" textFill="WHITE">
-               <font>
-                  <Font name="OCR A Extended" size="15.0" />
-               </font></Button>
+            <ImageView fx:id="buttonPlay" fitHeight="37.0" fitWidth="73.0" layoutX="252.0" layoutY="348.0" onMouseClicked="#switchToSetUp" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/HomeButtons/PLAY_unset.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonRank" fitHeight="37.0" fitWidth="73.0" layoutX="253.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/HomeButtons/RANK_unset.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="buttonTutorial" fitHeight="45.0" fitWidth="116.0" layoutX="230.0" layoutY="485.0" onMouseDragEntered="#setTutorial" onMouseDragExited="#unsetTutorial" onMouseEntered="#setTutorial" onMouseExited="#unsetTutorial" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/HomeButtons/TUTORIAL_unset.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
