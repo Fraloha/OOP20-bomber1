@@ -1,10 +1,36 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="bomberOne.views.game.HomeViewImpl">
-	<!-- TODO Add Nodes -->
+<AnchorPane prefHeight="200.0" prefWidth="201.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.HomeViewImpl">
+   <children>
+      <Pane fx:id="homePane" layoutX="-86.0" style="-fx-background-color: black;">
+         <children>
+            <Canvas fx:id="homeCanvas" height="200.0" width="200.0" />
+            <ImageView fx:id="boxLogo" fitHeight="107.0" fitWidth="281.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo_BomberOne.png" />
+               </image>
+            </ImageView>
+            <Button fx:id="buttonPlay" layoutX="51.0" layoutY="100.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="OCR A Extended" size="15.0" />
+               </font></Button>
+            <Button fx:id="buttonRank" layoutX="51.0" layoutY="131.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="RANK" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="OCR A Extended" size="15.0" />
+               </font></Button>
+            <Button fx:id="buttonCredits" layoutX="51.0" layoutY="162.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="CREDITS" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="OCR A Extended" size="15.0" />
+               </font></Button>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>
