@@ -107,7 +107,37 @@ public enum GameImages {
     /**
      * 
      */
-    SPAWN("spawn.png");
+    SPAWN("spawn.png"),
+
+    /**
+     * 
+     */
+    PLAY_UNSET("PLAY_unset.png"),
+
+    /**
+     * 
+     */
+    PLAY_SET("PLAY_set.png"),
+
+    /**
+     * 
+     */
+    RANK_UNSET("RANK_unset.png"),
+
+    /**
+     * 
+     */
+    RANK_SET("RANK_set.png"),
+
+    /**
+     * 
+     */
+    TUTORIAL_UNSET("TUTORIAL_unset.png"),
+
+    /**
+     * 
+     */
+    TUTORIAL_SET("TUTORIAL_set.png");
 
     private static final String RES_PATH = "." + File.separator + "images" + File.separator;
 

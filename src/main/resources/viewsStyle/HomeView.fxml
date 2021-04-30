@@ -18,15 +18,15 @@
                   <Image url="@../images/logo_BomberOne.png" />
                </image>
             </ImageView>
-            <Button fx:id="buttonPlay" layoutX="51.0" layoutY="100.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="PLAY" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="buttonPlay" layoutX="51.0" layoutY="100.0" mnemonicParsing="false" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" prefHeight="31.0" prefWidth="97.0" style="-fx-background-image: ..\images\HomeButtons\PLAY_unset.png;" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="OCR A Extended" size="15.0" />
                </font></Button>
-            <Button fx:id="buttonRank" layoutX="51.0" layoutY="131.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="RANK" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="buttonRank" layoutX="51.0" layoutY="131.0" mnemonicParsing="false" onMouseEntered="#setRank" onMouseExited="#unsetRank" prefHeight="31.0" prefWidth="97.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="OCR A Extended" size="15.0" />
                </font></Button>
-            <Button fx:id="buttonCredits" layoutX="51.0" layoutY="162.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="97.0" style="-fx-background-color: black;" text="CREDITS" textAlignment="CENTER" textFill="WHITE">
+            <Button fx:id="buttonCredits" layoutX="51.0" layoutY="162.0" mnemonicParsing="false" onMouseEntered="#setTutorial" onMouseExited="#unsetTutorial" prefHeight="31.0" prefWidth="97.0" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font name="OCR A Extended" size="15.0" />
                </font></Button>
