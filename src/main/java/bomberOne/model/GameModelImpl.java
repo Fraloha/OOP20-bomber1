@@ -8,6 +8,7 @@ import bomberOne.model.timer.TimerThread;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
+import bomberOne.tools.RankLoader;
 
 public class GameModelImpl implements GameModel {
 
@@ -81,12 +82,12 @@ public class GameModelImpl implements GameModel {
         world.updateState(elapsed);
         this.checkGameOver();
     }
-    
+
     @Override
-    public void setGameOver(boolean gameOver) {
-        this.gameOver=gameOver;
+    public final void setGameOver(final boolean gameOver) {
+        this.gameOver = gameOver;
     }
-    
+
     @Override
     public final boolean getGameOver() {
         return this.gameOver;
@@ -105,15 +106,22 @@ public class GameModelImpl implements GameModel {
             this.gameOver = false;
         }
         if (this.gameOver) {
-            this.thread.interrupt();
+            /* Add the user on the specific rank */
+            if (this.difficulty.equals(Difficulty.HARD)) {
+                RankLoader.getRankHard().add(this.user);
+            } else {
+                RankLoader.getRankStandard().add(this.user);
+            }
+            RankLoader.writeUsers();
         }
+
     }
 
     @Override
     public final Timer getTimer() {
         return this.timer;
     }
-    
+
     @Override
     public final TimerThread getTimerThread() {
         return this.thread;
