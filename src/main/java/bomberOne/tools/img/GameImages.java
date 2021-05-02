@@ -108,6 +108,11 @@ public enum GameImages {
      * 
      */
     SPAWN("spawn.png"),
+    
+    /**
+     * 
+     */
+    HOME_LOGO("logo_BomberOne.png"),
 
     /**
      * 

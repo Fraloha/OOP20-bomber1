@@ -6,6 +6,7 @@ import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
+import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -15,10 +16,10 @@ import javafx.scene.image.ImageView;
 public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
-    private Canvas canvasBackground;
+    private Canvas homeCanvas;
 
     @FXML
-    private Canvas canvasForegrounds;
+    private ImageView boxLogo;
 
     @FXML
     private ImageView buttonPlay;
@@ -29,20 +30,24 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @FXML
     private ImageView buttonTutorial;
 
-    private GraphicsContext gCForeground;
-    private GraphicsContext gCBackground;
+    private GraphicsContext graphicContext;
     private ControlsMap controlsMap;
 
     @Override
-    public void drawHomeView() {
-        // TODO Auto-generated method stub
-
+    public void init() {
+        this.graphicContext = this.homeCanvas.getGraphicsContext2D();
+        this.drawHome();
+        this.getController().init();
+        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
+                ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
     }
 
     @Override
-    public void render() {
-        // TODO Auto-generated method stub
-
+    public void drawHome() {
+        this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
+        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
+        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
+        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null));
     }
 
     @FXML
@@ -62,38 +67,45 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     }
 
-    @Override
-    public void init() {
-
-    }
-
     @FXML
     public void setPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null)); 
+        });
     }
 
     @FXML
     public void unsetPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null)); 
+        });
     }
 
     @FXML
     public void setRank() {
-        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_SET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_SET.getImage(), null)); 
+        });
     }
 
     @FXML
     public void unsetRank() {
-        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null)); 
+        });
     }
 
     @FXML
     public void setTutorial() {
-        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_SET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_SET.getImage(), null)); 
+        });
     }
 
     @FXML
     public void unsetTutorial() {
-        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null));
+        Platform.runLater(() -> {
+            this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null)); 
+        });
     }
 }
