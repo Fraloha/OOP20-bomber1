@@ -9,7 +9,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import bomberOne.tools.RankLoader;
 import bomberOne.views.rank.UserDataModel;
-import bomberOne.views.BasicExitAlertBox;
 import bomberOne.views.basic.ViewImpl;
 import javafx.scene.image.Image;
 
@@ -20,9 +19,9 @@ public final class RankView extends ViewImpl {
     
     private int currentRank;
     
-    private Image rankDifficultyImages[] = new Image[3];
+    private Image rankDifficultyImages[];
     
-    private ObservableList<UserDataModel> ranks [] = new ObservableList[3];
+    private ObservableList<UserDataModel> ranks[];
 
     @FXML
     private TableView<UserDataModel> tableView;
