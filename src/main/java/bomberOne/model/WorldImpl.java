@@ -41,7 +41,6 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
-    private GameModel model;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -55,10 +54,6 @@ public class WorldImpl implements World {
         this.setHardWall();
         this.setEnemy();
         this.setBox(this.difficulty);
-    }
-
-    public void setModel(final GameModel model) {
-        this.model = model;
     }
 
     /**
@@ -174,10 +169,6 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        /*
-         * for (Enemy enemy : collection.getEnemyList()) {
-         * enemy.update(this.bomberMan.getPosition()); }
-         */
         this.checkExplosion();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
@@ -223,8 +214,8 @@ public class WorldImpl implements World {
         }
         if (this.respawn) {
             if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME,
-                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME), this.difficulty));
+                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
+                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2), this.difficulty));
             }
         }
     }

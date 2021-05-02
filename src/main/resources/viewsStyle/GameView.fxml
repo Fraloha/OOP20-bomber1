@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
 <?import javafx.scene.canvas.Canvas?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -11,7 +12,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.GameViewImpl">
+<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.GameViewImpl">
    <children>
       <BorderPane prefHeight="200.0" prefWidth="200.0">
          <top>
@@ -60,7 +61,7 @@
                      </padding></Label>
                   <ImageView fx:id="clockImageView" cache="true" fitHeight="34.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
-                        <Insets bottom="7.0" left="95.0" top="7.0" />
+                        <Insets bottom="7.0" left="75.0" top="7.0" />
                      </HBox.margin>
                      <image>
                         <Image url="@../images/imgbin_clock-red-circle-alarm-clock-line-art-png.png" />
@@ -71,9 +72,20 @@
                         <Font size="17.0" />
                      </font>
                      <HBox.margin>
-                        <Insets bottom="7.0" left="8.0" top="7.0" />
+                        <Insets bottom="7.0" left="5.0" top="7.0" />
                      </HBox.margin>
                   </Label>
+                  <ImageView fx:id="quitButton" fitHeight="33.0" fitWidth="28.0" onMouseClicked="#quitClicked" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../../../../../../Pictures/goBack.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets left="10.0" top="10.0" />
+                     </HBox.margin>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
                </children>
             </HBox>
          </top>

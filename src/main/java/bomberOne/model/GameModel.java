@@ -1,6 +1,7 @@
 package bomberOne.model;
 
 import bomberOne.model.timer.Timer;
+import bomberOne.model.timer.TimerThread;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 
@@ -74,6 +75,12 @@ public interface GameModel {
     void updateGame(int elapsed);
 
     /**
+     * This method sets the boolean gameOver
+     * @param gameOver
+     */
+    void setGameOver(boolean gameOver);
+    
+    /**
      * @return the boolean gameOver
      */
     boolean getGameOver();
@@ -87,4 +94,10 @@ public interface GameModel {
      * @return timer
      */
     Timer getTimer();
+    
+    /**
+     * 
+     * @return timer thread
+     */
+    TimerThread getTimerThread();
 }

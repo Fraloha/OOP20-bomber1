@@ -25,6 +25,6 @@ public final class TimerImpl implements Timer {
 
     @Override
     public String toString() {
-        return this.getTime().getMinutes() + ":" + this.getTime().getSeconds();
+        return String.format("%02d", this.getTime().getMinutes()) + ":" + String.format("%02d", this.getTime().getSeconds());
     }
 }

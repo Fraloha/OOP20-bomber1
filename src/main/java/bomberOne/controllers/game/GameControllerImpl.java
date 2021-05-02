@@ -7,16 +7,19 @@ import bomberOne.model.event.WorldEventListenerImpl;
 import bomberOne.model.input.CommandListener;
 import bomberOne.model.input.CommandListenerImpl;
 import bomberOne.views.game.GameView;
-import javafx.application.Platform;
 
-public final class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
+public class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
 
     private static final double PERIOD = 16.6666;
 
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
     private Thread game;
+    private boolean wasStopped;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void run() {
         long lastTime = System.currentTimeMillis();
@@ -29,8 +32,11 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
             this.render();
             this.waitForNextFrame(current);
             lastTime = current;
+
         }
-        ((GameView) this.getView()).switchToRank();
+        if (!this.wasStopped) {
+            ((GameView) this.getView()).switchToRank();
+        }
 
     }
 
@@ -40,26 +46,47 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
             try {
                 Thread.sleep((long) (PERIOD - dt));
             } catch (Exception ex) {
-
             }
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void quitGame() {
+        this.getModel().getTimerThread().stopTimer();
+        this.getModel().setGameOver(true);
+        this.wasStopped = true;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processInput() {
         commandHandler.executeCommands();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void render() {
         ((GameView) this.getView()).render();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().updateGame(elapsedTime);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         this.eventHandler = new WorldEventListenerImpl();
@@ -69,14 +96,22 @@ public final class GameControllerImpl extends ControllerImpl implements GameCont
         this.getModel().getWorld().setEventListener(this.eventHandler);
         // this.getModel().init();
         this.game = new Thread(this);
+        this.game.setName("LOOP");
         this.game.start();
+        Thread.currentThread().interrupt();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void processEvent() {
         this.eventHandler.processEvents();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public CommandListener getCommandListener() {
         return this.commandHandler;

@@ -26,7 +26,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private int indexAnimation = 0;
     private int animationTimer = 0;
 
-    public BombImpl(final P2d pos, final BufferedImage img[][], final int lifes, final int firePower,
+    public BombImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final int firePower,
             final boolean pierced) {
         super(pos, img[0][0], lifes);
         this.sprites = img;
@@ -63,7 +63,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         if (this.thicks++ == TIME_TO_EXPLODE) {
             this.explode();
         }
-        
+
         /* Bomb pulse animation */
         if (this.animationTimer++ == BombImpl.ANIMATION_COUNTDOWN) {
             this.animationTimer = 0;

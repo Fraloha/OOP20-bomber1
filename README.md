@@ -1,4 +1,4 @@
-Funzionalità Obbligatorie:
+#Funzionalitï¿½ Obbligatorie:
 
 -implementazione di power-up vari
 
@@ -8,21 +8,21 @@ Funzionalità Obbligatorie:
 
 -implementazioni di IA differenti per i vari nemici
 
--possibilità di salvare il risultato in una classifica, con le proprie iniziali
+-possibilitï¿½ di salvare il risultato in una classifica, con le proprie iniziali
 
 -creazione campo di battaglia con relativi oggetti distruttibili e non
 
  
 
-Funzionalità secondarie:
+#Funzionalitï¿½ secondarie:
 
 -multiplayer
 
--implementazione di 3 stage a difficoltà incrementale
+-implementazione di 3 stage a difficoltï¿½ incrementale
 
--implementazione di più tipologie di mappa
+-implementazione di piï¿½ tipologie di mappa
 
--difficoltà variabile
+-difficoltï¿½ variabile
 
 -implementazione stage finale con boss
 
@@ -32,7 +32,7 @@ Challenge particolari:
 
 -Animazione nei movimenti del player
 
--Varietà nei PowerUp
+-Varietï¿½ nei PowerUp
 
 -Implementazione pattern MVC
 
@@ -42,7 +42,7 @@ Challenge particolari:
 
  
 
-Possibili suddivisioni:
+##Possibili suddivisioni:
 
 Luigi Borriello: gameloop, fisica e creazione degli oggetti, collisioni e relativa estetica
 

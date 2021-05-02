@@ -61,9 +61,21 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @FXML
     private ImageView clockImageView;
 
+    @FXML
+    private ImageView quitButton;
+
     private GraphicsContext gCForeground;
     private GraphicsContext gCBackground;
     private ControlsMap controlsMap;
+
+    /**
+     * When the quitButton is pressed, this method stop the Game.
+     */
+    @FXML
+    public void quitClicked() {
+        ((GameController) this.getController()).quitGame();
+        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+    }
 
     /**
      * {@inheritDoc}
@@ -76,16 +88,16 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.getController().init();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
-        this.setUpKeyListener();
+        this.setViewEventListener();
 
     }
 
     /**
-     * Prepare the KeyListener
+     * Prepare the EventListener of the View.
      */
-    private void setUpKeyListener() {
+    private void setViewEventListener() {
         this.getStage().getScene().setOnKeyPressed(new EventHandler<KeyEvent>() {
-            public void handle(KeyEvent e) {
+            public void handle(final KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).accept(Boolean.TRUE);
                 }
@@ -100,6 +112,13 @@ public class GameViewImpl extends ViewImpl implements GameView {
                 }
             }
         });
+
+        /**
+         * Stop the Threads when the game is closed.
+         */
+        this.getStage().setOnCloseRequest(event -> {
+            ((GameController) this.getController()).quitGame();
+        });
     }
 
     /**
@@ -110,6 +129,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.clockImageView.setImage(SwingFXUtils.toFXImage(GameImages.CLOCK.getImage(), null));
         this.drawBomberOnScoreBoard();
         this.drawLifes();
+        this.quitButton.setImage(SwingFXUtils.toFXImage(GameImages.QUIT_GAME.getImage(), null));
         /* Draw the background */
         Image backgroundImage = SwingFXUtils.toFXImage(GameImages.BACKGROUND.getImage(), null);
         for (int i = 0; i < WORLD_CELLS; i++) {
@@ -201,22 +221,22 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Skins color = this.getController().getModel().getUser().getSkin();
         // Draw the icon of the Bomber
         if (color.equals(Skins.WHITE)) {
-            Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER1SCOREBOARD.getImage(), null)));
+            Platform.runLater(
+                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER1SCOREBOARD.getImage(), null)));
         }
         if (color.equals(Skins.BLACK)) {
-            Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER2SCOREBOARD.getImage(), null)));
+            Platform.runLater(
+                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER2SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.RED)) {
-            Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER3SCOREBOARD.getImage(), null)));
+            Platform.runLater(
+                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER3SCOREBOARD.getImage(), null)));
         }
 
         if (color.equals(Skins.BLUE)) {
-            Platform.runLater(() -> miniBomber
-                    .setImage(SwingFXUtils.toFXImage(GameImages.BOMBER4SCOREBOARD.getImage(), null)));
+            Platform.runLater(
+                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER4SCOREBOARD.getImage(), null)));
         }
     }
 

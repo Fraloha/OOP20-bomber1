@@ -9,19 +9,19 @@ public enum Difficulty {
     /**
      * 
      */
-    STANDARD(80), 
+    STANDARD(80),
 
     /**
      * 
      */
     HARD(100);
-    
+
     private int numBox;
-    
+
     Difficulty(final int num) {
-        this.numBox=num;
+        this.numBox = num;
     }
-    
+
     public int getNumBox() {
         return this.numBox;
     }

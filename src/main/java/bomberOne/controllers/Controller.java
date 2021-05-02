@@ -3,6 +3,10 @@ package bomberOne.controllers;
 import bomberOne.model.GameModel;
 import bomberOne.views.basic.View;
 
+/**
+ * This represent a generic Controller, every type of Controller extends it.
+ *
+ */
 public interface Controller {
 
     /**

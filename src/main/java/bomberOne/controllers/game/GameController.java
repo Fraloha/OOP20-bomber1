@@ -38,4 +38,9 @@ public interface GameController extends Controller {
      * @return the listener
      */
     CommandListener getCommandListener();
+
+    /**
+     * Called if the Player interrupt the Game before the GameOver.
+     */
+    void quitGame();
 }

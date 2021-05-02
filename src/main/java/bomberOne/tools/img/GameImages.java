@@ -4,7 +4,7 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 
 /**
- * The Resource loader use this enum to collect the Images of the objects.
+ * The Resource loader use this enum to collect the Images used in the Game.
  * 
  *
  */
@@ -62,6 +62,11 @@ public enum GameImages {
     /**
      * 
      */
+    QUIT_GAME("quitGame.png"),
+
+    /**
+     * 
+     */
     POWER_BOMB("power_bomb.png"),
 
     /**
@@ -92,7 +97,7 @@ public enum GameImages {
     /**
      * 
      */
-  //  FIRE("fire.png"),
+    // FIRE("fire.png"),
 
     /**
      * 

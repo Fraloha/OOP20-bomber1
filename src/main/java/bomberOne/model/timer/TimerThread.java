@@ -1,12 +1,13 @@
 package bomberOne.model.timer;
 
 /**
- * This Thread handles the Timer of the Game in parallel to the GameThread
+ * This Thread handles the Timer of the Game in parallel to the GameThread.
  *
  */
 public class TimerThread extends Thread {
 
     private Timer timer;
+    private boolean stopped = false;
 
     /**
      * 
@@ -21,11 +22,18 @@ public class TimerThread extends Thread {
     }
 
     /**
-     * 
+     * Set "stopped" variable to true to Stop the Thread.
+     */
+    public void stopTimer() {
+        this.stopped = true;
+    }
+
+    /**
+     * Decrease the timer second by second.
      */
     @Override
     public void run() {
-        while (true) {
+        while (!this.stopped) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
