@@ -1,5 +1,6 @@
 package bomberOne.views.rank;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
@@ -8,20 +9,22 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import bomberOne.tools.RankLoader;
-import bomberOne.model.user.UserImpl;
+import bomberOne.views.rank.UserDataModel;
 import bomberOne.views.BasicExitAlertBox;
 import bomberOne.views.basic.ViewImpl;
-
-import java.util.LinkedList;
+import javafx.scene.image.Image;
 
 public final class RankView extends ViewImpl {
 
     /* Fields. */
-    private LinkedList<UserImpl> playersRankStandardMode;
-    private LinkedList<UserImpl> playersRankHardMode;
+    private int currentRank;
+    
+    private Image rankDifficultyImages[] = new Image[3];
+    
+    private ObservableList<UserDataModel> ranks [] = new ObservableList[3];
 
     @FXML
-    private TableView<UserImpl> tableView;
+    private TableView<UserDataModel> tableView;
 
     @FXML
     private VBox vBoxImages;
@@ -45,17 +48,15 @@ public final class RankView extends ViewImpl {
     private Button hBoxButtonMainMenu;
 
     @FXML
-    Button hBoxButtonNext;
+    private Button hBoxButtonNext;
 
     @Override
     public void init() {
-
+        
     }
     
-    private void onClickExitButton() {
-        //Asking if the user is sure about the window closing.
-        if (new BasicExitAlertBox().display()) {
-            this.getStage().close();
-        }
+    private void LoadImages() {
+        this.rankDifficultyImages[0] = new Image("..\\..\\..\\resources\\images\\RankViewImages\\EasyModeImage.png");
+        this.rankDifficultyImages[1] = new Image("..\\..\\..\\resources\\images\\RankViewImages\\HardModeImage.png");
     }
 }
