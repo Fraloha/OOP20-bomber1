@@ -18,19 +18,19 @@
                   <Image url="@../images/logo_BomberOne.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonPlay" fitHeight="37.0" fitWidth="73.0" layoutX="252.0" layoutY="348.0" onMouseClicked="#switchToSetUp" onMouseDragEntered="#setPlay" onMouseDragExited="#unsetPlay" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonPlay" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="348.0" onMouseClicked="#switchToSetUp" onMouseDragEntered="#setPlay" onMouseDragExited="#unsetPlay" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/HomeButtons/PLAY_unset.png" />
+                  <Image url="@../images/PLAY_unset.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonRank" fitHeight="37.0" fitWidth="73.0" layoutX="253.0" layoutY="417.0" onMouseDragEntered="#setRank" onMouseDragExited="#unsetRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRank" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="416.0" onMouseDragEntered="#setRank" onMouseDragExited="#unsetRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/HomeButtons/RANK_unset.png" />
+                  <Image url="@../images/RANK_unset.png" />
                </image>
             </ImageView>
             <ImageView fx:id="buttonTutorial" fitHeight="45.0" fitWidth="116.0" layoutX="230.0" layoutY="485.0" onMouseDragEntered="#setTutorial" onMouseDragExited="#unsetTutorial" onMouseEntered="#setTutorial" onMouseExited="#unsetTutorial" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/HomeButtons/TUTORIAL_unset.png" />
+                  <Image url="@../images/TUTORIAL_unset.png" />
                </image>
             </ImageView>
          </children>
