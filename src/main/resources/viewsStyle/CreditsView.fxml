@@ -6,12 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="555.0" prefWidth="575.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+<AnchorPane prefHeight="555.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Pane prefHeight="612.0" prefWidth="575.0">
          <children>
-            <ImageView fitHeight="612.0" fitWidth="575.0" onKeyReleased="#switchToHome" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="creditsImage" fitHeight="612.0" fitWidth="575.0" onKeyReleased="#switchToHome" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/credits.png" />
                </image>

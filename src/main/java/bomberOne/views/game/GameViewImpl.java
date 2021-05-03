@@ -1,5 +1,6 @@
 package bomberOne.views.game;
 
+import bomberOne.model.GameModelImpl;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
@@ -74,7 +75,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @FXML
     public void quitClicked() {
         ((GameController) this.getController()).quitGame();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
 
     /**
