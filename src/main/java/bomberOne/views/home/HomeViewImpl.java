@@ -61,8 +61,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @Override
     public void switchToRank() {
-        // TODO Auto-generated method stub
-
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     @FXML
