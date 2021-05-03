@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+
+<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="bomberOne.views.SetUpViewImpl">
+   <children>
+      <Pane prefHeight="612.0" prefWidth="575.0" style="-fx-background-color: black;">
+         <children>
+            <Canvas height="612.0" width="575.0" />
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
