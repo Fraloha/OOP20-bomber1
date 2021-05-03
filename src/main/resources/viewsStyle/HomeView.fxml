@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.game.HomeViewImpl">
+<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.home.HomeViewImpl">
    <children>
       <Pane fx:id="homePane" style="-fx-background-color: black;">
          <children>
@@ -18,12 +18,12 @@
                   <Image url="@../images/logo_BomberOne.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonPlay" fitHeight="37.0" fitWidth="73.0" layoutX="252.0" layoutY="348.0" onMouseClicked="#switchToSetUp" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonPlay" fitHeight="37.0" fitWidth="73.0" layoutX="252.0" layoutY="348.0" onMouseClicked="#switchToSetUp" onMouseDragEntered="#setPlay" onMouseDragExited="#unsetPlay" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/HomeButtons/PLAY_unset.png" />
                </image>
             </ImageView>
-            <ImageView fx:id="buttonRank" fitHeight="37.0" fitWidth="73.0" layoutX="253.0" layoutY="417.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRank" fitHeight="37.0" fitWidth="73.0" layoutX="253.0" layoutY="417.0" onMouseDragEntered="#setRank" onMouseDragExited="#unsetRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/HomeButtons/RANK_unset.png" />
                </image>

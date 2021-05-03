@@ -93,8 +93,8 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         this.commandHandler = new CommandListenerImpl();
         this.eventHandler.setGameModel(this.getModel());
         this.commandHandler.setGameModel(this.getModel());
+        this.getModel().init();
         this.getModel().getWorld().setEventListener(this.eventHandler);
-        // this.getModel().init();
         this.game = new Thread(this);
         this.game.setName("LOOP");
         this.game.start();
