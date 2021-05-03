@@ -18,9 +18,9 @@ public class GameModelImpl implements GameModel {
     private Difficulty difficulty;
     private int score = 0;
     private WorldFactory factory;
-    private Timer timer = new TimerImpl(GameModelImpl.TIME);
+    private Timer timer;
     private boolean gameOver = false;
-    private TimerThread thread = new TimerThread(timer);
+    private TimerThread thread;
 
     public GameModelImpl() {
         this.user = new UserImpl();
@@ -34,6 +34,9 @@ public class GameModelImpl implements GameModel {
         } else {
             this.world = factory.createWorldHard(this.user);
         }
+
+        this.timer = new TimerImpl(GameModelImpl.TIME);
+        this.thread = new TimerThread(timer);
         this.thread.start();
     }
 

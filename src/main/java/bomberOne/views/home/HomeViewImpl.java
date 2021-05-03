@@ -37,9 +37,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     public void init() {
         this.graphicContext = this.homeCanvas.getGraphicsContext2D();
         this.drawHome();
-        this.getController().init();
-        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
-                ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
+//        this.getController().init();
     }
 
     @Override
@@ -69,43 +67,31 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void setPlay() {
-        Platform.runLater(() -> {
-            this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null)); 
-        });
+        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null));
     }
 
     @FXML
     public void unsetPlay() {
-        Platform.runLater(() -> {
-            this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null)); 
-        });
+        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
     }
 
     @FXML
     public void setRank() {
-        Platform.runLater(() -> {
-            this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_SET.getImage(), null)); 
-        });
+        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_SET.getImage(), null));
     }
 
     @FXML
     public void unsetRank() {
-        Platform.runLater(() -> {
-            this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null)); 
-        });
+        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
     }
 
     @FXML
     public void setTutorial() {
-        Platform.runLater(() -> {
-            this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_SET.getImage(), null)); 
-        });
+        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_SET.getImage(), null));
     }
 
     @FXML
     public void unsetTutorial() {
-        Platform.runLater(() -> {
-            this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null)); 
-        });
+        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null)); 
     }
 }

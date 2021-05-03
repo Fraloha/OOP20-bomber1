@@ -5,6 +5,7 @@ import java.io.File;
 import bomberOne.controllers.Controller;
 import bomberOne.controllers.game.GameControllerImpl;
 import bomberOne.controllers.setUp.SetUpControllerImpl;
+import bomberOne.controllers.home.HomeControllerImpl;
 
 
 /**
@@ -18,7 +19,7 @@ public enum ViewType {
     /**
      * TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO.
      */
-    HOME("HomeView", new GameControllerImpl()), SETUP("SetUpView", new SetUpControllerImpl()),
+    HOME("HomeView", new HomeControllerImpl()), SETUP("SetUpView", new SetUpControllerImpl()),
 
     /**
      * 
