@@ -53,13 +53,12 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
-    @Override
+    @FXML
     public void switchToCredits() {
-        // TODO Auto-generated method stub
-
+        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
     }
 
-    @Override
+    @FXML
     public void switchToRank() {
         //ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }

@@ -14,10 +14,13 @@
       <Pane fx:id="homePane" style="-fx-background-color: black;">
          <children>
             <Canvas fx:id="homeCanvas" height="612.0" layoutX="1.0" layoutY="-6.0" width="575.0" />
-            <ImageView fx:id="boxLogo" fitHeight="308.0" fitWidth="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="boxLogo" fitHeight="308.0" fitWidth="739.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/logo_BomberOne.png" />
                </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
             </ImageView>
             <ImageView fx:id="buttonPlay" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="348.0" onMouseClicked="#switchToSetUp" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
                <image>

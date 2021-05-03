@@ -108,7 +108,7 @@ public enum GameImages {
      * 
      */
     SPAWN("spawn.png"),
-    
+
     /**
      * 
      */
@@ -142,9 +142,14 @@ public enum GameImages {
     /**
      * 
      */
-    TUTORIAL_SET("TUTORIAL_set.png");
+    TUTORIAL_SET("TUTORIAL_set.png"),
 
-    private static final String RES_PATH = /*"." + File.separator +*/ "images" + File.separator;
+    /**
+     * 
+     */
+    CREDITS("credits.png");
+
+    private static final String RES_PATH = /* "." + File.separator + */ "images" + File.separator;
 
     private String fileName;
     private BufferedImage image;
