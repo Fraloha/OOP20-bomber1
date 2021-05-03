@@ -54,7 +54,7 @@ public enum AnimatedObjectsSprites {
     private static final int STD_WIDTH = 32;
     private static final int ENTITY_HEIGHT = 48;
 
-    private static final String RES_PATH = "." + File.separator + "images" + File.separator;
+    private static final String RES_PATH = /*"." + File.separator + */"images" + File.separator;
     private BufferedImage image;
     private BufferedImage[][] sprites;
     private String fileName;

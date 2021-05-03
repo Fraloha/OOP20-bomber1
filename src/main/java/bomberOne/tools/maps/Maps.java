@@ -11,7 +11,7 @@ public enum Maps {
      */
     MAP1("mappa.csv");
 
-    private static final String RES_PATH = "src" + File.separator + "main" + File.separator + "resources" + File.separator+ "maps" + File.separator;
+    private static final String RES_PATH = "maps" + File.separator;
     private List<List<String>> list = new ArrayList<>();
     private String fileName;
 

@@ -109,7 +109,7 @@ public enum GameImages {
      */
     SPAWN("spawn.png");
 
-    private static final String RES_PATH = "." + File.separator + "images" + File.separator;
+    private static final String RES_PATH = /*"." + File.separator +*/ "images" + File.separator;
 
     private String fileName;
     private BufferedImage image;
