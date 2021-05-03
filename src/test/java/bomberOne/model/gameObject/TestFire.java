@@ -16,6 +16,7 @@ import bomberOne.model.gameObjects.FireImpl;
  */
 public class TestFire {
     private FireImpl fire;
+    private static final int LIFE_TIME = 100;
 
     /**
      * 
@@ -27,7 +28,7 @@ public class TestFire {
 
     @Test
     public void testUpdate() {
-        for (int c = 0; c < FireImpl.LIFE_TIME; c++) {
+        for (int c = 0; c < this.LIFE_TIME; c++) {
             this.fire.update(0);
             assertTrue(this.fire.isAlive());
         }

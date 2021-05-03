@@ -53,12 +53,12 @@ public class TestTools {
         userList1.add(user1);
         userList2.add(user2);
         // Write the list on the Files
-        RankLoader.writeUsers(userList1, userList2);
+        // RankLoader.writeUsers(userList1, userList2);
         // Create other two list, fill them with the item reads from file and check if
         // this list are equals to the previous
         List<User> userList3 = new ArrayList<>();
         List<User> userList4 = new ArrayList<>();
-        RankLoader.readUsers(userList3, userList4);
+        // RankLoader.readUsers(userList3, userList4);
         assertTrue(userList3.get(0).getName().equals(user1.getName()));
         assertTrue(userList3.get(0).getScore() == (user1.getScore()));
         assertTrue(userList4.get(0).getName().equals(user2.getName()));
