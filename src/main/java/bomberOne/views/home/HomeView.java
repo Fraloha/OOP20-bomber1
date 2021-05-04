@@ -4,8 +4,6 @@ import bomberOne.views.basic.View;
 
 public interface HomeView extends View {
 
-    void init();
-
     void drawHome();
 
     void switchToSetUp();

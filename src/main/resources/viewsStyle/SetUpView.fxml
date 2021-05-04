@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.SetUpViewImpl">
+   <children>
+      <Pane prefHeight="612.0" prefWidth="575.0" style="-fx-background-color: black;">
+         <children>
+            <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="240.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../../Bomber/BomberMan/src/resources/p1.png" />
+               </image></ImageView>
+            <Button layoutX="413.0" layoutY="121.0" mnemonicParsing="false" text="&gt;" />
+            <Button layoutX="138.0" layoutY="121.0" mnemonicParsing="false" text="&lt;" />
+            <Label layoutX="60.0" layoutY="265.0" prefHeight="41.0" prefWidth="187.0" text="NICKNAME:" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Regular" size="33.0" />
+               </font>
+            </Label>
+            <Label layoutX="60.0" layoutY="336.0" prefHeight="59.0" prefWidth="200.0" text="DIFFICULTY:" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Regular" size="33.0" />
+               </font>
+            </Label>
+            <Button layoutX="302.0" layoutY="349.0" mnemonicParsing="false" text="NORMAL">
+               <font>
+                  <Font name="Lucida Sans Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="428.0" layoutY="349.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="82.0" text="HARD">
+               <font>
+                  <Font name="Lucida Sans Regular" size="16.0" />
+               </font>
+            </Button>
+            <TextField layoutX="308.0" layoutY="267.0" promptText="Insert NickName">
+               <font>
+                  <Font name="System Bold Italic" size="16.0" />
+               </font>
+            </TextField>
+            <Label layoutX="60.0" layoutY="433.0" text="CONTROLS:" textFill="WHITE">
+               <font>
+                  <Font name="Lucida Sans Regular" size="33.0" />
+               </font>
+            </Label>
+            <Button layoutX="302.0" layoutY="437.0" mnemonicParsing="false" text="GAMER">
+               <font>
+                  <Font name="Lucida Sans Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="428.0" layoutY="437.0" mnemonicParsing="false" text="NORMAL">
+               <font>
+                  <Font name="Lucida Sans Regular" size="16.0" />
+               </font>
+            </Button>
+            <Button layoutX="211.0" layoutY="531.0" mnemonicParsing="false" prefHeight="59.0" prefWidth="158.0" text="PLAY">
+               <font>
+                  <Font name="Lucida Sans Regular" size="29.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

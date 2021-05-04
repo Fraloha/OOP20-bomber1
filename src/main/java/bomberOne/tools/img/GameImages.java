@@ -142,7 +142,13 @@ public enum GameImages {
     /**
      * 
      */
-    TUTORIAL_SET("TUTORIAL_set.png");
+    TUTORIAL_SET("TUTORIAL_set.png"),
+
+    /**
+     * 
+     */
+    CREDITS("credits.png");
+
 
     private static final String RES_PATH = "images/";
 

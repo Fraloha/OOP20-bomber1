@@ -37,7 +37,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     public void init() {
         this.graphicContext = this.homeCanvas.getGraphicsContext2D();
         this.drawHome();
-//        this.getController().init();
+        this.getController().init();
     }
 
     @Override
@@ -53,16 +53,14 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
-    @Override
+    @FXML
     public void switchToCredits() {
-        // TODO Auto-generated method stub
-
+        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
     }
 
-    @Override
+    @FXML
     public void switchToRank() {
-        // TODO Auto-generated method stub
-
+        //ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     @FXML

@@ -29,12 +29,12 @@ public final class BomberOne extends Application {
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
         // UNCOMMENT TO TEST
 //
-        GameModel test = new GameModelImpl();
-        test.getUser().setControls(Controls.ARROW);
-        test.getUser().setSkin(Skins.WHITE);
-        test.setDifficulty(Difficulty.STANDARD);
-//        test.init();
-        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, test);
+//        GameModel test = new GameModelImpl();
+//        test.getUser().setControls(Controls.ARROW);
+//        test.getUser().setSkin(Skins.WHITE);
+//        test.setDifficulty(Difficulty.STANDARD);
+//      test.init();
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }
