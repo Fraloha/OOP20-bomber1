@@ -82,6 +82,11 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().updateGame(elapsedTime);
+        this.getModel().getWorld().checkBoundary();
+        this.processEvent();
+        this.getModel().getWorld().checkCollision();
+        this.processEvent();
+        this.getModel().getWorld().checkRespawn();
     }
 
     /**
