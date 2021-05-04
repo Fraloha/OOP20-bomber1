@@ -109,6 +109,7 @@ public class GameModelImpl implements GameModel {
             this.gameOver = false;
         }
         if (this.gameOver) {
+            this.user.setScore(this.score);
             /* Add the user on the specific rank */
             if (this.difficulty.equals(Difficulty.HARD)) {
                 RankLoader.getRankHard().add(this.user);

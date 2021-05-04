@@ -28,7 +28,6 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             int elapsed = (int) (current - lastTime);
             this.processInput();
             this.updateGame(elapsed);
-            this.processEvent();
             this.render();
             this.waitForNextFrame(current);
             lastTime = current;
@@ -82,6 +81,11 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().updateGame(elapsedTime);
+        this.getModel().getWorld().checkBoundary();
+        this.processEvent();
+        this.getModel().getWorld().checkCollision();
+        this.getModel().getWorld().checkRespawn();
+        this.processEvent();
     }
 
     /**
