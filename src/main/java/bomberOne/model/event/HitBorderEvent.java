@@ -17,6 +17,9 @@ import javafx.geometry.Rectangle2D;
  */
 public class HitBorderEvent implements WorldEvent {
 
+    private static final int SLIPPING_BITS = 1;
+    private static final int HALF_CELL_SIZE = 16;
+    private static final int CELL_SIZE = 32;
     private static final int OBJ_DIMETIONS = 32;
     private AnimatedEntity entity;
     private GameObject wall;
@@ -50,10 +53,10 @@ public class HitBorderEvent implements WorldEvent {
     @Override
     public void process(final GameModel model) {
         // Slipping effect
-        int roundBitX = (int) (this.getEntity().getPosition().getX() % 32);
-        int roundBitY = (int) (this.getEntity().getPosition().getY() % 32);
-        int slippingX = (roundBitX == 0) ? 0 : ((roundBitX < 16) ? -1 : 1);
-        int slippingY = (roundBitY == 0) ? 0 : ((roundBitY < 16) ? -1 : 1);
+        int roundBitX = (int) (this.getEntity().getPosition().getX() % CELL_SIZE);
+        int roundBitY = (int) (this.getEntity().getPosition().getY() % CELL_SIZE);
+        int slippingX = (roundBitX == 0) ? 0 : ((roundBitX < HALF_CELL_SIZE) ? -SLIPPING_BITS : SLIPPING_BITS);
+        int slippingY = (roundBitY == 0) ? 0 : ((roundBitY < HALF_CELL_SIZE) ? -SLIPPING_BITS : SLIPPING_BITS);
 
         if (this.entity.getDir().equals(Direction.UP)) {
             this.entity.setPosition(new P2d(this.entity.getPosition().getX() + slippingX,
