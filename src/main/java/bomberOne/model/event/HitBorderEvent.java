@@ -6,6 +6,7 @@ import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.AnimatedEntity;
 import bomberOne.model.gameObjects.GameObject;
+import javafx.geometry.Rectangle2D;
 
 /**
  * This event is Triggered when the Bomber or the Enemy hit a Box or an
@@ -71,5 +72,6 @@ public class HitBorderEvent implements WorldEvent {
             this.entity.setPosition(new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS,
                     this.entity.getPosition().getY() + slippingY));
         }
+        this.entity.setCollider(new Rectangle2D(this.entity.getPosition().getX(), this.entity.getPosition().getY(), 32, 32));
     }
 }
