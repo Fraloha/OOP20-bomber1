@@ -33,7 +33,7 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
-    FIRE("FIRE.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    FIRE("fire.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
@@ -54,7 +54,7 @@ public enum AnimatedObjectsSprites {
     private static final int STD_WIDTH = 32;
     private static final int ENTITY_HEIGHT = 48;
 
-    private static final String RES_PATH = /*"." + File.separator + */"images" + File.separator;
+    private static final String RES_PATH = "images/";
     private BufferedImage image;
     private BufferedImage[][] sprites;
     private String fileName;

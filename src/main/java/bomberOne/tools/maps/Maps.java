@@ -1,6 +1,5 @@
 package bomberOne.tools.maps;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,7 +10,7 @@ public enum Maps {
      */
     MAP1("mappa.csv");
 
-    private static final String RES_PATH = "maps" + File.separator;
+    private static final String RES_PATH = "maps/";
     private List<List<String>> list = new ArrayList<>();
     private String fileName;
 
