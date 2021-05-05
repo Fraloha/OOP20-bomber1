@@ -17,8 +17,6 @@
                <image>
                   <Image url="@../../../../../../Bomber/BomberMan/src/resources/p1.png" />
                </image></ImageView>
-            <Button layoutX="413.0" layoutY="121.0" mnemonicParsing="false" text="&gt;" />
-            <Button layoutX="138.0" layoutY="121.0" mnemonicParsing="false" text="&lt;" />
             <Label layoutX="60.0" layoutY="265.0" prefHeight="41.0" prefWidth="187.0" text="NICKNAME:" textFill="WHITE">
                <font>
                   <Font name="Lucida Sans Regular" size="33.0" />
@@ -64,6 +62,16 @@
                   <Font name="Lucida Sans Regular" size="29.0" />
                </font>
             </Button>
+            <ImageView fitHeight="88.0" fitWidth="82.0" layoutX="350.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/DX.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="88.0" fitWidth="82.0" layoutX="153.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/SX.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
    </children>
