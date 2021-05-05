@@ -1,7 +1,6 @@
 package bomberOne.views.setUp;
 
 import bomberOne.controllers.setUp.SetUpController;
-import bomberOne.controllers.setUp.SetUpControllerImpl;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
@@ -46,10 +45,19 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @FXML
     private TextField nickname;
 
+    private int count = 1;
+
     @Override
     public final void init() {
         this.drawSetUp();
         this.getController().init();
+        this.defaultSetUp();
+    }
+
+    private void defaultSetUp() {
+        ((SetUpController) this.getController()).setSkin(Skins.WHITE);
+        ((SetUpController) this.getController()).setControls(Controls.WASD);
+        ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
     }
 
     @Override
@@ -63,6 +71,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_UNSET.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonHome.setImage(SwingFXUtils.toFXImage(GameImages.QUIT_GAME.getImage(), null));
+
     }
 
     @Override
@@ -75,47 +84,101 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
+    private void setPlayer(final String sign) {
+        switch (count) {
+        case 1:
+            if (sign.equals("+")) {
+                count++;
+            } else {
+                count = 4;
+            }
+            break;
+        case 4:
+            if (sign.equals("+")) {
+                count = 1;
+            } else {
+                count--;
+            }
+            break;
+        default:
+            if (sign.equals("+")) {
+                count++;
+            } else {
+                count--;
+            }
+            break;
+        }
+
+        switch (count) {
+        case 1:
+            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P1.getImage(), null));
+            ((SetUpController) this.getController()).setSkin(Skins.WHITE);
+            break;
+        case 2:
+            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P2.getImage(), null));
+            ((SetUpController) this.getController()).setSkin(Skins.BLACK);
+            break;
+        case 3:
+            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P3.getImage(), null));
+            ((SetUpController) this.getController()).setSkin(Skins.RED);
+            break;
+        case 4:
+            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P4.getImage(), null));
+            ((SetUpController) this.getController()).setSkin(Skins.BLUE);
+            break;
+        }
+    }
+
     @FXML
-    public final void setNormal() {
+    private void dx() {
+        this.setPlayer("+");
+    }
+
+    @FXML
+    private void sx() {
+        this.setPlayer("-");
+    }
+
+    @FXML
+    private void setNormal() {
         this.buttonNormal.setImage(SwingFXUtils.toFXImage(GameImages.NORMAL_SET.getImage(), null));
         this.buttonHard.setImage(SwingFXUtils.toFXImage(GameImages.HARD_UNSET.getImage(), null));
         ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
     }
 
     @FXML
-    public final void setHard() {
+    private void setHard() {
         this.buttonHard.setImage(SwingFXUtils.toFXImage(GameImages.HARD_SET.getImage(), null));
         this.buttonNormal.setImage(SwingFXUtils.toFXImage(GameImages.NORMAL_UNSET.getImage(), null));
         ((SetUpController) this.getController()).setDifficulty(Difficulty.HARD);
     }
 
     @FXML
-    public final void setWASD() {
+    private void setWASD() {
         this.buttonWASD.setImage(SwingFXUtils.toFXImage(GameImages.WASD_SET.getImage(), null));
         this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_UNSET.getImage(), null));
         ((SetUpController) this.getController()).setControls(Controls.WASD);
     }
 
     @FXML
-    public final void setArrows() {
+    private void setArrows() {
         this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_SET.getImage(), null));
         this.buttonWASD.setImage(SwingFXUtils.toFXImage(GameImages.WASD_UNSET.getImage(), null));
         ((SetUpController) this.getController()).setControls(Controls.ARROW);
     }
 
     @FXML
-    public final void setPlay() {
+    private void setPlay() {
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null));
     }
 
     @FXML
-    public final void unsetPlay() {
+    private void unsetPlay() {
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
     }
 
     public final void play() {
         if (!nickname.getText().isEmpty()) {
-            ((SetUpController) this.getController()).setSkin(Skins.BLACK);
             this.switchToGame();
         }
     }
