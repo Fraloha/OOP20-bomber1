@@ -5,8 +5,8 @@ import java.io.File;
 import bomberOne.controllers.Controller;
 import bomberOne.controllers.game.GameControllerImpl;
 import bomberOne.controllers.setUp.SetUpControllerImpl;
+import bomberOne.controllers.stable.StaticControllerImpl;
 import bomberOne.controllers.home.HomeControllerImpl;
-import bomberOne.controllers.credits.CreditsControllerImpl;
 
 /**
  * Enum for the Views, each one has her StyleFile and her specific Controller.
@@ -24,7 +24,7 @@ public enum ViewType {
     /**
      * 
      */
-    CREDITS("CreditsView", new CreditsControllerImpl()),
+    CREDITS("CreditsView", new StaticControllerImpl()), RULES("RulesView", new StaticControllerImpl()),
 
     /**
      * 

@@ -1,13 +1,12 @@
-package bomberOne.controllers.credits;
+package bomberOne.controllers.stable;
 
 import bomberOne.controllers.ControllerImpl;
 
-public class CreditsControllerImpl extends ControllerImpl implements CreditsController {
+public class StaticControllerImpl extends ControllerImpl implements StaticController {
 
     @Override
     public void init() {
         // TODO Auto-generated method stub
-
     }
 
 }

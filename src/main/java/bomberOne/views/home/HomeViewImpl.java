@@ -30,12 +30,12 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @FXML
     private ImageView buttonTutorial;
 
-    private GraphicsContext graphicContext;
+   // private GraphicsContext graphicContext;
     private ControlsMap controlsMap;
 
     @Override
     public void init() {
-        this.graphicContext = this.homeCanvas.getGraphicsContext2D();
+        //this.graphicContext = this.homeCanvas.getGraphicsContext2D();
         this.drawHome();
         this.getController().init();
     }
