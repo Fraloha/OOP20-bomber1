@@ -6,7 +6,7 @@ public interface SetUpView extends View {
 
     void init();
 
-    void setUp();
+    void drawSetUp();
 
     void switchToGame();
 

@@ -146,8 +146,77 @@ public enum GameImages {
     /**
      * 
      */
-    CREDITS("credits.png");
+    CREDITS("credits.png"),
 
+    /**
+     * 
+     */
+    P1("p1.png"),
+
+    /**
+     * 
+     */
+    P2("p2.png"),
+
+    /**
+     * 
+     */
+    P3("p3.png"),
+
+    /**
+     * 
+     */
+    P4("p4.png"),
+
+    /**
+     * 
+     */
+    DX("DX.png"),
+
+    /**
+     * 
+     */
+    SX("SX.png"),
+
+    /**
+     * 
+     */
+    WASD_SET("WASD_set.png"),
+
+    /**
+     * 
+     */
+    WASD_UNSET("WASD_unset.png"),
+
+    /**
+     * 
+     */
+    ARROWS_SET("ARROWS_set.png"),
+
+    /**
+     * 
+     */
+    ARROWS_UNSET("ARROWS_unset.png"),
+
+    /**
+     * 
+     */
+    HARD_SET("HARD_set.png"),
+
+    /**
+     * 
+     */
+    HARD_UNSET("HARD_unset.png"),
+
+    /**
+     * 
+     */
+    NORMAL_SET("NORMAL_set.png"),
+
+    /**
+     * 
+     */
+    NORMAL_UNSET("NORMAL_unset.png");
 
     private static final String RES_PATH = "images/";
 

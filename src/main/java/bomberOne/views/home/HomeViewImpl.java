@@ -50,7 +50,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToSetUp() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
     }
 
     @FXML
