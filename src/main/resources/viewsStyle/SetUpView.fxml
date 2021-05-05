@@ -38,7 +38,7 @@
                   <Font name="Lucida Sans Regular" size="33.0" />
                </font>
             </Label>
-            <ImageView fx:id="buttonDX" fitHeight="88.0" fitWidth="82.0" layoutX="363.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonDX" fitHeight="88.0" fitWidth="82.0" layoutX="363.0" layoutY="93.0" onMouseClicked="#dx" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/DX.png" />
                </image>
@@ -46,7 +46,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonSX" fitHeight="88.0" fitWidth="82.0" layoutX="160.0" layoutY="93.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonSX" fitHeight="88.0" fitWidth="82.0" layoutX="160.0" layoutY="93.0" onMouseClicked="#sx" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/SX.png" />
                </image>
