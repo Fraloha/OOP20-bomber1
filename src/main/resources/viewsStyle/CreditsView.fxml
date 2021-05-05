@@ -6,11 +6,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="555.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.credits.CreditsViewImpl">
+<AnchorPane prefHeight="479.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.credits.CreditsViewImpl">
    <children>
-      <Pane prefHeight="612.0" prefWidth="575.0">
+      <Pane prefHeight="479.0" prefWidth="512.0">
          <children>
-            <ImageView fx:id="creditsImage" fitHeight="612.0" fitWidth="575.0" onKeyReleased="#switchToHome" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="creditsImage" fitHeight="479.0" fitWidth="512.0" onKeyReleased="#switchToHome" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/credits.png" />
                </image>
