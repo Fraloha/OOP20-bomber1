@@ -9,11 +9,11 @@ import java.util.stream.Collectors;
 import bomberOne.model.bomber.BomberImpl;
 import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
-import bomberOne.model.event.ExplosionEvent;
-import bomberOne.model.event.HitBorderEvent;
-import bomberOne.model.event.HitEntityEvent;
-import bomberOne.model.event.PickPowerUpEvent;
-import bomberOne.model.event.WorldEventListener;
+import bomberOne.controllers.game.event.ExplosionEvent;
+import bomberOne.controllers.game.event.HitBorderEvent;
+import bomberOne.controllers.game.event.HitEntityEvent;
+import bomberOne.controllers.game.event.PickPowerUpEvent;
+import bomberOne.controllers.game.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.Bomb;
@@ -62,7 +62,7 @@ public class WorldImpl implements World {
     private void setEnemy() {
         for (int i = 0; i < WorldImpl.ENEMYNUMBER; i++) {
             this.collection.spawn(this.objectFactory.createEnemy(
-                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2) ,
+                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2),
                     this.difficulty));
         }
     }

@@ -1,7 +1,6 @@
 package bomberOne.tools.img;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * The Resource loader use this enum to collect the Images used in the Game.

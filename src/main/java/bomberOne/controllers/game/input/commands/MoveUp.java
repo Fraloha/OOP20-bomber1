@@ -1,14 +1,14 @@
-package bomberOne.model.input.commands;
+package bomberOne.controllers.game.input.commands;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;
 
-public class MoveLeft implements Command {
+public class MoveUp implements Command {
 
     Direction dir;
 
-    public MoveLeft() {
-        this.dir = Direction.LEFT;
+    public MoveUp() {
+        this.dir = Direction.UP;
     }
 
     @Override
@@ -21,7 +21,7 @@ public class MoveLeft implements Command {
      */
     @Override
     public void execute(final GameModel gameModel) {
-        gameModel.getWorld().getBomber().moveLeft();
+        gameModel.getWorld().getBomber().moveUp();
         gameModel.getWorld().getBomber().setStatic(false);
     }
 

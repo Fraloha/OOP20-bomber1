@@ -1,7 +1,6 @@
 package bomberOne.tools.img;
 
 import java.awt.image.BufferedImage;
-import java.io.File;
 
 /**
  * This enum contains the Sprites of the Object animated.

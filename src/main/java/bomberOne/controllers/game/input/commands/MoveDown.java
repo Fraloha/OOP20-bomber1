@@ -1,28 +1,30 @@
-package bomberOne.model.input.commands;
+package bomberOne.controllers.game.input.commands;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;
 
-public class MoveRight implements Command {
+public class MoveDown implements Command {
 
     Direction dir;
-
-    public MoveRight() {
-        this.dir = Direction.RIGHT;
+    
+    public MoveDown() {
+        this.dir = Direction.DOWN;
     }
-
+    
     @Override
     public Direction dir() {
         return this.dir;
     }
-
+    
     /**
      * {@inheritDoc}
      */
     @Override
     public void execute(final GameModel gameModel) {
-        gameModel.getWorld().getBomber().moveRight();
+        gameModel.getWorld().getBomber().moveDown();  
         gameModel.getWorld().getBomber().setStatic(false);
     }
+
+    
 
 }

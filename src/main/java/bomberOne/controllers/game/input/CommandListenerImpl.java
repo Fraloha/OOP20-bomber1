@@ -1,15 +1,15 @@
-package bomberOne.model.input;
+package bomberOne.controllers.game.input;
 
 import java.util.LinkedList;
 import java.util.List;
 
 import bomberOne.model.GameModel;
-import bomberOne.model.input.commands.Command;
-import bomberOne.model.input.commands.MoveDown;
-import bomberOne.model.input.commands.MoveLeft;
-import bomberOne.model.input.commands.MoveRight;
-import bomberOne.model.input.commands.MoveUp;
-import bomberOne.model.input.commands.PlantBomb;
+import bomberOne.controllers.game.input.commands.Command;
+import bomberOne.controllers.game.input.commands.MoveDown;
+import bomberOne.controllers.game.input.commands.MoveLeft;
+import bomberOne.controllers.game.input.commands.MoveRight;
+import bomberOne.controllers.game.input.commands.MoveUp;
+import bomberOne.controllers.game.input.commands.PlantBomb;
 
 /**
  * That class is the CommandListner of the game.

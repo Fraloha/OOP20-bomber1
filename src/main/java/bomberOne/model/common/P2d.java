@@ -1,7 +1,7 @@
 package bomberOne.model.common;
 
 /**
- * This class represents a generic 2D point on the Space
+ * This class represents a generic 2D point on the Space.
  *
  */
 public class P2d {

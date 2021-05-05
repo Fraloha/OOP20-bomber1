@@ -1,7 +1,7 @@
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.Controller;
-import bomberOne.model.input.CommandListener;
+import bomberOne.controllers.game.input.CommandListener;
 
 /**
  * The Game Controller that contains the gameloop and handles Events & Command.

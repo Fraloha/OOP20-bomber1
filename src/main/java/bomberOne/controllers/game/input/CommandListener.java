@@ -1,9 +1,9 @@
-package bomberOne.model.input;
+package bomberOne.controllers.game.input;
 
 import java.util.List;
 
 import bomberOne.model.GameModel;
-import bomberOne.model.input.commands.Command;
+import bomberOne.controllers.game.input.commands.Command;
 
 public interface CommandListener {
 

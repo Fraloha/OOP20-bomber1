@@ -1,7 +1,7 @@
 package bomberOne.model.common;
 
 /**
- * Direction of AnimatedEntity's movements
+ * Direction of AnimatedEntity's movements.
  *
  */
 public enum Direction {

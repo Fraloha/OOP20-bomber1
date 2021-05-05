@@ -1,4 +1,4 @@
-package bomberOne.model.event;
+package bomberOne.controllers.event;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -12,6 +12,10 @@ import bomberOne.model.GameModelImpl;
 import bomberOne.model.World;
 import bomberOne.model.WorldImpl;
 import bomberOne.model.common.P2d;
+import bomberOne.controllers.game.event.ExplosionEvent;
+import bomberOne.controllers.game.event.HitEntityEvent;
+import bomberOne.controllers.game.event.WorldEventListener;
+import bomberOne.controllers.game.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;

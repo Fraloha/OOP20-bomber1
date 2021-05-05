@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import bomberOne.model.input.PlayerBehavior;
+import bomberOne.controllers.game.input.PlayerBehavior;
 import bomberOne.model.user.Controls;
 
 /**

@@ -1,4 +1,4 @@
-package bomberOne.model.input.commands;
+package bomberOne.controllers.game.input.commands;
 
 import bomberOne.model.GameModel;
 import bomberOne.model.common.Direction;

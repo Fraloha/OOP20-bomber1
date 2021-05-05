@@ -1,4 +1,4 @@
-package bomberOne.model.event;
+package bomberOne.controllers.game.event;
 
 import java.util.List;
 

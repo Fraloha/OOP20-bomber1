@@ -1,7 +1,7 @@
 package bomberOne.model;
 
 import bomberOne.model.bomber.BomberImpl;
-import bomberOne.model.event.WorldEventListener;
+import bomberOne.controllers.game.event.WorldEventListener;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.gameObjects.GameObjectCollection;
 
