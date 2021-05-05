@@ -45,9 +45,9 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonTutorial" fitHeight="45.0" fitWidth="116.0" layoutX="230.0" layoutY="485.0" onMouseEntered="#setTutorial" onMouseExited="#unsetTutorial" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRules" fitHeight="45.0" fitWidth="116.0" layoutX="230.0" layoutY="485.0" onMouseEntered="#setRules" onMouseExited="#unsetRules" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/TUTORIAL_unset.png" />
+                  <Image url="@../images/RULES_unset.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />

@@ -28,7 +28,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     private ImageView buttonRank;
 
     @FXML
-    private ImageView buttonTutorial;
+    private ImageView buttonRules;
 
    // private GraphicsContext graphicContext;
     private ControlsMap controlsMap;
@@ -45,7 +45,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
-        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null));
+        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null));
     }
 
     @FXML
@@ -84,12 +84,12 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     }
 
     @FXML
-    public void setTutorial() {
-        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_SET.getImage(), null));
+    public void setRules() {
+        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_SET.getImage(), null));
     }
 
     @FXML
-    public void unsetTutorial() {
-        this.buttonTutorial.setImage(SwingFXUtils.toFXImage(GameImages.TUTORIAL_UNSET.getImage(), null)); 
+    public void unsetRules() {
+        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null)); 
     }
 }

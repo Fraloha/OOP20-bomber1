@@ -136,18 +136,22 @@ public enum GameImages {
     /**
      * 
      */
-    TUTORIAL_UNSET("TUTORIAL_unset.png"),
+    RULES_UNSET("RULES_unset.png"),
 
     /**
      * 
      */
-    TUTORIAL_SET("TUTORIAL_set.png"),
+    RULES_SET("RULES_set.png"),
 
     /**
      * 
      */
     CREDITS("credits.png"),
 
+    /**
+     * 
+     */
+    RULES("rules_logo.png"),
     /**
      * 
      */
