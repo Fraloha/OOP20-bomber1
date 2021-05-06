@@ -13,12 +13,18 @@ import javax.imageio.ImageIO;
 import bomberOne.tools.img.AnimatedObjectsSprites;
 import bomberOne.tools.img.GameImages;
 import bomberOne.tools.maps.Maps;
+import javafx.scene.text.Font;
 
 /**
  * Utility class that load the Resources from the specific directories.
  *
  */
 public final class ResourcesLoader {
+    /**
+     * This is the constant to load the font of the program.
+     */
+    public static final Font FONT = Font
+            .loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), 20);
 
     private ResourcesLoader() {
 
@@ -66,7 +72,8 @@ public final class ResourcesLoader {
     public static void loadMap() {
         Arrays.stream(Maps.values()).forEach(value -> {
             try {
-                BufferedReader reader = new BufferedReader(new InputStreamReader(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
                 List<List<String>> mapLayout = new ArrayList<>();
                 String currentLine;
                 while ((currentLine = reader.readLine()) != null) {
@@ -99,7 +106,8 @@ public final class ResourcesLoader {
      * @param spriteHeight Height of each individual sprite
      * @return Two-dimensional array of sprites
      */
-    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth, final int spriteHeight) {
+    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth,
+            final int spriteHeight) {
         int rows = spriteMap.getHeight() / spriteHeight;
         int cols = spriteMap.getWidth() / spriteWidth;
         BufferedImage[][] sprites = new BufferedImage[rows][cols];
