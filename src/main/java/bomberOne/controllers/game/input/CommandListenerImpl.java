@@ -62,13 +62,15 @@ public class CommandListenerImpl implements CommandListener {
         if (this.behaviour.isToggleRightPressed()) {
             new MoveRight().execute(game);
         }
+        if (!this.behaviour.isToggleLeftPressed() && !this.behaviour.isToggleDownPressed() && !this.behaviour.isToggleRightPressed() && !this.behaviour.isToggleUpPressed()) {
+            this.getGameModel().getWorld().getBomber().setStatic(true);
+        }
         if (this.behaviour.isToggleActionPressed()) {
-            if(!this.isActionCompleted) {
+            if (!this.isActionCompleted) {
                 new PlantBomb().execute(game);
                 this.isActionCompleted = true;
             }
-        }
-        else {
+        } else {
             this.isActionCompleted = false;
         }
 

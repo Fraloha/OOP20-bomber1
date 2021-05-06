@@ -42,6 +42,11 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
+    PIERCED_BOMB("bombPiercedSprite.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+
+    /**
+     * 
+     */
     ENEMIES_STANDARD("enemiesStandard.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
