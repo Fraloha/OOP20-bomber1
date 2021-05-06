@@ -30,12 +30,12 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @FXML
     private ImageView buttonRules;
 
-   // private GraphicsContext graphicContext;
+    // private GraphicsContext graphicContext;
     private ControlsMap controlsMap;
 
     @Override
     public void init() {
-        //this.graphicContext = this.homeCanvas.getGraphicsContext2D();
+        // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
         this.drawHome();
         this.getController().init();
     }
@@ -60,7 +60,13 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToRank() {
-        //ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+        // ViewsSwitcher.switchView(this.getStage(), ViewType.RANK,
+        // this.getController().getModel());
+    }
+
+    @FXML
+    public void switchToRules() {
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
     }
 
     @FXML
@@ -90,6 +96,6 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void unsetRules() {
-        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null)); 
+        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null));
     }
 }
