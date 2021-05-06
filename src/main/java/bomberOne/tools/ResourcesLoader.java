@@ -86,8 +86,9 @@ public final class ResourcesLoader {
 
     /**
      * That method return the font of the program, sized with the input parameter.
+     * 
      * @param size
-     * @return font
+     * @return Font
      */
     public static Font getFont(final int size) {
         return Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), size);
