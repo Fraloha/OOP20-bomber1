@@ -12,10 +12,7 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
 
     @Override
     public void init() {
-        Font font = new Font(20);
-        font = Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), 20);
-        System.out.println(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString());
-        this.button.setText("CAZZOOOOOO");
+        Font font = Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), 20);
         this.button.setFont(font);
     }
 
