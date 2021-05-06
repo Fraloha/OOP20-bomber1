@@ -20,11 +20,6 @@ import javafx.scene.text.Font;
  *
  */
 public final class ResourcesLoader {
-    /**
-     * This is the constant to load the font of the program.
-     */
-    public static final Font FONT = Font
-            .loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), 20);
 
     private ResourcesLoader() {
 
@@ -87,6 +82,15 @@ public final class ResourcesLoader {
                 e.printStackTrace();
             }
         });
+    }
+
+    /**
+     * That method return the font of the program, sized with the input parameter.
+     * @param size
+     * @return font
+     */
+    public static Font getFont(final int size) {
+        return Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), size);
     }
 
     /**
