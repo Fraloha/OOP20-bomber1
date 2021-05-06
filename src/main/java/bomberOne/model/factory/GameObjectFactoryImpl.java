@@ -115,6 +115,9 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
      */
     @Override
     public GameObject createBomb(final P2d position, final int firePower, final boolean pierce) {
+        if(pierce)  {
+            return new BombImpl(position, AnimatedObjectsSprites.PIERCED_BOMB.getSprites(), 1, firePower, pierce); 
+        }
         return new BombImpl(position, AnimatedObjectsSprites.BOMB.getSprites(), 1, firePower, pierce);
     }
 
