@@ -109,7 +109,6 @@ public class GameViewImpl extends ViewImpl implements GameView {
             public void handle(final KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).accept(Boolean.FALSE);
-                    getController().getModel().getWorld().getBomber().setStatic(true);
                 }
             }
         });
