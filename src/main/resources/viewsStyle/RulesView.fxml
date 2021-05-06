@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.canvas.*?>
@@ -7,19 +8,27 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="515.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.rules.RulesViewImpl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.rules.RulesViewImpl">
    <children>
-      <Pane prefHeight="612.0" prefWidth="515.0" style="-fx-background-color: black;">
+      <Pane prefHeight="612.0" prefWidth="575.0" style="-fx-background-color: black;">
          <children>
-            <ImageView fitHeight="92.0" fitWidth="200.0" layoutX="158.0" layoutY="18.75" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="92.0" fitWidth="200.0" layoutX="187.5" layoutY="5.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/rules_logo.png" />
                </image>
             </ImageView>
-            <Pane layoutX="32.5" layoutY="120.0" prefHeight="450.0" prefWidth="450.0" style="-fx-border-color: gold; -fx-border-width: 3;">
+            <Pane layoutX="37.5" layoutY="74.5" prefHeight="500.0" prefWidth="500.0" style="-fx-border-color: gold; -fx-border-width: 3;">
                <children>
-                  <Button fx:id="button" layoutX="179.0" layoutY="178.0" mnemonicParsing="false" text="TestButton " />
+                  <Button fx:id="button" layoutX="218.0" layoutY="199.0" mnemonicParsing="false" text="Button" />
                </children></Pane>
+            <ImageView fx:id="backToHome" fitHeight="40.0" fitWidth="40.0" layoutX="462.0" layoutY="23.0" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/quitGame.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
          </children>
       </Pane>
    </children>
