@@ -4,6 +4,7 @@ import bomberOne.model.GameModelImpl;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -23,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 
 public class GameViewImpl extends ViewImpl implements GameView {
 
+    private static final int FONT_SIZE = 30;
     private static final int ENEMY_WIDTH = 32;
     private static final int ENEMY_HEIGHT = 48;
     private static final int N_LIFES_ONE = 1;
@@ -83,6 +85,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
+        this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
+        this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.getController().init();
