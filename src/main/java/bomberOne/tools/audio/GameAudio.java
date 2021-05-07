@@ -1,6 +1,5 @@
 package bomberOne.tools.audio;
 
-import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
 
 public enum GameAudio {
@@ -8,6 +7,11 @@ public enum GameAudio {
      * 
      */
     POWER_UP("powerUp.wav"),
+
+    /**
+     * 
+     */
+    CLASSIC("classic.wav"),
 
     /**
      * 
