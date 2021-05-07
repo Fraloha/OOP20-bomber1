@@ -1,5 +1,6 @@
-#BomberOne
-##Rules
+# BomberOne
+
+## Rules
 
 **BomberOne**, arcade game where the main objective is to destroy all the boxes and kill all the enemies within the time limit.
 Inside the boxes there will be **PowerUps** capable of enhancing the characteristics of the Bomber (described at the bottom).
@@ -9,13 +10,13 @@ The Bomber, starts off with **3 lives**, he can die in two different ways: the f
 Whenever the Bomber is killed, all PowerUps (except TimerInc) will be deactivated.
 
 
-##Levels
+## Levels
 At the beginning of the game it will be possible to choose between two different levels:
 - The first one called **"Normal"** is the less difficult, will generates 3 enemies, that, once dead, will no longer be present in the map.
 - The second one, called **"Hard"**, the most difficult, will generetes more boxes and the enemies can be respawned until until there will be boxes on the map. 
 
 
-##PowerUps
+## PowerUps
 - ![](src/main/resources/images/power_firepower.png?raw=true "FirePower") Increases the **fire-power** of your bomb.
 - ![](src/main/resources/images/power_timer.png?raw=true "TimerInc") Increases by 30sec the **game-timer**.
 - ![](src/main/resources/images/power_pierce.png?raw=true "Pierce") Make your bomb's fire **able to pierces** boxes.
