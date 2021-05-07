@@ -1,7 +1,7 @@
 package bomberOne.views.home;
 
 import bomberOne.controllers.game.GameController;
-import bomberOne.tools.img.GameImages;
+import bomberOne.model.common.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;

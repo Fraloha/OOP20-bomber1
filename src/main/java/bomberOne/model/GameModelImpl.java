@@ -5,7 +5,6 @@ import bomberOne.model.factory.WorldFactoryImpl;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
 import bomberOne.tools.RankLoader;

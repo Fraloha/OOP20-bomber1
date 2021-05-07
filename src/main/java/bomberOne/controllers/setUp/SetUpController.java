@@ -1,8 +1,8 @@
 package bomberOne.controllers.setUp;
 
 import bomberOne.controllers.Controller;
+import bomberOne.model.Difficulty;
 import bomberOne.model.user.Controls;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 
 /**

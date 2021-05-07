@@ -1,10 +1,10 @@
 package bomberOne.views.setUp;
 
 import bomberOne.controllers.setUp.SetUpController;
+import bomberOne.model.Difficulty;
+import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;

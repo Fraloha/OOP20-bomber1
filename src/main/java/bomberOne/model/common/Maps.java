@@ -1,4 +1,4 @@
-package bomberOne.tools.maps;
+package bomberOne.model.common;
 
 import java.util.ArrayList;
 import java.util.List;

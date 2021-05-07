@@ -10,9 +10,9 @@ import java.util.List;
 
 import javax.imageio.ImageIO;
 
-import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.GameImages;
-import bomberOne.tools.maps.Maps;
+import bomberOne.model.common.AnimatedObjectsSprites;
+import bomberOne.model.common.GameImages;
+import bomberOne.model.common.Maps;
 import javafx.scene.text.Font;
 
 /**

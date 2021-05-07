@@ -7,6 +7,7 @@ import java.util.Random;
 import java.util.stream.Collectors;
 
 import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.Maps;
 import bomberOne.model.common.P2d;
 import bomberOne.model.enemy.Enemy;
 import bomberOne.controllers.game.event.ExplosionEvent;
@@ -23,9 +24,7 @@ import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.GameObjectCollection;
 import bomberOne.model.gameObjects.GameObjectCollectionImpl;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.maps.Maps;
 
 public class WorldImpl implements World {
 

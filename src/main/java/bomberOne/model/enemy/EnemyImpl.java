@@ -1,5 +1,6 @@
 package bomberOne.model.enemy;
 
+import bomberOne.model.Difficulty;
 import bomberOne.model.common.Direction;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.AnimatedEntityImpl;
@@ -7,7 +8,6 @@ import java.awt.image.BufferedImage;
 import bomberOne.model.enemy.actions.Actions;
 import bomberOne.model.enemy.actions.IntermediateBehavior;
 import bomberOne.model.enemy.actions.BasicBehavior;
-import bomberOne.model.user.Difficulty;
 
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 

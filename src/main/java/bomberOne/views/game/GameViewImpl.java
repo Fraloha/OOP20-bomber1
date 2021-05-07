@@ -2,10 +2,10 @@ package bomberOne.views.game;
 
 import bomberOne.model.GameModelImpl;
 import bomberOne.model.bomber.Bomber;
+import bomberOne.model.common.GameImages;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.ResourcesLoader;
-import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;

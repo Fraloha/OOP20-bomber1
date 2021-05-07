@@ -1,4 +1,4 @@
-package bomberOne.tools.img;
+package bomberOne.model.common;
 
 import java.awt.image.BufferedImage;
 
