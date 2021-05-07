@@ -1,5 +1,11 @@
 # BomberOne
 
+## Installation
+
+1. Download the last realease of BomberOne.
+2. Execute "java -jar 'BomberOne.jar" from your terminal.
+3. Enjoy the game!
+
 ## Rules
 
 **BomberOne**, arcade game where the main objective is to destroy all the boxes and kill all the enemies within the time limit.
