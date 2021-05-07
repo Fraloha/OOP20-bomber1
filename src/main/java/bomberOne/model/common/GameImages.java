@@ -220,7 +220,22 @@ public enum GameImages {
     /**
      * 
      */
-    NORMAL_UNSET("NORMAL_unset.png");
+    NORMAL_UNSET("NORMAL_unset.png"),
+    
+    /**
+     * 
+     */
+    RANKVIEWTITLE("classifica-logo.png"),
+    
+    /**
+     * 
+     */
+    EASYMODE("EasyModeImage.png"),
+    
+    /**
+     * 
+     */
+    HARDMODE("HardModeImage.png");
 
     private static final String RES_PATH = "images/";
 
