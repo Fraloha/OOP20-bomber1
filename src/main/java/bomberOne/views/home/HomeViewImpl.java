@@ -1,6 +1,14 @@
 package bomberOne.views.home;
 
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import bomberOne.controllers.game.GameController;
+import bomberOne.tools.audio.GameAudio;
 import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -32,10 +40,21 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     // private GraphicsContext graphicContext;
     private ControlsMap controlsMap;
+    private AudioInputStream audio = GameAudio.HOME.getAudio();
+    private Clip clip;
 
     @Override
     public void init() {
         // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
+        try {
+            this.clip = GameAudio.getClip();
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audio);
+            this.clip.loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         this.drawHome();
         this.getController().init();
     }

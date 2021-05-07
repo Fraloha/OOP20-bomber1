@@ -1,9 +1,15 @@
 package bomberOne.views.setUp;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import bomberOne.controllers.setUp.SetUpController;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.audio.GameAudio;
 import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -46,6 +52,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     private TextField nickname;
 
     private int count = 1;
+    private Clip clip;
 
     @Override
     public final void init() {
@@ -76,6 +83,14 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
+        this.clip = GameAudio.getClip();
+        try {
+            this.clip = AudioSystem.getClip();
+        } catch (LineUnavailableException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        this.clip.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 

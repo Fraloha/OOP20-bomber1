@@ -4,11 +4,19 @@ import bomberOne.model.GameModelImpl;
 import bomberOne.model.bomber.Bomber;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.audio.GameAudio;
 import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
+
+import java.io.IOException;
+
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import bomberOne.controllers.game.GameController;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -90,7 +98,15 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
-
+        try {
+            AudioSystem.getClip().stop();
+            AudioSystem.getClip().close();
+            AudioSystem.getClip().open(GameAudio.CLASSIC.getAudio());
+            AudioSystem.getClip().loop(Clip.LOOP_CONTINUOUSLY);
+        } catch (LineUnavailableException | IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -257,6 +273,12 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void switchToRank() {
+        try {
+            AudioSystem.getClip().stop();
+        } catch (LineUnavailableException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
