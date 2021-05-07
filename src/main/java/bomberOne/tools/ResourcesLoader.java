@@ -2,20 +2,24 @@ package bomberOne.tools;
 
 import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
 
-import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.GameImages;
-import bomberOne.tools.maps.Maps;
+
+import bomberOne.model.common.AnimatedObjectsSprites;
+import bomberOne.model.common.GameImages;
+import bomberOne.model.common.Maps;
+
+import bomberOne.tools.audio.GameAudio;
+
+import javafx.scene.text.Font;
 
 /**
  * Utility class that load the Resources from the specific directories.
@@ -32,9 +36,25 @@ public final class ResourcesLoader {
      * sliceSprite()".
      */
     public static void start() {
+        ResourcesLoader.loadAudio();
         ResourcesLoader.loadImages();
         ResourcesLoader.sliceSprite();
         ResourcesLoader.loadMap();
+    }
+
+    public static void loadAudio() {
+        Arrays.stream(GameAudio.values()).forEach(value -> {
+            try {
+                value.setAudio(
+                        AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(value.getAudioPath())));
+            } catch (UnsupportedAudioFileException e) {
+                System.out.println("Errore 1");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.out.println("Errore 2");
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
@@ -46,7 +66,7 @@ public final class ResourcesLoader {
     public static void loadImages() {
         Arrays.stream(GameImages.values()).forEach(value -> {
             try {
-                value.setImage(ImageIO.read(ClassLoader.getSystemResource(value.getFilePath())));
+                value.setImage(ImageIO.read(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -54,7 +74,7 @@ public final class ResourcesLoader {
 
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
             try {
-                value.setImage(ImageIO.read(ClassLoader.getSystemResource(value.getFilePath())));
+                value.setImage(ImageIO.read(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -68,8 +88,9 @@ public final class ResourcesLoader {
      */
     public static void loadMap() {
         Arrays.stream(Maps.values()).forEach(value -> {
-            try{
-                BufferedReader reader = new BufferedReader(new FileReader(value.getFilePath()));
+            try {
+                BufferedReader reader = new BufferedReader(
+                        new InputStreamReader(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
                 List<List<String>> mapLayout = new ArrayList<>();
                 String currentLine;
                 while ((currentLine = reader.readLine()) != null) {
@@ -83,6 +104,16 @@ public final class ResourcesLoader {
                 e.printStackTrace();
             }
         });
+    }
+
+    /**
+     * That method return the font of the program, sized with the input parameter.
+     * 
+     * @param size
+     * @return Font
+     */
+    public static Font getFont(final int size) {
+        return Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), size);
     }
 
     /**
@@ -102,7 +133,8 @@ public final class ResourcesLoader {
      * @param spriteHeight Height of each individual sprite
      * @return Two-dimensional array of sprites
      */
-    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth, final int spriteHeight) {
+    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth,
+            final int spriteHeight) {
         int rows = spriteMap.getHeight() / spriteHeight;
         int cols = spriteMap.getWidth() / spriteWidth;
         BufferedImage[][] sprites = new BufferedImage[rows][cols];

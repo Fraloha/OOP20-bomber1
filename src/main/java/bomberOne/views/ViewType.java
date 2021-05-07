@@ -5,7 +5,8 @@ import java.io.File;
 import bomberOne.controllers.Controller;
 import bomberOne.controllers.game.GameControllerImpl;
 import bomberOne.controllers.setUp.SetUpControllerImpl;
-
+import bomberOne.controllers.stable.StaticControllerImpl;
+import bomberOne.controllers.home.HomeControllerImpl;
 
 /**
  * Enum for the Views, each one has her StyleFile and her specific Controller.
@@ -18,7 +19,12 @@ public enum ViewType {
     /**
      * TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO.
      */
-    HOME("HomeView", new GameControllerImpl()), SETUP("SetUpView", new SetUpControllerImpl()),
+    HOME("HomeView", new HomeControllerImpl()), SETUP("SetUpView", new SetUpControllerImpl()),
+
+    /**
+     * 
+     */
+    CREDITS("CreditsView", new StaticControllerImpl()), RULES("RulesView", new StaticControllerImpl()),
 
     /**
      * 
@@ -28,7 +34,7 @@ public enum ViewType {
     /**
      * Style files path.
      */
-    private static final String DIRECTORY = "viewsStyle" + File.separator;
+    private static final String DIRECTORY = "viewsStyle/";
     private static final String FORMAT = ".fxml";
 
     private String fileName;

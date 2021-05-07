@@ -1,14 +1,16 @@
 package bomberOne.views.game;
 
+import bomberOne.model.GameModelImpl;
 import bomberOne.model.bomber.Bomber;
+import bomberOne.model.common.GameImages;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.GameImages;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
-import bomberOne.controllers.game.*;
+import bomberOne.controllers.game.GameController;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
@@ -22,6 +24,7 @@ import javafx.scene.input.KeyEvent;
 
 public class GameViewImpl extends ViewImpl implements GameView {
 
+    private static final int FONT_SIZE = 30;
     private static final int ENEMY_WIDTH = 32;
     private static final int ENEMY_HEIGHT = 48;
     private static final int N_LIFES_ONE = 1;
@@ -74,7 +77,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @FXML
     public void quitClicked() {
         ((GameController) this.getController()).quitGame();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
 
     /**
@@ -82,10 +85,12 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
+        this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
+        this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
-        this.drawGame();
         this.getController().init();
+        this.drawGame();
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
@@ -108,7 +113,6 @@ public class GameViewImpl extends ViewImpl implements GameView {
             public void handle(final KeyEvent e) {
                 if (controlsMap.getControlMap().keySet().contains(e.getCode().getCode())) {
                     controlsMap.getControlMap().get(e.getCode().getCode()).accept(Boolean.FALSE);
-                    getController().getModel().getWorld().getBomber().setStatic(true);
                 }
             }
         });

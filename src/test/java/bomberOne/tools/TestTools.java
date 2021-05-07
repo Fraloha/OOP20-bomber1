@@ -10,14 +10,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bomberOne.model.common.AnimatedObjectsSprites;
+import bomberOne.model.common.GameImages;
+import bomberOne.model.common.Maps;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.RankLoader;
 import bomberOne.tools.ResourcesLoader;
-import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.GameImages;
-import bomberOne.tools.maps.Maps;
 
 public class TestTools {
 
@@ -53,12 +53,12 @@ public class TestTools {
         userList1.add(user1);
         userList2.add(user2);
         // Write the list on the Files
-        RankLoader.writeUsers(userList1, userList2);
+        // RankLoader.writeUsers(userList1, userList2);
         // Create other two list, fill them with the item reads from file and check if
         // this list are equals to the previous
         List<User> userList3 = new ArrayList<>();
         List<User> userList4 = new ArrayList<>();
-        RankLoader.readUsers(userList3, userList4);
+        // RankLoader.readUsers(userList3, userList4);
         assertTrue(userList3.get(0).getName().equals(user1.getName()));
         assertTrue(userList3.get(0).getScore() == (user1.getScore()));
         assertTrue(userList4.get(0).getName().equals(user2.getName()));
@@ -84,10 +84,10 @@ public class TestTools {
         assertNotNull(GameImages.POWER_TIMER.getImage());
         assertNotNull(GameImages.SPAWN.getImage());
 
-        assertNotNull(AnimatedObjectsSprites.PLAYER_1.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_2.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_3.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_4.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_WHITE.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_BLACK.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_RED.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_BLUE.getImage());
         assertNotNull(AnimatedObjectsSprites.ENEMIES_HARD.getImage());
         assertNotNull(AnimatedObjectsSprites.ENEMIES_STANDARD.getImage());
     }

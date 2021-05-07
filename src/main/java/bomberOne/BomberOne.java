@@ -1,13 +1,13 @@
 package bomberOne;
 
+import bomberOne.model.Difficulty;
 import bomberOne.model.GameModel;
 import bomberOne.model.GameModelImpl;
+import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.ResourcesLoader;
-import bomberOne.tools.img.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import javafx.application.Application;
@@ -29,12 +29,12 @@ public final class BomberOne extends Application {
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
         // UNCOMMENT TO TEST
 //
-        GameModel test = new GameModelImpl();
-        test.getUser().setControls(Controls.ARROW);
-        test.getUser().setSkin(Skins.WHITE);
-        test.setDifficulty(Difficulty.STANDARD);
-        test.init();
-        ViewsSwitcher.switchView(primaryStage, ViewType.GAME, test);
+//        GameModel test = new GameModelImpl();
+//        test.getUser().setControls(Controls.ARROW);
+//        test.getUser().setSkin(Skins.WHITE);
+//        test.setDifficulty(Difficulty.STANDARD);
+//      test.init();
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }

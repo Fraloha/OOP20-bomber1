@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.canvas.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8" fx:controller="bomberOne.views.game.HomeViewImpl">
-	<!-- TODO Add Nodes -->
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.home.HomeViewImpl">
+   <children>
+      <Pane fx:id="homePane" style="-fx-background-color: black;">
+         <children>
+            <Canvas fx:id="homeCanvas" height="612.0" layoutX="1.0" layoutY="-6.0" width="575.0" />
+            <ImageView fx:id="boxLogo" fitHeight="308.0" fitWidth="739.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo_BomberOne.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="easterEgg1" fitHeight="63.0" fitWidth="490.0" layoutX="33.0" layoutY="41.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="easterEgg2" fitHeight="71.0" fitWidth="244.0" layoutX="154.0" layoutY="181.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="buttonPlay" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="348.0" onMouseClicked="#switchToSetUp" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/PLAY_unset.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="buttonRank" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="416.0" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/RANK_unset.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+            <ImageView fx:id="buttonRules" fitHeight="45.0" fitWidth="116.0" layoutX="230.0" layoutY="485.0" onMouseEntered="#setRules" onMouseExited="#unsetRules" onMousePressed="#switchToRules" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/RULES_unset.png" />
+               </image>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
 </AnchorPane>

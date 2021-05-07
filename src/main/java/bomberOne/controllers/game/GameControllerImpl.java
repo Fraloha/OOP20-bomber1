@@ -2,10 +2,10 @@
 package bomberOne.controllers.game;
 
 import bomberOne.controllers.ControllerImpl;
-import bomberOne.model.event.WorldEventListener;
-import bomberOne.model.event.WorldEventListenerImpl;
-import bomberOne.model.input.CommandListener;
-import bomberOne.model.input.CommandListenerImpl;
+import bomberOne.controllers.game.event.WorldEventListener;
+import bomberOne.controllers.game.event.WorldEventListenerImpl;
+import bomberOne.controllers.game.input.CommandListener;
+import bomberOne.controllers.game.input.CommandListenerImpl;
 import bomberOne.views.game.GameView;
 
 public class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
@@ -28,7 +28,6 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             int elapsed = (int) (current - lastTime);
             this.processInput();
             this.updateGame(elapsed);
-            this.processEvent();
             this.render();
             this.waitForNextFrame(current);
             lastTime = current;
@@ -82,6 +81,11 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().updateGame(elapsedTime);
+        this.getModel().getWorld().checkBoundary();
+        this.processEvent();
+        this.getModel().getWorld().checkCollision();
+        this.getModel().getWorld().checkRespawn();
+        this.processEvent();
     }
 
     /**
@@ -93,8 +97,8 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         this.commandHandler = new CommandListenerImpl();
         this.eventHandler.setGameModel(this.getModel());
         this.commandHandler.setGameModel(this.getModel());
+        this.getModel().init();
         this.getModel().getWorld().setEventListener(this.eventHandler);
-        // this.getModel().init();
         this.game = new Thread(this);
         this.game.setName("LOOP");
         this.game.start();

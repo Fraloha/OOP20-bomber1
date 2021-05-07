@@ -2,7 +2,10 @@ package bomberOne.model.factory;
 
 import java.awt.image.BufferedImage;
 
+import bomberOne.model.Difficulty;
 import bomberOne.model.bomber.BomberImpl;
+import bomberOne.model.common.AnimatedObjectsSprites;
+import bomberOne.model.common.GameImages;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.BoxImpl;
@@ -13,10 +16,7 @@ import bomberOne.model.gameObjects.HardWall;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.gameObjects.PowerUpImpl;
 import bomberOne.model.gameObjects.PowerUp.Type;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.GameImages;
 
 public class GameObjectFactoryImpl implements GameObjectFactory {
 
@@ -29,16 +29,16 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
     public GameObject createBomber(final P2d position, final Skins color) {
         BufferedImage[][] images = null;
         if (color.equals(Skins.WHITE)) {
-            images = AnimatedObjectsSprites.PLAYER_1.getSprites();
+            images = AnimatedObjectsSprites.BOMBER_WHITE.getSprites();
         }
         if (color.equals(Skins.BLACK)) {
-            images = AnimatedObjectsSprites.PLAYER_2.getSprites();
+            images = AnimatedObjectsSprites.BOMBER_BLACK.getSprites();
         }
         if (color.equals(Skins.RED)) {
-            images = AnimatedObjectsSprites.PLAYER_3.getSprites();
+            images = AnimatedObjectsSprites.BOMBER_RED.getSprites();
         }
         if (color.equals(Skins.BLUE)) {
-            images = AnimatedObjectsSprites.PLAYER_4.getSprites();
+            images = AnimatedObjectsSprites.BOMBER_BLUE.getSprites();
         }
 
         return new BomberImpl(position, images, GameObjectFactoryImpl.BOMBER_LIFES);
@@ -115,6 +115,9 @@ public class GameObjectFactoryImpl implements GameObjectFactory {
      */
     @Override
     public GameObject createBomb(final P2d position, final int firePower, final boolean pierce) {
+        if (pierce) {
+            return new BombImpl(position, AnimatedObjectsSprites.PIERCED_BOMB.getSprites(), 1, firePower, pierce); 
+        }
         return new BombImpl(position, AnimatedObjectsSprites.BOMB.getSprites(), 1, firePower, pierce);
     }
 

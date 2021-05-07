@@ -5,7 +5,6 @@ import bomberOne.model.factory.WorldFactoryImpl;
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerImpl;
 import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
 import bomberOne.tools.RankLoader;
@@ -18,9 +17,9 @@ public class GameModelImpl implements GameModel {
     private Difficulty difficulty;
     private int score = 0;
     private WorldFactory factory;
-    private Timer timer = new TimerImpl(GameModelImpl.TIME);
+    private Timer timer;
     private boolean gameOver = false;
-    private TimerThread thread = new TimerThread(timer);
+    private TimerThread thread;
 
     public GameModelImpl() {
         this.user = new UserImpl();
@@ -34,6 +33,9 @@ public class GameModelImpl implements GameModel {
         } else {
             this.world = factory.createWorldHard(this.user);
         }
+
+        this.timer = new TimerImpl(GameModelImpl.TIME);
+        this.thread = new TimerThread(timer);
         this.thread.start();
     }
 
@@ -106,6 +108,7 @@ public class GameModelImpl implements GameModel {
             this.gameOver = false;
         }
         if (this.gameOver) {
+            this.user.setScore(this.score);
             /* Add the user on the specific rank */
             if (this.difficulty.equals(Difficulty.HARD)) {
                 RankLoader.getRankHard().add(this.user);
