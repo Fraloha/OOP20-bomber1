@@ -1,15 +1,19 @@
 package bomberOne.views.rank;
 
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import bomberOne.model.common.GameImages;
 import bomberOne.tools.RankLoader;
 import bomberOne.views.rank.UserDataModel;
 import bomberOne.views.basic.ViewImpl;
+import bomberOne.views.ViewType;
+import bomberOne.views.ViewsSwitcher;
 import javafx.scene.image.Image;
 
 public final class RankView extends ViewImpl {
@@ -56,8 +60,8 @@ public final class RankView extends ViewImpl {
     }
     
     private void loadImages() {
-        this.rankDifficultyImages[0] = new Image("..\\..\\..\\resources\\images\\RankViewImages\\EasyModeImage.png");
-        this.rankDifficultyImages[1] = new Image("..\\..\\..\\resources\\images\\RankViewImages\\HardModeImage.png");
+        this.rankDifficultyImages[0] = SwingFXUtils.toFXImage(GameImages.EASYMODE.getImage(), null);
+        this.rankDifficultyImages[1] = SwingFXUtils.toFXImage(GameImages.HARDMODE.getImage(), null);
     }
     
     private void onClickChangeRank(boolean next) {
@@ -67,5 +71,9 @@ public final class RankView extends ViewImpl {
         //Setting the right image and rank.
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks[this.currentRank]);
+    }
+    
+    private void onClickBackToMainMenu() {
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 }
