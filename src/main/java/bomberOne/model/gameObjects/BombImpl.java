@@ -1,9 +1,16 @@
 package bomberOne.model.gameObjects;
 
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.Optional;
 
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import bomberOne.model.common.P2d;
+import bomberOne.tools.audio.GameAudio;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -25,6 +32,8 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private BufferedImage[][] sprites;
     private int indexAnimation = 0;
     private int animationTimer = 0;
+    private AudioInputStream audio = GameAudio.BOMB.getAudio();
+    private Clip clip;
 
     public BombImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final int firePower,
             final boolean pierced) {
@@ -44,6 +53,13 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         super.hitted();
+        try {
+            this.clip = AudioSystem.getClip();
+            this.clip.open(audio);
+            this.clip.loop(0);
+        } catch (LineUnavailableException | IOException e) {
+            e.printStackTrace();
+        }
         return boom;
     }
 

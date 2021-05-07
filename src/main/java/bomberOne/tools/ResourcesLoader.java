@@ -9,10 +9,16 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.imageio.ImageIO;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.UnsupportedAudioFileException;
+
 
 import bomberOne.model.common.AnimatedObjectsSprites;
 import bomberOne.model.common.GameImages;
 import bomberOne.model.common.Maps;
+
+import bomberOne.tools.audio.GameAudio;
+
 import javafx.scene.text.Font;
 
 /**
@@ -30,9 +36,25 @@ public final class ResourcesLoader {
      * sliceSprite()".
      */
     public static void start() {
+        ResourcesLoader.loadAudio();
         ResourcesLoader.loadImages();
         ResourcesLoader.sliceSprite();
         ResourcesLoader.loadMap();
+    }
+
+    public static void loadAudio() {
+        Arrays.stream(GameAudio.values()).forEach(value -> {
+            try {
+                value.setAudio(
+                        AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(value.getAudioPath())));
+            } catch (UnsupportedAudioFileException e) {
+                System.out.println("Errore 1");
+                e.printStackTrace();
+            } catch (IOException e) {
+                System.out.println("Errore 2");
+                e.printStackTrace();
+            }
+        });
     }
 
     /**
