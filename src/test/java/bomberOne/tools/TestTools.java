@@ -40,7 +40,7 @@ public class TestTools {
      */
     @Test
     public void testRankLoader() {
-        List<User> userList1 = new ArrayList<>();
+        /*List<User> userList1 = new ArrayList<>();
         List<User> userList2 = new ArrayList<>();
 
         // Create some User and put them on the Lists
@@ -57,12 +57,16 @@ public class TestTools {
         // Create other two list, fill them with the item reads from file and check if
         // this list are equals to the previous
         List<User> userList3 = new ArrayList<>();
-        List<User> userList4 = new ArrayList<>();
-        // RankLoader.readUsers(userList3, userList4);
-        assertTrue(userList3.get(0).getName().equals(user1.getName()));
+        List<User> userList4 = new ArrayList<>();*/
+        RankLoader.readUsers();
+        assertTrue(RankLoader.getRankStandard().get(0).getName().equals("Corrado"));
+        assertTrue(RankLoader.getRankStandard().get(0).getScore() == 4000);
+        assertTrue(RankLoader.getRankHard().get(0).getName().equals("Giorgio"));
+        assertTrue(RankLoader.getRankHard().get(0).getScore() == 300);
+        /*assertTrue(userList3.get(0).getName().equals(user1.getName()));
         assertTrue(userList3.get(0).getScore() == (user1.getScore()));
         assertTrue(userList4.get(0).getName().equals(user2.getName()));
-        assertTrue(userList4.get(0).getScore() == (user2.getScore()));
+        assertTrue(userList4.get(0).getScore() == (user2.getScore()));*/
     }
 
     /**

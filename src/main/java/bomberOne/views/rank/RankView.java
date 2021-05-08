@@ -95,16 +95,11 @@ public final class RankView extends ViewImpl {
         this.loadImages();
 
         // Loading the ranks.
-        try {
-            this.loadRanks();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        this.loadRanks();
 
         // Setting the initial rank to show.
         this.currentRank = 0;
-        this.tableView.setItems(this.ranks.get(this.currentRank));
+        //this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
     /**
@@ -117,12 +112,11 @@ public final class RankView extends ViewImpl {
         this.imageViewRankTitle.setImage(SwingFXUtils.toFXImage(GameImages.RANKVIEWTITLE.getImage(), null));
     }
 
-    private void loadRanks() throws IOException {
+    private void loadRanks() {
         // Creating the ranks ArrayList.
         this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
 
         // Loading the ranks from the files.
-        DirectoryLoader.start();
         RankLoader.readUsers();
         ArrayList<List<User>> ranksToManage = new ArrayList<List<User>>();
         ranksToManage.add(RankLoader.getRankStandard());
