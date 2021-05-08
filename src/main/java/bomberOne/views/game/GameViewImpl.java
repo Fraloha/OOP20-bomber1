@@ -6,6 +6,7 @@ import bomberOne.model.common.GameImages;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.tools.ResourcesLoader;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -93,6 +94,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
+        SoundsHandler.startLoop(GameAudio.CLASSIC, Clip.LOOP_CONTINUOUSLY);
         this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
@@ -102,15 +104,6 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
-        try {
-            AudioSystem.getClip().stop();
-            AudioSystem.getClip().close();
-            AudioSystem.getClip().open(GameAudio.CLASSIC.getAudio());
-            AudioSystem.getClip().loop(Clip.LOOP_CONTINUOUSLY);
-        } catch (LineUnavailableException | IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
     }
 
     /**
@@ -277,12 +270,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void switchToRank() {
-        try {
-            AudioSystem.getClip().stop();
-        } catch (LineUnavailableException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
+        SoundsHandler.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 

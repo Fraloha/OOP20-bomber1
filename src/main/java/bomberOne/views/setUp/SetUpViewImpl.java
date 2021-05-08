@@ -10,6 +10,7 @@ import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
@@ -51,7 +52,6 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     private TextField nickname;
 
     private int count = 1;
-    private Clip clip;
 
     @Override
     public final void init() {
@@ -82,14 +82,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
-        this.clip = GameAudio.getClip();
-        try {
-            this.clip = AudioSystem.getClip();
-        } catch (LineUnavailableException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        this.clip.stop();
+        SoundsHandler.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
