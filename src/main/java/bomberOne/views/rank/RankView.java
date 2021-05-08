@@ -100,10 +100,11 @@ public final class RankView extends ViewImpl {
 
         // Setting the initial rank to show.
         this.currentRank = 0;
-        this.tableView.setItems(this.ranks[currentRank]);
+        //this.tableView.setItems(this.ranks[currentRank]);
     }
 
     private void loadImages() {
+        this.rankDifficultyImages = new Image[RankView.RANKS];
         this.rankDifficultyImages[0] = SwingFXUtils.toFXImage(GameImages.EASYMODE.getImage(), null);
         this.rankDifficultyImages[1] = SwingFXUtils.toFXImage(GameImages.HARDMODE.getImage(), null);
     }
@@ -111,7 +112,7 @@ public final class RankView extends ViewImpl {
     private void loadRanks() {
         // Loading the ranks from the files.
         List ranks[] = { RankLoader.getRankStandard(), RankLoader.getRankHard() };
-
+        
         // Converting the UserImpl data into UserDataModel data.
         // This conversion is needed to create some ObservableLists to bind with the
         // TableView.
