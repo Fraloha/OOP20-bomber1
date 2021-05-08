@@ -37,7 +37,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonRank" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="416.0" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRank" fitHeight="45.0" fitWidth="116.0" layoutX="231.0" layoutY="416.0" onMouseClicked="#switchToRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/RANK_unset.png" />
                </image>
