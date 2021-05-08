@@ -1,6 +1,5 @@
 package bomberOne.views.rank;
 
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -9,17 +8,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.ListIterator;
-
 import bomberOne.model.common.GameImages;
 import bomberOne.tools.RankLoader;
-import bomberOne.views.rank.UserDataModel;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
