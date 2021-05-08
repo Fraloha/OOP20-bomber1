@@ -66,8 +66,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToRank() {
-        // ViewsSwitcher.switchView(this.getStage(), ViewType.RANK,
-        // this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     @FXML
