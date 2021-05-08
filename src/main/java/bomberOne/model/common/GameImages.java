@@ -225,7 +225,7 @@ public enum GameImages {
     /**
      * 
      */
-    RANKVIEWTITLE("classifica-logo.png"),
+    RANKVIEWTITLE("classifica_logo.png"),
     
     /**
      * 
