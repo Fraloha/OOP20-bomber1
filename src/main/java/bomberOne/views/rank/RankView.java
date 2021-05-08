@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
@@ -101,13 +102,17 @@ public final class RankView extends ViewImpl {
 
         // Setting the initial rank to show.
         this.currentRank = 0;
-        // this.tableView.setItems(this.ranks[currentRank]);
+        this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
+    /**
+     * This method loads all the images that have to be set in the view.
+     */
     private void loadImages() {
         this.rankDifficultyImages = new Image[RankView.RANKS];
         this.rankDifficultyImages[0] = SwingFXUtils.toFXImage(GameImages.EASYMODE.getImage(), null);
         this.rankDifficultyImages[1] = SwingFXUtils.toFXImage(GameImages.HARDMODE.getImage(), null);
+        this.imageViewRankTitle.setImage(SwingFXUtils.toFXImage(GameImages.RANKVIEWTITLE.getImage(), null));
     }
 
     private void loadRanks() {
@@ -115,24 +120,26 @@ public final class RankView extends ViewImpl {
         this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
 
         // Loading the ranks from the files.
-        List ranks[] = { RankLoader.getRankStandard(), RankLoader.getRankHard() };
+        RankLoader.readUsers();
+        ArrayList<List<User>> ranksToManage = new ArrayList<List<User>>();
+        ranksToManage.add(RankLoader.getRankStandard());
+        ranksToManage.add(RankLoader.getRankHard());
 
         // Converting the UserImpl data into UserDataModel data.
         // This conversion is needed to create some ObservableLists to bind with the
         // TableView.
         for (int i = 0; i < RankView.RANKS; i++) {
-            @SuppressWarnings("unchecked")
-            ListIterator<UserImpl> rankIterator = ranks[i].listIterator();
+            Iterator<User> rankIterator = ranksToManage.get(i).iterator();
 
             while (rankIterator.hasNext()) {
                 UserImpl currentUser = (UserImpl) rankIterator.next();
-                this.ranks.get(i).add(new UserDataModel( currentUser.getName(), currentUser.getScore()));
+                this.ranks.get(i).add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
                 rankIterator.next();
             }
         }
     }
 
-    private void onClickChangeRank(boolean next) {
+    private void onClickChangeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
         this.currentRank = (next ? this.currentRank++ : this.currentRank--) % RankView.RANKS;
 
