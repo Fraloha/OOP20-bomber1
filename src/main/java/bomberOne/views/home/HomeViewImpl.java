@@ -41,13 +41,13 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @Override
     public void init() {
         // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
-        SoundsHandler.start(GameAudio.HOME);
         this.drawHome();
         this.getController().init();
     }
 
     @Override
     public void drawHome() {
+        SoundsHandler.start(GameAudio.HOME);
         this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
