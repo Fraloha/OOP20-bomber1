@@ -8,11 +8,14 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import bomberOne.model.common.GameImages;
+import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.RankLoader;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.ViewType;
@@ -92,7 +95,12 @@ public final class RankView extends ViewImpl {
         this.loadImages();
 
         // Loading the ranks.
-        this.loadRanks();
+        try {
+            this.loadRanks();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // Setting the initial rank to show.
         this.currentRank = 0;
@@ -109,11 +117,12 @@ public final class RankView extends ViewImpl {
         this.imageViewRankTitle.setImage(SwingFXUtils.toFXImage(GameImages.RANKVIEWTITLE.getImage(), null));
     }
 
-    private void loadRanks() {
+    private void loadRanks() throws IOException {
         // Creating the ranks ArrayList.
         this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
 
         // Loading the ranks from the files.
+        DirectoryLoader.start();
         RankLoader.readUsers();
         ArrayList<List<User>> ranksToManage = new ArrayList<List<User>>();
         ranksToManage.add(RankLoader.getRankStandard());
