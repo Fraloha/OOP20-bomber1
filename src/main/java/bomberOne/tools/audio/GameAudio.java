@@ -30,7 +30,6 @@ public enum GameAudio {
 
     private String fileName;
     private AudioInputStream audio;
-    private static Clip clip;
 
     GameAudio(final String fileName) {
         this.fileName = fileName;
@@ -46,9 +45,5 @@ public enum GameAudio {
 
     public String getAudioPath() {
         return RES_PATH + this.fileName;
-    }
-    
-    public static Clip getClip() {
-        return clip;
     }
 }

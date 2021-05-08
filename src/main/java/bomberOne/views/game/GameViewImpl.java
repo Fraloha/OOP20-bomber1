@@ -13,11 +13,7 @@ import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
 
-import java.io.IOException;
-
-import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 
 import bomberOne.controllers.game.GameController;
 import javafx.application.Platform;
@@ -85,6 +81,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @FXML
     public void quitClicked() {
+        SoundsHandler.stop();
         ((GameController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
@@ -94,7 +91,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
-        SoundsHandler.startLoop(GameAudio.CLASSIC, Clip.LOOP_CONTINUOUSLY);
+        SoundsHandler.start(GameAudio.CLASSIC);
         this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
