@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.ListIterator;
 
@@ -44,7 +45,7 @@ public final class RankView extends ViewImpl {
 
     private Image rankDifficultyImages[];
 
-    private ObservableList<UserDataModel> ranks[];
+    private ArrayList<ObservableList<UserDataModel>> ranks;
 
     @FXML
     private TableView<UserDataModel> tableView;
@@ -100,7 +101,7 @@ public final class RankView extends ViewImpl {
 
         // Setting the initial rank to show.
         this.currentRank = 0;
-        //this.tableView.setItems(this.ranks[currentRank]);
+        // this.tableView.setItems(this.ranks[currentRank]);
     }
 
     private void loadImages() {
@@ -110,9 +111,12 @@ public final class RankView extends ViewImpl {
     }
 
     private void loadRanks() {
+        // Creating the ranks ArrayList.
+        this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
+
         // Loading the ranks from the files.
         List ranks[] = { RankLoader.getRankStandard(), RankLoader.getRankHard() };
-        
+
         // Converting the UserImpl data into UserDataModel data.
         // This conversion is needed to create some ObservableLists to bind with the
         // TableView.
@@ -122,7 +126,7 @@ public final class RankView extends ViewImpl {
 
             while (rankIterator.hasNext()) {
                 UserImpl currentUser = (UserImpl) rankIterator.next();
-                this.ranks[i].add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
+                this.ranks.get(i).add(new UserDataModel( currentUser.getName(), currentUser.getScore()));
                 rankIterator.next();
             }
         }
@@ -134,7 +138,7 @@ public final class RankView extends ViewImpl {
 
         // Setting the right image and rank.
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
-        this.tableView.setItems(this.ranks[this.currentRank]);
+        this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
     private void onClickBackToMainMenu() {
