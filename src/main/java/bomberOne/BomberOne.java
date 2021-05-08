@@ -34,7 +34,7 @@ public final class BomberOne extends Application {
 //        test.getUser().setSkin(Skins.WHITE);
 //        test.setDifficulty(Difficulty.STANDARD);
 //      test.init();
-        ViewsSwitcher.switchView(primaryStage, ViewType.RANK, new GameModelImpl());
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }
