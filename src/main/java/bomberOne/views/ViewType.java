@@ -7,6 +7,7 @@ import bomberOne.controllers.game.GameControllerImpl;
 import bomberOne.controllers.setUp.SetUpControllerImpl;
 import bomberOne.controllers.stable.StaticControllerImpl;
 import bomberOne.controllers.home.HomeControllerImpl;
+import bomberOne.controllers.rank.RankControllerImpl;
 
 /**
  * Enum for the Views, each one has her StyleFile and her specific Controller.
@@ -29,7 +30,7 @@ public enum ViewType {
     /**
      * 
      */
-    GAME("GameView", new GameControllerImpl()), RANK("RankView", new GameControllerImpl());
+    GAME("GameView", new GameControllerImpl()), RANK("RankView", new RankControllerImpl());
 
     /**
      * Style files path.

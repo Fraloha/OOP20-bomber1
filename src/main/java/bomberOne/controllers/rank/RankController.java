@@ -1,11 +1,7 @@
 package bomberOne.controllers.rank;
 
-import bomberOne.controllers.ControllerImpl;
+import bomberOne.controllers.Controller;
 
-public class RankController extends ControllerImpl {
+public interface RankController extends Controller {
 
-    @Override
-    public void init() {
-
-    }
 }
