@@ -1,4 +1,4 @@
-package bomberOne.model.user;
+package bomberOne.model;
 
 /**
  * The difficulty of the gameplay, set by the Player when start the game.

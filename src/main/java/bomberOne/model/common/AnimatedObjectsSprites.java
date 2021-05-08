@@ -1,4 +1,4 @@
-package bomberOne.tools.img;
+package bomberOne.model.common;
 
 import java.awt.image.BufferedImage;
 
@@ -12,22 +12,22 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
-    PLAYER_1("bomber1.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    BOMBER_WHITE("bomber1.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_2("bomber2.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    BOMBER_BLACK("bomber2.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_3("bomber3.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    BOMBER_RED("bomber3.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 
      */
-    PLAYER_4("bomber4.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    BOMBER_BLUE("bomber4.png", AnimatedObjectsSprites.ENTITY_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 

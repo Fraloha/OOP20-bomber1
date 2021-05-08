@@ -2,7 +2,6 @@ package bomberOne.model;
 
 import bomberOne.model.timer.Timer;
 import bomberOne.model.timer.TimerThread;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.User;
 
 /**

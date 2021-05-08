@@ -1,9 +1,9 @@
 package bomberOne.model.factory;
 
+import bomberOne.model.Difficulty;
 import bomberOne.model.common.P2d;
 import bomberOne.model.gameObjects.GameObject;
 import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 
 /**

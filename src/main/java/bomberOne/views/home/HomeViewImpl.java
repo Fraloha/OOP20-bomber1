@@ -6,19 +6,15 @@ import javax.sound.sampled.AudioInputStream;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import javax.sound.sampled.LineUnavailableException;
-
-import bomberOne.controllers.game.GameController;
 import bomberOne.tools.audio.GameAudio;
-import bomberOne.tools.img.GameImages;
+import bomberOne.model.common.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
-import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 
 public class HomeViewImpl extends ViewImpl implements HomeView {

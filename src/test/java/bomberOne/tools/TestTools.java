@@ -10,14 +10,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
+import bomberOne.model.common.AnimatedObjectsSprites;
+import bomberOne.model.common.GameImages;
+import bomberOne.model.common.Maps;
 import bomberOne.model.user.User;
 import bomberOne.model.user.UserImpl;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.RankLoader;
 import bomberOne.tools.ResourcesLoader;
-import bomberOne.tools.img.AnimatedObjectsSprites;
-import bomberOne.tools.img.GameImages;
-import bomberOne.tools.maps.Maps;
 
 public class TestTools {
 
@@ -84,10 +84,10 @@ public class TestTools {
         assertNotNull(GameImages.POWER_TIMER.getImage());
         assertNotNull(GameImages.SPAWN.getImage());
 
-        assertNotNull(AnimatedObjectsSprites.PLAYER_1.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_2.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_3.getImage());
-        assertNotNull(AnimatedObjectsSprites.PLAYER_4.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_WHITE.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_BLACK.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_RED.getImage());
+        assertNotNull(AnimatedObjectsSprites.BOMBER_BLUE.getImage());
         assertNotNull(AnimatedObjectsSprites.ENEMIES_HARD.getImage());
         assertNotNull(AnimatedObjectsSprites.ENEMIES_STANDARD.getImage());
     }

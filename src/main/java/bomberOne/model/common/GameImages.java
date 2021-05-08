@@ -1,4 +1,4 @@
-package bomberOne.tools.img;
+package bomberOne.model.common;
 
 import java.awt.image.BufferedImage;
 
@@ -220,7 +220,22 @@ public enum GameImages {
     /**
      * 
      */
-    NORMAL_UNSET("NORMAL_unset.png");
+    NORMAL_UNSET("NORMAL_unset.png"),
+    
+    /**
+     * 
+     */
+    RANKVIEWTITLE("classifica_logo.png"),
+    
+    /**
+     * 
+     */
+    EASYMODE("EasyModeImage.png"),
+    
+    /**
+     * 
+     */
+    HARDMODE("HardModeImage.png");
 
     private static final String RES_PATH = "images/";
 

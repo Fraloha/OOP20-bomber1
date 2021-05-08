@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import bomberOne.model.Difficulty;
 import bomberOne.model.GameModel;
 import bomberOne.model.GameModelImpl;
 import bomberOne.model.World;
@@ -19,7 +20,6 @@ import bomberOne.controllers.game.event.WorldEventListenerImpl;
 import bomberOne.model.factory.GameObjectFactory;
 import bomberOne.model.factory.GameObjectFactoryImpl;
 import bomberOne.model.gameObjects.ExplosionImpl;
-import bomberOne.model.user.Difficulty;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.ResourcesLoader;
 
