@@ -1,11 +1,5 @@
 package bomberOne.views.home;
 
-import java.io.IOException;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
 import bomberOne.tools.audio.GameAudio;
 import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.model.common.GameImages;
