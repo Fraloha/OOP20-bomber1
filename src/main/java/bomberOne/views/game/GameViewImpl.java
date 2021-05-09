@@ -6,7 +6,7 @@ import bomberOne.model.common.GameImages;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.audio.GameAudio;
-import bomberOne.tools.audio.SoundsHandler;
+import bomberOne.tools.audio.AudioHandler;
 import bomberOne.tools.ResourcesLoader;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -81,7 +81,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @FXML
     public void quitClicked() {
-        SoundsHandler.stop();
+        AudioHandler.stop();
         ((GameController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
@@ -91,7 +91,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
-        SoundsHandler.start(GameAudio.CLASSIC);
+        AudioHandler.start(GameAudio.CLASSIC);
         this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
@@ -267,7 +267,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void switchToRank() {
-        SoundsHandler.stop();
+        AudioHandler.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
