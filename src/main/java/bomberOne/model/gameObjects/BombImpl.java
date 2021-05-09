@@ -4,16 +4,9 @@ import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.Optional;
 
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-
 import bomberOne.model.common.P2d;
 import bomberOne.tools.audio.GameAudio;
-import bomberOne.tools.audio.GameEffects;
 import bomberOne.tools.audio.AudioHandler;
-import bomberOne.tools.audio.EffectsHandler;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -56,7 +49,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         super.hitted();
-        EffectsHandler.start(GameEffects.BOMB);
+        AudioHandler.start(GameAudio.BOMB);
         return boom;
     }
 

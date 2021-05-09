@@ -81,7 +81,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @FXML
     public void quitClicked() {
-        AudioHandler.stop();
+        AudioHandler.stopAudio();
         ((GameController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
@@ -267,7 +267,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void switchToRank() {
-        AudioHandler.stop();
+        AudioHandler.stopAudio();
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
