@@ -11,6 +11,10 @@ import bomberOne.model.gameObjects.AnimatedEntityImpl;
 import bomberOne.model.gameObjects.Bomb;
 import bomberOne.model.gameObjects.BombImpl;
 import bomberOne.model.gameObjects.PowerUp.Type;
+import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.GameEffects;
+import bomberOne.tools.audio.AudioHandler;
+import bomberOne.tools.audio.EffectsHandler;
 import javafx.geometry.Rectangle2D;
 
 public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
@@ -135,6 +139,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void applyPowerUp(final Type typeOfPowerUp) {
+        EffectsHandler.start(GameEffects.POWER_UP);
         switch (typeOfPowerUp) {
         case FirePower:
             this.activator.applyFirePower(FIRE_POWER_INC);

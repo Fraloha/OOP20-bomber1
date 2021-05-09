@@ -11,6 +11,9 @@ import javax.sound.sampled.LineUnavailableException;
 
 import bomberOne.model.common.P2d;
 import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.GameEffects;
+import bomberOne.tools.audio.AudioHandler;
+import bomberOne.tools.audio.EffectsHandler;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -53,13 +56,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         super.hitted();
-        /*try {
-            this.clip = AudioSystem.getClip();
-            this.clip.open(audio);
-            this.clip.loop(0);
-        } catch (LineUnavailableException | IOException e) {
-            e.printStackTrace();
-        }*/
+        EffectsHandler.start(GameEffects.BOMB);
         return boom;
     }
 
