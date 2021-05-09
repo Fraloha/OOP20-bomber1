@@ -36,27 +36,18 @@ public final class ResourcesLoader {
      * sliceSprite()".
      */
     public static void start() {
-        ResourcesLoader.loadAudio();
+        //ResourcesLoader.loadAudio();
         ResourcesLoader.loadImages();
         ResourcesLoader.sliceSprite();
         ResourcesLoader.loadMap();
     }
-
+/*
     public static void loadAudio() {
         Arrays.stream(GameAudio.values()).forEach(value -> {
-            try {
-                value.setAudio(
-                        AudioSystem.getAudioInputStream(ClassLoader.getSystemResource(value.getAudioPath())));
-            } catch (UnsupportedAudioFileException e) {
-                System.out.println("Errore 1");
-                e.printStackTrace();
-            } catch (IOException e) {
-                System.out.println("Errore 2");
-                e.printStackTrace();
-            }
+            value.setMedia(ClassLoader.getSystemResource(value.getMediaPath()).toString());
         });
     }
-
+*/
     /**
      * This method load the images from the res/ and puts them on ObjectsImages enum
      * values.

@@ -1,49 +1,53 @@
 package bomberOne.tools.audio;
 
+import java.io.IOException;
+import java.net.URL;
+
 import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
+
+import javafx.scene.media.Media;
 
 public enum GameAudio {
-    /**
-     * 
-     */
-    POWER_UP("powerUp.wav"),
 
     /**
      * 
      */
-    CLASSIC("classic.wav"),
+    CLASSIC("audio/", "classic.mp3", 0.4),
 
     /**
      * 
      */
-    HOME("home.wav"),
+    HOME("audio/", "home.wav", 0.4),
 
     /**
      * 
      */
-    BOMB("bomb.wav");
+    POWER_UP("effects/", "powerUp.wav", 1.0),
 
-    private static final String RES_PATH = "audio/";
+    /**
+     * 
+     */
+    BOMB("effects/", "bomb.wav", 1.0);
 
+    private String path;
     private String fileName;
-    private AudioInputStream audio;
+    private double volume;
 
-    GameAudio(final String fileName) {
+    GameAudio(final String path, final String fileName, final double volume) {
+        this.path = path;
         this.fileName = fileName;
+        this.volume = volume;
     }
 
-    public void setAudio(final AudioInputStream audio) {
-        this.audio = audio;
+    public double getVolume() {
+        return this.volume;
     }
 
-    public AudioInputStream getAudio() {
-        return this.audio;
+    public String getPath() {
+        return this.path;
     }
 
-    public String getAudioPath() {
-        return RES_PATH + this.fileName;
+    public String getMediaPath() {
+        return this.path + this.fileName;
     }
 }

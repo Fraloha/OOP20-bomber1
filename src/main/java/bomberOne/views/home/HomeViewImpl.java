@@ -1,7 +1,7 @@
 package bomberOne.views.home;
 
 import bomberOne.tools.audio.GameAudio;
-import bomberOne.tools.audio.SoundsHandler;
+import bomberOne.tools.audio.AudioHandler;
 import bomberOne.model.common.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
@@ -37,11 +37,11 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
         this.drawHome();
         this.getController().init();
+        AudioHandler.start(GameAudio.HOME);
     }
 
     @Override
     public void drawHome() {
-        SoundsHandler.start(GameAudio.HOME);
         this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));

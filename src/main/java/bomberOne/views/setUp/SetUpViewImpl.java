@@ -10,7 +10,7 @@ import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.audio.GameAudio;
-import bomberOne.tools.audio.SoundsHandler;
+import bomberOne.tools.audio.AudioHandler;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
@@ -82,7 +82,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
-        SoundsHandler.stop();
+        AudioHandler.stopAudio();
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
