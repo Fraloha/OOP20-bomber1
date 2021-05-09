@@ -21,6 +21,9 @@ import bomberOne.tools.ResourcesLoader;
 
 public class TestTools {
 
+    private static final int SCORE_1 = 100;
+    private static final int SCORE_2 = 150;
+
     /**
      * Test if the methods of DirectoryLoader throw IOException.
      */
@@ -47,22 +50,17 @@ public class TestTools {
         User user1 = new UserImpl();
         User user2 = new UserImpl();
         user1.setName("GIGI");
-        user1.setScore(100);
+        user1.setScore(SCORE_1);
         user2.setName("MARIO");
-        user2.setScore(150);
-        userList1.add(user1);
-        userList2.add(user2);
-        // Write the list on the Files
-        // RankLoader.writeUsers(userList1, userList2);
-        // Create other two list, fill them with the item reads from file and check if
-        // this list are equals to the previous
-        List<User> userList3 = new ArrayList<>();
-        List<User> userList4 = new ArrayList<>();
-        // RankLoader.readUsers(userList3, userList4);
-        assertTrue(userList3.get(0).getName().equals(user1.getName()));
-        assertTrue(userList3.get(0).getScore() == (user1.getScore()));
-        assertTrue(userList4.get(0).getName().equals(user2.getName()));
-        assertTrue(userList4.get(0).getScore() == (user2.getScore()));
+        user2.setScore(SCORE_2);
+        RankLoader.getRankHard().clear();
+        RankLoader.getRankStandard().clear();
+        RankLoader.readUsers();
+        userList1.addAll(RankLoader.getRankHard());
+        userList2.addAll(RankLoader.getRankStandard());
+
+        assertTrue(RankLoader.getRankHard().get(0).getName().equals(user1.getName()));
+        assertTrue(RankLoader.getRankHard().get(0).getScore() == (user1.getScore()));
     }
 
     /**
