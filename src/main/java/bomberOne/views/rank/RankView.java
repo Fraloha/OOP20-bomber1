@@ -1,5 +1,8 @@
 package bomberOne.views.rank;
 
+import javafx.beans.InvalidationListener;
+import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
@@ -11,9 +14,12 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
+
 import bomberOne.model.common.GameImages;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.RankLoader;
@@ -130,8 +136,11 @@ public final class RankView extends ViewImpl {
 
             while (rankIterator.hasNext()) {
                 UserImpl currentUser = (UserImpl) rankIterator.next();
-                this.ranks.get(i).add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
-                rankIterator.next();
+                List<UserDataModel> list = new ArrayList<>();
+                list.add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
+                this.ranks.add(FXCollections.observableList(list));
+//                this.ranks.get(i).add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
+//                rankIterator.next();
             }
         }
     }
