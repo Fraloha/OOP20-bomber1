@@ -17,17 +17,29 @@ import javafx.scene.media.MediaPlayer.Status;
 
 public class AudioHandler {
 
-    private static final Map<GameAudio, Media> CACHE;
-    private static MediaPlayer player;
+    private static final Map<GameAudio, Media> CACHE_AUDIO;
+    private static final Map<GameAudio, Media> CACHE_EFFECTS;
+    private static MediaPlayer playerAudio;
+    private static MediaPlayer playerEffects;
 
     static {
-        CACHE = new EnumMap<>(GameAudio.class);
+        CACHE_AUDIO = new EnumMap<>(GameAudio.class);
+        CACHE_EFFECTS = new EnumMap<>(GameAudio.class);
         Arrays.stream(GameAudio.values()).forEach(values -> {
-            try {
-                final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
-                CACHE.put(values, audio);
-            } catch (URISyntaxException e) {
-                e.printStackTrace();
+            if(values.getPath().equals("effects/")) {
+                try {
+                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    CACHE_EFFECTS.put(values, audio);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
+            } else {
+                try {
+                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    CACHE_AUDIO.put(values, audio);
+                } catch (URISyntaxException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }
@@ -37,12 +49,18 @@ public class AudioHandler {
     }
 
     public static synchronized void start(final GameAudio type) {
-        player = new MediaPlayer(CACHE.get(type));
-        player.setVolume(type.getVolume());
-        player.play();
+        if(type.getPath().equals("effects/")) {
+            playerEffects = new MediaPlayer(CACHE_EFFECTS.get(type));
+            playerEffects.setVolume(type.getVolume());
+            playerEffects.play();
+        } else {
+            playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+            playerAudio.setVolume(type.getVolume());
+            playerAudio.play();
+        }
     }
 
-    public static synchronized void stop() {
-        player.stop();
+    public static synchronized void stopAudio() {
+        playerAudio.stop();
     }
 }
