@@ -1,16 +1,15 @@
 package bomberOne.views.home;
 
-import bomberOne.controllers.game.GameController;
+import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.model.common.GameImages;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
-import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.ImageView;
 
 public class HomeViewImpl extends ViewImpl implements HomeView {
@@ -42,6 +41,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @Override
     public void drawHome() {
+        SoundsHandler.start(GameAudio.HOME);
         this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
@@ -60,8 +60,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToRank() {
-        // ViewsSwitcher.switchView(this.getStage(), ViewType.RANK,
-        // this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     @FXML

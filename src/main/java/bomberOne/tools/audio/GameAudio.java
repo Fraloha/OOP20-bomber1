@@ -1,13 +1,25 @@
 package bomberOne.tools.audio;
 
-import javax.print.attribute.standard.Media;
 import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
 
 public enum GameAudio {
     /**
      * 
      */
     POWER_UP("powerUp.wav"),
+
+    /**
+     * 
+     */
+    CLASSIC("classic.wav"),
+
+    /**
+     * 
+     */
+    HOME("home.wav"),
 
     /**
      * 
@@ -34,5 +46,4 @@ public enum GameAudio {
     public String getAudioPath() {
         return RES_PATH + this.fileName;
     }
-
 }

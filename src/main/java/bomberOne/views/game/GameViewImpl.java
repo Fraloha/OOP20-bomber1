@@ -5,11 +5,16 @@ import bomberOne.model.bomber.Bomber;
 import bomberOne.model.common.GameImages;
 import bomberOne.model.gameObjects.PowerUp;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.tools.ResourcesLoader;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import bomberOne.views.game.movement.ControlsMap;
+
+import javax.sound.sampled.Clip;
+
 import bomberOne.controllers.game.GameController;
 import javafx.application.Platform;
 import javafx.embed.swing.SwingFXUtils;
@@ -76,6 +81,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @FXML
     public void quitClicked() {
+        SoundsHandler.stop();
         ((GameController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
@@ -85,6 +91,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void init() {
+        SoundsHandler.start(GameAudio.CLASSIC);
         this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
@@ -94,7 +101,6 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
-
     }
 
     /**
@@ -261,6 +267,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void switchToRank() {
+        SoundsHandler.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 

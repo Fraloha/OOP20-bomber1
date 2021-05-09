@@ -1,10 +1,16 @@
 package bomberOne.views.setUp;
 
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+
 import bomberOne.controllers.setUp.SetUpController;
 import bomberOne.model.Difficulty;
 import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Skins;
+import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.audio.SoundsHandler;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
@@ -76,6 +82,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
+        SoundsHandler.stop();
         ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
