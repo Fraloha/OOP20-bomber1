@@ -14,6 +14,7 @@ import javax.sound.sampled.LineUnavailableException;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
+import javafx.util.Duration;
 
 public class AudioHandler {
 
@@ -57,6 +58,7 @@ public class AudioHandler {
             playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
             playerAudio.setVolume(type.getVolume());
             playerAudio.play();
+            playerAudio.setCycleCount(10);
         }
     }
 

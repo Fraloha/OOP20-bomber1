@@ -8,6 +8,8 @@ import bomberOne.model.user.Controls;
 import bomberOne.model.user.Skins;
 import bomberOne.tools.DirectoryLoader;
 import bomberOne.tools.ResourcesLoader;
+import bomberOne.tools.audio.AudioHandler;
+import bomberOne.tools.audio.GameAudio;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import javafx.application.Application;
@@ -34,6 +36,7 @@ public final class BomberOne extends Application {
 //        test.getUser().setSkin(Skins.WHITE);
 //        test.setDifficulty(Difficulty.STANDARD);
 //      test.init();
+        AudioHandler.start(GameAudio.HOME);
         ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
