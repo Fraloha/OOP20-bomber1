@@ -12,22 +12,22 @@ public enum GameAudio {
     /**
      * 
      */
-    CLASSIC("audio/", "classic.mp3", 0.4),
+    CLASSIC("audio/", "classic.mp3", 0.012),
 
     /**
      * 
      */
-    HOME("audio/", "home.wav", 0.4),
+    HOME("audio/", "home.wav", 0.012),
 
     /**
      * 
      */
-    POWER_UP("effects/", "powerUp.wav", 1.0),
+    POWER_UP("effects/", "powerUp.wav", 0.7),
 
     /**
      * 
      */
-    BOMB("effects/", "bomb.wav", 1.0);
+    BOMB("effects/", "bomb.wav", 0.7);
 
     private String path;
     private String fileName;

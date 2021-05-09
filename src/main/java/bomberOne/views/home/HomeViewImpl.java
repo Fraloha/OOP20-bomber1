@@ -35,7 +35,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @Override
     public void init() {
         // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
-        AudioHandler.start(GameAudio.HOME);
+
         this.drawHome();
         this.getController().init();
     }

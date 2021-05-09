@@ -82,6 +82,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @FXML
     public void quitClicked() {
         AudioHandler.stopAudio();
+        AudioHandler.start(GameAudio.HOME);
         ((GameController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
     }
