@@ -106,30 +106,6 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     }
 
     private void setPlayer(final String sign) {
-        /*switch (count) {
-        case 1:
-            if (sign.equals("+")) {
-                count++;
-            } else {
-                count = 4;
-            }
-            break;
-        case 4:
-            if (sign.equals("+")) {
-                count = 1;
-            } else {
-                count--;
-            }
-            break;
-        default:
-            if (sign.equals("+")) {
-                count++;
-            } else {
-                count--;
-            }
-            break;
-        }*/
-
         if (sign.equals("+")) {
             count++;
         } else {
