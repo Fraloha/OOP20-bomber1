@@ -8,6 +8,15 @@ public class UserImpl implements User {
     private Skins skin;
     private Controls controls;
 
+    public UserImpl() {
+
+    }
+
+    public UserImpl(final String userName, final int score) {
+        this.name = userName;
+        this.score = score;
+    }
+
     /**
      * {@inheritDoc}
      */

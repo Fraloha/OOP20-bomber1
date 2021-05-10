@@ -77,6 +77,7 @@ public final class RankLoader {
             System.out.println("Cannot perform input. Class not found.");
         } catch (IOException ex) {
             System.out.println("Cannot perform input.");
+            ex.printStackTrace();
         }
     }
 

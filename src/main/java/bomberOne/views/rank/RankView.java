@@ -123,6 +123,12 @@ public final class RankView extends ViewImpl {
         this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
 
         // Loading the ranks from the files.
+        RankLoader.getRankStandard().add(new UserImpl("Gigi", 3000));
+        RankLoader.getRankStandard().add(new UserImpl("Roberto", 100));
+        RankLoader.getRankHard().add(new UserImpl("Francesco", 90000));
+        RankLoader.getRankHard().add(new UserImpl("Fabio", 700));
+        RankLoader.writeUsers();
+        
         RankLoader.readUsers();
         ArrayList<List<User>> ranksToManage = new ArrayList<List<User>>();
         ranksToManage.add(RankLoader.getRankStandard());
