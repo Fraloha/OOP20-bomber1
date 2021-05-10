@@ -208,7 +208,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.UP);
             }
-            System.out.println("moveUP");
             super.moveUp();
         }
     }
@@ -223,7 +222,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.DOWN);
             }
-            System.out.println("moveDOWN");
             super.moveDown();
         }
     }
@@ -238,7 +236,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.LEFT);
             }
-            System.out.println("moveLEFT");
             super.moveLeft();
         }
     }
@@ -253,7 +250,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.RIGHT);
             }
-            System.out.println("moveRIGHT");
             super.moveRight();
         }
     }
