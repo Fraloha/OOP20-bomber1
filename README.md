@@ -23,7 +23,7 @@ At the beginning of the game it will be possible to choose between two different
 
 
 ## PowerUps
-- ![](src/main/resources/images/power_firepower.png?raw=true "FirePower") Increases the **fire-power** of your bomb.
+- ![](src/main/resources/images/power_firepower.png?raw=true "FirePower") Increases the **fire-power** of your bombs.
 - ![](src/main/resources/images/power_timer.png?raw=true "TimerInc") Increases by 30sec the **game-timer**.
 - ![](src/main/resources/images/power_pierce.png?raw=true "Pierce") Make your bomb's fire **able to pierces** boxes.
 - ![](src/main/resources/images/power_speed.png?raw=true "SpeedInc") Increases your **movement speed**.
