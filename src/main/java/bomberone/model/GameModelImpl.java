@@ -11,7 +11,7 @@ import bomberone.tools.RankLoader;
 
 public class GameModelImpl implements GameModel {
 
-    private static final int TIME = 200;
+    private static final int TIME = 120;
     private User user;
     private World world;
     private Difficulty difficulty;
