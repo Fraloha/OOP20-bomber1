@@ -1,6 +1,5 @@
 package bomberone.views.game;
 
-import javax.sound.sampled.Clip;
 
 import bomberone.controllers.game.GameController;
 import bomberone.model.GameModelImpl;
