@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="479.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberOne.views.credits.CreditsViewImpl">
+<AnchorPane prefHeight="479.0" prefWidth="512.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.credits.CreditsViewImpl">
    <children>
       <Pane prefHeight="479.0" prefWidth="512.0">
          <children>
