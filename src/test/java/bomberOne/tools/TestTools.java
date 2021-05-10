@@ -40,12 +40,12 @@ public class TestTools {
 
     /**
      * This method test if the RankLoader read and write correctly on the files.
+     * @throws IOException 
      */
     @Test
-    public void testRankLoader() {
-        List<User> userList1 = new ArrayList<>();
-        List<User> userList2 = new ArrayList<>();
+    public void testRankLoader() throws IOException {
 
+        DirectoryLoader.start();
         // Create some User and put them on the Lists
         User user1 = new UserImpl();
         User user2 = new UserImpl();
@@ -53,14 +53,20 @@ public class TestTools {
         user1.setScore(SCORE_1);
         user2.setName("MARIO");
         user2.setScore(SCORE_2);
+        RankLoader.getRankStandard().add(user1);
+        RankLoader.getRankHard().add(user2);
+        // Save the lists on the file
+        RankLoader.writeUsers();
+        // Clear the lists
         RankLoader.getRankHard().clear();
         RankLoader.getRankStandard().clear();
+        // Restore the lists
         RankLoader.readUsers();
-        userList1.addAll(RankLoader.getRankHard());
-        userList2.addAll(RankLoader.getRankStandard());
-
-        assertTrue(RankLoader.getRankHard().get(0).getName().equals(user1.getName()));
-        assertTrue(RankLoader.getRankHard().get(0).getScore() == (user1.getScore()));
+        // Check if the lists were restored correctly
+        assertTrue(RankLoader.getRankStandard().get(0).getName().equals(user1.getName()));
+        assertTrue(RankLoader.getRankStandard().get(0).getScore() == (user1.getScore()));
+        assertTrue(RankLoader.getRankHard().get(0).getName().equals(user2.getName()));
+        assertTrue(RankLoader.getRankHard().get(0).getScore() == (user2.getScore()));
     }
 
     /**

@@ -12,7 +12,7 @@ public enum GameAudio {
     /**
      * 
      */
-    CLASSIC("audio/", "classic.mp3", 0.012),
+    CLASSIC("audio/", "classic.wav", 0.012),
 
     /**
      * 
