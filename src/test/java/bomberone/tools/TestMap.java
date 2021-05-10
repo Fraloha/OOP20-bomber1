@@ -1,4 +1,4 @@
-package bomberOne.tools;
+package bomberone.tools;
 
 
 import java.io.BufferedReader;

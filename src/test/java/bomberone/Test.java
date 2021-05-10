@@ -1,4 +1,4 @@
-package bomberOne;
+package bomberone;
 
 public class Test {
 
