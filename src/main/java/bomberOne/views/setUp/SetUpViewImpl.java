@@ -1,25 +1,26 @@
 package bomberOne.views.setUp;
 
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-
 import bomberOne.controllers.setUp.SetUpController;
 import bomberOne.model.Difficulty;
 import bomberOne.model.common.GameImages;
 import bomberOne.model.user.Controls;
 import bomberOne.model.user.Skins;
-import bomberOne.tools.audio.GameAudio;
+import bomberOne.tools.ResourcesLoader;
 import bomberOne.tools.audio.AudioHandler;
 import bomberOne.views.ViewType;
 import bomberOne.views.ViewsSwitcher;
 import bomberOne.views.basic.ViewImpl;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
+import javafx.scene.text.Font;
 
 public class SetUpViewImpl extends ViewImpl implements SetUpView {
+
+    private static final int SIZE = 44;
+    private static final int PLAYERSTART = 128;
 
     @FXML
     private ImageView boxPlayer;
@@ -49,9 +50,20 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     private ImageView buttonHome;
 
     @FXML
-    private TextField nickname;
+    private TextField textNickname;
 
-    private int count = 1;
+    @FXML
+    private Label nickname;
+
+    @FXML
+    private Label difficulty;
+
+    @FXML
+    private Label controls;
+
+    private int count = SetUpViewImpl.PLAYERSTART;
+
+    private Font font = ResourcesLoader.getFont(SetUpViewImpl.SIZE);
 
     @Override
     public final void init() {
@@ -77,7 +89,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_UNSET.getImage(), null));
         this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
         this.buttonHome.setImage(SwingFXUtils.toFXImage(GameImages.QUIT_GAME.getImage(), null));
-
+        this.nickname.setFont(font);
+        this.difficulty.setFont(font);
+        this.controls.setFont(font);
     }
 
     @Override
@@ -92,46 +106,30 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     }
 
     private void setPlayer(final String sign) {
-        switch (count) {
-        case 1:
-            if (sign.equals("+")) {
-                count++;
-            } else {
-                count = 4;
-            }
-            break;
-        case 4:
-            if (sign.equals("+")) {
-                count = 1;
-            } else {
-                count--;
-            }
-            break;
-        default:
-            if (sign.equals("+")) {
-                count++;
-            } else {
-                count--;
-            }
-            break;
+        if (sign.equals("+")) {
+            count++;
+        } else {
+            count--;
         }
 
-        switch (count) {
-        case 1:
+        switch (Math.abs(count % 4)) {
+        case 0:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P1.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.WHITE);
             break;
-        case 2:
+        case 1:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P2.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.BLACK);
             break;
-        case 3:
+        case 2:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P3.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.RED);
             break;
-        case 4:
+        case 3:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P4.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.BLUE);
+            break;
+        default:
             break;
         }
     }
@@ -185,7 +183,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     }
 
     public final void play() {
-        if (!nickname.getText().isEmpty()) {
+        if (!textNickname.getText().isEmpty()) {
             this.switchToGame();
         }
     }

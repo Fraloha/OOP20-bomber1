@@ -1,40 +1,47 @@
 package bomberOne.tools.audio;
 
-import java.io.IOException;
-import java.net.URL;
-
-import javax.sound.sampled.AudioInputStream;
-
-import javafx.scene.media.Media;
-
 public enum GameAudio {
 
     /**
      * 
      */
-    CLASSIC("audio/", "classic.wav", 0.012),
+    CLASSIC(Sounds.AUDIO, "classic.wav", 0.1),
 
     /**
      * 
      */
-    HOME("audio/", "home.wav", 0.012),
+    HOME(Sounds.AUDIO, "home.wav", 0.1),
 
     /**
      * 
      */
-    POWER_UP("effects/", "powerUp.wav", 0.7),
+
+    POWER_UP(Sounds.EFFECT, "powerUp.wav", 0.7),
 
     /**
      * 
      */
-    BOMB("effects/", "bomb.wav", 0.7);
+    ENEMY_HIT(Sounds.EFFECT, "enemy_death.wav", 0.7),
 
-    private String path;
+    /**
+     * 
+     */
+    HITTED(Sounds.EFFECT, "hitted.wav", 0.7),
+
+    /**
+     * 
+     */
+    BOMB(Sounds.EFFECT, "bomb.wav", 0.7);
+
+    private static final String AUDIO_PATH = "audio/";
+    private static final String EFFECTS_PATH = "effects/";
+
+    private Sounds type;
     private String fileName;
     private double volume;
 
-    GameAudio(final String path, final String fileName, final double volume) {
-        this.path = path;
+    GameAudio(final Sounds type, final String fileName, final double volume) {
+        this.type = type;
         this.fileName = fileName;
         this.volume = volume;
     }
@@ -43,11 +50,12 @@ public enum GameAudio {
         return this.volume;
     }
 
-    public String getPath() {
-        return this.path;
+    public Sounds getType() {
+        return this.type;
     }
 
     public String getMediaPath() {
-        return this.path + this.fileName;
+        return this.type.equals(Sounds.AUDIO) ? GameAudio.AUDIO_PATH + this.fileName
+                : GameAudio.EFFECTS_PATH + this.fileName;
     }
 }

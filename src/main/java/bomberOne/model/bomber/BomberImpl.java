@@ -123,7 +123,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public Optional<Bomb> plantBomb() {
-        System.out.println("maxAmmo: " + this.maxAmmo + " usedAmmo: " + this.usedAmmo);
         if (this.maxAmmo > this.usedAmmo) {
             usedAmmo++;
             return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(getPosition()),
@@ -208,7 +207,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.UP);
             }
-            System.out.println("moveUP");
             super.moveUp();
         }
     }
@@ -223,7 +221,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.DOWN);
             }
-            System.out.println("moveDOWN");
             super.moveDown();
         }
     }
@@ -238,7 +235,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.LEFT);
             }
-            System.out.println("moveLEFT");
             super.moveLeft();
         }
     }
@@ -253,7 +249,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.isChangedDir = true;
                 this.setDir(Direction.RIGHT);
             }
-            System.out.println("moveRIGHT");
             super.moveRight();
         }
     }
@@ -263,6 +258,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void hitted() {
+        AudioHandler.start(GameAudio.HITTED);
         this.setLifes(this.getLifes() - 1);
         this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
