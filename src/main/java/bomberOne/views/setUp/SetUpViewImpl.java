@@ -20,6 +20,7 @@ import javafx.scene.text.Font;
 public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private static final int SIZE = 44;
+    private static final int PLAYERSTART = 128;
 
     @FXML
     private ImageView boxPlayer;
@@ -60,7 +61,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @FXML
     private Label controls;
 
-    private int count = 1;
+    private int count = SetUpViewImpl.PLAYERSTART;
 
     private Font font = ResourcesLoader.getFont(SetUpViewImpl.SIZE);
 
@@ -105,7 +106,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     }
 
     private void setPlayer(final String sign) {
-        switch (count) {
+        /*switch (count) {
         case 1:
             if (sign.equals("+")) {
                 count++;
@@ -127,22 +128,28 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
                 count--;
             }
             break;
+        }*/
+
+        if (sign.equals("+")) {
+            count++;
+        } else {
+            count--;
         }
 
-        switch (count) {
-        case 1:
+        switch (Math.abs(count % 4)) {
+        case 0:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P1.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.WHITE);
             break;
-        case 2:
+        case 1:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P2.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.BLACK);
             break;
-        case 3:
+        case 2:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P3.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.RED);
             break;
-        case 4:
+        case 3:
             this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P4.getImage(), null));
             ((SetUpController) this.getController()).setSkin(Skins.BLUE);
             break;
