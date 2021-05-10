@@ -123,7 +123,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public Optional<Bomb> plantBomb() {
-        System.out.println("maxAmmo: " + this.maxAmmo + " usedAmmo: " + this.usedAmmo);
         if (this.maxAmmo > this.usedAmmo) {
             usedAmmo++;
             return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(getPosition()),
