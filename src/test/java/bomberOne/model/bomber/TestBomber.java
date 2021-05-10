@@ -6,14 +6,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomber1.model.bomber.BomberImpl;
-import bomber1.model.bomber.PowerUpHandlerImpl;
-import bomber1.model.common.Direction;
-import bomber1.model.common.P2d;
-import bomber1.model.factory.GameObjectFactoryImpl;
-import bomber1.model.gameObjects.PowerUp;
-import bomber1.model.user.Skins;
-import bomber1.tools.ResourcesLoader;
+import bomberone.model.bomber.BomberImpl;
+import bomberone.model.bomber.PowerUpHandlerImpl;
+import bomberone.model.common.Direction;
+import bomberone.model.common.P2d;
+import bomberone.model.factory.GameObjectFactoryImpl;
+import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.user.Skins;
+import bomberone.tools.ResourcesLoader;
 
 /**
  * Tester for Bomber.

@@ -8,10 +8,10 @@ import java.util.Optional;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomber1.model.common.P2d;
-import bomber1.model.factory.GameObjectFactoryImpl;
-import bomber1.model.gameObjects.BombImpl;
-import bomber1.model.gameObjects.Explosion;
+import bomberone.model.common.P2d;
+import bomberone.model.factory.GameObjectFactoryImpl;
+import bomberone.model.gameObjects.BombImpl;
+import bomberone.model.gameObjects.Explosion;
 
 /**
  * Tester for Bomb.

@@ -6,7 +6,7 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import bomber1.views.ViewType;
+import bomberone.views.ViewType;
 
 public class TestViews {
 

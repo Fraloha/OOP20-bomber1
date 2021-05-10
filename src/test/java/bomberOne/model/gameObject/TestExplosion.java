@@ -6,8 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomber1.model.common.P2d;
-import bomber1.model.gameObjects.ExplosionImpl;
+import bomberone.model.common.P2d;
+import bomberone.model.gameObjects.ExplosionImpl;
 
 /**
  * Tester for Explosion.
