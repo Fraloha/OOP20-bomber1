@@ -28,7 +28,7 @@ public class TestFire {
 
     @Test
     public void testUpdate() {
-        for (int c = 0; c < this.LIFE_TIME; c++) {
+        for (int c = 0; c < LIFE_TIME; c++) {
             this.fire.update(0);
             assertTrue(this.fire.isAlive());
         }

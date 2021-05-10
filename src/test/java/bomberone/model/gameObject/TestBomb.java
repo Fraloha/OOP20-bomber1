@@ -39,7 +39,7 @@ public class TestBomb {
 
     @Test
     public void testUpdate() {
-        for (int c = 0; c < bomb.TIME_TO_EXPLODE; c++) {
+        for (int c = 0; c < BombImpl.TIME_TO_EXPLODE; c++) {
             this.bomb.update(0);
         }
         assertTrue(this.bomb.isAlive());

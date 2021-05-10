@@ -31,6 +31,18 @@ import bomberone.tools.ResourcesLoader;
  */
 public class TestWorldEventListener {
 
+    private static final int CONSTANT_2 = 2;
+
+    private static final int CONSTANT_0 = 0;
+
+    private static final int CONSTANT_3 = 3;
+
+    private static final int CONSTANT_64 = 64;
+
+    private static final int CONSTANT_96 = 96;
+
+    private static final int CONSTANT_32 = 32;
+
     private static final int EXPECTED_SCORE = 50;
 
     static final int EXPECTED_N_EVENTS = 2;
@@ -61,7 +73,7 @@ public class TestWorldEventListener {
         model.setWorld(world);
         this.listener.setGameModel(model);
         assertEquals(this.model.getScore(), 0);
-        world.getGameObjectCollection().spawn(factory.createBox(new P2d(32, 32)));
+        world.getGameObjectCollection().spawn(factory.createBox(new P2d(CONSTANT_32, CONSTANT_32)));
         this.listener.notifyEvent(new HitEntityEvent(world.getGameObjectCollection().getBoxList().get(0)));
         this.listener.processEvents();
         assertEquals(this.model.getScore(), EXPECTED_SCORE);
@@ -76,13 +88,13 @@ public class TestWorldEventListener {
     public void testExplosionWithoutPierce() {
         model.setWorld(world);
         this.listener.setGameModel(model);
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(64, 0)));
-        world.getGameObjectCollection().spawn(factory.createBox(new P2d(64, 64)));
-        this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, false, new P2d(64, 32))));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_32, CONSTANT_32)));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_96, CONSTANT_32)));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_64, CONSTANT_0)));
+        world.getGameObjectCollection().spawn(factory.createBox(new P2d(CONSTANT_64, CONSTANT_64)));
+        this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(CONSTANT_3, false, new P2d(CONSTANT_64, CONSTANT_32))));
         this.listener.processEvents();
-        assertTrue(world.getGameObjectCollection().getFireList().size() == 2);
+        assertTrue(world.getGameObjectCollection().getFireList().size() == CONSTANT_2);
     }
 
     /**
@@ -93,13 +105,13 @@ public class TestWorldEventListener {
     public void testExplosionWithPierce() {
         model.setWorld(world);
         this.listener.setGameModel(model);
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(32, 32)));
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(96, 32)));
-        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(64, 0)));
-        world.getGameObjectCollection().spawn(factory.createBox(new P2d(64, 64)));
-        this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(3, true, new P2d(64, 32))));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_32, CONSTANT_32)));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_96, CONSTANT_32)));
+        world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_64, CONSTANT_0)));
+        world.getGameObjectCollection().spawn(factory.createBox(new P2d(CONSTANT_64, CONSTANT_64)));
+        this.listener.notifyEvent(new ExplosionEvent(new ExplosionImpl(CONSTANT_3, true, new P2d(CONSTANT_64, CONSTANT_32))));
         this.listener.processEvents();
-        assertTrue(world.getGameObjectCollection().getFireList().size() == 3);
+        assertTrue(world.getGameObjectCollection().getFireList().size() == CONSTANT_3);
 
     }
 
