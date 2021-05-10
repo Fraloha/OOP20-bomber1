@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.common.P2d;
-import bomberOne.model.factory.GameObjectFactoryImpl;
-import bomberOne.model.gameObjects.FireImpl;
+import bomber1.model.common.P2d;
+import bomber1.model.factory.GameObjectFactoryImpl;
+import bomber1.model.gameObjects.FireImpl;
 
 /**
  * Tester for Fire.

@@ -6,10 +6,10 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.common.GameImages;
-import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.PowerUp;
-import bomberOne.model.gameObjects.PowerUpImpl;
+import bomber1.model.common.GameImages;
+import bomber1.model.common.P2d;
+import bomber1.model.gameObjects.PowerUp;
+import bomber1.model.gameObjects.PowerUpImpl;
 
 public class TestPowerUps {
 

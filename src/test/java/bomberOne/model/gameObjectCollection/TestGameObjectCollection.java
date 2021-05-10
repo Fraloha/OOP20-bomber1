@@ -5,17 +5,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.common.AnimatedObjectsSprites;
-import bomberOne.model.common.GameImages;
-import bomberOne.model.common.P2d;
-import bomberOne.model.gameObjects.Bomb;
-import bomberOne.model.gameObjects.BombImpl;
-import bomberOne.model.gameObjects.Box;
-import bomberOne.model.gameObjects.BoxImpl;
-import bomberOne.model.gameObjects.GameObject;
-import bomberOne.model.gameObjects.GameObjectCollection;
-import bomberOne.model.gameObjects.GameObjectCollectionImpl;
-import bomberOne.model.gameObjects.HardWall;
+import bomber1.model.common.AnimatedObjectsSprites;
+import bomber1.model.common.GameImages;
+import bomber1.model.common.P2d;
+import bomber1.model.gameObjects.Bomb;
+import bomber1.model.gameObjects.BombImpl;
+import bomber1.model.gameObjects.Box;
+import bomber1.model.gameObjects.BoxImpl;
+import bomber1.model.gameObjects.GameObject;
+import bomber1.model.gameObjects.GameObjectCollection;
+import bomber1.model.gameObjects.GameObjectCollectionImpl;
+import bomber1.model.gameObjects.HardWall;
 
 import java.util.LinkedList;
 import java.util.List;

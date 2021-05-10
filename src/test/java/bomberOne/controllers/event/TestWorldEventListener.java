@@ -7,21 +7,21 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.Difficulty;
-import bomberOne.model.GameModel;
-import bomberOne.model.GameModelImpl;
-import bomberOne.model.World;
-import bomberOne.model.WorldImpl;
-import bomberOne.model.common.P2d;
-import bomberOne.controllers.game.event.ExplosionEvent;
-import bomberOne.controllers.game.event.HitEntityEvent;
-import bomberOne.controllers.game.event.WorldEventListener;
-import bomberOne.controllers.game.event.WorldEventListenerImpl;
-import bomberOne.model.factory.GameObjectFactory;
-import bomberOne.model.factory.GameObjectFactoryImpl;
-import bomberOne.model.gameObjects.ExplosionImpl;
-import bomberOne.model.user.Skins;
-import bomberOne.tools.ResourcesLoader;
+import bomber1.controllers.game.event.ExplosionEvent;
+import bomber1.controllers.game.event.HitEntityEvent;
+import bomber1.controllers.game.event.WorldEventListener;
+import bomber1.controllers.game.event.WorldEventListenerImpl;
+import bomber1.model.Difficulty;
+import bomber1.model.GameModel;
+import bomber1.model.GameModelImpl;
+import bomber1.model.World;
+import bomber1.model.WorldImpl;
+import bomber1.model.common.P2d;
+import bomber1.model.factory.GameObjectFactory;
+import bomber1.model.factory.GameObjectFactoryImpl;
+import bomber1.model.gameObjects.ExplosionImpl;
+import bomber1.model.user.Skins;
+import bomber1.tools.ResourcesLoader;
 
 /**
  * Test if the WorldEventListener takes correctly events in input, put them on

@@ -6,12 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberOne.model.Difficulty;
-import bomberOne.model.World;
-import bomberOne.model.WorldImpl;
-import bomberOne.model.common.P2d;
-import bomberOne.model.user.Skins;
-import bomberOne.tools.ResourcesLoader;
+import bomber1.model.Difficulty;
+import bomber1.model.World;
+import bomber1.model.WorldImpl;
+import bomber1.model.common.P2d;
+import bomber1.model.user.Skins;
+import bomber1.tools.ResourcesLoader;
 
 public class TestWorld {
 

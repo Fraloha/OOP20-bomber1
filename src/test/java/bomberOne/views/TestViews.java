@@ -6,6 +6,8 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
+import bomber1.views.ViewType;
+
 public class TestViews {
 
     private static final String DIRECTORY = "viewsStyle" + File.separator;
