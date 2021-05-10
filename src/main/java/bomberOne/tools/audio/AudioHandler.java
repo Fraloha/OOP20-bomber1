@@ -1,20 +1,11 @@
 package bomberOne.tools.audio;
 
-import java.io.IOException;
 import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
-
-import javax.sound.sampled.AudioInputStream;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.Clip;
-import javax.sound.sampled.LineUnavailableException;
-
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
-import javafx.scene.media.MediaPlayer.Status;
-import javafx.util.Duration;
 
 public class AudioHandler {
 
@@ -27,7 +18,7 @@ public class AudioHandler {
         CACHE_AUDIO = new EnumMap<>(GameAudio.class);
         CACHE_EFFECTS = new EnumMap<>(GameAudio.class);
         Arrays.stream(GameAudio.values()).forEach(values -> {
-            if (values.getPath().equals("effects/")) {
+            if (values.getType().equals(Sounds.EFFECT)) {
                 try {
                     final Media audio = new Media(
                             ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
@@ -52,7 +43,7 @@ public class AudioHandler {
     }
 
     public static synchronized void start(final GameAudio type) {
-        if (type.getPath().equals("effects/")) {
+        if (type.getType().equals(Sounds.EFFECT)) {
             playerEffects = new MediaPlayer(CACHE_EFFECTS.get(type));
             playerEffects.setVolume(type.getVolume());
             playerEffects.play();

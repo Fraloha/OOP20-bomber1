@@ -263,6 +263,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void hitted() {
+        AudioHandler.start(GameAudio.HITTED);
         this.setLifes(this.getLifes() - 1);
         this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);

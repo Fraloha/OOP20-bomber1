@@ -9,6 +9,8 @@ import bomberOne.model.enemy.EnemyImpl;
 import bomberOne.model.gameObjects.BoxImpl;
 import bomberOne.model.gameObjects.Fire;
 import bomberOne.model.gameObjects.GameObject;
+import bomberOne.tools.audio.AudioHandler;
+import bomberOne.tools.audio.GameAudio;
 
 /**
  * This event is triggered when the fire hits an Object or if the Bomber collide with an Enemy.
@@ -64,6 +66,7 @@ public class HitEntityEvent implements WorldEvent {
             model.incScore(BOX_INC_SCORE);
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
+            AudioHandler.start(GameAudio.ENEMY_HIT);
             model.incScore(ENEMY_INC_SCORE);
         }
     }
