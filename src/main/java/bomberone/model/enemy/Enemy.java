@@ -9,6 +9,7 @@ import bomberone.model.gameObjects.AnimatedEntity;
 
 public interface Enemy extends AnimatedEntity {
 
+    boolean isHittable();
         /* Methods. */
 	void update(int elapsed);
 }

@@ -13,7 +13,8 @@ import bomberone.tools.audio.AudioHandler;
 import bomberone.tools.audio.GameAudio;
 
 /**
- * This event is triggered when the fire hits an Object or if the Bomber collide with an Enemy.
+ * This event is triggered when the fire hits an Object or if the Bomber collide
+ * with an Enemy.
  *
  */
 public class HitEntityEvent implements WorldEvent {
@@ -48,6 +49,7 @@ public class HitEntityEvent implements WorldEvent {
             if (!this.entity.isAlive()) {
                 return;
             } else {
+                AudioHandler.start(GameAudio.HITTED); // This is the Audio Effect for Bomber's death
                 /*
                  * If there is a fireObject on the respawn cell, it is removed to avoid
                  * death-loop bugs

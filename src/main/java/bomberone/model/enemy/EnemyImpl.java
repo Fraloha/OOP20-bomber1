@@ -22,7 +22,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         private int frameCounter;
         private int nextMoveFrameCounter;
         private int frameCounterAnimation;
-        
+        private boolean isHittable = false;
+
         /* Constructors. */
         public EnemyImpl(final P2d position, final BufferedImage [][] img, final int lifes, Difficulty mode) {
             super(position, img, lifes, img[0][0]);
@@ -54,6 +55,9 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         if (this.frameCounter > 0) {
             this.frameCounter--;
         } else {
+            if (!this.isHittable) {
+                this.isHittable = true;
+            }
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
                 this.nextMoveFrameCounter = 0;
@@ -70,12 +74,16 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
         public BufferedImage getImage() {
             return this.getSprites()[this.getSpriteIndex()][this.getAnimationIndex() % 3];
         }
-        
+
         public int getFrameCounterAnimation() {
             return this.frameCounterAnimation;
         }
-        
+
         public void setFrameCounterAnimation(int value) {
             this.frameCounterAnimation = value;
+        }
+
+        public boolean isHittable() {
+            return this.isHittable;
         }
 }

@@ -15,6 +15,7 @@ import bomberone.model.bomber.BomberImpl;
 import bomberone.model.common.Maps;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.Enemy;
+import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.factory.GameObjectFactory;
 import bomberone.model.factory.GameObjectFactoryImpl;
 import bomberone.model.gameObjects.Bomb;
@@ -60,9 +61,11 @@ public class WorldImpl implements World {
      */
     private void setEnemy() {
         for (int i = 0; i < WorldImpl.ENEMYNUMBER; i++) {
-            this.collection.spawn(this.objectFactory.createEnemy(
-                    new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2, (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2),
-                    this.difficulty));
+            this.collection
+                    .spawn(this.objectFactory.createEnemy(
+                            new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
+                                    (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2),
+                            this.difficulty));
         }
     }
 
@@ -184,7 +187,14 @@ public class WorldImpl implements World {
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
                 if (fire.getCollider().intersects(obj.getCollider())) {
-                    this.listener.notifyEvent(new HitEntityEvent(obj));
+                    if (obj.getClass().equals(EnemyImpl.class)) {
+                        /* When Enemy is just spawned, it isn't hittable by fire */
+                        if (((Enemy) obj).isHittable()) {
+                            this.listener.notifyEvent(new HitEntityEvent(obj));
+                        }
+                    } else {
+                        this.listener.notifyEvent(new HitEntityEvent(obj));
+                    }
                 }
             }
         }
@@ -210,8 +220,11 @@ public class WorldImpl implements World {
         }
         if (this.respawn) {
             if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection.spawn(objectFactory.createEnemy(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
-                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2), this.difficulty));
+                collection
+                        .spawn(objectFactory.createEnemy(
+                                new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
+                                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2),
+                                this.difficulty));
             }
         }
     }

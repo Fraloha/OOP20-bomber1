@@ -1,11 +1,7 @@
 package bomberone;
 
-import bomberone.model.Difficulty;
-import bomberone.model.GameModel;
 import bomberone.model.GameModelImpl;
 import bomberone.model.common.GameImages;
-import bomberone.model.user.Controls;
-import bomberone.model.user.Skins;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.AudioHandler;
@@ -29,6 +25,7 @@ public final class BomberOne extends Application {
         ResourcesLoader.start();
         DirectoryLoader.start();
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
+        primaryStage.setTitle("BomberOne");
 
         AudioHandler.start(GameAudio.HOME);
         ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());

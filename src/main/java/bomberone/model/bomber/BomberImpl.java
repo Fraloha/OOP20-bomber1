@@ -132,8 +132,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void applyPowerUp(final Type typeOfPowerUp) {
-        AudioHandler.start(GameAudio.POWER_UP); // This is the Audio Effect for powerUp
-        switch (typeOfPowerUp) {
+       switch (typeOfPowerUp) {
         case FirePower:
             this.incFirePower();
             break;
@@ -246,7 +245,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void hitted() {
-        AudioHandler.start(GameAudio.HITTED); // This is the Audio Effect for Bomber's death
         this.setLifes(this.getLifes() - 1);
         this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
