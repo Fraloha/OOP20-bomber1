@@ -24,16 +24,17 @@ public interface Bomber extends AnimatedEntity {
      * @param lifes
      */
     void addLifes(int lifes);
-    
+
     /**
      * Method for restore the usedAmmo to 0.
      */
     void restoreAmmo();
 
     /**
-     * Method that generates new Bomb.
+     * Method that generates new Bomb, if they are not available, that generates
+     * Optional.empty().
      * 
-     * @return Bomb
+     * @return Optional.of(Bomb) or Optional.empty()
      */
     Optional<Bomb> plantBomb();
 
@@ -45,21 +46,21 @@ public interface Bomber extends AnimatedEntity {
     void applyPowerUp(PowerUp.Type typeOfPowerUp);
 
     /**
-     * Method that return the number of the resumed lifes.
+     * Method that return the number of the resumed lives.
      * 
-     * @return number Life
+     * @return number of Lives
      */
     int getLifes();
 
     /**
-     * Method that return the number of maxAmmo aviable.
+     * Method that return the number of maxAmmo available.
      * 
      * @return number maxAmmo
      */
     int getAmmo();
 
     /**
-     * Method that return the firePower generated for the next Bomb.
+     * Method that return the firePower generated from the next Bomb.
      * 
      * @return number firePower
      */
@@ -80,29 +81,19 @@ public interface Bomber extends AnimatedEntity {
     boolean isPierced();
 
     /**
-     * Method for attaching the PowerUpHandler.
-     * 
-     * @param activator
-     */
-    void setUpHandler(PowerUpHandler activator);
-
-    /**
      * Method that increment the Bomber's speed.
-     * @param increment
      */
-    void incSpeed(double increment);
+    void incSpeed();
 
     /**
      * Method that increment the Bomber's ammo.
-     * @param increment
      */
-    void incAmmo(int increment);
+    void incAmmo();
 
     /**
      * Method that increment the Bomber's firePower.
-     * @param increment
      */
-    void incFirePower(int increment);
+    void incFirePower();
 
     /**
      * Method to activate Bomber's pierce (PowerUp).

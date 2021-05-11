@@ -2,7 +2,6 @@ package bomberone.model.bomber;
 
 import java.awt.image.BufferedImage;
 import java.util.Optional;
-import java.util.concurrent.TimeUnit;
 
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
@@ -64,7 +63,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     private boolean pierce;
     private int maxAmmo;
     private int usedAmmo;
-    private PowerUpHandler activator;
     private int fpAgg = 0;
     private boolean isChangedDir = false;
 
@@ -79,7 +77,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.usedAmmo = 0;
         this.setSpriteIndex(SPRITES);
         this.setAnimationIndex(0);
-        this.setUpHandler(new PowerUpHandlerImpl(this));
     }
 
     /**
@@ -94,7 +91,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.firePower = FIRE_POWER;
         this.pierce = false;
         this.maxAmmo = AMMO;
-        this.usedAmmo = 0;
         this.setSpriteIndex(SPRITES);
         this.setAnimationIndex(0);
         this.fpAgg = 0;
@@ -136,19 +132,19 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void applyPowerUp(final Type typeOfPowerUp) {
-        AudioHandler.start(GameAudio.POWER_UP);
+        AudioHandler.start(GameAudio.POWER_UP); // This is the Audio Effect for powerUp
         switch (typeOfPowerUp) {
         case FirePower:
-            this.activator.applyFirePower(FIRE_POWER_INC);
+            this.incFirePower();
             break;
         case Ammo:
-            this.activator.applyMultiAmmo(AMMO_INC);
+            this.incAmmo();
             break;
         case Pierce:
-            this.activator.applyPierce();
+            this.activatePierce();
             break;
         case Speed:
-            this.activator.applySpeed(SPEED_INC);
+            this.incSpeed();
             break;
         case Time:
             break;
@@ -187,14 +183,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public boolean isPierced() {
         return this.pierce;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setUpHandler(final PowerUpHandler activator) {
-        this.activator = activator;
     }
 
     /**
@@ -258,7 +246,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void hitted() {
-        AudioHandler.start(GameAudio.HITTED);
+        AudioHandler.start(GameAudio.HITTED); // This is the Audio Effect for Bomber's death
         this.setLifes(this.getLifes() - 1);
         this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
@@ -320,24 +308,24 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      * {@inheritDoc}
      */
     @Override
-    public void incSpeed(final double increment) {
-        this.setSpeed(this.getSpeed() + increment);
+    public void incSpeed() {
+        this.setSpeed(this.getSpeed() + SPEED_INC);
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void incAmmo(final int increment) {
-        this.maxAmmo += increment;
+    public void incAmmo() {
+        this.maxAmmo += AMMO_INC;
     }
 
     /**
      * {@inheritDoc}
      */
     @Override
-    public void incFirePower(final int increment) {
-        this.firePower += increment;
+    public void incFirePower() {
+        this.firePower += FIRE_POWER_INC;
     }
 
     /**
