@@ -1,9 +1,6 @@
 package bomberone.controllers.game.input;
 
-import java.util.LinkedList;
-import java.util.List;
 
-import bomberone.controllers.game.input.commands.Command;
 import bomberone.controllers.game.input.commands.MoveDown;
 import bomberone.controllers.game.input.commands.MoveLeft;
 import bomberone.controllers.game.input.commands.MoveRight;
@@ -16,34 +13,14 @@ import bomberone.model.GameModel;
  *
  */
 public class CommandListenerImpl implements CommandListener {
-    private List<Command> commandList;
     private GameModel game;
     private PlayerBehavior behaviour;
     private boolean isActionCompleted;
 
     public CommandListenerImpl() {
-        this.commandList = new LinkedList<>();
         this.behaviour = new PlayerBehavior();
     }
 
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void addCommand(final Command command) {
-        if (command.getClass().equals(PlantBomb.class) || this.commandList.isEmpty()
-                || this.commandList.get(0).getClass().equals(command.getClass())) {
-            this.commandList.add(command);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public List<Command> getCommandList() {
-        return this.commandList;
-    }
 
     /**
      * {@inheritDoc}
