@@ -1,13 +1,11 @@
 package bomberone.views;
 
-import java.io.File;
 
 import bomberone.controllers.Controller;
 import bomberone.controllers.game.GameControllerImpl;
 import bomberone.controllers.home.HomeControllerImpl;
 import bomberone.controllers.rank.RankControllerImpl;
 import bomberone.controllers.setUp.SetUpControllerImpl;
-import bomberone.controllers.stable.StaticControllerImpl;
 
 /**
  * Enum for the Views, each one has her StyleFile and her specific Controller.
@@ -25,7 +23,7 @@ public enum ViewType {
     /**
      * 
      */
-    CREDITS("CreditsView", new StaticControllerImpl()), RULES("RulesView", new StaticControllerImpl()),
+    CREDITS("CreditsView", new HomeControllerImpl()), RULES("RulesView", new HomeControllerImpl()),
 
     /**
      * 

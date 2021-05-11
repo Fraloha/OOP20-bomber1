@@ -1,7 +1,7 @@
-package bomberone.controllers.home;
+package bomberone.controllers.stable;
 
 import bomberone.controllers.Controller;
 
-public interface HomeController extends Controller{
+public interface StaticController extends Controller {
 
 }

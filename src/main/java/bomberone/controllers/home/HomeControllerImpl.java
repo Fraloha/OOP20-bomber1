@@ -1,18 +1,12 @@
-package bomberone.controllers.home;
+package bomberone.controllers.stable;
 
 import bomberone.controllers.ControllerImpl;
-import bomberone.model.Difficulty;
-import bomberone.model.user.Controls;
-import bomberone.model.user.Skins;
 
-public class HomeControllerImpl extends ControllerImpl implements HomeController {
+public class StaticControllerImpl extends ControllerImpl implements StaticController {
 
     @Override
     public void init() {
         // TODO Auto-generated method stub
-        this.getModel().getUser().setControls(Controls.ARROW);
-        this.getModel().getUser().setSkin(Skins.WHITE);
-        this.getModel().setDifficulty(Difficulty.STANDARD);
     }
 
 }
