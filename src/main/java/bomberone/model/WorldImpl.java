@@ -187,11 +187,9 @@ public class WorldImpl implements World {
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
                 if (fire.getCollider().intersects(obj.getCollider())) {
-                    if (obj.getClass().equals(EnemyImpl.class)) {
-                        /* When Enemy is just spawned, it isn't hittable by fire */
-                        if (((Enemy) obj).isHittable()) {
-                            this.listener.notifyEvent(new HitEntityEvent(obj));
-                        }
+                    /* When Enemy is just spawned, it isn't hittable by fire */
+                    if (obj.getClass().equals(EnemyImpl.class) && !((Enemy) obj).isHittable()) {
+                        break;
                     } else {
                         this.listener.notifyEvent(new HitEntityEvent(obj));
                     }
