@@ -18,14 +18,14 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import bomberOne.model.common.GameImages;
-import bomberOne.tools.DirectoryLoader;
-import bomberOne.tools.RankLoader;
-import bomberOne.views.basic.ViewImpl;
-import bomberOne.views.ViewType;
-import bomberOne.views.ViewsSwitcher;
-import bomberOne.model.user.User;
-import bomberOne.model.user.UserImpl;
+import bomberone.model.common.GameImages;
+import bomberone.tools.DirectoryLoader;
+import bomberone.tools.RankLoader;
+import bomberone.views.basic.ViewImpl;
+import bomberone.views.ViewType;
+import bomberone.views.ViewsSwitcher;
+import bomberone.model.user.User;
+import bomberone.model.user.UserImpl;
 import javafx.scene.image.Image;
 
 /**
@@ -47,10 +47,10 @@ public final class RankView extends ViewImpl {
 
     private Image rankDifficultyImages[];
 
-    private ArrayList<ObservableList<UserDataModel>> ranks;
+    private ArrayList<ObservableList<User>> ranks;
 
     @FXML
-    private TableView<UserDataModel> tableView;
+    private TableView<User> tableView;
 
     @FXML
     private VBox vBoxImages;
@@ -118,7 +118,7 @@ public final class RankView extends ViewImpl {
 
     private void loadRanks() {
         // Creating the ranks ArrayList.
-        this.ranks = new ArrayList<ObservableList<UserDataModel>>(RankView.RANKS);
+        this.ranks = new ArrayList<ObservableList<User>>(RankView.RANKS);
 
         // Loading the ranks from the files.
         RankLoader.getRankStandard().add(new UserImpl("Gigi", 3000));
@@ -140,8 +140,8 @@ public final class RankView extends ViewImpl {
 
             while (rankIterator.hasNext()) {
                 UserImpl currentUser = (UserImpl) rankIterator.next();
-                List<UserDataModel> list = new ArrayList<>();
-                list.add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
+                List<User> list = new ArrayList<>();
+                list.add(new UserImpl(currentUser.getName(), currentUser.getScore()));
                 this.ranks.add(FXCollections.observableList(list));
 //                this.ranks.get(i).add(new UserDataModel(currentUser.getName(), currentUser.getScore()));
 //                rankIterator.next();
