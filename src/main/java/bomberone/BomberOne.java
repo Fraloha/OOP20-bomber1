@@ -29,14 +29,9 @@ public final class BomberOne extends Application {
         ResourcesLoader.start();
         DirectoryLoader.start();
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
-        // UNCOMMENT TO TEST
-//
-//        GameModel test = new GameModelImpl();
-//        test.getUser().setControls(Controls.ARROW);
-//        test.getUser().setSkin(Skins.WHITE);
-//        test.setDifficulty(Difficulty.STANDARD);
-//      test.init();
-        ViewsSwitcher.switchView(primaryStage, ViewType.RANK, new GameModelImpl());
+
+        AudioHandler.start(GameAudio.HOME);
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }
