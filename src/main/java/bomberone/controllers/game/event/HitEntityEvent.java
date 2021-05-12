@@ -9,8 +9,8 @@ import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.gameObjects.BoxImpl;
 import bomberone.model.gameObjects.Fire;
 import bomberone.model.gameObjects.GameObject;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 
 /**
  * This event is triggered when the fire hits an Object or if the Bomber collide
@@ -49,7 +49,7 @@ public class HitEntityEvent implements WorldEvent {
             if (!this.entity.isAlive()) {
                 return;
             } else {
-                AudioHandler.start(GameAudio.HITTED); // This is the Audio Effect for Bomber's death
+                SoundsHandler.start(GameSounds.HITTED); // This is the Audio Effect for Bomber's death
                 /*
                  * If there is a fireObject on the respawn cell, it is removed to avoid
                  * death-loop bugs
@@ -68,7 +68,7 @@ public class HitEntityEvent implements WorldEvent {
             model.incScore(BOX_INC_SCORE);
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
-            AudioHandler.start(GameAudio.ENEMY_HIT);
+            SoundsHandler.start(GameSounds.ENEMY_HIT);
             model.incScore(ENEMY_INC_SCORE);
         }
     }

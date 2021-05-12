@@ -10,7 +10,13 @@ import bomberone.model.common.P2d;
  */
 public class FireImpl extends GameObjectImpl implements Fire {
 
+    /**
+     * Constant to set life time of the Fire.
+     */
     private static final int LIFE_TIME = 100;
+    /**
+     * Constant to set the fire animation.
+     */
     private static final int ANIMATION_TIMER = 5;
 
     private int lifeTime;
