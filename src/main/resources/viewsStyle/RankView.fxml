@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="479.0" prefWidth="521.0" styleClass="anchorPaneStyle" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
-      <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="481.0" prefWidth="432.0">
+      <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="479.0" prefWidth="512.0">
          <center>
             <TableView fx:id="tableView" prefHeight="438.0" prefWidth="403.0" BorderPane.alignment="CENTER">
               <columns>

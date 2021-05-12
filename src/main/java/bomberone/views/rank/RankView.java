@@ -12,9 +12,12 @@ import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import bomberone.tools.RankLoader;
+import bomberone.tools.ResourcesLoader;
 import bomberone.views.basic.ViewImpl;
 import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
@@ -88,7 +91,15 @@ public final class RankView extends ViewImpl {
         this.currentRank = 0;
         // this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-
+    
+    private void setButtonsFonts() {
+        Font fontToSet = ResourcesLoader.getFont(20);
+        
+        this.hBoxButtonExit.setFont(fontToSet);
+        this.hBoxButtonMainMenu.setFont(fontToSet);
+        this.hBoxButtonNext.setFont(fontToSet);
+        this.hBoxButtonPrevious.setFont(fontToSet);
+    }
     /**
      * This method sets all the buttons event handlers.
      */
@@ -98,7 +109,7 @@ public final class RankView extends ViewImpl {
         });
 
         this.hBoxButtonMainMenu.setOnAction((event) -> {
-            ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+            this.onClickBackToMainMenu();
         });
 
         this.hBoxButtonNext.setOnAction((event) -> {
@@ -122,13 +133,13 @@ public final class RankView extends ViewImpl {
 
     private void loadRanks() {
         // Creating the ranks ArrayList.
-        this.ranks = new ArrayList<ObservableList<User>>(RankView.RANKS);
+        this.ranks = new ArrayList<ObservableList<User>>();
     }
 
     private void onClickChangeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
-        this.currentRank = (next ? this.currentRank++ : this.currentRank--) % RankView.RANKS;
-
+        this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
+        
         // Setting the right image and rank.
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
