@@ -2,6 +2,7 @@ package bomberone.views.rank;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -35,7 +36,7 @@ public final class RankView extends ViewImpl {
 
     private Image rankDifficultyImages[];
 
-    private ArrayList<ObservableList<User>> ranks;
+    private ArrayList<SortedList<User>> ranks;
 
     @FXML
     private TableView<User> tableView;
@@ -72,11 +73,11 @@ public final class RankView extends ViewImpl {
 
     @Override
     public void init() {
-        
+
         // Initializing the buttons.
         this.setButtonsFonts();
         this.setButtonsEventHandlers();
-        
+
         // Initializing the TableView.
         this.tableViewInitialization(ResourcesLoader.getFont(20));
         // Loading all the images that indicates the rank difficulty.
@@ -89,15 +90,16 @@ public final class RankView extends ViewImpl {
         this.currentRank = 0;
         // this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     private void setButtonsFonts() {
         Font fontToSet = ResourcesLoader.getFont(20);
-        
+
         this.hBoxButtonExit.setFont(fontToSet);
         this.hBoxButtonMainMenu.setFont(fontToSet);
         this.hBoxButtonNext.setFont(fontToSet);
         this.hBoxButtonPrevious.setFont(fontToSet);
     }
+
     /**
      * This method sets all the buttons event handlers.
      */
@@ -118,13 +120,13 @@ public final class RankView extends ViewImpl {
             this.onClickChangeRank(false);
         });
     }
-    
+
     private void tableViewInitialization(Font fontToSet) {
-        
+
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
-        
+
         // Setting the font.
         this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
 
@@ -134,7 +136,7 @@ public final class RankView extends ViewImpl {
                     @Override
                     public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
-                        
+
                         if (isEmpty()) {
                             setText("");
                         } else {
@@ -144,9 +146,9 @@ public final class RankView extends ViewImpl {
                     }
                 };
             }
-            
+
         });
-        
+
         this.tableViewScores.setCellFactory(new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
 
             @Override
@@ -155,7 +157,7 @@ public final class RankView extends ViewImpl {
                     @Override
                     public void updateItem(Integer item, boolean empty) {
                         super.updateItem(item, empty);
-                        
+
                         if (isEmpty()) {
                             setText("");
                         } else {
@@ -167,6 +169,7 @@ public final class RankView extends ViewImpl {
             }
         });
     }
+
     /**
      * This method loads all the images that have to be set in the view.
      */
@@ -178,14 +181,19 @@ public final class RankView extends ViewImpl {
     }
 
     private void loadRanks() {
-        // Creating the ranks ArrayList.
-        this.ranks = new ArrayList<ObservableList<User>>();
+        // Loading the ranks.
+        ObservableList<User> standardRank = FXCollections.observableList(RankLoader.getRankStandard());
+        ObservableList<User> hardRank = FXCollections.observableList(RankLoader.getRankHard());
+
+        // Creating the sorted ranks.
+        this.ranks.add(new SortedList<User>(standardRank));
+        this.ranks.add(new SortedList<User>(hardRank));
     }
 
     private void onClickChangeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
         this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
-        
+
         // Setting the right image and rank.
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
