@@ -33,18 +33,11 @@ public final class ResourcesLoader {
      * sliceSprite()".
      */
     public static void start() {
-        //ResourcesLoader.loadAudio();
         ResourcesLoader.loadImages();
         ResourcesLoader.sliceSprite();
         ResourcesLoader.loadMap();
     }
-/*
-    public static void loadAudio() {
-        Arrays.stream(GameAudio.values()).forEach(value -> {
-            value.setMedia(ClassLoader.getSystemResource(value.getMediaPath()).toString());
-        });
-    }
-*/
+
     /**
      * This method load the images from the res/ and puts them on ObjectsImages enum
      * values.
