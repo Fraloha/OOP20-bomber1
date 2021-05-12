@@ -36,7 +36,6 @@ public class GameModelImpl implements GameModel {
 
         this.timer = new TimerImpl(GameModelImpl.TIME);
         this.thread = new TimerThread(timer);
-        this.thread.start();
     }
 
     @Override
