@@ -1,4 +1,4 @@
-package bomberone.model.common;
+package bomberone.views.game.img;
 
 import java.awt.image.BufferedImage;
 

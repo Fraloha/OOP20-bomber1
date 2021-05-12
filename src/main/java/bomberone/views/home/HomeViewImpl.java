@@ -1,11 +1,11 @@
 package bomberone.views.home;
 
-import bomberone.model.common.GameImages;
 import bomberone.tools.audio.AudioHandler;
 import bomberone.tools.audio.GameAudio;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
+import bomberone.views.game.img.GameImages;
 import bomberone.views.game.movement.ControlsMap;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;

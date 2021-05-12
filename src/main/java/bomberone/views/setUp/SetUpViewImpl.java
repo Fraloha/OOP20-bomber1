@@ -2,7 +2,6 @@ package bomberone.views.setUp;
 
 import bomberone.controllers.setUp.SetUpController;
 import bomberone.model.Difficulty;
-import bomberone.model.common.GameImages;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
@@ -10,6 +9,7 @@ import bomberone.tools.audio.AudioHandler;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
+import bomberone.views.game.img.GameImages;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;

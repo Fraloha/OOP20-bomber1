@@ -18,10 +18,11 @@ import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
-import bomberone.model.common.GameImages;
+
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.RankLoader;
 import bomberone.views.basic.ViewImpl;
+import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.model.user.User;

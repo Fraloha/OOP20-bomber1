@@ -1,13 +1,13 @@
 package bomberone;
 
 import bomberone.model.GameModelImpl;
-import bomberone.model.common.GameImages;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.AudioHandler;
 import bomberone.tools.audio.GameAudio;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
+import bomberone.views.game.img.GameImages;
 import javafx.application.Application;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.stage.Stage;
