@@ -6,8 +6,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.bomber.BomberImpl;
-import bomberone.model.bomber.PowerUpHandlerImpl;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactoryImpl;
@@ -21,7 +19,6 @@ import bomberone.tools.ResourcesLoader;
 public class TestBomber {
 
     private BomberImpl bomber;
-    private PowerUpHandlerImpl activator;
 
     /**
      * 
@@ -30,8 +27,6 @@ public class TestBomber {
     public void init() {
         ResourcesLoader.start();
         bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
-        activator = new PowerUpHandlerImpl(bomber);
-        bomber.setUpHandler(activator);
     }
 
     @Test
