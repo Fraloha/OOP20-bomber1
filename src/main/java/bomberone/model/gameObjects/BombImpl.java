@@ -1,7 +1,6 @@
 package bomberone.model.gameObjects;
 
 import java.awt.image.BufferedImage;
-import java.io.IOException;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
