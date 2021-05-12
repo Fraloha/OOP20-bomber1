@@ -38,22 +38,22 @@ public interface AnimatedEntity extends GameObject {
     double getSpeed();
 
     /**
-     * Method to moveUp the Entity.
+     * Method to moveUp the Entity of one pixel.
      */
     void moveUp();
 
     /**
-     * Method to moveDown the Entity.
+     * Method to moveDown the Entity of one pixel.
      */
     void moveDown();
 
     /**
-     * Method to moveLeft the Entity.
+     * Method to moveLeft the Entity of one pixel.
      */
     void moveLeft();
 
     /**
-     * Method to moveRight the Entity.
+     * Method to moveRight the Entity of one pixel.
      */
     void moveRight();
 
@@ -84,27 +84,31 @@ public interface AnimatedEntity extends GameObject {
     void setStatic(boolean value);
 
     /**
-     * Sets the AnimatedEntity sprite index.
-     * (See the documentation of AnimatedEntityImpl to learn more.)
+     * Sets the AnimatedEntity sprite index. (See the documentation of
+     * AnimatedEntityImpl to learn more.)
+     * 
      * @param index The value of the index.
      */
     void setSpriteIndex(int index);
 
     /**
-     * Sets the AnimatedEntity animation index.
-     * (See the documentation of AnimatedEntityImpl to learn more.)
+     * Sets the AnimatedEntity animation index. (See the documentation of
+     * AnimatedEntityImpl to learn more.)
+     * 
      * @param index The value of the index
      */
     void setAnimationIndex(int index);
 
     /**
      * Gets the current sprite index.
+     * 
      * @return the value of the current sprite index.
      */
     int getSpriteIndex();
 
     /**
      * Gets the current animation index.
+     * 
      * @return the value of the animation index.
      */
     int getAnimationIndex();

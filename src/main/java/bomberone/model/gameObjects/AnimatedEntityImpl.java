@@ -17,6 +17,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
 
     public AnimatedEntityImpl(final P2d pos, final int lifes) {
         super(pos, lifes);
+
         this.dir = Direction.DOWN;
         this.isStatic = true;
     }

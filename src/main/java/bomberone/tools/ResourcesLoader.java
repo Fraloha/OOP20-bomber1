@@ -11,11 +11,10 @@ import java.util.List;
 import javax.imageio.ImageIO;
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.UnsupportedAudioFileException;
-
 import bomberone.model.common.Maps;
-import bomberone.tools.audio.GameAudio;
 import bomberone.views.game.img.AnimatedObjectsSprites;
 import bomberone.views.game.img.GameImages;
+import bomberone.tools.audio.GameSounds;
 import javafx.scene.text.Font;
 
 /**
@@ -33,18 +32,11 @@ public final class ResourcesLoader {
      * sliceSprite()".
      */
     public static void start() {
-        //ResourcesLoader.loadAudio();
         ResourcesLoader.loadImages();
         ResourcesLoader.sliceSprite();
         ResourcesLoader.loadMap();
     }
-/*
-    public static void loadAudio() {
-        Arrays.stream(GameAudio.values()).forEach(value -> {
-            value.setMedia(ClassLoader.getSystemResource(value.getMediaPath()).toString());
-        });
-    }
-*/
+
     /**
      * This method load the images from the res/ and puts them on ObjectsImages enum
      * values.

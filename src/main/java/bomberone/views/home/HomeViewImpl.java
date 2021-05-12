@@ -1,7 +1,8 @@
 package bomberone.views.home;
 
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;

@@ -3,8 +3,8 @@ package bomberone.model.gameObjects;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -13,10 +13,16 @@ import bomberone.tools.audio.GameAudio;
 public class BombImpl extends GameObjectImpl implements Bomb {
 
     /**
-     * Constant TimeToExplode.
+     * Constant to set life time of the Bomb before the Explosion.
      */
     public static final int TIME_TO_EXPLODE = 200;
+    /**
+     * Constant to control the pulse animation.
+     */
     private static final int ANIMATION_COUNTDOWN = 2;
+    /**
+     * Number of the pulse animations.
+     */
     private static final int N_BOMB_ANIMATIONS = 15;
 
     private int thicks;
@@ -25,8 +31,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private Optional<Explosion> explosion;
     private int indexAnimation = 0;
     private int animationTimer = 0;
-    //private AudioInputStream audio = GameAudio.BOMB.getAudio();
-    //private Clip clip;
 
     public BombImpl(final P2d pos, final int lifes, final int firePower,
             final boolean pierced) {
@@ -45,7 +49,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         super.hitted();
-        AudioHandler.start(GameAudio.BOMB);
+        SoundsHandler.start(GameSounds.BOMB);
         return boom;
     }
 
