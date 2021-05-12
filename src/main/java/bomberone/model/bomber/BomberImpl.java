@@ -10,9 +10,6 @@ import bomberone.model.gameObjects.AnimatedEntityImpl;
 import bomberone.model.gameObjects.Bomb;
 import bomberone.model.gameObjects.BombImpl;
 import bomberone.model.gameObjects.PowerUp.Type;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
-import javafx.geometry.Rectangle2D;
 
 public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
 
@@ -246,7 +243,6 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     @Override
     public void hitted() {
         this.setLifes(this.getLifes() - 1);
-        this.setCollider(new Rectangle2D(32, 32, 0, 0));
         this.setAlive(false);
     }
 

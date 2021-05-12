@@ -116,4 +116,5 @@ public interface AnimatedEntity extends GameObject {
      * @return the value of the animation index.
      */
     int getAnimationIndex();
+
 }
