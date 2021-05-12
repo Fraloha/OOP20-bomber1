@@ -1,21 +1,19 @@
 package bomberone.views.rank;
 
-import javafx.beans.InvalidationListener;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
-
-import java.io.IOException;
 import java.util.ArrayList;
+import javafx.util.Callback;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
 import bomberone.views.basic.ViewImpl;
@@ -23,7 +21,6 @@ import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.model.user.User;
-import bomberone.model.user.UserImpl;
 import javafx.scene.image.Image;
 
 /**
@@ -75,12 +72,13 @@ public final class RankView extends ViewImpl {
 
     @Override
     public void init() {
-
+        
+        // Initializing the buttons.
+        this.setButtonsFonts();
         this.setButtonsEventHandlers();
-
-        // Setting the TableView to be not editable.
-        this.tableView.setEditable(false);
-
+        
+        // Initializing the TableView.
+        this.tableViewInitialization(ResourcesLoader.getFont(20));
         // Loading all the images that indicates the rank difficulty.
         this.loadImages();
 
@@ -120,7 +118,55 @@ public final class RankView extends ViewImpl {
             this.onClickChangeRank(false);
         });
     }
+    
+    private void tableViewInitialization(Font fontToSet) {
+        
+        this.tableView.setEditable(false);
+        this.tableViewPlayers.setEditable(false);
+        this.tableViewScores.setEditable(false);
+        
+        // Setting the font.
+        this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
 
+            @Override
+            public TableCell<User, String> call(TableColumn<User, String> param) {
+                return new TableCell<User, String>() {
+                    @Override
+                    public void updateItem(String item, boolean empty) {
+                        super.updateItem(item, empty);
+                        
+                        if (isEmpty()) {
+                            setText("");
+                        } else {
+                            setFont(fontToSet);
+                            setText(item);
+                        }
+                    }
+                };
+            }
+            
+        });
+        
+        this.tableViewScores.setCellFactory(new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
+
+            @Override
+            public TableCell<User, Integer> call(TableColumn<User, Integer> param) {
+                return new TableCell<User, Integer>() {
+                    @Override
+                    public void updateItem(Integer item, boolean empty) {
+                        super.updateItem(item, empty);
+                        
+                        if (isEmpty()) {
+                            setText("");
+                        } else {
+                            setFont(fontToSet);
+                            setText(item.toString());
+                        }
+                    }
+                };
+            }
+        });
+    }
     /**
      * This method loads all the images that have to be set in the view.
      */
