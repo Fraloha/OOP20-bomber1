@@ -10,14 +10,14 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="479.0" prefWidth="521.0" styleClass="anchorPaneStyle" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
+<AnchorPane prefHeight="479.0" prefWidth="512.0" styleClass="anchorPaneStyle" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
       <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="479.0" prefWidth="512.0">
          <center>
-            <TableView fx:id="tableView" prefHeight="438.0" prefWidth="403.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableView" prefHeight="438.0" prefWidth="512.0" BorderPane.alignment="CENTER">
               <columns>
-                <TableColumn fx:id="tableViewPlayers" prefWidth="211.0" text="Player" />
-                <TableColumn fx:id="tableViewScores" prefWidth="219.0" text="Score" />
+                <TableColumn fx:id="tableViewPlayers" prefWidth="256.0" text="Player" />
+                <TableColumn fx:id="tableViewScores" prefWidth="256.0" text="Score" />
               </columns>
             </TableView>
          </center>
