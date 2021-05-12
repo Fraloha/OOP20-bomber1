@@ -17,8 +17,7 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     private int animationsIndex;
     private BufferedImage[][] sprites;
 
-    public AnimatedEntityImpl(final P2d pos, final BufferedImage[][] img, final int lifes,
-            final BufferedImage initialSprite) {
+    public AnimatedEntityImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final BufferedImage initialSprite) {
         super(pos, initialSprite, lifes);
         this.sprites = img;
         this.dir = Direction.DOWN;

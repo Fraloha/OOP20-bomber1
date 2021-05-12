@@ -14,10 +14,16 @@ import bomberone.tools.audio.GameAudio;
 public class BombImpl extends GameObjectImpl implements Bomb {
 
     /**
-     * Constant TimeToExplode.
+     * Constant to set life time of the Bomb before the Explosion.
      */
     public static final int TIME_TO_EXPLODE = 200;
+    /**
+     * Constant to control the pulse animation.
+     */
     private static final int ANIMATION_COUNTDOWN = 2;
+    /**
+     * Number of the pulse animations.
+     */
     private static final int N_BOMB_ANIMATIONS = 15;
 
     private int thicks;
@@ -27,8 +33,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private BufferedImage[][] sprites;
     private int indexAnimation = 0;
     private int animationTimer = 0;
-    //private AudioInputStream audio = GameAudio.BOMB.getAudio();
-    //private Clip clip;
 
     public BombImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final int firePower,
             final boolean pierced) {
