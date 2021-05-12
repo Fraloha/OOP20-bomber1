@@ -9,6 +9,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -22,6 +23,7 @@ import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.model.user.User;
+import bomberone.model.user.UserImpl;
 import javafx.scene.image.Image;
 
 /**
@@ -80,6 +82,7 @@ public final class RankView extends ViewImpl {
 
         // Initializing the TableView.
         this.tableViewInitialization(ResourcesLoader.getFont(20));
+        
         // Loading all the images that indicates the rank difficulty.
         this.loadImages();
 
@@ -88,7 +91,7 @@ public final class RankView extends ViewImpl {
 
         // Setting the initial rank to show.
         this.currentRank = 0;
-        // this.tableView.setItems(this.ranks.get(this.currentRank));
+        this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
     private void setButtonsFonts() {
@@ -128,7 +131,7 @@ public final class RankView extends ViewImpl {
         this.tableViewScores.setEditable(false);
 
         // Setting the font.
-        this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
+        /*this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
 
             @Override
             public TableCell<User, String> call(TableColumn<User, String> param) {
@@ -149,25 +152,32 @@ public final class RankView extends ViewImpl {
 
         });
 
-        this.tableViewScores.setCellFactory(new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
+        this.tableViewScores.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
 
             @Override
-            public TableCell<User, Integer> call(TableColumn<User, Integer> param) {
-                return new TableCell<User, Integer>() {
+            public TableCell<User, String> call(TableColumn<User, String> param) {
+                return new TableCell<User, String>() {
                     @Override
-                    public void updateItem(Integer item, boolean empty) {
+                    public void updateItem(String item, boolean empty) {
                         super.updateItem(item, empty);
 
                         if (isEmpty()) {
                             setText("");
                         } else {
                             setFont(fontToSet);
-                            setText(item.toString());
+                            setText(item);
                         }
                     }
                 };
             }
-        });
+        });*/
+        
+        // Binding the columns with the data.
+        this.tableViewPlayers.setCellValueFactory(new PropertyValueFactory<User, String>("name"));
+        this.tableViewScores.setCellValueFactory(new PropertyValueFactory<User, Integer>("score"));
+        
+        // Adding a sort policy in the TableView.
+        this.tableView.getSortOrder().add(tableViewScores);
     }
 
     /**
@@ -182,10 +192,18 @@ public final class RankView extends ViewImpl {
 
     private void loadRanks() {
         // Loading the ranks.
+        RankLoader.getRankStandard().add(new UserImpl("Gigi", 3000));
+        RankLoader.getRankStandard().add(new UserImpl("Eusebio", 2000));
+        RankLoader.getRankHard().add(new UserImpl("Sergio", 1370));
+        RankLoader.getRankHard().add(new UserImpl("Jack", 2400));
+        RankLoader.writeUsers();
+        
+        RankLoader.readUsers();
         ObservableList<User> standardRank = FXCollections.observableList(RankLoader.getRankStandard());
         ObservableList<User> hardRank = FXCollections.observableList(RankLoader.getRankHard());
 
         // Creating the sorted ranks.
+        this.ranks = new ArrayList<SortedList<User>>();
         this.ranks.add(new SortedList<User>(standardRank));
         this.ranks.add(new SortedList<User>(hardRank));
     }
