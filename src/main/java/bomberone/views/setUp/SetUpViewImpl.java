@@ -7,6 +7,7 @@ import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.AudioHandler;
+import bomberone.tools.audio.GameAudio;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
