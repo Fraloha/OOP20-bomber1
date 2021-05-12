@@ -4,8 +4,8 @@ import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -52,7 +52,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         Explosion boom = new ExplosionImpl(this.firePower, this.pierced, this.getPosition());
         this.explosion = Optional.of(boom);
         super.hitted();
-        AudioHandler.start(GameAudio.BOMB);
+        SoundsHandler.start(GameSounds.BOMB);
         return boom;
     }
 

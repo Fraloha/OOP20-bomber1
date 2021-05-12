@@ -15,7 +15,7 @@ import javax.sound.sampled.UnsupportedAudioFileException;
 import bomberone.model.common.AnimatedObjectsSprites;
 import bomberone.model.common.GameImages;
 import bomberone.model.common.Maps;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.GameSounds;
 import javafx.scene.text.Font;
 
 /**

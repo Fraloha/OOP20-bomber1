@@ -2,8 +2,8 @@ package bomberone.controllers.game.event;
 
 import bomberone.model.GameModel;
 import bomberone.model.gameObjects.PowerUp;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 
 /**
  * This event is triggered when the Bomber picks a PowerUp.
@@ -31,7 +31,7 @@ public class PickPowerUpEvent implements WorldEvent {
      */
     @Override
     public void process(final GameModel model) {
-        AudioHandler.start(GameAudio.POWER_UP); // This is the Audio Effect for powerUp
+        SoundsHandler.start(GameSounds.POWER_UP); // This is the Audio Effect for powerUp
         if (this.powerUp.getType().equals(PowerUp.Type.Time)) {
             /* Timer PowerUp */
             model.getTimer().setTimer(model.getTimer().getTime().getTotal() + TIMER_INC);
