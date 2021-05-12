@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.model.common.P2d;
 
@@ -17,20 +16,11 @@ public class FireImpl extends GameObjectImpl implements Fire {
     private int thick;
     private int animationThick = 0;
     private int animationIndex = 0;
-    private BufferedImage[][] img;
 
-    public FireImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
-        super(pos, img[0][0], lifes);
-        this.img = img;
+    public FireImpl(final P2d pos, final int lifes) {
+        super(pos, lifes);
         this.lifeTime = LIFE_TIME;
         this.thick = 0;
-    }
-
-    /**
-     * @return the correct animation of the Fire
-     */
-    public BufferedImage getImage() {
-        return this.img[0][animationIndex % 3];
     }
 
     /**
@@ -44,9 +34,17 @@ public class FireImpl extends GameObjectImpl implements Fire {
         }
         /* Update the animation of the Fire */
         if (this.animationThick++ == ANIMATION_TIMER) {
-            this.animationIndex = (this.animationIndex + 1);
+            this.animationIndex = (this.animationIndex + 1) % 3;
             this.animationThick = 0;
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public int getIndexAnimation() {
+        return this.animationIndex;
     }
 
 }

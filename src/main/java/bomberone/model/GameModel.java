@@ -36,6 +36,12 @@ public interface GameModel {
 
     /**
      * 
+     * @return the Difficulty of the Game.
+     */
+    Difficulty getDifficulty();
+
+    /**
+     * 
      * @return the World of this game
      */
     World getWorld();

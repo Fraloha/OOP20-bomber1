@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.model.common.P2d;
 import javafx.geometry.Rectangle2D;
@@ -10,20 +9,6 @@ import javafx.geometry.Rectangle2D;
  *
  */
 public interface GameObject {
-
-    /**
-     * 
-     * Associates the Buffered Image with Object.
-     * 
-     * @param img the Buffered Image
-     */
-    void setImage(BufferedImage img);
-
-    /**
-     * 
-     * @return the Image of the Object
-     */
-    BufferedImage getImage();
 
     /**
      * Repeatedly called during the game loop.

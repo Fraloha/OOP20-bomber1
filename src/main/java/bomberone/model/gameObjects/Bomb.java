@@ -18,4 +18,9 @@ public interface Bomb extends GameObject {
      */
     Optional<Explosion> getExplosion();
 
+    /**
+     * @return index of the bomb's Animation.
+     */
+    int getIndexAnimation();
+
 }

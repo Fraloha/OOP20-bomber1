@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.model.common.Direction;
 
@@ -83,13 +82,6 @@ public interface AnimatedEntity extends GameObject {
      * @param value
      */
     void setStatic(boolean value);
-
-    /**
-     * Gets the current image (sprite) of the AnimatedEntity.
-     * (See the documentation of AnimatedEntityImpl to learn more.)
-     * @return A BufferedImage object that contains the current sprite of the AnimatedEntity.
-     */
-    BufferedImage getImage();
 
     /**
      * Sets the AnimatedEntity sprite index.

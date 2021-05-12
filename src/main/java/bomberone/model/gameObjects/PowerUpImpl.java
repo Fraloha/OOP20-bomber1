@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.model.common.P2d;
 
@@ -9,8 +8,8 @@ public class PowerUpImpl extends GameObjectImpl implements PowerUp {
     private boolean released;
     private PowerUp.Type type;
 
-    public PowerUpImpl(final P2d pos, final BufferedImage img, final int lifes, final boolean isBreakable, final PowerUp.Type type) {
-        super(pos, img, lifes);
+    public PowerUpImpl(final P2d pos, final int lifes, final boolean isBreakable, final PowerUp.Type type) {
+        super(pos, lifes);
         this.released = false;
         this.type = type;
     }

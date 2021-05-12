@@ -119,6 +119,10 @@ public class GameModelImpl implements GameModel {
 
     }
 
+    public final Difficulty getDifficulty() {
+        return this.difficulty;
+    }
+
     @Override
     public final Timer getTimer() {
         return this.timer;

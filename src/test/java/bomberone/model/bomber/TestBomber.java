@@ -83,9 +83,9 @@ public class TestBomber {
         assertTrue(this.bomber.getFirePower() == BomberImpl.FIRE_POWER + BomberImpl.FIRE_POWER_INC);
         this.bomber.applyPowerUp(PowerUp.Type.FirePower);
         assertTrue(this.bomber.getFirePower() == BomberImpl.FIRE_POWER + (2 * BomberImpl.FIRE_POWER_INC));
-        assertFalse(this.bomber.isPierced());
+        assertFalse(this.bomber.getPierce());
         this.bomber.applyPowerUp(PowerUp.Type.Pierce);
-        assertTrue(this.bomber.isPierced());
+        assertTrue(this.bomber.getPierce());
         assertTrue(this.bomber.getSpeed() == BomberImpl.SPEED);
         this.bomber.applyPowerUp(PowerUp.Type.Speed);
         assertTrue(this.bomber.getSpeed() == BomberImpl.SPEED + BomberImpl.SPEED_INC);
@@ -93,7 +93,7 @@ public class TestBomber {
         assertTrue(this.bomber.getSpeed() == BomberImpl.SPEED + (2 * BomberImpl.SPEED_INC));
         this.bomber.respawn();
         assertTrue(this.bomber.getFirePower() == BomberImpl.FIRE_POWER);
-        assertFalse(this.bomber.isPierced());
+        assertFalse(this.bomber.getPierce());
         assertTrue(this.bomber.getSpeed() == BomberImpl.SPEED);
     }
 
