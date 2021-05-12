@@ -72,6 +72,7 @@ public enum GameSounds {
 
     /**
      * Method that return the path of @this media.
+     * 
      * @return String path
      */
     public String getMediaPath() {
