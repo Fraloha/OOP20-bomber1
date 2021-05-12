@@ -4,8 +4,8 @@ import bomberone.model.GameModelImpl;
 import bomberone.model.common.GameImages;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.ResourcesLoader;
-import bomberone.tools.audio.AudioHandler;
-import bomberone.tools.audio.GameAudio;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.tools.audio.GameSounds;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import javafx.application.Application;
@@ -27,7 +27,7 @@ public final class BomberOne extends Application {
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
         primaryStage.setTitle("BomberOne");
 
-        AudioHandler.start(GameAudio.HOME);
+        SoundsHandler.start(GameSounds.HOME);
         ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
