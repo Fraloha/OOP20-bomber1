@@ -20,7 +20,6 @@ import javafx.scene.text.Font;
 public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private static final int SIZE = 44;
-    private static final int PLAYERSTART = 128;
 
     @FXML
     private ImageView boxPlayer;
@@ -61,7 +60,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @FXML
     private Label controls;
 
-    private int count = SetUpViewImpl.PLAYERSTART;
+    private int count = 0;
 
     private Font font = ResourcesLoader.getFont(SetUpViewImpl.SIZE);
 
@@ -107,9 +106,17 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private void setPlayer(final String sign) {
         if (sign.equals("+")) {
-            count++;
+            if (count == 3) {
+                count = 0;
+            } else {
+                count++;
+            }
         } else {
-            count--;
+            if (count == 0) {
+                count = 3;
+            } else {
+                count--;
+            }
         }
 
         switch (Math.abs(count % 4)) {
