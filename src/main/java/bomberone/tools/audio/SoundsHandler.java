@@ -50,6 +50,9 @@ public final class SoundsHandler {
     public static synchronized void start(final GameSounds type) {
         if (type.getType().equals(Sounds.EFFECT)) {
             playerEffects = new MediaPlayer(CACHE_EFFECTS.get(type));
+        /*} else {
+            playerEffects = new MediaPlayer(CACHE_AUDIO.get(type));
+        }*/
             playerEffects.setVolume(type.getVolume());
             playerEffects.play();
             playerEffects.setOnEndOfMedia(playerEffects::dispose);
