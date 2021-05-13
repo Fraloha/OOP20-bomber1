@@ -10,7 +10,6 @@ import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
 import bomberone.views.game.img.GameImages;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -79,15 +78,15 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void drawSetUp() {
-        this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P1.getImage(), null));
-        this.buttonSX.setImage(SwingFXUtils.toFXImage(GameImages.SX.getImage(), null));
-        this.buttonDX.setImage(SwingFXUtils.toFXImage(GameImages.DX.getImage(), null));
-        this.buttonNormal.setImage(SwingFXUtils.toFXImage(GameImages.NORMAL_SET.getImage(), null));
-        this.buttonHard.setImage(SwingFXUtils.toFXImage(GameImages.HARD_UNSET.getImage(), null));
-        this.buttonWASD.setImage(SwingFXUtils.toFXImage(GameImages.WASD_SET.getImage(), null));
-        this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_UNSET.getImage(), null));
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
-        this.buttonHome.setImage(SwingFXUtils.toFXImage(GameImages.QUIT_GAME.getImage(), null));
+        this.boxPlayer.setImage(GameImages.P1.getImage());
+        this.buttonSX.setImage(GameImages.SX.getImage());
+        this.buttonDX.setImage(GameImages.DX.getImage());
+        this.buttonNormal.setImage(GameImages.NORMAL_SET.getImage());
+        this.buttonHard.setImage(GameImages.HARD_UNSET.getImage());
+        this.buttonWASD.setImage(GameImages.WASD_SET.getImage());
+        this.buttonArrows.setImage(GameImages.ARROWS_UNSET.getImage());
+        this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
+        this.buttonHome.setImage(GameImages.QUIT_GAME.getImage());
         this.nickname.setFont(font);
         this.difficulty.setFont(font);
         this.controls.setFont(font);
@@ -121,19 +120,19 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
         switch (Math.abs(count % 4)) {
         case 0:
-            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P1.getImage(), null));
+            this.boxPlayer.setImage(GameImages.P1.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.WHITE);
             break;
         case 1:
-            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P2.getImage(), null));
+            this.boxPlayer.setImage(GameImages.P2.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.BLACK);
             break;
         case 2:
-            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P3.getImage(), null));
+            this.boxPlayer.setImage(GameImages.P3.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.RED);
             break;
         case 3:
-            this.boxPlayer.setImage(SwingFXUtils.toFXImage(GameImages.P4.getImage(), null));
+            this.boxPlayer.setImage(GameImages.P4.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.BLUE);
             break;
         default:
@@ -153,40 +152,40 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @FXML
     private void setNormal() {
-        this.buttonNormal.setImage(SwingFXUtils.toFXImage(GameImages.NORMAL_SET.getImage(), null));
-        this.buttonHard.setImage(SwingFXUtils.toFXImage(GameImages.HARD_UNSET.getImage(), null));
+        this.buttonNormal.setImage(GameImages.NORMAL_SET.getImage());
+        this.buttonHard.setImage(GameImages.HARD_UNSET.getImage());
         ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
     }
 
     @FXML
     private void setHard() {
-        this.buttonHard.setImage(SwingFXUtils.toFXImage(GameImages.HARD_SET.getImage(), null));
-        this.buttonNormal.setImage(SwingFXUtils.toFXImage(GameImages.NORMAL_UNSET.getImage(), null));
+        this.buttonHard.setImage(GameImages.HARD_SET.getImage());
+        this.buttonNormal.setImage(GameImages.NORMAL_UNSET.getImage());
         ((SetUpController) this.getController()).setDifficulty(Difficulty.HARD);
     }
 
     @FXML
     private void setWASD() {
-        this.buttonWASD.setImage(SwingFXUtils.toFXImage(GameImages.WASD_SET.getImage(), null));
-        this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_UNSET.getImage(), null));
+        this.buttonWASD.setImage(GameImages.WASD_SET.getImage());
+        this.buttonArrows.setImage(GameImages.ARROWS_UNSET.getImage());
         ((SetUpController) this.getController()).setControls(Controls.WASD);
     }
 
     @FXML
     private void setArrows() {
-        this.buttonArrows.setImage(SwingFXUtils.toFXImage(GameImages.ARROWS_SET.getImage(), null));
-        this.buttonWASD.setImage(SwingFXUtils.toFXImage(GameImages.WASD_UNSET.getImage(), null));
+        this.buttonArrows.setImage(GameImages.ARROWS_SET.getImage());
+        this.buttonWASD.setImage(GameImages.WASD_UNSET.getImage());
         ((SetUpController) this.getController()).setControls(Controls.ARROW);
     }
 
     @FXML
     private void setPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null));
+        this.buttonPlay.setImage(GameImages.PLAY_SET.getImage());
     }
 
     @FXML
     private void unsetPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
+        this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
     }
 
     public final void play() {

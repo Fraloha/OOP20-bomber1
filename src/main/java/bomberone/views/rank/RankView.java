@@ -193,9 +193,9 @@ public final class RankView extends ViewImpl {
      */
     private void loadImages() {
         this.rankDifficultyImages = new Image[RankView.RANKS];
-        this.rankDifficultyImages[0] = SwingFXUtils.toFXImage(GameImages.EASYMODE.getImage(), null);
-        this.rankDifficultyImages[1] = SwingFXUtils.toFXImage(GameImages.HARDMODE.getImage(), null);
-        this.imageViewRankTitle.setImage(SwingFXUtils.toFXImage(GameImages.RANKVIEWTITLE.getImage(), null));
+        this.rankDifficultyImages[0] = GameImages.EASYMODE.getImage();
+        this.rankDifficultyImages[1] = GameImages.HARDMODE.getImage();
+        this.imageViewRankTitle.setImage(GameImages.RANKVIEWTITLE.getImage());
     }
 
     private void loadRanks() {

@@ -2,6 +2,8 @@ package bomberone.views.game.img;
 
 import java.awt.image.BufferedImage;
 
+import javafx.scene.image.Image;
+
 /**
  * This enum contains the Sprites of the Object animated.
  * 
@@ -59,8 +61,8 @@ public enum AnimatedObjectsSprites {
     private static final int ENTITY_HEIGHT = 48;
 
     private static final String RES_PATH = "images/";
-    private BufferedImage image;
-    private BufferedImage[][] sprites;
+    private Image image;
+    private Image[][] sprites;
     private String fileName;
     private int width;
     private int height;
@@ -83,7 +85,7 @@ public enum AnimatedObjectsSprites {
      * 
      * @param img to attach to the Value.
      */
-    public void setImage(final BufferedImage img) {
+    public void setImage(final Image img) {
         this.image = img;
     }
 
@@ -92,7 +94,7 @@ public enum AnimatedObjectsSprites {
      * 
      * @param sprites to attach to the Value
      */
-    public void setSprite(final BufferedImage[][] sprites) {
+    public void setSprite(final Image[][] sprites) {
         this.sprites = sprites;
     }
 
@@ -100,7 +102,7 @@ public enum AnimatedObjectsSprites {
      * 
      * @return the image attached to the Value.
      */
-    public BufferedImage getImage() {
+    public Image getImage() {
         return this.image;
     }
 
@@ -108,7 +110,7 @@ public enum AnimatedObjectsSprites {
      * 
      * @return the images matrix attached to the Value.
      */
-    public BufferedImage[][] getSprites() {
+    public Image[][] getSprites() {
         return this.sprites;
     }
 
