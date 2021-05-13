@@ -5,5 +5,8 @@ package bomberone.model.gameObjects;
  */
 public interface Fire extends GameObject {
 
-
+    /**
+     * @return index of the bomb's Animation.
+     */
+    int getIndexAnimation();
 }

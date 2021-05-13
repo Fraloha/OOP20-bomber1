@@ -78,7 +78,7 @@ public interface Bomber extends AnimatedEntity {
      * 
      * @return boolean isPierced
      */
-    boolean isPierced();
+    boolean getPierce();
 
     /**
      * Method that increment the Bomber's speed.

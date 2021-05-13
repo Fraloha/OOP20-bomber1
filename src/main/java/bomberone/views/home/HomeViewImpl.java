@@ -1,9 +1,10 @@
 package bomberone.views.home;
 
-import bomberone.model.common.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
+import bomberone.model.GameModelImpl;
+import bomberone.views.game.img.GameImages;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -39,7 +40,8 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToSetUp() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+        ViewsSwitcher.switchWithController(this.getStage(), ViewType.SETUP, new GameModelImpl());
+
     }
 
     /**
@@ -47,7 +49,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToCredits() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.CREDITS);
     }
 
     /**
@@ -55,7 +57,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRank() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK);
     }
 
     /**
@@ -63,7 +65,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRules() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RULES);
     }
 
     /**

@@ -1,6 +1,5 @@
 package bomberone.model.bomber;
 
-import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import bomberone.model.common.Direction;
@@ -63,8 +62,8 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
     private int fpAgg = 0;
     private boolean isChangedDir = false;
 
-    public BomberImpl(final P2d pos, final BufferedImage[][] img, final int lifes) {
-        super(pos, img, lifes, img[0][1]);
+    public BomberImpl(final P2d pos, final int lifes) {
+        super(pos, lifes);
         this.setSpeed(SPEED);
         this.setDir(DIR);
         this.startPosition = pos;
@@ -177,7 +176,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      * {@inheritDoc}
      */
     @Override
-    public boolean isPierced() {
+    public boolean getPierce() {
         return this.pierce;
     }
 

@@ -2,7 +2,6 @@ package bomberone.views.setUp;
 
 import bomberone.controllers.setUp.SetUpController;
 import bomberone.model.Difficulty;
-import bomberone.model.common.GameImages;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
@@ -10,6 +9,7 @@ import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
+import bomberone.views.game.img.GameImages;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -96,12 +96,12 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @Override
     public final void switchToGame() {
         SoundsHandler.stopAudio();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
+        ViewsSwitcher.switchWithController(this.getStage(), ViewType.GAME, this.getController().getModel());
     }
 
     @Override
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.HOME);
     }
 
     private void setPlayer(final String sign) {

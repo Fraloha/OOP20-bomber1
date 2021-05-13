@@ -10,14 +10,14 @@ import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.common.AnimatedObjectsSprites;
-import bomberone.model.common.GameImages;
 import bomberone.model.common.Maps;
 import bomberone.model.user.User;
 import bomberone.model.user.UserImpl;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
+import bomberone.views.game.img.AnimatedObjectsSprites;
+import bomberone.views.game.img.GameImages;
 
 public class TestTools {
 

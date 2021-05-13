@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
@@ -9,8 +8,8 @@ public class BoxImpl extends GameObjectImpl implements Box {
 
     private Optional<PowerUp> powerUp;
 
-    public BoxImpl(final P2d pos, final BufferedImage img, final int lifes) {
-        super(pos, img, lifes);
+    public BoxImpl(final P2d pos, final int lifes) {
+        super(pos, lifes);
         this.powerUp = Optional.empty();
     }
 

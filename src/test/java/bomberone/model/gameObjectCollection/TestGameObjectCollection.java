@@ -5,8 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.common.AnimatedObjectsSprites;
-import bomberone.model.common.GameImages;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.Bomb;
 import bomberone.model.gameObjects.BombImpl;
@@ -16,6 +14,8 @@ import bomberone.model.gameObjects.GameObject;
 import bomberone.model.gameObjects.GameObjectCollection;
 import bomberone.model.gameObjects.GameObjectCollectionImpl;
 import bomberone.model.gameObjects.HardWall;
+import bomberone.views.game.img.AnimatedObjectsSprites;
+import bomberone.views.game.img.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -33,7 +33,7 @@ public class TestGameObjectCollection {
     @Test
     public void testSpawnDespawn() {
         List<GameObject> list = new LinkedList<>();
-        Bomb bomb = new BombImpl(new P2d(32, 1), AnimatedObjectsSprites.BOMB.getSprites(), 1, 1, true);
+        Bomb bomb = new BombImpl(new P2d(32, 1), 1, 1, true);
         list.add(bomb);
         collection.spawn(bomb);
         assertTrue(collection.getGameObjectCollection().equals(list));
@@ -46,10 +46,10 @@ public class TestGameObjectCollection {
     @Test
     public void testGetObjectList() {
         List<Box> boxList = new LinkedList<>();
-        Box box = new BoxImpl(new P2d(32, 1), new BufferedImage(3, 3, 3), 1);
+        Box box = new BoxImpl(new P2d(32, 1), 1);
         boxList.add(box);
         List<HardWall> wallList = new LinkedList<>();
-        HardWall wall = new HardWall(new P2d(33, 1), new BufferedImage(2, 3, 3), 1);
+        HardWall wall = new HardWall(new P2d(33, 1), 1);
         wallList.add(wall);
         collection.spawn(box);
         collection.spawn(wall);

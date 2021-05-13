@@ -1,4 +1,4 @@
-package bomberone.model.common;
+package bomberone.views.game.img;
 
 import java.awt.image.BufferedImage;
 
@@ -42,7 +42,7 @@ public enum AnimatedObjectsSprites {
     /**
      * 
      */
-    PIERCED_BOMB("bombPiercedSprite.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
+    PIERCE_BOMB("bombPiercedSprite.png", AnimatedObjectsSprites.STD_HEIGHT, AnimatedObjectsSprites.STD_WIDTH),
 
     /**
      * 

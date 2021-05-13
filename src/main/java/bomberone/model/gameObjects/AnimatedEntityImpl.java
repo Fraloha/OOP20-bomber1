@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
@@ -15,11 +14,10 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     private boolean isStatic;
     private int spriteIndex; // 0:UP 1:DOWN 2:LEFT 3:RIGHT 4:DEATH
     private int animationsIndex;
-    private BufferedImage[][] sprites;
 
-    public AnimatedEntityImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final BufferedImage initialSprite) {
-        super(pos, initialSprite, lifes);
-        this.sprites = img;
+    public AnimatedEntityImpl(final P2d pos, final int lifes) {
+        super(pos, lifes);
+
         this.dir = Direction.DOWN;
         this.isStatic = true;
     }
@@ -142,14 +140,6 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      * {@inheritDoc}
      */
     @Override
-    public BufferedImage getImage() {
-        return this.sprites[this.spriteIndex][this.animationsIndex];
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void setSpriteIndex(final int index) {
         this.spriteIndex = index;
     }
@@ -176,12 +166,5 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     @Override
     public int getAnimationIndex() {
         return this.animationsIndex;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    public BufferedImage[][] getSprites() {
-        return this.sprites;
     }
 }

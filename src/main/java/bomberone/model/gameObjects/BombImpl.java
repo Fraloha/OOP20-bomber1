@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
@@ -30,14 +29,12 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private final int firePower;
     private final boolean pierced;
     private Optional<Explosion> explosion;
-    private BufferedImage[][] sprites;
     private int indexAnimation = 0;
     private int animationTimer = 0;
 
-    public BombImpl(final P2d pos, final BufferedImage[][] img, final int lifes, final int firePower,
+    public BombImpl(final P2d pos, final int lifes, final int firePower,
             final boolean pierced) {
-        super(pos, img[0][0], lifes);
-        this.sprites = img;
+        super(pos, lifes);
         this.explosion = Optional.empty();
         this.firePower = firePower;
         this.pierced = pierced;
@@ -68,6 +65,14 @@ public class BombImpl extends GameObjectImpl implements Bomb {
      * {@inheritDoc}
      */
     @Override
+    public int getIndexAnimation() {
+        return this.indexAnimation;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void update(final int elapsed) {
         if (this.thicks++ == TIME_TO_EXPLODE) {
             this.explode();
@@ -78,14 +83,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
             this.animationTimer = 0;
             this.indexAnimation = (this.indexAnimation + 1) % N_BOMB_ANIMATIONS;
         }
-    }
-
-    /**
-     * @return the correct animation of the bomb
-     */
-    @Override
-    public BufferedImage getImage() {
-        return this.sprites[0][this.indexAnimation];
     }
 
 }

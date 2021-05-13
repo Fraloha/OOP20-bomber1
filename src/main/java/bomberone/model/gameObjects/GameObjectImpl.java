@@ -1,7 +1,5 @@
 package bomberone.model.gameObjects;
 
-import java.awt.image.BufferedImage;
-
 import bomberone.model.common.P2d;
 import javafx.geometry.Rectangle2D;
 
@@ -9,26 +7,16 @@ public abstract class GameObjectImpl implements GameObject {
 
     private static final int RECTDIMENTIONS = 32;
 
-    private BufferedImage img;
     private P2d position;
     private Rectangle2D collider;
     private int lifes;
     private boolean isAlive;
 
-    public GameObjectImpl(final P2d pos, final BufferedImage img, final int lifes) {
+    public GameObjectImpl(final P2d pos, final int lifes) {
         this.position = pos;
-        this.img = img;
         this.lifes = lifes;
         this.isAlive = true;
         this.collider = new Rectangle2D(this.position.getX(), this.position.getY(), RECTDIMENTIONS, RECTDIMENTIONS);
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public BufferedImage getImage() {
-        return img;
     }
 
     /**
@@ -72,14 +60,6 @@ public abstract class GameObjectImpl implements GameObject {
         if (this.getLifes() == 0) {
             this.isAlive = false;
         }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setImage(final BufferedImage img) {
-        this.img = img;
     }
 
     /**
