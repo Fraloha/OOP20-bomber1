@@ -118,7 +118,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
             }
         }
 
-        switch (Math.abs(count % 4)) {
+        switch (count) {
         case 0:
             this.boxPlayer.setImage(GameImages.P1.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.WHITE);
@@ -191,6 +191,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     public final void play() {
         if (!textNickname.getText().isEmpty()) {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
+            ((SetUpController) this.getController()).attachUser();
             this.switchToGame();
         }
     }
