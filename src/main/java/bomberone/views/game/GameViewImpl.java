@@ -334,6 +334,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
+        SoundsHandler.start(GameSounds.HOME);
         Platform.runLater(() -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK));
     }
 
