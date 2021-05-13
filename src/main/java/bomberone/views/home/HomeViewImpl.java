@@ -56,7 +56,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRank() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK);
     }
 
     /**
