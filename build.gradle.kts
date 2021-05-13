@@ -60,7 +60,7 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("bomberOne.Launcher")
+    mainClass.set("bomberone.Launcher")
 
     /*
      * mainClassName was deprecated by Gradle, but it is still required by John Engelman's Shadow plugin.
