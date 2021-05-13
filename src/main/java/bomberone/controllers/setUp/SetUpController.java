@@ -41,5 +41,5 @@ public interface SetUpController extends Controller {
      */
     void setControls(Controls choice);
     
-    void attachUser();
+    void buildUser();
 }

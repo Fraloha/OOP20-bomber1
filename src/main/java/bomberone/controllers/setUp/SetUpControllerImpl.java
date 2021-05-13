@@ -9,32 +9,37 @@ import bomberone.model.user.UserImpl;
 
 public final class SetUpControllerImpl extends ControllerImpl implements SetUpController {
 
-    private User user = new UserImpl();
+    private Difficulty difficulty;
+    private String name;
+    private Skins skin;
+    private Controls controls;
 
     @Override
     public void setDifficulty(final Difficulty diff) {
-        this.getModel().setDifficulty(diff);
+        this.difficulty = diff;
     }
 
     @Override
     public void setUser(final String name) {
-        this.user.setName(name);
-        // this.getModel().getUser().setName(name);
+        this.name = name;
     }
 
     @Override
     public void setSkin(final Skins skin) {
-        this.user.setSkin(skin);
-        // this.getModel().getUser().setSkin(skin);
+        this.skin = skin;
     }
 
     @Override
     public void setControls(final Controls choice) {
-        // this.getModel().getUser().setControls(choice);
-        this.user.setControls(choice);
+        this.controls = choice;
     }
 
-    public void attachUser() {
+    public void buildUser() {
+        User user = new UserImpl();
+        user.setControls(this.controls);
+        user.setName(this.name);
+        user.setSkin(this.skin);
+        this.getModel().setDifficulty(this.difficulty);
         this.getModel().setUser(user);
     }
 
