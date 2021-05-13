@@ -20,16 +20,14 @@ public final class SoundsHandler {
         Arrays.stream(GameSounds.values()).forEach(values -> {
             if (values.getType().equals(Sounds.EFFECT)) {
                 try {
-                    final Media audio = new Media(
-                            ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
                     CACHE_EFFECTS.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    final Media audio = new Media(
-                            ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
                     CACHE_AUDIO.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
@@ -52,8 +50,12 @@ public final class SoundsHandler {
     public static synchronized void start(final GameSounds type) {
         if (type.getType().equals(Sounds.EFFECT)) {
             playerEffects = new MediaPlayer(CACHE_EFFECTS.get(type));
+        /*} else {
+            playerEffects = new MediaPlayer(CACHE_AUDIO.get(type));
+        }*/
             playerEffects.setVolume(type.getVolume());
             playerEffects.play();
+            playerEffects.setOnEndOfMedia(playerEffects::dispose);
         } else {
             playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
             playerAudio.setVolume(type.getVolume());
