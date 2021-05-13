@@ -31,7 +31,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void init() {
-        this.getController().init();
+
     }
 
     /**
@@ -40,7 +40,6 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @Override
     public void switchToSetUp() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, new GameModelImpl());
-
     }
 
     /**
