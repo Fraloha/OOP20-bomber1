@@ -57,7 +57,13 @@ public final class SoundsHandler {
             playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
             playerAudio.setVolume(type.getVolume());
             playerAudio.play();
-            playerAudio.setCycleCount(10);
+            playerAudio.setOnEndOfMedia(new Runnable() {
+                @Override
+                public void run() {
+                    playerAudio.stop();
+                    playerAudio.play();
+                }
+            });
         }
     }
 
@@ -66,5 +72,6 @@ public final class SoundsHandler {
      */
     public static synchronized void stopAudio() {
         playerAudio.stop();
+        playerAudio.dispose();
     }
 }
