@@ -6,6 +6,7 @@ import java.util.EnumMap;
 import java.util.Map;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.scene.media.MediaPlayer.Status;
 
 public final class SoundsHandler {
 
@@ -20,20 +21,23 @@ public final class SoundsHandler {
         Arrays.stream(GameSounds.values()).forEach(values -> {
             if (values.getType().equals(Sounds.EFFECT)) {
                 try {
-                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    final Media audio = new Media(
+                            ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
                     CACHE_EFFECTS.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
             } else {
                 try {
-                    final Media audio = new Media(ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
+                    final Media audio = new Media(
+                            ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
                     CACHE_AUDIO.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
         });
+        playerAudio = new MediaPlayer(CACHE_AUDIO.get(GameSounds.HOME));
     }
 
     private SoundsHandler() {
@@ -54,17 +58,23 @@ public final class SoundsHandler {
             playerEffects.play();
             playerEffects.setOnEndOfMedia(playerEffects::dispose);
         } else {
-            playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
-            playerAudio.setVolume(type.getVolume());
-            playerAudio.play();
-            playerAudio.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    playerAudio.stop();
-                    playerAudio.play();
-                }
-            });
+            if (!isPlaying()) {
+                playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+                playerAudio.setVolume(type.getVolume());
+                playerAudio.play();
+                playerAudio.setOnEndOfMedia(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerAudio.stop();
+                        playerAudio.play();
+                    }
+                });
+            }
         }
+    }
+
+    public static boolean isPlaying() {
+        return playerAudio.getStatus().equals(Status.PLAYING);
     }
 
     /**

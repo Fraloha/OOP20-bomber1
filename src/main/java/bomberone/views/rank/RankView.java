@@ -21,6 +21,8 @@ import java.util.Comparator;
 import javafx.util.Callback;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
+import bomberone.tools.audio.GameSounds;
+import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.basic.ViewImpl;
 import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
@@ -41,10 +43,10 @@ public final class RankView extends ViewImpl {
     private Image rankDifficultyImages[];
 
     private ArrayList<SortedList<User>> ranks;
-    
+
     @FXML
     private BorderPane borderPane;
-    
+
     @FXML
     private TableView<User> tableView;
 
@@ -80,7 +82,7 @@ public final class RankView extends ViewImpl {
 
     @Override
     public void init() {
-
+        SoundsHandler.start(GameSounds.HOME);
         // Initializing the buttons.
         this.setButtonsFonts();
         this.setButtonsEventHandlers();

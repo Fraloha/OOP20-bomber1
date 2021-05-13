@@ -68,7 +68,7 @@ public class HitEntityEvent implements WorldEvent {
             model.incScore(BOX_INC_SCORE);
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
-            SoundsHandler.start(GameSounds.ENEMY_HIT);
+            SoundsHandler.start(GameSounds.ENEMY_HIT); // This is the Sound Effect for Enemy hitted
             model.incScore(ENEMY_INC_SCORE);
         }
     }
