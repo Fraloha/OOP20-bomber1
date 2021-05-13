@@ -32,7 +32,7 @@ public final class SetUpControllerImpl extends ControllerImpl implements SetUpCo
 
     @Override
     public void init() {
-        this.attachModel(new GameModelImpl());
+
     }
 
 }

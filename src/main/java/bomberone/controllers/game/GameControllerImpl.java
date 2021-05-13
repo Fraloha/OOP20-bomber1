@@ -6,6 +6,7 @@ import bomberone.controllers.game.event.WorldEventListener;
 import bomberone.controllers.game.event.WorldEventListenerImpl;
 import bomberone.controllers.game.input.CommandListener;
 import bomberone.controllers.game.input.CommandListenerImpl;
+import bomberone.tools.RankLoader;
 import bomberone.views.game.GameView;
 
 public class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
