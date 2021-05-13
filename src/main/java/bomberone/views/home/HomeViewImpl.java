@@ -40,7 +40,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToSetUp() {
-        ViewsSwitcher.switchWithController(this.getStage(), ViewType.SETUP, new GameModelImpl());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, new GameModelImpl());
 
     }
 
@@ -49,7 +49,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToCredits() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.CREDITS);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS);
     }
 
     /**
@@ -65,7 +65,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRules() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RULES);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES);
     }
 
     /**
