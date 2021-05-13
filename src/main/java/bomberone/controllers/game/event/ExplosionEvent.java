@@ -7,6 +7,8 @@ import java.util.stream.Collectors;
 import bomberone.model.GameModel;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.Explosion;
+import bomberone.tools.audio.GameSounds;
+import bomberone.tools.audio.SoundsHandler;
 
 /**
  * When a bomb explode, it generates an ExplosionEvent.
@@ -19,6 +21,7 @@ public class ExplosionEvent implements WorldEvent {
     private Explosion explosion;
 
     public ExplosionEvent(final Explosion exp) {
+        SoundsHandler.start(GameSounds.BOMB);
         this.explosion = exp;
     }
 
