@@ -4,6 +4,8 @@ import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
 import bomberone.model.GameModelImpl;
+import bomberone.tools.audio.GameSounds;
+import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.game.img.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -31,7 +33,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void init() {
-
+        SoundsHandler.start(GameSounds.HOME);
     }
 
     /**

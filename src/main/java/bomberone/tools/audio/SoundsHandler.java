@@ -58,16 +58,18 @@ public final class SoundsHandler {
             playerEffects.play();
             playerEffects.setOnEndOfMedia(playerEffects::dispose);
         } else {
-            playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
-            playerAudio.setVolume(type.getVolume());
-            playerAudio.play();
-            playerAudio.setOnEndOfMedia(new Runnable() {
-                @Override
-                public void run() {
-                    playerAudio.stop();
-                    playerAudio.play();
-                }
-            });
+            if (!isPlaying()) {
+                playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+                playerAudio.setVolume(type.getVolume());
+                playerAudio.play();
+                playerAudio.setOnEndOfMedia(new Runnable() {
+                    @Override
+                    public void run() {
+                        playerAudio.stop();
+                        playerAudio.play();
+                    }
+                });
+            }
         }
     }
 

@@ -3,8 +3,6 @@ package bomberone;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
-import bomberone.tools.audio.SoundsHandler;
-import bomberone.tools.audio.GameSounds;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.game.img.GameImages;
@@ -27,7 +25,6 @@ public final class BomberOne extends Application {
         primaryStage.getIcons().add(GameImages.ICON.getImage());
         primaryStage.setTitle("BomberOne");
 
-        SoundsHandler.start(GameSounds.HOME);
         ViewsSwitcher.switchView(primaryStage, ViewType.HOME);
     }
 
