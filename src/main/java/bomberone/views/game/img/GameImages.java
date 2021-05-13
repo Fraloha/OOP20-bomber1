@@ -2,6 +2,8 @@ package bomberone.views.game.img;
 
 import java.awt.image.BufferedImage;
 
+import javafx.scene.image.Image;
+
 /**
  * The Resource loader use this enum to collect the Images used in the Game.
  * 
@@ -240,7 +242,8 @@ public enum GameImages {
     private static final String RES_PATH = "images/";
 
     private String fileName;
-    private BufferedImage image;
+//    private BufferedImage image;
+    private Image image;
 
     GameImages(final String fileName) {
         this.fileName = fileName;
@@ -251,7 +254,7 @@ public enum GameImages {
      * 
      * @param image
      */
-    public void setImage(final BufferedImage image) {
+    public void setImage(final Image image) {
         this.image = image;
     }
 
@@ -260,7 +263,7 @@ public enum GameImages {
      * 
      * @return the images
      */
-    public BufferedImage getImage() {
+    public Image getImage() {
         return this.image;
     }
 

@@ -4,7 +4,6 @@ import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
 import bomberone.views.game.img.GameImages;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 
@@ -15,7 +14,7 @@ public class CreditsViewImpl extends ViewImpl implements CreditsView {
 
     @Override
     public void init() {
-        this.creditsImage.setImage(SwingFXUtils.toFXImage(GameImages.CREDITS.getImage(), null));
+        this.creditsImage.setImage(GameImages.CREDITS.getImage());
     }
 
     @Override

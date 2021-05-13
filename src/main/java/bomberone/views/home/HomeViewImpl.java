@@ -44,10 +44,10 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @Override
     public void drawHome() {
-        this.boxLogo.setImage(SwingFXUtils.toFXImage(GameImages.HOME_LOGO.getImage(), null));
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
-        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
-        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null));
+        this.boxLogo.setImage(GameImages.HOME_LOGO.getImage());
+        this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
+        this.buttonRank.setImage(GameImages.RANK_UNSET.getImage());
+        this.buttonRules.setImage(GameImages.RULES_UNSET.getImage());
     }
 
     @FXML
@@ -74,31 +74,31 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void setPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_SET.getImage(), null));
+        this.buttonPlay.setImage(GameImages.PLAY_SET.getImage());
     }
 
     @FXML
     public void unsetPlay() {
-        this.buttonPlay.setImage(SwingFXUtils.toFXImage(GameImages.PLAY_UNSET.getImage(), null));
+        this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
     }
 
     @FXML
     public void setRank() {
-        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_SET.getImage(), null));
+        this.buttonRank.setImage(GameImages.RANK_SET.getImage());
     }
 
     @FXML
     public void unsetRank() {
-        this.buttonRank.setImage(SwingFXUtils.toFXImage(GameImages.RANK_UNSET.getImage(), null));
+        this.buttonRank.setImage(GameImages.RANK_UNSET.getImage());
     }
 
     @FXML
     public void setRules() {
-        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_SET.getImage(), null));
+        this.buttonRules.setImage(GameImages.RULES_SET.getImage());
     }
 
     @FXML
     public void unsetRules() {
-        this.buttonRules.setImage(SwingFXUtils.toFXImage(GameImages.RULES_UNSET.getImage(), null));
+        this.buttonRules.setImage(GameImages.RULES_UNSET.getImage());
     }
 }

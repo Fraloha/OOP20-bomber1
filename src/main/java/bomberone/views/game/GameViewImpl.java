@@ -1,6 +1,5 @@
 package bomberone.views.game;
 
-import java.awt.image.BufferedImage;
 
 import bomberone.controllers.game.GameController;
 import bomberone.model.Difficulty;
@@ -17,7 +16,6 @@ import bomberone.views.game.img.AnimatedObjectsSprites;
 import bomberone.views.game.img.GameImages;
 import bomberone.views.game.movement.ControlsMap;
 import javafx.application.Platform;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
@@ -80,8 +78,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
     private GraphicsContext gCBackground;
     private ControlsMap controlsMap;
 
-    private BufferedImage[][] bomberSprites;
-    private BufferedImage[][] enemySprites;
+    private Image[][] bomberSprites;
+    private Image[][] enemySprites;
 
     /**
      * When the quitButton is pressed, this method stop the Game.
@@ -146,12 +144,12 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void drawGame() {
         /* Draw the timer */
-        this.clockImageView.setImage(SwingFXUtils.toFXImage(GameImages.CLOCK.getImage(), null));
+        this.clockImageView.setImage(GameImages.CLOCK.getImage());
         this.drawBomberOnScoreBoard();
         this.drawLifes();
-        this.quitButton.setImage(SwingFXUtils.toFXImage(GameImages.QUIT_GAME.getImage(), null));
+        this.quitButton.setImage(GameImages.QUIT_GAME.getImage());
         /* Draw the background */
-        Image backgroundImage = SwingFXUtils.toFXImage(GameImages.BACKGROUND.getImage(), null);
+        Image backgroundImage = GameImages.BACKGROUND.getImage();
         for (int i = 0; i < WORLD_CELLS; i++) {
             for (int j = 0; j < WORLD_CELLS; j++) {
                 gCBackground.drawImage(backgroundImage, i * CELL_SIZE, j * CELL_SIZE);
@@ -159,10 +157,10 @@ public class GameViewImpl extends ViewImpl implements GameView {
         }
         /* Draw the spawner */
         double spawnCord = CELL_SIZE * WORLD_CELLS / 2 - CELL_SIZE / 2;
-        gCBackground.drawImage(SwingFXUtils.toFXImage(GameImages.SPAWN.getImage(), null), spawnCord, spawnCord);
+        gCBackground.drawImage(GameImages.SPAWN.getImage(), spawnCord, spawnCord);
 
         /* Draw the Walls */
-        Image wallImage = SwingFXUtils.toFXImage(GameImages.HARDWALL.getImage(), null);
+        Image wallImage = GameImages.HARDWALL.getImage();
         this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
                 .forEach(wall -> {
                     gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
@@ -184,7 +182,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the boxes */
         Platform.runLater(() -> {
-            Image boxImage = SwingFXUtils.toFXImage(GameImages.BOX.getImage(), null);
+            Image boxImage = GameImages.BOX.getImage();
             this.getController().getModel().getWorld().getGameObjectCollection().getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
@@ -195,7 +193,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getPowerUpList().stream()
                     .filter(PowerUp::isReleased).forEach(pUp -> {
-                        BufferedImage powerUpImage = null;
+                        Image powerUpImage = null;
                         PowerUp.Type type = pUp.getType();
                         if (type.equals(PowerUp.Type.FirePower)) {
                             powerUpImage = GameImages.POWER_FIREPOWER.getImage();
@@ -212,7 +210,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
                         if (type.equals(PowerUp.Type.Ammo)) {
                             powerUpImage = GameImages.POWER_BOMB.getImage();
                         }
-                        this.gCForeground.drawImage(SwingFXUtils.toFXImage(powerUpImage, null),
+                        this.gCForeground.drawImage(powerUpImage,
                                 pUp.getPosition().getX(), pUp.getPosition().getY());
                     });
         });
@@ -223,17 +221,13 @@ public class GameViewImpl extends ViewImpl implements GameView {
                     .forEach(bomb -> {
                         if (this.getController().getModel().getWorld().getBomber().getPierce()) {
                             this.gCForeground.drawImage(
-                                    SwingFXUtils.toFXImage(
                                             AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
                                                     % BOMB_N_ANIMATION],
-                                            null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         } else {
                             this.gCForeground.drawImage(
-                                    SwingFXUtils.toFXImage(
                                             AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation()
                                                     % BOMB_N_ANIMATION],
-                                            null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         }
 
@@ -243,8 +237,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
         /* Draw the fire */
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
-                this.gCForeground.drawImage(SwingFXUtils.toFXImage(
-                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION], null),
+                this.gCForeground.drawImage(
+                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
                         fire.getPosition().getX(), fire.getPosition().getY());
             });
         });
@@ -253,10 +247,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
                     .forEach(enemy -> {
-                        this.gCForeground.drawImage(
-                                SwingFXUtils
-                                        .toFXImage(this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex()
-                                                % ENEMY_N_ANIMATION], null),
+                        this.gCForeground.drawImage(this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex()
+                                                % ENEMY_N_ANIMATION],
                                 enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                                 ENEMY_WIDTH, ENEMY_HEIGHT);
                     });
@@ -264,9 +256,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
-        Platform.runLater(() -> this.gCForeground.drawImage(
-                SwingFXUtils.toFXImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex()
-                        % BOMBER_N_ANIMATION], null),
+        Platform.runLater(() -> this.gCForeground.drawImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex()
+                        % BOMBER_N_ANIMATION],
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
     }
@@ -279,21 +270,21 @@ public class GameViewImpl extends ViewImpl implements GameView {
         // Draw the icon of the Bomber
         if (color.equals(Skins.WHITE)) {
             Platform.runLater(
-                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER1SCOREBOARD.getImage(), null)));
+                    () -> miniBomber.setImage(GameImages.BOMBER1SCOREBOARD.getImage()));
         }
         if (color.equals(Skins.BLACK)) {
             Platform.runLater(
-                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER2SCOREBOARD.getImage(), null)));
+                    () -> miniBomber.setImage(GameImages.BOMBER2SCOREBOARD.getImage()));
         }
 
         if (color.equals(Skins.RED)) {
             Platform.runLater(
-                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER3SCOREBOARD.getImage(), null)));
+                    () -> miniBomber.setImage(GameImages.BOMBER3SCOREBOARD.getImage()));
         }
 
         if (color.equals(Skins.BLUE)) {
             Platform.runLater(
-                    () -> miniBomber.setImage(SwingFXUtils.toFXImage(GameImages.BOMBER4SCOREBOARD.getImage(), null)));
+                    () -> miniBomber.setImage(GameImages.BOMBER4SCOREBOARD.getImage()));
         }
     }
 
@@ -302,8 +293,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     private void drawLifes() {
         int nLifes = this.getController().getModel().getWorld().getBomber().getLifes();
-        Image lifeYes = SwingFXUtils.toFXImage(GameImages.LIFE_YES.getImage(), null);
-        Image lifeNo = SwingFXUtils.toFXImage(GameImages.LIFE_NO.getImage(), null);
+        Image lifeYes = GameImages.LIFE_YES.getImage();
+        Image lifeNo = GameImages.LIFE_NO.getImage();
         Platform.runLater(() -> this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo));
         Platform.runLater(() -> this.lifeTwo.setImage((nLifes >= N_LIFES_TWO) ? lifeYes : lifeNo));
         Platform.runLater(() -> this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo));
@@ -313,7 +304,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      * SetUp the sprites used for drawing Enemies and Bomber.
      */
     private void setUpSprites() {
-        BufferedImage[][] spritesEnemy = null;
+        Image[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
         if (this.getController().getModel().getDifficulty().equals(Difficulty.STANDARD)) {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
@@ -321,7 +312,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
         }
         this.enemySprites = spritesEnemy;
-        BufferedImage[][] spritesBomber = null;
+        Image[][] spritesBomber = null;
         if (this.getController().getModel().getUser().getSkin().equals(Skins.WHITE)) {
             spritesBomber = AnimatedObjectsSprites.BOMBER_WHITE.getSprites();
         }

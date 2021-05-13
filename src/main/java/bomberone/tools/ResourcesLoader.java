@@ -1,6 +1,5 @@
 package bomberone.tools;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -8,13 +7,11 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import javax.imageio.ImageIO;
-import javax.sound.sampled.AudioSystem;
-import javax.sound.sampled.UnsupportedAudioFileException;
 import bomberone.model.common.Maps;
 import bomberone.views.game.img.AnimatedObjectsSprites;
 import bomberone.views.game.img.GameImages;
-import bomberone.tools.audio.GameSounds;
+import javafx.scene.image.Image;
+import javafx.scene.image.WritableImage;
 import javafx.scene.text.Font;
 
 /**
@@ -45,19 +42,11 @@ public final class ResourcesLoader {
      */
     public static void loadImages() {
         Arrays.stream(GameImages.values()).forEach(value -> {
-            try {
-                value.setImage(ImageIO.read(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            value.setImage(new Image(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
         });
 
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
-            try {
-                value.setImage(ImageIO.read(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+            value.setImage(new Image(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
         });
     }
 
@@ -113,18 +102,17 @@ public final class ResourcesLoader {
      * @param spriteHeight Height of each individual sprite
      * @return Two-dimensional array of sprites
      */
-    private static BufferedImage[][] sliceSpriteMap(final BufferedImage spriteMap, final int spriteWidth,
+    private static Image[][] sliceSpriteMap(final Image spriteMap, final int spriteWidth,
             final int spriteHeight) {
-        int rows = spriteMap.getHeight() / spriteHeight;
-        int cols = spriteMap.getWidth() / spriteWidth;
-        BufferedImage[][] sprites = new BufferedImage[rows][cols];
+        int rows = (int) (spriteMap.getHeight() / spriteHeight);
+        int cols = (int) (spriteMap.getWidth() / spriteWidth);
+       Image[][] sprites = new Image[rows][cols];
         for (int row = 0; row < rows; row++) {
             for (int col = 0; col < cols; col++) {
-                sprites[row][col] = spriteMap.getSubimage(col * spriteWidth, row * spriteHeight, spriteWidth,
+                sprites[row][col] = new WritableImage(spriteMap.getPixelReader(), col * spriteWidth, row * spriteHeight, spriteWidth,
                         spriteHeight);
             }
         }
-
         return sprites;
     }
 }

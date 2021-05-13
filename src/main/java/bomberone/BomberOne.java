@@ -9,7 +9,6 @@ import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.game.img.GameImages;
 import javafx.application.Application;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.stage.Stage;
 
 public final class BomberOne extends Application {
@@ -25,7 +24,7 @@ public final class BomberOne extends Application {
         ResourcesLoader.start();
         DirectoryLoader.start();
         RankLoader.readUsers();
-        primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
+        primaryStage.getIcons().add(GameImages.ICON.getImage());
         primaryStage.setTitle("BomberOne");
 
         SoundsHandler.start(GameSounds.HOME);
