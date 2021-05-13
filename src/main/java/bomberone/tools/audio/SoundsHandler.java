@@ -59,7 +59,9 @@ public final class SoundsHandler {
             playerEffects.setOnEndOfMedia(playerEffects::dispose);
         } else {
             if (!isPlaying()) {
-                playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+                if (!playerAudio.getMedia().equals(CACHE_AUDIO.get(type))) {
+                    playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+                }
                 playerAudio.setVolume(type.getVolume());
                 playerAudio.play();
                 playerAudio.setOnEndOfMedia(new Runnable() {
