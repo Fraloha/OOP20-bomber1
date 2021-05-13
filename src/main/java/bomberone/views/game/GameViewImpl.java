@@ -219,7 +219,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getBombList().stream()
                     .forEach(bomb -> {
-                        if (this.getController().getModel().getWorld().getBomber().getPierce()) {
+                        if (bomb.getPierce()) {
                             this.gCForeground.drawImage(
                                             AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
                                                     % BOMB_N_ANIMATION],
@@ -334,7 +334,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
-        SoundsHandler.start(GameSounds.HOME);
+        SoundsHandler.start(GameSounds.CLASSIC);
         Platform.runLater(() -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK));
     }
 
