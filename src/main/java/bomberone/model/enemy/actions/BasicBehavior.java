@@ -65,7 +65,7 @@ public final class BasicBehavior implements Actions{
 	    } else {
 	        if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
 	            this.selectedEnemy.setFrameCounterAnimation(0);
-	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1) % 3);
+	            this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1));
 	        }else {
 	            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
 	        }

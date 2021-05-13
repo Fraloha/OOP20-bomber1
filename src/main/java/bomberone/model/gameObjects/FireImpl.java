@@ -40,7 +40,7 @@ public class FireImpl extends GameObjectImpl implements Fire {
         }
         /* Update the animation of the Fire */
         if (this.animationThick++ == ANIMATION_TIMER) {
-            this.animationIndex = (this.animationIndex + 1) % 3;
+            this.animationIndex = (this.animationIndex + 1);
             this.animationThick = 0;
         }
     }

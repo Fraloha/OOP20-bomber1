@@ -276,7 +276,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
             }
             if (!this.isStatic() && ++this.fpAgg == WALKING_TIME) {
                 this.fpAgg = 0;
-                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
+                this.setAnimationIndex((this.getAnimationIndex() + 1));
             }
         } else {
             if (this.getSpriteIndex() != 4) {
@@ -285,7 +285,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.fpAgg = 0;
             } else if (++this.fpAgg == DEATH_TIME) {
                 this.fpAgg = 0;
-                this.setAnimationIndex((this.getAnimationIndex() + 1) % 4);
+                this.setAnimationIndex((this.getAnimationIndex() + 1));
             }
             if (this.getSpriteIndex() == 4 && this.getAnimationIndex() == 3) {
                 this.respawn();

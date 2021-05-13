@@ -41,6 +41,10 @@ public class GameViewImpl extends ViewImpl implements GameView {
     private static final int CELL_SIZE = 32;
     private static final int WORLD_WIDTH = 576;
     private static final int WORLD_HEIGHT = 576;
+    private static final int BOMBER_N_ANIMATION = 4;
+    private static final int ENEMY_N_ANIMATION = 3;
+    private static final int FIRE_N_ANIMATION = 3;
+    private static final int BOMB_N_ANIMATION = 15;
 
     @FXML
     private Label timeLabel;
@@ -218,11 +222,11 @@ public class GameViewImpl extends ViewImpl implements GameView {
                     .forEach(bomb -> {
                         if (this.getController().getModel().getWorld().getBomber().getPierce()) {
                             this.gCForeground.drawImage(SwingFXUtils.toFXImage(
-                                            AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()], null),
+                                            AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION], null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         } else {
                             this.gCForeground.drawImage(SwingFXUtils.toFXImage(
-                                    AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation()], null),
+                                    AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION], null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         }
 
@@ -235,7 +239,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
                 this.gCForeground
                         .drawImage(
                                 SwingFXUtils.toFXImage(
-                                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation()], null),
+                                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION], null),
                                 fire.getPosition().getX(), fire.getPosition().getY());
             });
         });
@@ -246,7 +250,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
                     .forEach(enemy -> {
                         this.gCForeground.drawImage(
                                 SwingFXUtils.toFXImage(
-                                        this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex()], null),
+                                        this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION], null),
                                 enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                                 ENEMY_WIDTH, ENEMY_HEIGHT);
                     });
@@ -255,7 +259,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(
-                SwingFXUtils.toFXImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex()],
+                SwingFXUtils.toFXImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
                         null),
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
