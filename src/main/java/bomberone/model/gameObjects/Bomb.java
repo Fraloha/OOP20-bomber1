@@ -23,4 +23,10 @@ public interface Bomb extends GameObject {
      */
     int getIndexAnimation();
 
+    /**
+     * 
+     * @return true if bomb has PuP Pierce.
+     */
+    boolean getPierce();
+
 }

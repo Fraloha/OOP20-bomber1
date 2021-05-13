@@ -68,6 +68,13 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     /**
      * {@inheritDoc}
      */
+    public boolean getPierce() {
+        return this.pierced;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void update(final int elapsed) {
         if (this.thicks++ == TIME_TO_EXPLODE) {

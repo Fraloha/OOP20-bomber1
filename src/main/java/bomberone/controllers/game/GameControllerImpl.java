@@ -34,6 +34,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             lastTime = current;
 
         }
+        this.getModel().getTimerThread().stopTimer();
         if (!this.wasStopped) {
             ((GameView) this.getView()).switchToRank();
         }
@@ -56,7 +57,6 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     @Override
     public void quitGame() {
         // this.clip.stop();
-        this.getModel().getTimerThread().stopTimer();
         this.getModel().setGameOver(true);
         this.wasStopped = true;
     }

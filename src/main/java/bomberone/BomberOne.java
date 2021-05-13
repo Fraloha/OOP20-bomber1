@@ -24,7 +24,6 @@ public final class BomberOne extends Application {
         RankLoader.readUsers();
         primaryStage.getIcons().add(GameImages.ICON.getImage());
         primaryStage.setTitle("BomberOne");
-
         ViewsSwitcher.switchView(primaryStage, ViewType.HOME);
     }
 
