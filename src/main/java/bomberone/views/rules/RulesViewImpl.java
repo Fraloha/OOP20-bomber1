@@ -6,10 +6,12 @@ import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
 import javafx.scene.text.Font;
 
 public class RulesViewImpl extends ViewImpl implements RulesView {
+
+    private static final int FONT_SIZE_20 = 20;
+    private static final int FONT_SIZE_16 = 16;
 
     @FXML
     private Label rules;
@@ -38,10 +40,13 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
     private Font arcade20;
     private Font arcade16;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
-        this.arcade20 = ResourcesLoader.getFont(20);
-        this.arcade16 = ResourcesLoader.getFont(16);
+        this.arcade20 = ResourcesLoader.getFont(FONT_SIZE_20);
+        this.arcade16 = ResourcesLoader.getFont(FONT_SIZE_16);
         this.rules.setFont(arcade20);
         this.textPU.setFont(arcade20);
         this.textPU1.setFont(arcade16);
@@ -51,7 +56,10 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
         this.textPU5.setFont(arcade16);
     }
 
-    @FXML
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public final void switchToHome() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
     }

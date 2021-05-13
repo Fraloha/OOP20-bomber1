@@ -12,11 +12,17 @@ public class CreditsViewImpl extends ViewImpl implements CreditsView {
     @FXML
     private ImageView creditsImage;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         this.creditsImage.setImage(GameImages.CREDITS.getImage());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void switchToHome() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
