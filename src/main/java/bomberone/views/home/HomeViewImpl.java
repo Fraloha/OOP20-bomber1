@@ -2,6 +2,7 @@ package bomberone.views.home;
 
 
 import bomberone.tools.audio.SoundsHandler;
+import bomberone.model.GameModelImpl;
 import bomberone.tools.audio.GameSounds;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
@@ -38,7 +39,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
         // this.graphicContext = this.homeCanvas.getGraphicsContext2D();
 
         this.drawHome();
-        this.getController().init();
+//        this.getController().init();
     }
 
     @Override
@@ -51,22 +52,24 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToSetUp() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+        ViewsSwitcher.switchWithController(this.getStage(), ViewType.SETUP, new GameModelImpl());
+
     }
 
     @FXML
     public void switchToCredits() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.CREDITS);
     }
 
     @FXML
     public void switchToRank() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+//        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK);
     }
 
     @FXML
     public void switchToRules() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RULES);
     }
 
     @FXML

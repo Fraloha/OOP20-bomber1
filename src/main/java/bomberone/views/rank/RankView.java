@@ -230,6 +230,6 @@ public final class RankView extends ViewImpl {
     }
 
     private void onClickBackToMainMenu() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.HOME);
     }
 }

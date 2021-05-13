@@ -4,7 +4,6 @@ import java.awt.image.BufferedImage;
 
 import bomberone.controllers.game.GameController;
 import bomberone.model.Difficulty;
-import bomberone.model.GameModelImpl;
 import bomberone.model.bomber.Bomber;
 import bomberone.model.gameObjects.PowerUp;
 import bomberone.model.user.Skins;
@@ -88,7 +87,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         SoundsHandler.stopAudio();
         SoundsHandler.start(GameSounds.HOME);
         ((GameController) this.getController()).quitGame();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, new GameModelImpl());
+        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.HOME);
     }
 
     /**
@@ -331,7 +330,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+        Platform.runLater(() -> ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK));
     }
 
 }

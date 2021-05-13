@@ -1,7 +1,7 @@
 package bomberone;
 
-import bomberone.model.GameModelImpl;
 import bomberone.tools.DirectoryLoader;
+import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
@@ -24,11 +24,12 @@ public final class BomberOne extends Application {
         primaryStage.setResizable(false);
         ResourcesLoader.start();
         DirectoryLoader.start();
+        RankLoader.readUsers();
         primaryStage.getIcons().add(SwingFXUtils.toFXImage(GameImages.ICON.getImage(), null));
         primaryStage.setTitle("BomberOne");
 
         SoundsHandler.start(GameSounds.HOME);
-        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
+        ViewsSwitcher.switchWithoutController(primaryStage, ViewType.HOME);
     }
 
 }
