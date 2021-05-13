@@ -20,10 +20,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
      * Constant to control the pulse animation.
      */
     private static final int ANIMATION_COUNTDOWN = 2;
-    /**
-     * Number of the pulse animations.
-     */
-    private static final int N_BOMB_ANIMATIONS = 15;
+
 
     private int thicks;
     private final int firePower;
@@ -81,7 +78,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
         /* Bomb pulse animation */
         if (this.animationTimer++ == BombImpl.ANIMATION_COUNTDOWN) {
             this.animationTimer = 0;
-            this.indexAnimation = (this.indexAnimation + 1) % N_BOMB_ANIMATIONS;
+            this.indexAnimation = (this.indexAnimation + 1);
         }
     }
 
