@@ -19,13 +19,13 @@ public final class ViewsSwitcher {
     }
 
     /**
-   * Switch the view displayed on the Stage, if it has a controller.
-   * 
-   * @param stage
-   * @param viewType the type of the View to switch
-   * @param model    the Istance of the GameModel
-   * @throws IOException
-   */
+     * Switch the view displayed on the Stage, if it has a controller.
+     * 
+     * @param stage
+     * @param viewType the type of the View to switch
+     * @param model    the Istance of the GameModel
+     * @throws IOException
+     */
     public static void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
         View view = loadStyle(stage, viewType);
         Controller controller = viewType.getController().get();
@@ -52,7 +52,8 @@ public final class ViewsSwitcher {
 
     /**
      * Load Style from FXML file and creates the View linked to it.
-     * @param stage to be changed
+     * 
+     * @param stage    to be changed
      * @param viewType of new View
      * @return The View
      */
