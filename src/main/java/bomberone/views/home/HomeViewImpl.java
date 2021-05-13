@@ -52,24 +52,24 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
 
     @FXML
     public void switchToSetUp() {
-        ViewsSwitcher.switchWithController(this.getStage(), ViewType.SETUP, new GameModelImpl());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, new GameModelImpl());
 
     }
 
     @FXML
     public void switchToCredits() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.CREDITS);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS);
     }
 
     @FXML
     public void switchToRank() {
 //        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK);
     }
 
     @FXML
     public void switchToRules() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RULES);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES);
     }
 
     @FXML

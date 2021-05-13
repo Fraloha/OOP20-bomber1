@@ -29,7 +29,7 @@ public final class BomberOne extends Application {
         primaryStage.setTitle("BomberOne");
 
         SoundsHandler.start(GameSounds.HOME);
-        ViewsSwitcher.switchWithoutController(primaryStage, ViewType.HOME);
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME);
     }
 
 }

@@ -20,7 +20,7 @@ public class CreditsViewImpl extends ViewImpl implements CreditsView {
 
     @Override
     public void switchToHome() {
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
     }
 
 }

@@ -91,7 +91,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         SoundsHandler.stopAudio();
         SoundsHandler.start(GameSounds.HOME);
         ((GameController) this.getController()).quitGame();
-        ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
     }
 
     /**
@@ -145,6 +145,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void drawGame() {
+        /* Draw the timer */
         this.clockImageView.setImage(SwingFXUtils.toFXImage(GameImages.CLOCK.getImage(), null));
         this.drawBomberOnScoreBoard();
         this.drawLifes();
@@ -174,7 +175,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
      */
     @Override
     public void render() {
-
+        /* Update Scorebar */
         this.drawLifes();
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
         Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
@@ -221,12 +222,18 @@ public class GameViewImpl extends ViewImpl implements GameView {
             this.getController().getModel().getWorld().getGameObjectCollection().getBombList().stream()
                     .forEach(bomb -> {
                         if (this.getController().getModel().getWorld().getBomber().getPierce()) {
-                            this.gCForeground.drawImage(SwingFXUtils.toFXImage(
-                                            AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION], null),
+                            this.gCForeground.drawImage(
+                                    SwingFXUtils.toFXImage(
+                                            AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
+                                                    % BOMB_N_ANIMATION],
+                                            null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         } else {
-                            this.gCForeground.drawImage(SwingFXUtils.toFXImage(
-                                    AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION], null),
+                            this.gCForeground.drawImage(
+                                    SwingFXUtils.toFXImage(
+                                            AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation()
+                                                    % BOMB_N_ANIMATION],
+                                            null),
                                     bomb.getPosition().getX(), bomb.getPosition().getY());
                         }
 
@@ -236,11 +243,9 @@ public class GameViewImpl extends ViewImpl implements GameView {
         /* Draw the fire */
         Platform.runLater(() -> {
             this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
-                this.gCForeground
-                        .drawImage(
-                                SwingFXUtils.toFXImage(
-                                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION], null),
-                                fire.getPosition().getX(), fire.getPosition().getY());
+                this.gCForeground.drawImage(SwingFXUtils.toFXImage(
+                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION], null),
+                        fire.getPosition().getX(), fire.getPosition().getY());
             });
         });
 
@@ -249,8 +254,9 @@ public class GameViewImpl extends ViewImpl implements GameView {
             this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
                     .forEach(enemy -> {
                         this.gCForeground.drawImage(
-                                SwingFXUtils.toFXImage(
-                                        this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION], null),
+                                SwingFXUtils
+                                        .toFXImage(this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex()
+                                                % ENEMY_N_ANIMATION], null),
                                 enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                                 ENEMY_WIDTH, ENEMY_HEIGHT);
                     });
@@ -259,8 +265,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
         /* Draw the BomberMan */
         Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(
-                SwingFXUtils.toFXImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
-                        null),
+                SwingFXUtils.toFXImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex()
+                        % BOMBER_N_ANIMATION], null),
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
     }
@@ -303,6 +309,9 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo));
     }
 
+    /**
+     * SetUp the sprites used for drawing Enemies and Bomber.
+     */
     private void setUpSprites() {
         BufferedImage[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
@@ -334,7 +343,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
-        Platform.runLater(() -> ViewsSwitcher.switchWithoutController(this.getStage(), ViewType.RANK));
+        Platform.runLater(() -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK));
     }
 
 }
