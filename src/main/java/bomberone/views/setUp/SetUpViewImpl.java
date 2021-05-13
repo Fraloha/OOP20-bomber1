@@ -190,6 +190,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     public final void play() {
         if (!textNickname.getText().isEmpty()) {
+            ((SetUpController) this.getController()).setUser(textNickname.getText());
             this.switchToGame();
         }
     }
