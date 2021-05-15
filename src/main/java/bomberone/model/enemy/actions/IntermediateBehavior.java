@@ -11,20 +11,18 @@ import bomberone.model.common.Direction;
 import bomberone.model.enemy.navigation.Node;
 import bomberone.model.enemy.navigation.NodeImpl;
 
-public class IntermediateBehavior implements Actions {
+public final class IntermediateBehavior extends AbstractActions {
 
     /* Fields. */
     private P2d playerPosition;
     private Random randomGenerator;
-    private EnemyImpl selectedEnemy;
     private BasicBehavior basicActions;
     private HashSet<P2d> visitedPosition;
     private LinkedList<Node> positionsToVisit;
 
     /* Constructor. */
-    public IntermediateBehavior(final EnemyImpl newEnemy, final P2d playerPos) {
-        this.selectedEnemy = newEnemy;
-        this.playerPosition = playerPos;
+    public IntermediateBehavior(final EnemyImpl newEnemy) {
+        super(newEnemy);
         this.randomGenerator = new Random();
         this.positionsToVisit = new LinkedList<Node>();
         this.visitedPosition = new HashSet<P2d>();
@@ -43,11 +41,6 @@ public class IntermediateBehavior implements Actions {
         this.selectedEnemy.setPosition(actualPosition);
     }
 
-    @Override
-    public void nextMove() {
-        
-    }
-    
     public void setPlayerPosition(final P2d playerPos) {
         this.playerPosition = playerPos;
     }
@@ -66,6 +59,14 @@ public class IntermediateBehavior implements Actions {
         return this.selectedEnemy.getPosition();
     }
 
+    /**
+     * This method adds new positions to check in the search algorithm. In
+     * particular, this method builds the tree or graph, where the BFS has to be
+     * performed.
+     * 
+     * @param currentNode The current node to set as a parent of the nodes that will
+     *                    be created.
+     */
     private void addTargets(final Node node) {
         /* Variables declaration. */
         P2d currentInitialPosition = this.selectedEnemy.getPosition();
@@ -73,23 +74,30 @@ public class IntermediateBehavior implements Actions {
 
         for (Direction currentDirection : Direction.values()) {
             positionToCheck = this.doMovements(currentDirection);
-            
-            if (!this.visitedPosition.contains(positionToCheck) && 
-                    node.isAccessible(this.selectedEnemy)) {
+
+            if (!this.visitedPosition.contains(positionToCheck) && node.isAccessible(this.selectedEnemy)) {
                 this.positionsToVisit.add(new NodeImpl(currentDirection, positionToCheck, node));
             }
         }
         this.selectedEnemy.setPosition(currentInitialPosition);
     }
-    
+
+    /**
+     * This method search the shortest path to reach the player. The searching
+     * algorithm is a Breadth-First Search algorithm.
+     * 
+     * @param initialPosition The enemy position.
+     * @param destination     The player position.
+     * @return A list of directions that defines the shortest path.
+     */
     private List<Direction> shortestPath(final P2d initialPosition, final P2d destination) {
         /* Variables declaration. */
         List<Direction> path = null;
-        
+
         // Setting the initial node.
         this.positionsToVisit.add(new NodeImpl(null, initialPosition, null));
-        
-        while(!this.positionsToVisit.isEmpty()) {
+
+        while (!this.positionsToVisit.isEmpty()) {
             Node currentNode = this.positionsToVisit.remove();
             if (currentNode.getPosition().equals(destination)) {
                 path = currentNode.getPath();

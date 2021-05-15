@@ -20,8 +20,6 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     private static final int FRAME_PER_SECOND = 60;
     private static final int LOW_SPEED = 500;
     private static final int HIGH_SPEED = 600;
-    private List<BoxImpl> boxes;
-    private List<HardWall> walls;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
@@ -55,7 +53,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     /**
      * {@inheritDoc}
      */
-    public void update(int elapsed) {
+    public void update(int elapsed, P2d playerPosition) {
         // The enemy before acts has to wait four second that are 240 frames.
         // Checking if the frame counter is greater than zero.
         if (this.frameCounter > 0) {
@@ -67,6 +65,11 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
                 this.nextMoveFrameCounter = 0;
+                
+                // If the difficulty is hard the enemy has to keep track of the player.
+                if (this.behavior.getClass() == IntermediateBehavior.class) {
+                    ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition);
+                }
                 this.behavior.doActions();
                 super.update(elapsed);
             }
@@ -83,5 +86,17 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
     public boolean isHittable() {
         return this.isHittable;
+    }
+
+    @Override
+    public List<BoxImpl> getBoxes() {
+        // TODO Auto-generated method stub
+        return null;
+    }
+
+    @Override
+    public List<HardWall> getHardWalls() {
+        // TODO Auto-generated method stub
+        return null;
     }
 }

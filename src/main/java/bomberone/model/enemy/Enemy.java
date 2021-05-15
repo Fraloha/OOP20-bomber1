@@ -19,4 +19,8 @@ public interface Enemy extends AnimatedEntity {
     List<BoxImpl> getBoxes();
     
     List<HardWall> getHardWalls();
+
+    int getFrameCounterAnimation();
+
+    void setFrameCounterAnimation(int i);
 }
