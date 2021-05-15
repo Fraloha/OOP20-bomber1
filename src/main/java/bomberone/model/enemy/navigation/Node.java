@@ -1,4 +1,4 @@
-package bomberone.model.enemy.actions;
+package bomberone.model.enemy.navigation;
 
 import java.util.List;
 import bomberone.model.common.P2d;
