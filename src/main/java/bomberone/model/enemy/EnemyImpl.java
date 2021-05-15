@@ -1,5 +1,7 @@
 package bomberone.model.enemy;
 
+import java.util.List;
+
 import bomberone.model.Difficulty;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
@@ -7,6 +9,8 @@ import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
 import bomberone.model.enemy.actions.IntermediateBehavior;
 import bomberone.model.gameObjects.AnimatedEntityImpl;
+import bomberone.model.gameObjects.BoxImpl;
+import bomberone.model.gameObjects.HardWall;
 
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
@@ -16,6 +20,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     private static final int FRAME_PER_SECOND = 60;
     private static final int LOW_SPEED = 500;
     private static final int HIGH_SPEED = 600;
+    private List<BoxImpl> boxes;
+    private List<HardWall> walls;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
@@ -23,7 +29,8 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     private boolean isHittable = false;
 
     /* Constructors. */
-    public EnemyImpl(final P2d position, final int lifes, Difficulty mode) {
+    public EnemyImpl(final P2d position, final int lifes, Difficulty mode, List<BoxImpl> boxesToSet,
+            List<HardWall> wallsToSet) {
         super(position, lifes);
 
         // Setting the number of frames that the enemy has to wait before start moving.

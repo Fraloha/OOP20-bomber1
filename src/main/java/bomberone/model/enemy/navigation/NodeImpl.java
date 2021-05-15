@@ -3,6 +3,8 @@ package bomberone.model.enemy.navigation;
 import java.util.LinkedList;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.Enemy;
+import bomberone.model.gameObjects.BoxImpl;
+import bomberone.model.gameObjects.HardWall;
 import bomberone.model.common.Direction;
 
 /**
@@ -57,6 +59,18 @@ public class NodeImpl implements Node{
         }
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public boolean isAccessible(final Enemy enemy) {
+        boolean result = false;
+        for (BoxImpl currentBox : enemy.getBoxes()) {
+            result = currentBox.getCollider().intersects(enemy.getCollider()) ? true : false;
+        }
+        
+        for (HardWall currentWall : enemy.getHardWalls()) {
+            result = currentWall.getCollider().intersects(enemy.getCollider()) ? true : false;
+        }
+        return result;
     }
 }
