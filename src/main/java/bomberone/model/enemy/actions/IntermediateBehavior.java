@@ -14,15 +14,17 @@ import bomberone.model.enemy.navigation.NodeImpl;
 public class IntermediateBehavior implements Actions {
 
     /* Fields. */
+    private P2d playerPosition;
     private Random randomGenerator;
-    private BasicBehavior basicActions;
     private EnemyImpl selectedEnemy;
-    private LinkedList<Node> positionsToVisit;
+    private BasicBehavior basicActions;
     private HashSet<P2d> visitedPosition;
+    private LinkedList<Node> positionsToVisit;
 
     /* Constructor. */
-    public IntermediateBehavior(final EnemyImpl newEnemy) {
+    public IntermediateBehavior(final EnemyImpl newEnemy, final P2d playerPos) {
         this.selectedEnemy = newEnemy;
+        this.playerPosition = playerPos;
         this.randomGenerator = new Random();
         this.positionsToVisit = new LinkedList<Node>();
         this.visitedPosition = new HashSet<P2d>();
@@ -36,12 +38,17 @@ public class IntermediateBehavior implements Actions {
      */
     @Override
     public void doActions() {
-
+        P2d actualPosition = this.selectedEnemy.getPosition();
+        this.shortestPath(actualPosition, this.selectedEnemy.get)
     }
 
     @Override
     public void nextMove() {
         
+    }
+    
+    public void setPlayerPosition(final P2d playerPos) {
+        this.playerPosition = playerPos;
     }
 
     private P2d doMovements(final Direction direction) {
