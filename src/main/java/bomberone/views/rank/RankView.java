@@ -135,6 +135,8 @@ public final class RankView extends ViewImpl {
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
+        this.tableViewPlayers.setSortable(false);
+        this.tableViewScores.setSortable(false);
 
         // Setting the font.
         this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
