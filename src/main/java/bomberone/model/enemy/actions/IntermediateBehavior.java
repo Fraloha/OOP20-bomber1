@@ -3,6 +3,8 @@ package bomberone.model.enemy.actions;
 import java.util.Random;
 import java.util.HashSet;
 import java.util.LinkedList;
+import java.util.List;
+
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.common.Direction;
@@ -39,11 +41,10 @@ public class IntermediateBehavior implements Actions {
 
     @Override
     public void nextMove() {
-        // TODO Auto-generated method stub
-
+        
     }
 
-    private P2d doMovements(Direction direction) {
+    private P2d doMovements(final Direction direction) {
         if (direction.equals(Direction.UP)) {
             this.selectedEnemy.moveUp();
         } else if (direction.equals(Direction.DOWN)) {
@@ -57,7 +58,7 @@ public class IntermediateBehavior implements Actions {
         return this.selectedEnemy.getPosition();
     }
 
-    private void addTargets(Node node) {
+    private void addTargets(final Node node) {
         /* Variables declaration. */
         P2d currentInitialPosition = this.selectedEnemy.getPosition();
         P2d positionToCheck;
@@ -71,5 +72,23 @@ public class IntermediateBehavior implements Actions {
             }
         }
         this.selectedEnemy.setPosition(currentInitialPosition);
+    }
+    
+    private List<Direction> shortestPath(final P2d initialPosition, final P2d destination) {
+        /* Variables declaration. */
+        List<Direction> path = null;
+        
+        // Setting the initial node.
+        this.positionsToVisit.add(new NodeImpl(null, initialPosition, null));
+        
+        while(!this.positionsToVisit.isEmpty()) {
+            Node currentNode = this.positionsToVisit.remove();
+            if (currentNode.getPosition().equals(destination)) {
+                path = currentNode.getPath();
+            }
+            this.visitedPosition.add(currentNode.getPosition());
+            this.addTargets(currentNode);
+        }
+        return path;
     }
 }
