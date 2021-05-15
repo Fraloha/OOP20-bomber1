@@ -4,12 +4,19 @@
 
 package bomberone.model.enemy;
 
-import bomberone.model.common.Direction;
 import bomberone.model.gameObjects.AnimatedEntity;
+import bomberone.model.gameObjects.BoxImpl;
+import bomberone.model.gameObjects.HardWall;
+import java.util.List;
 
 public interface Enemy extends AnimatedEntity {
 
+    /* Methods. */
+    void update(int elapsed);
+
     boolean isHittable();
-        /* Methods. */
-	void update(int elapsed);
+    
+    List<BoxImpl> getBoxes();
+    
+    List<HardWall> getHardWalls();
 }

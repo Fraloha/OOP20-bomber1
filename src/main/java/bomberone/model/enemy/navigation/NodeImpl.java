@@ -1,10 +1,9 @@
 package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
-import java.util.List;
-
-import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
+import bomberone.model.enemy.Enemy;
+import bomberone.model.common.Direction;
 
 /**
  * {@inheritDoc}
@@ -45,6 +44,9 @@ public class NodeImpl implements Node{
         return this.parent;
     }
     
+    /**
+     * {@inheritDoc}
+     */
     public LinkedList<Direction> getPath(){
         if (this.parent == null) {
             return new LinkedList<Direction>();
@@ -53,5 +55,8 @@ public class NodeImpl implements Node{
             path.add(getDirection());
             return path;
         }
+    }
+    
+    public boolean isAccessible(final Enemy enemy) {
     }
 }
