@@ -39,7 +39,8 @@ public class IntermediateBehavior implements Actions {
     @Override
     public void doActions() {
         P2d actualPosition = this.selectedEnemy.getPosition();
-        this.shortestPath(actualPosition, this.selectedEnemy.get)
+        this.selectedEnemy.setDir(this.shortestPath(actualPosition, this.playerPosition).get(0));
+        this.selectedEnemy.setPosition(actualPosition);
     }
 
     @Override
