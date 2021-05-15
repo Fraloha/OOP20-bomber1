@@ -1,6 +1,6 @@
 package bomberone.model.enemy.navigation;
 
-import java.util.List;
+import java.util.LinkedList;
 import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 
@@ -43,5 +43,5 @@ public interface Node {
      * to reach the player.
      * @return a List of Direction.
      */
-    List<Direction> getPath();
+    LinkedList<Direction> getPath();
 }
