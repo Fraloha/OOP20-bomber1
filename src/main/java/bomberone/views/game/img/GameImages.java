@@ -232,12 +232,12 @@ public enum GameImages {
     /**
      * 
      */
-    EASYMODE("EasyModeImage.png"),
+    EASYMODE("easy_logo.png"),
 
     /**
      * 
      */
-    HARDMODE("HardModeImage.png");
+    HARDMODE("hard_logo.png");
 
     private static final String RES_PATH = "images/";
 
