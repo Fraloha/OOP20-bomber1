@@ -15,11 +15,11 @@ import bomberone.model.gameObjects.HardWall;
 public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
 
     /* Fields. */
-    private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
-    private static final int SECONDS_TO_WAIT = 4;
-    private static final int FRAME_PER_SECOND = 60;
     private static final int LOW_SPEED = 500;
     private static final int HIGH_SPEED = 600;
+    private static final int SECONDS_TO_WAIT = 4;
+    private static final int FRAME_PER_SECOND = 60;
+    private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
@@ -27,8 +27,7 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     private boolean isHittable = false;
 
     /* Constructors. */
-    public EnemyImpl(final P2d position, final int lifes, Difficulty mode, List<BoxImpl> boxesToSet,
-            List<HardWall> wallsToSet) {
+    public EnemyImpl(final P2d position, final int lifes, Difficulty mode) {
         super(position, lifes);
 
         // Setting the number of frames that the enemy has to wait before start moving.
@@ -89,14 +88,12 @@ public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
     }
 
     @Override
-    public List<BoxImpl> getBoxes() {
-        // TODO Auto-generated method stub
-        return null;
+    public void setBoxes() {
+        
     }
 
     @Override
-    public List<HardWall> getHardWalls() {
-        // TODO Auto-generated method stub
-        return null;
+    public void setHardWalls() {
+        
     }
 }

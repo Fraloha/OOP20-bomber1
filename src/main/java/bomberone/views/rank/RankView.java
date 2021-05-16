@@ -1,34 +1,33 @@
 package bomberone.views.rank;
 
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.SortedList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableColumn.SortType;
-import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
-import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.util.Callback;
-import bomberone.tools.RankLoader;
-import bomberone.tools.ResourcesLoader;
-import bomberone.tools.audio.GameSounds;
-import bomberone.tools.audio.SoundsHandler;
-import bomberone.views.basic.ViewImpl;
-import bomberone.views.game.img.GameImages;
+import javafx.scene.text.Font;
 import bomberone.views.ViewType;
-import bomberone.views.ViewsSwitcher;
-import bomberone.model.user.User;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
+import bomberone.model.user.User;
+import bomberone.tools.RankLoader;
+import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
+import bomberone.views.ViewsSwitcher;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
+import bomberone.views.basic.ViewImpl;
+import bomberone.tools.ResourcesLoader;
+import javafx.collections.FXCollections;
+import javafx.scene.control.TableColumn;
+import bomberone.tools.audio.GameSounds;
+import javafx.collections.ObservableList;
+import bomberone.tools.audio.SoundsHandler;
+import bomberone.views.game.img.GameImages;
+import javafx.scene.control.TableColumn.SortType;
+import javafx.collections.transformation.SortedList;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 /**
  * This is the class that defines the view of the ranks.

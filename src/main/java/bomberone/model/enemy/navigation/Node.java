@@ -45,12 +45,4 @@ public interface Node {
      * @return a List of Direction.
      */
     LinkedList<Direction> getPath();
-    
-    /**
-     * This method checks if the enemy can pass through the position of this node or not.
-     * The enemy can not pass through this position if a box or a hard wall is in the same position.
-     * @param enemy The enemy that tries to pass in the current position.
-     * @return true if is accessible or false if it is not.
-     */
-    boolean isAccessible(Enemy enemy);
 }

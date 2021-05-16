@@ -1,22 +1,25 @@
 package bomberone.model.enemy.actions;
 
+import java.util.List;
 import java.util.Random;
 import java.util.HashSet;
 import java.util.LinkedList;
-import java.util.List;
-
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.common.Direction;
 import bomberone.model.enemy.navigation.Node;
 import bomberone.model.enemy.navigation.NodeImpl;
+import bomberone.model.gameObjects.BoxImpl;
+import bomberone.model.gameObjects.HardWall;
 
 public final class IntermediateBehavior extends AbstractActions {
 
     /* Fields. */
     private P2d playerPosition;
     private Random randomGenerator;
+    private List<BoxImpl> boxes;
     private BasicBehavior basicActions;
+    private List<HardWall> walls;
     private HashSet<P2d> visitedPosition;
     private LinkedList<Node> positionsToVisit;
 
@@ -24,8 +27,8 @@ public final class IntermediateBehavior extends AbstractActions {
     public IntermediateBehavior(final EnemyImpl newEnemy) {
         super(newEnemy);
         this.randomGenerator = new Random();
-        this.positionsToVisit = new LinkedList<Node>();
         this.visitedPosition = new HashSet<P2d>();
+        this.positionsToVisit = new LinkedList<Node>();
         this.basicActions = new BasicBehavior(this.selectedEnemy);
     }
 
@@ -39,10 +42,19 @@ public final class IntermediateBehavior extends AbstractActions {
         P2d actualPosition = this.selectedEnemy.getPosition();
         this.selectedEnemy.setDir(this.shortestPath(actualPosition, this.playerPosition).get(0));
         this.selectedEnemy.setPosition(actualPosition);
+        this.nextMove();
     }
 
     public void setPlayerPosition(final P2d playerPos) {
         this.playerPosition = playerPos;
+    }
+
+    public void setBoxes(List<BoxImpl> boxes) {
+        this.boxes = boxes;
+    }
+
+    public void setWalls(List<HardWall> walls) {
+        this.walls = walls;
     }
 
     private P2d doMovements(final Direction direction) {
@@ -57,6 +69,20 @@ public final class IntermediateBehavior extends AbstractActions {
         }
 
         return this.selectedEnemy.getPosition();
+    }
+
+    private boolean isAccessible() {
+        boolean result = false;
+
+        for (BoxImpl currentBox : this.boxes) {
+            result = currentBox.getCollider().intersects(this.selectedEnemy.getCollider()) ? true : false;
+        }
+
+        for (HardWall currentWall : this.walls) {
+            result = currentWall.getCollider().intersects(this.selectedEnemy.getCollider()) ? true : false;
+        }
+
+        return result;
     }
 
     /**
@@ -75,7 +101,7 @@ public final class IntermediateBehavior extends AbstractActions {
         for (Direction currentDirection : Direction.values()) {
             positionToCheck = this.doMovements(currentDirection);
 
-            if (!this.visitedPosition.contains(positionToCheck) && node.isAccessible(this.selectedEnemy)) {
+            if (!this.visitedPosition.contains(positionToCheck) && isAccessible()) {
                 this.positionsToVisit.add(new NodeImpl(currentDirection, positionToCheck, node));
             }
         }
