@@ -6,6 +6,7 @@ import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
+import bomberone.views.AlertBox;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
@@ -193,6 +194,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
+        } else {
+            AlertBox alert = new AlertBox();
+            alert.display("WARNING", "INSERT THE NAME!!");
         }
     }
 }
