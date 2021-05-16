@@ -3,11 +3,11 @@ package bomberone.controllers.game.event;
 import java.util.ArrayList;
 import java.util.List;
 
-import bomberone.model.GameModel;
+import bomberone.model.GameMatch;
 
 public class WorldEventListenerImpl implements WorldEventListener {
 
-    private GameModel model;
+    private GameMatch model;
     private List<WorldEvent> eventList = new ArrayList<>();
 
     /**
@@ -41,7 +41,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
      * {@inheritDoc}
      */
     @Override
-    public void setGameModel(final GameModel game) {
+    public void setGameMatch(final GameMatch game) {
         this.model = game;
     }
 
@@ -49,7 +49,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
      * {@inheritDoc}
      */
     @Override
-    public GameModel getGameModel() {
+    public GameMatch getGameMatch() {
         return this.model;
     }
 

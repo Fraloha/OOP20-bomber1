@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bomberone.model.GameModel;
+import bomberone.model.GameMatch;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.Explosion;
 import bomberone.tools.audio.GameSounds;
@@ -39,7 +39,7 @@ public class ExplosionEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameModel model) {
+    public void process(final GameMatch model) {
         Explosion exp = this.explosion;
         model.getWorld().getGameObjectCollection()
                 .spawn(model.getWorld().getGameObjectFactory().createFire(exp.getCenter()));

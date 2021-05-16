@@ -6,14 +6,14 @@ import bomberone.controllers.game.input.commands.MoveLeft;
 import bomberone.controllers.game.input.commands.MoveRight;
 import bomberone.controllers.game.input.commands.MoveUp;
 import bomberone.controllers.game.input.commands.PlantBomb;
-import bomberone.model.GameModel;
+import bomberone.model.GameMatch;
 
 /**
  * That class is the CommandListner of the game.
  *
  */
 public class CommandListenerImpl implements CommandListener {
-    private GameModel game;
+    private GameMatch game;
     private PlayerBehavior behaviour;
     private boolean isActionCompleted;
 
@@ -57,7 +57,7 @@ public class CommandListenerImpl implements CommandListener {
      * {@inheritDoc}
      */
     @Override
-    public void setGameModel(final GameModel game) {
+    public void setGameModel(final GameMatch game) {
         this.game = game;
     }
 
@@ -65,7 +65,7 @@ public class CommandListenerImpl implements CommandListener {
      * {@inheritDoc}
      */
     @Override
-    public GameModel getGameModel() {
+    public GameMatch getGameModel() {
         return this.game;
     }
 

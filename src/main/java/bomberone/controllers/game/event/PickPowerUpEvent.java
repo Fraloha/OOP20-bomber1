@@ -1,6 +1,6 @@
 package bomberone.controllers.game.event;
 
-import bomberone.model.GameModel;
+import bomberone.model.GameMatch;
 import bomberone.model.gameObjects.PowerUp;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
@@ -31,7 +31,7 @@ public class PickPowerUpEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameModel model) {
+    public void process(final GameMatch model) {
         if (this.powerUp.getType().equals(PowerUp.Type.Time)) {
             /* Timer PowerUp */
             model.getTimer().setTimer(model.getTimer().getTime().getTotal() + TIMER_INC);

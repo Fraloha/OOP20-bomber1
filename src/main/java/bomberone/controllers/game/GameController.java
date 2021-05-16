@@ -1,7 +1,14 @@
 package bomberone.controllers.game;
 
+
+
 import bomberone.controllers.Controller;
 import bomberone.controllers.game.input.CommandListener;
+import bomberone.model.Difficulty;
+import bomberone.model.bomber.Bomber;
+import bomberone.model.gameObjects.GameObjectCollection;
+import bomberone.model.timer.Timer;
+import bomberone.model.user.User;
 
 /**
  * The Game Controller that contains the gameloop and handles Events & Command.
@@ -43,4 +50,41 @@ public interface GameController extends Controller {
      * Called if the Player interrupt the Game before the GameOver.
      */
     void quitGame();
+
+    /**
+     * Called if the View needs Bomber Info.
+     * @return the Bomber
+     */
+    Bomber getBomber();
+
+    /**
+     * Called if the View needs Timer Info.
+     * @return the GameModel's timer.
+     */
+    Timer getTimer();
+
+    /**
+     * Called if the View needs the User Info.
+     * @return the GameModel's User
+     */
+    User getPlayerOfTheGame();
+
+    /**
+     * Called if View needs the GameObjects list.
+     * @return the GameObject list.
+     */
+    GameObjectCollection getObjList();
+
+    /**
+     * Called if View needs the Game Score.
+     * @return the Game Score.
+     */
+    int getScore();
+
+    /**
+     * Called if View needs the Game Difficulty.
+     * @return the Game Difficulty.
+     */
+    Difficulty getDifficulty();
+
 }

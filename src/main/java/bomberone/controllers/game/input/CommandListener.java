@@ -1,7 +1,7 @@
 package bomberone.controllers.game.input;
 
 
-import bomberone.model.GameModel;
+import bomberone.model.GameMatch;
 
 public interface CommandListener {
 
@@ -16,14 +16,14 @@ public interface CommandListener {
      * 
      * @param game
      */
-    void setGameModel(GameModel game);
+    void setGameModel(GameMatch game);
 
     /**
      * Method that return the GameModel attached.
      * 
      * @return GameModel
      */
-    GameModel getGameModel();
+    GameMatch getGameModel();
 
     /**
      * 

@@ -45,15 +45,17 @@ public final class RankLoader {
     /**
      * This method takes in input two Lists of Users and serialize every Object in
      * the corresponding file.
+     * @param hardList list to serialize
+     * @param stdList list to serialize
      * 
      */
-    public static void writeUsers() {
+    public static void writeUsers(final List<User> hardList, final List<User> stdList) {
         try (ObjectOutput outputStd = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectOutput outputHard = new ObjectOutputStream(
                         new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankHardPath())));) {
-            outputStd.writeObject(rankStandard);
-            outputHard.writeObject(rankHard);
+            outputStd.writeObject(stdList);
+            outputHard.writeObject(hardList);
         } catch (IOException ex) {
             System.out.println("Cannot perform the output");
         }

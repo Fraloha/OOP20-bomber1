@@ -102,9 +102,8 @@ public class GameViewImpl extends ViewImpl implements GameView {
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.getController().init();
-        this.setUpSprites();
         this.drawGame();
-        this.controlsMap = new ControlsMap(this.getController().getModel().getUser().getControls(),
+        this.controlsMap = new ControlsMap(((GameController) this.getController()).getPlayerOfTheGame().getControls(),
                 ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
     }
@@ -144,7 +143,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     public void drawGame() {
         /* Draw the timer */
         this.clockImageView.setImage(GameImages.CLOCK.getImage());
-        this.drawBomberOnScoreBoard();
+        this.setUpSprites();
         this.drawLifes();
         this.quitButton.setImage(GameImages.QUIT_GAME.getImage());
         /* Draw the background */
@@ -160,7 +159,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the Walls */
         Image wallImage = GameImages.HARDWALL.getImage();
-        this.getController().getModel().getWorld().getGameObjectCollection().getHardWallList().stream()
+        ((GameController) this.getController()).getObjList().getHardWallList().stream()
                 .forEach(wall -> {
                     gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
                 });
@@ -174,15 +173,14 @@ public class GameViewImpl extends ViewImpl implements GameView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-        Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
-        Platform.runLater(() -> this.timeLabel.setText(this.getController().getModel().getTimer().toString()));
-        Platform.runLater(() -> this.scoreLabel.setText(this.getController().getModel().getScore() + ""));
+        Platform.runLater(() -> this.timeLabel.setText(((GameController) this.getController()).getTimer().toString()));
+        Platform.runLater(() -> this.scoreLabel.setText(((GameController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
         /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
-            this.getController().getModel().getWorld().getGameObjectCollection().getBoxList().forEach(box -> {
+            ((GameController) this.getController()).getObjList().getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
             });
@@ -190,7 +188,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the powerUp */
         Platform.runLater(() -> {
-            this.getController().getModel().getWorld().getGameObjectCollection().getPowerUpList().stream()
+            ((GameController) this.getController()).getObjList().getPowerUpList().stream()
                     .filter(PowerUp::isReleased).forEach(pUp -> {
                         Image powerUpImage = null;
                         PowerUp.Type type = pUp.getType();
@@ -216,7 +214,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw bombs */
         Platform.runLater(() -> {
-            this.getController().getModel().getWorld().getGameObjectCollection().getBombList().stream()
+            ((GameController) this.getController()).getObjList().getBombList().stream()
                     .forEach(bomb -> {
                         if (bomb.getPierce()) {
                             this.gCForeground.drawImage(
@@ -235,7 +233,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the fire */
         Platform.runLater(() -> {
-            this.getController().getModel().getWorld().getGameObjectCollection().getFireList().forEach(fire -> {
+            ((GameController) this.getController()).getObjList().getFireList().forEach(fire -> {
                 this.gCForeground.drawImage(
                         AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
                         fire.getPosition().getX(), fire.getPosition().getY());
@@ -244,7 +242,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw enemies */
         Platform.runLater(() -> {
-            this.getController().getModel().getWorld().getGameObjectCollection().getEnemyList().stream()
+            ((GameController) this.getController()).getObjList().getEnemyList().stream()
                     .forEach(enemy -> {
                         this.gCForeground.drawImage(this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex()
                                                 % ENEMY_N_ANIMATION],
@@ -254,7 +252,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         });
 
         /* Draw the BomberMan */
-        Bomber bomberTemp = this.getController().getModel().getWorld().getBomber();
+        Bomber bomberTemp = ((GameController) this.getController()).getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex()
                         % BOMBER_N_ANIMATION],
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
@@ -262,36 +260,10 @@ public class GameViewImpl extends ViewImpl implements GameView {
     }
 
     /**
-     * Load the corrected Icon of the Bomber based on the skin choised by the user.
-     */
-    private void drawBomberOnScoreBoard() {
-        Skins color = this.getController().getModel().getUser().getSkin();
-        // Draw the icon of the Bomber
-        if (color.equals(Skins.WHITE)) {
-            Platform.runLater(
-                    () -> miniBomber.setImage(GameImages.BOMBER1SCOREBOARD.getImage()));
-        }
-        if (color.equals(Skins.BLACK)) {
-            Platform.runLater(
-                    () -> miniBomber.setImage(GameImages.BOMBER2SCOREBOARD.getImage()));
-        }
-
-        if (color.equals(Skins.RED)) {
-            Platform.runLater(
-                    () -> miniBomber.setImage(GameImages.BOMBER3SCOREBOARD.getImage()));
-        }
-
-        if (color.equals(Skins.BLUE)) {
-            Platform.runLater(
-                    () -> miniBomber.setImage(GameImages.BOMBER4SCOREBOARD.getImage()));
-        }
-    }
-
-    /**
      * Draw the hearts depending on the number of Bomber's Lifes.
      */
     private void drawLifes() {
-        int nLifes = this.getController().getModel().getWorld().getBomber().getLifes();
+        int nLifes = ((GameController) this.getController()).getBomber().getLifes();
         Image lifeYes = GameImages.LIFE_YES.getImage();
         Image lifeNo = GameImages.LIFE_NO.getImage();
         Platform.runLater(() -> this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo));
@@ -305,23 +277,36 @@ public class GameViewImpl extends ViewImpl implements GameView {
     private void setUpSprites() {
         Image[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
-        if (this.getController().getModel().getDifficulty().equals(Difficulty.STANDARD)) {
+        if (((GameController) this.getController()).getDifficulty().equals(Difficulty.STANDARD)) {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
         } else {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
         }
         this.enemySprites = spritesEnemy;
         Image[][] spritesBomber = null;
-        if (this.getController().getModel().getUser().getSkin().equals(Skins.WHITE)) {
+        Skins color = ((GameController) this.getController()).getPlayerOfTheGame().getSkin();
+
+        // Draw the icon of the Bomber and setUp his sprite.
+        if (color.equals(Skins.WHITE)) {
+            Platform.runLater(
+                    () -> miniBomber.setImage(GameImages.BOMBER1SCOREBOARD.getImage()));
             spritesBomber = AnimatedObjectsSprites.BOMBER_WHITE.getSprites();
         }
-        if (this.getController().getModel().getUser().getSkin().equals(Skins.BLACK)) {
+        if (color.equals(Skins.BLACK)) {
+            Platform.runLater(
+                    () -> miniBomber.setImage(GameImages.BOMBER2SCOREBOARD.getImage()));
             spritesBomber = AnimatedObjectsSprites.BOMBER_BLACK.getSprites();
         }
-        if (this.getController().getModel().getUser().getSkin().equals(Skins.RED)) {
+
+        if (color.equals(Skins.RED)) {
+            Platform.runLater(
+                    () -> miniBomber.setImage(GameImages.BOMBER3SCOREBOARD.getImage()));
             spritesBomber = AnimatedObjectsSprites.BOMBER_RED.getSprites();
         }
-        if (this.getController().getModel().getUser().getSkin().equals(Skins.BLUE)) {
+
+        if (color.equals(Skins.BLUE)) {
+            Platform.runLater(
+                    () -> miniBomber.setImage(GameImages.BOMBER4SCOREBOARD.getImage()));
             spritesBomber = AnimatedObjectsSprites.BOMBER_BLUE.getSprites();
         }
         this.bomberSprites = spritesBomber;

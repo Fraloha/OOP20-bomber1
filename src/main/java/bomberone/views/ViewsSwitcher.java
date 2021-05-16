@@ -1,12 +1,10 @@
 package bomberone.views;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
 import bomberone.views.basic.View;
-import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -28,7 +26,7 @@ public final class ViewsSwitcher {
      */
     public static void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
         View view = loadStyle(stage, viewType);
-        Controller controller = viewType.getController().get();
+        Controller controller = viewType.getController();
         controller.attachView(view);
         controller.attachModel(model);
         view.attachController(controller);
@@ -46,6 +44,10 @@ public final class ViewsSwitcher {
      */
     public static void switchView(final Stage stage, final ViewType viewType) {
         View view = loadStyle(stage, viewType);
+        Controller controller = viewType.getController();
+        controller.attachView(view);
+        view.attachController(controller);
+        view.setStage(stage);
         view.init();
         stage.show();
     }

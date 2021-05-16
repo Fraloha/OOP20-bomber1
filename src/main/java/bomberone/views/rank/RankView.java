@@ -27,6 +27,7 @@ import bomberone.views.basic.ViewImpl;
 import bomberone.views.game.img.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
+import bomberone.controllers.rank.RankController;
 import bomberone.model.user.User;
 import javafx.scene.image.Image;
 
@@ -200,9 +201,9 @@ public final class RankView extends ViewImpl {
 
     private void loadRanks() {
         // Loading the ranks.
-        RankLoader.readUsers();
-        ObservableList<User> standardRank = FXCollections.observableList(RankLoader.getRankStandard());
-        ObservableList<User> hardRank = FXCollections.observableList(RankLoader.getRankHard());
+        
+        ObservableList<User> standardRank = FXCollections.observableList(((RankController) this.getController()).getStdRank());
+        ObservableList<User> hardRank = FXCollections.observableList(((RankController) this.getController()).getHardRank());
 
         // Creating the sorted ranks.
         this.ranks = new ArrayList<SortedList<User>>();

@@ -1,6 +1,5 @@
 package bomberone.views.game.img;
 
-import java.awt.image.BufferedImage;
 
 import javafx.scene.image.Image;
 
