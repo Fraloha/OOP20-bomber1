@@ -66,6 +66,8 @@ public final class RankLoader {
      */
     @SuppressWarnings("unchecked")
     public static void readUsers()  {
+        RankLoader.rankStandard.clear();
+        RankLoader.rankHard.clear();
         try (ObjectInput inputStd = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectInput inputHard = new ObjectInputStream(

@@ -128,7 +128,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
      */
     @Override
     public void applyPowerUp(final Type typeOfPowerUp) {
-       switch (typeOfPowerUp) {
+        switch (typeOfPowerUp) {
         case FirePower:
             this.incFirePower();
             break;

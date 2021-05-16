@@ -84,7 +84,7 @@ public final class RankView extends ViewImpl {
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
         // Initializing the buttons.
-        this.setButtonsFonts();
+        this.setButtonsFonts(ResourcesLoader.getFont(20));
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
@@ -102,9 +102,7 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
-    private void setButtonsFonts() {
-        Font fontToSet = ResourcesLoader.getFont(20);
-
+    private void setButtonsFonts(Font fontToSet) {
         this.hBoxButtonExit.setFont(fontToSet);
         this.hBoxButtonMainMenu.setFont(fontToSet);
         this.hBoxButtonNext.setFont(fontToSet);
@@ -137,6 +135,8 @@ public final class RankView extends ViewImpl {
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
+        this.tableViewPlayers.setSortable(false);
+        this.tableViewScores.setSortable(false);
 
         // Setting the font.
         this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
