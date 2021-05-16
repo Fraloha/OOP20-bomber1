@@ -117,7 +117,6 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         this.game.setName("LOOP");
         this.game.start();
         this.getModel().getCurrentMatch().getTimerThread().start();
-        Thread.currentThread().interrupt();
     }
 
     /**
