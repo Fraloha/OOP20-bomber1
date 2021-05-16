@@ -2,9 +2,9 @@ package bomberone.controllers.game.input.commands;
 
 import java.util.Optional;
 
-import bomberone.model.GameMatch;
 import bomberone.model.common.Direction;
 import bomberone.model.gameObjects.Bomb;
+import bomberone.model.match.GameMatch;
 
 public class PlantBomb implements Command {
 

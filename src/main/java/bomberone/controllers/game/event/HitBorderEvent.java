@@ -1,11 +1,11 @@
 package bomberone.controllers.game.event;
 
 
-import bomberone.model.GameMatch;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.AnimatedEntity;
 import bomberone.model.gameObjects.GameObject;
+import bomberone.model.match.GameMatch;
 import javafx.geometry.Rectangle2D;
 
 /**

@@ -1,8 +1,9 @@
-package bomberone.model;
+package bomberone.model.match;
 
 import bomberone.model.timer.Timer;
 import bomberone.model.timer.TimerThread;
 import bomberone.model.user.User;
+import bomberone.model.world.World;
 
 /**
  * The Model of the Game.

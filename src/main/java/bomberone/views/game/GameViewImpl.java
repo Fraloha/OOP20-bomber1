@@ -2,9 +2,9 @@ package bomberone.views.game;
 
 
 import bomberone.controllers.game.GameController;
-import bomberone.model.Difficulty;
 import bomberone.model.bomber.Bomber;
 import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
@@ -88,7 +88,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     public void quitClicked() {
         SoundsHandler.stopAudio();
         ((GameController) this.getController()).quitGame();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
     /**
@@ -318,7 +318,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
-        Platform.runLater(() -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK));
+        Platform.runLater(() -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel()));
     }
 
 }

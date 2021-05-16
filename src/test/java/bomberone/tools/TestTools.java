@@ -56,7 +56,7 @@ public class TestTools {
         RankLoader.getRankStandard().add(user1);
         RankLoader.getRankHard().add(user2);
         // Save the lists on the file
-        RankLoader.writeUsers();
+        RankLoader.writeUsers(RankLoader.getRankHard(), RankLoader.getRankStandard());
         // Clear the lists
         RankLoader.getRankHard().clear();
         RankLoader.getRankStandard().clear();

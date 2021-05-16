@@ -2,13 +2,13 @@ package bomberone.controllers.game.event;
 
 import java.util.Optional;
 
-import bomberone.model.GameMatch;
 import bomberone.model.bomber.BomberImpl;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.gameObjects.BoxImpl;
 import bomberone.model.gameObjects.Fire;
 import bomberone.model.gameObjects.GameObject;
+import bomberone.model.match.GameMatch;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
 

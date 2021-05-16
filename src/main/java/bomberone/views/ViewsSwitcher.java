@@ -36,23 +36,6 @@ public final class ViewsSwitcher {
     }
 
     /**
-     * Switch the view displayed on the Stage, if it hasn't a controller.
-     * 
-     * @param stage
-     * @param viewType the type of the new View be staged.
-     * @throws IOException
-     */
-    public static void switchView(final Stage stage, final ViewType viewType) {
-        View view = loadStyle(stage, viewType);
-        Controller controller = viewType.getController();
-        controller.attachView(view);
-        view.attachController(controller);
-        view.setStage(stage);
-        view.init();
-        stage.show();
-    }
-
-    /**
      * Load Style from FXML file and creates the View linked to it.
      * 
      * @param stage    to be changed

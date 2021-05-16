@@ -1,4 +1,4 @@
-package bomberone.model;
+package bomberone.model.world;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -25,6 +25,7 @@ import bomberone.model.gameObjects.GameObject;
 import bomberone.model.gameObjects.GameObjectCollection;
 import bomberone.model.gameObjects.GameObjectCollectionImpl;
 import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 
 public class WorldImpl implements World {

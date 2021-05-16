@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import bomberone.model.GameMatch;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.Explosion;
+import bomberone.model.match.GameMatch;
 import bomberone.tools.audio.GameSounds;
 import bomberone.tools.audio.SoundsHandler;
 

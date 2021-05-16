@@ -6,7 +6,7 @@ import bomberone.controllers.game.input.commands.MoveLeft;
 import bomberone.controllers.game.input.commands.MoveRight;
 import bomberone.controllers.game.input.commands.MoveUp;
 import bomberone.controllers.game.input.commands.PlantBomb;
-import bomberone.model.GameMatch;
+import bomberone.model.match.GameMatch;
 
 /**
  * That class is the CommandListner of the game.

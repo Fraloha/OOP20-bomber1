@@ -3,6 +3,7 @@ package bomberone.model;
 import java.util.ArrayList;
 import java.util.List;
 
+import bomberone.model.match.GameMatch;
 import bomberone.model.user.User;
 import bomberone.tools.RankLoader;
 

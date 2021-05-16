@@ -1,7 +1,7 @@
 package bomberone.controllers.game.input.commands;
 
-import bomberone.model.GameMatch;
 import bomberone.model.common.Direction;
+import bomberone.model.match.GameMatch;
 
 public class MoveUp implements Command {
 

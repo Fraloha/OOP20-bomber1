@@ -1,7 +1,7 @@
 package bomberone.controllers.game.input;
 
 
-import bomberone.model.GameMatch;
+import bomberone.model.match.GameMatch;
 
 public interface CommandListener {
 

@@ -3,7 +3,7 @@ package bomberone.controllers.game.event;
 import java.util.ArrayList;
 import java.util.List;
 
-import bomberone.model.GameMatch;
+import bomberone.model.match.GameMatch;
 
 public class WorldEventListenerImpl implements WorldEventListener {
 

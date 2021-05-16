@@ -1,7 +1,7 @@
 package bomberone.controllers.game.event;
 
-import bomberone.model.GameMatch;
 import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.match.GameMatch;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
 

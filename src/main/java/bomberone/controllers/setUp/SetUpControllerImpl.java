@@ -1,9 +1,9 @@
 package bomberone.controllers.setUp;
 
 import bomberone.controllers.ControllerImpl;
-import bomberone.model.Difficulty;
-import bomberone.model.GameMatch;
-import bomberone.model.GameMatchImpl;
+import bomberone.model.match.Difficulty;
+import bomberone.model.match.GameMatch;
+import bomberone.model.match.GameMatchImpl;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.model.user.User;

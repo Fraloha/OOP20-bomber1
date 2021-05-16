@@ -1,4 +1,4 @@
-package bomberone.model;
+package bomberone.model.match;
 
 /**
  * The difficulty of the gameplay, set by the Player when start the game.

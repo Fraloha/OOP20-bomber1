@@ -1,7 +1,7 @@
 package bomberone.controllers.setUp;
 
 import bomberone.controllers.Controller;
-import bomberone.model.Difficulty;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 

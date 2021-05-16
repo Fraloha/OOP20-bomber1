@@ -11,16 +11,16 @@ import bomberone.controllers.game.event.ExplosionEvent;
 import bomberone.controllers.game.event.HitEntityEvent;
 import bomberone.controllers.game.event.WorldEventListener;
 import bomberone.controllers.game.event.WorldEventListenerImpl;
-import bomberone.model.Difficulty;
-import bomberone.model.GameMatch;
-import bomberone.model.GameMatchImpl;
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactory;
 import bomberone.model.factory.GameObjectFactoryImpl;
 import bomberone.model.gameObjects.ExplosionImpl;
+import bomberone.model.match.Difficulty;
+import bomberone.model.match.GameMatch;
+import bomberone.model.match.GameMatchImpl;
 import bomberone.model.user.Skins;
+import bomberone.model.world.World;
+import bomberone.model.world.WorldImpl;
 import bomberone.tools.ResourcesLoader;
 
 /**

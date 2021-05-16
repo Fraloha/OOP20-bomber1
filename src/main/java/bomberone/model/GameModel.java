@@ -2,6 +2,7 @@ package bomberone.model;
 
 import java.util.List;
 
+import bomberone.model.match.GameMatch;
 import bomberone.model.user.User;
 
 /**

@@ -2,7 +2,7 @@ package bomberone.controllers.game.event;
 
 import java.util.List;
 
-import bomberone.model.GameMatch;
+import bomberone.model.match.GameMatch;
 
 /**
  * This class Handle every type of event in the World.

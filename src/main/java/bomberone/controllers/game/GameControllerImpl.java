@@ -6,9 +6,9 @@ import bomberone.controllers.game.event.WorldEventListener;
 import bomberone.controllers.game.event.WorldEventListenerImpl;
 import bomberone.controllers.game.input.CommandListener;
 import bomberone.controllers.game.input.CommandListenerImpl;
-import bomberone.model.Difficulty;
 import bomberone.model.bomber.Bomber;
 import bomberone.model.gameObjects.GameObjectCollection;
+import bomberone.model.match.Difficulty;
 import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
 import bomberone.tools.RankLoader;
@@ -41,15 +41,14 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         }
         this.getModel().getCurrentMatch().getTimerThread().stopTimer();
         this.getModel().getCurrentMatch().getUser().setScore(this.getModel().getCurrentMatch().getScore());
-        /* Add the user on the specific rank */
-        if (this.getModel().getCurrentMatch().getDifficulty().equals(Difficulty.HARD)) {
-            this.getModel().getHardRank().add(this.getModel().getCurrentMatch().getUser());
-        } else {
-            this.getModel().getStdRank().add(this.getModel().getCurrentMatch().getUser());
-        }
-        RankLoader.writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
-
         if (!this.wasStopped) {
+            /* Add the user on the specific rank */
+            if (this.getModel().getCurrentMatch().getDifficulty().equals(Difficulty.HARD)) {
+                this.getModel().getHardRank().add(this.getModel().getCurrentMatch().getUser());
+            } else {
+                this.getModel().getStdRank().add(this.getModel().getCurrentMatch().getUser());
+            }
+            RankLoader.writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
             ((GameView) this.getView()).switchToRank();
         }
 

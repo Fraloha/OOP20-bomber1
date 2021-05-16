@@ -4,9 +4,9 @@ package bomberone.controllers.game;
 
 import bomberone.controllers.Controller;
 import bomberone.controllers.game.input.CommandListener;
-import bomberone.model.Difficulty;
 import bomberone.model.bomber.Bomber;
 import bomberone.model.gameObjects.GameObjectCollection;
+import bomberone.model.match.Difficulty;
 import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
 

@@ -53,6 +53,6 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
 
     @FXML
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 }

@@ -1,6 +1,6 @@
 package bomberone.controllers.game.event;
 
-import bomberone.model.GameMatch;
+import bomberone.model.match.GameMatch;
 
 /**
  * Interface for generic WorldEvent.

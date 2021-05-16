@@ -1,4 +1,4 @@
-package bomberone.model;
+package bomberone.model.match;
 
 import bomberone.model.factory.WorldFactory;
 import bomberone.model.factory.WorldFactoryImpl;
@@ -7,6 +7,7 @@ import bomberone.model.timer.TimerImpl;
 import bomberone.model.timer.TimerThread;
 import bomberone.model.user.User;
 import bomberone.model.user.UserImpl;
+import bomberone.model.world.World;
 
 public class GameMatchImpl implements GameMatch {
 
