@@ -2,7 +2,7 @@ package bomberone.controllers.game.event;
 
 import java.util.List;
 
-import bomberone.model.GameModel;
+import bomberone.model.match.GameMatch;
 
 /**
  * This class Handle every type of event in the World.
@@ -34,12 +34,12 @@ public interface WorldEventListener {
      * 
      * @param game the Model to attach to the Listener
      */
-    void setGameModel(GameModel game);
+    void setGameMatch(GameMatch game);
 
     /**
      * Get the GameModel linked to the Listener.
      * 
      * @return GameModel, the Model attached to the Listener
      */
-    GameModel getGameModel();
+    GameMatch getGameMatch();
 }

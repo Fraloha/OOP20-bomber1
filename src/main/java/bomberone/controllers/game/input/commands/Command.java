@@ -1,7 +1,7 @@
 package bomberone.controllers.game.input.commands;
 
-import bomberone.model.GameModel;
 import bomberone.model.common.Direction;
+import bomberone.model.match.GameMatch;
 
 public interface Command {
 
@@ -10,7 +10,7 @@ public interface Command {
      * 
      * @param gameModel
      */
-    void execute(GameModel gameModel);
+    void execute(GameMatch gameModel);
     
     Direction dir();
 }

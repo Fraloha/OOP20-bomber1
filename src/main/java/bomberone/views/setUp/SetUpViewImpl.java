@@ -1,7 +1,7 @@
 package bomberone.views.setUp;
 
 import bomberone.controllers.setUp.SetUpController;
-import bomberone.model.Difficulty;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
@@ -101,7 +101,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
     private void setPlayer(final String sign) {

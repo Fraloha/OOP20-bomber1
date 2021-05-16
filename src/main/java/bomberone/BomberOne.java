@@ -1,5 +1,6 @@
 package bomberone;
 
+import bomberone.model.GameModelImpl;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
@@ -24,7 +25,7 @@ public final class BomberOne extends Application {
         RankLoader.readUsers();
         primaryStage.getIcons().add(GameImages.ICON.getImage());
         primaryStage.setTitle("BomberOne");
-        ViewsSwitcher.switchView(primaryStage, ViewType.HOME);
+        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }

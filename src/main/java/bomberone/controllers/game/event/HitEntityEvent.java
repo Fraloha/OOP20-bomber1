@@ -2,13 +2,13 @@ package bomberone.controllers.game.event;
 
 import java.util.Optional;
 
-import bomberone.model.GameModel;
 import bomberone.model.bomber.BomberImpl;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.gameObjects.BoxImpl;
 import bomberone.model.gameObjects.Fire;
 import bomberone.model.gameObjects.GameObject;
+import bomberone.model.match.GameMatch;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
 
@@ -42,7 +42,7 @@ public class HitEntityEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameModel model) {
+    public void process(final GameMatch model) {
 
         if (this.entity.getClass().equals(BomberImpl.class)) {
             /* Check if the entity isn't the body of the death bomber */

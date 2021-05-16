@@ -1,7 +1,7 @@
 package bomberone.controllers.game.input.commands;
 
-import bomberone.model.GameModel;
 import bomberone.model.common.Direction;
+import bomberone.model.match.GameMatch;
 
 public class MoveRight implements Command {
 
@@ -20,7 +20,7 @@ public class MoveRight implements Command {
      * {@inheritDoc}
      */
     @Override
-    public void execute(final GameModel gameModel) {
+    public void execute(final GameMatch gameModel) {
         gameModel.getWorld().getBomber().moveRight();
         gameModel.getWorld().getBomber().setStatic(false);
     }

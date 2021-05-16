@@ -1,4 +1,4 @@
-package bomberone.model;
+package bomberone.model.world;
 
 import bomberone.controllers.game.event.WorldEventListener;
 import bomberone.model.bomber.BomberImpl;

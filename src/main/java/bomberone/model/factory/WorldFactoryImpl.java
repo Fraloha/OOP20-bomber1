@@ -1,9 +1,9 @@
 package bomberone.model.factory;
 
-import bomberone.model.Difficulty;
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
+import bomberone.model.world.World;
+import bomberone.model.world.WorldImpl;
 
 public class WorldFactoryImpl implements WorldFactory {
 

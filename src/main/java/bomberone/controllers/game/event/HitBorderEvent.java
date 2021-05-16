@@ -1,11 +1,11 @@
 package bomberone.controllers.game.event;
 
 
-import bomberone.model.GameModel;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.AnimatedEntity;
 import bomberone.model.gameObjects.GameObject;
+import bomberone.model.match.GameMatch;
 import javafx.geometry.Rectangle2D;
 
 /**
@@ -51,7 +51,7 @@ public class HitBorderEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameModel model) {
+    public void process(final GameMatch model) {
         // Slipping effect
         int roundBitX = (int) (this.getEntity().getPosition().getX() % CELL_SIZE);
         int roundBitY = (int) (this.getEntity().getPosition().getY() % CELL_SIZE);

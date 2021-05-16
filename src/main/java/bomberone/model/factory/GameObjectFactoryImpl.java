@@ -1,6 +1,5 @@
 package bomberone.model.factory;
 
-import bomberone.model.Difficulty;
 import bomberone.model.bomber.BomberImpl;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
@@ -12,6 +11,7 @@ import bomberone.model.gameObjects.HardWall;
 import bomberone.model.gameObjects.PowerUp;
 import bomberone.model.gameObjects.PowerUpImpl;
 import bomberone.model.gameObjects.PowerUp.Type;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.views.game.img.AnimatedObjectsSprites;
 import bomberone.views.game.img.GameImages;

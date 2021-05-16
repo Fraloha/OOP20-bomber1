@@ -6,10 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberone.model.Difficulty;
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
 import bomberone.model.common.P2d;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 
