@@ -1,6 +1,5 @@
 package bomberone.controllers.game.event;
 
-
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.AnimatedEntity;
@@ -11,8 +10,6 @@ import javafx.geometry.Rectangle2D;
 /**
  * This event is Triggered when the Bomber or the Enemy hit a Box or an
  * HardWall.
- * 
- * 
  *
  */
 public class HitBorderEvent implements WorldEvent {
@@ -51,7 +48,7 @@ public class HitBorderEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameMatch model) {
+    public void process(final GameMatch match) {
         // Slipping effect
         int roundBitX = (int) (this.getEntity().getPosition().getX() % CELL_SIZE);
         int roundBitY = (int) (this.getEntity().getPosition().getY() % CELL_SIZE);
@@ -75,6 +72,7 @@ public class HitBorderEvent implements WorldEvent {
             this.entity.setPosition(new P2d(this.wall.getPosition().getX() - OBJ_DIMETIONS,
                     this.entity.getPosition().getY() + slippingY));
         }
-        this.entity.setCollider(new Rectangle2D(this.entity.getPosition().getX(), this.entity.getPosition().getY(), 32, 32));
+        this.entity.setCollider(
+                new Rectangle2D(this.entity.getPosition().getX(), this.entity.getPosition().getY(), 32, 32));
     }
 }

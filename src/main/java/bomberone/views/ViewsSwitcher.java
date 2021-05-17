@@ -5,11 +5,16 @@ import java.io.IOException;
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
 import bomberone.views.basic.View;
+import bomberone.views.match.img.GameImages;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This Utility Class load the Views-style and switch the Stage's content.
+ *
+ */
 public final class ViewsSwitcher {
 
     private ViewsSwitcher() {
@@ -17,7 +22,7 @@ public final class ViewsSwitcher {
     }
 
     /**
-     * Switch the view displayed on the Stage, if it has a controller.
+     * Switch the view displayed on the Stage.
      * 
      * @param stage
      * @param viewType the type of the View to switch
@@ -32,6 +37,8 @@ public final class ViewsSwitcher {
         view.attachController(controller);
         view.setStage(stage);
         view.init();
+        stage.getIcons().add(GameImages.ICON.getImage());
+        stage.setTitle("BomberOne");
         stage.show();
     }
 

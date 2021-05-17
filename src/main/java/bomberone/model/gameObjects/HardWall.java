@@ -4,7 +4,7 @@ package bomberone.model.gameObjects;
 import bomberone.model.common.P2d;
 
 /**
- * Wall-Object in the Map.
+ * HardWall Object.
  *
  */
 public class HardWall extends GameObjectImpl {

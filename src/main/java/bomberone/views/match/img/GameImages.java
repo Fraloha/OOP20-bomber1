@@ -1,4 +1,4 @@
-package bomberone.views.game.img;
+package bomberone.views.match.img;
 
 
 import javafx.scene.image.Image;

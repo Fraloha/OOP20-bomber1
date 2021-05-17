@@ -3,6 +3,10 @@ package bomberone.model.gameObjects;
 
 import bomberone.model.common.P2d;
 
+/**
+ * An implementation of PowerUp.
+ *
+ */
 public class PowerUpImpl extends GameObjectImpl implements PowerUp {
 
     private boolean released;

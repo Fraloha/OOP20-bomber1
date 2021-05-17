@@ -1,12 +1,12 @@
-package bomberone.views.game;
+package bomberone.views.match;
 
 import bomberone.views.basic.View;
 
 /**
- * The View of the Game.
+ * The View of the Match.
  *
  */
-public interface GameView extends View {
+public interface MatchView extends View {
 
     /**
      * Prepare the world with the walls and the background.

@@ -3,14 +3,15 @@ package bomberone.model.gameObjects;
 import java.util.Optional;
 
 /**
- * Represent every Box in the Game.
+ * Box Object.
  *
  */
 public interface Box extends GameObject {
 
     /**
      * 
-     * @return Optional.empty() if the box doesn't contain the PowerUp, else returns the PowerUp.
+     * @return Optional.empty() if the box doesn't contain the PowerUp, else returns
+     *         the PowerUp.
      */
     Optional<PowerUp> getPowerUp();
 

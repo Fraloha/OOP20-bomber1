@@ -1,7 +1,7 @@
 package bomberone.model.gameObjects;
 
 /**
- * Represent the Fire triggered by the Explosion.
+ * Fire Object.
  */
 public interface Fire extends GameObject {
 

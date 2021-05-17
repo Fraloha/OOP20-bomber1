@@ -39,15 +39,15 @@ public class ExplosionEvent implements WorldEvent {
      * 
      */
     @Override
-    public void process(final GameMatch model) {
+    public void process(final GameMatch match) {
         Explosion exp = this.explosion;
-        model.getWorld().getGameObjectCollection()
-                .spawn(model.getWorld().getGameObjectFactory().createFire(exp.getCenter()));
+        match.getWorld().getGameObjectCollection()
+                .spawn(match.getWorld().getGameObjectFactory().createFire(exp.getCenter()));
         List<P2d> wallsListPos = new ArrayList<>();
         List<P2d> boxListPos = new ArrayList<>();
-        boxListPos.addAll(model.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition())
+        boxListPos.addAll(match.getWorld().getGameObjectCollection().getBoxList().stream().map(e -> e.getPosition())
                 .collect(Collectors.toList()));
-        wallsListPos.addAll(model.getWorld().getGameObjectCollection().getHardWallList().stream()
+        wallsListPos.addAll(match.getWorld().getGameObjectCollection().getHardWallList().stream()
                 .map(e -> e.getPosition()).collect(Collectors.toList()));
 
         // Left Direction
@@ -56,8 +56,8 @@ public class ExplosionEvent implements WorldEvent {
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
-                model.getWorld().getGameObjectCollection()
-                        .spawn(model.getWorld().getGameObjectFactory().createFire(newPos));
+                match.getWorld().getGameObjectCollection()
+                        .spawn(match.getWorld().getGameObjectFactory().createFire(newPos));
             } else {
                 break;
             }
@@ -72,8 +72,8 @@ public class ExplosionEvent implements WorldEvent {
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
-                model.getWorld().getGameObjectCollection()
-                        .spawn(model.getWorld().getGameObjectFactory().createFire(newPos));
+                match.getWorld().getGameObjectCollection()
+                        .spawn(match.getWorld().getGameObjectFactory().createFire(newPos));
             } else {
                 break;
             }
@@ -88,8 +88,8 @@ public class ExplosionEvent implements WorldEvent {
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
-                model.getWorld().getGameObjectCollection()
-                        .spawn(model.getWorld().getGameObjectFactory().createFire(newPos));
+                match.getWorld().getGameObjectCollection()
+                        .spawn(match.getWorld().getGameObjectFactory().createFire(newPos));
             } else {
                 break;
             }
@@ -104,8 +104,8 @@ public class ExplosionEvent implements WorldEvent {
             // The fire cannot be spawned over the Walls, but it can be spawner over the
             // other Objects
             if (!wallsListPos.contains(newPos)) {
-                model.getWorld().getGameObjectCollection()
-                        .spawn(model.getWorld().getGameObjectFactory().createFire(newPos));
+                match.getWorld().getGameObjectCollection()
+                        .spawn(match.getWorld().getGameObjectFactory().createFire(newPos));
             } else {
                 break;
             }
@@ -113,7 +113,7 @@ public class ExplosionEvent implements WorldEvent {
                 break;
             }
         }
-        model.getWorld().getBomber().restoreAmmo();
+        match.getWorld().getBomber().restoreAmmo();
     }
 
 }

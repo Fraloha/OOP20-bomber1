@@ -1,6 +1,5 @@
 package bomberone.model.gameObjects;
 
-
 import bomberone.model.common.Direction;
 
 /**
@@ -84,27 +83,25 @@ public interface AnimatedEntity extends GameObject {
     void setStatic(boolean value);
 
     /**
-     * Sets the AnimatedEntity sprite index. (See the documentation of
-     * AnimatedEntityImpl to learn more.)
+     * Sets the AnimatedEntity direction index.
      * 
      * @param index The value of the index.
      */
-    void setSpriteIndex(int index);
+    void setDirectionIndex(int index);
 
     /**
-     * Sets the AnimatedEntity animation index. (See the documentation of
-     * AnimatedEntityImpl to learn more.)
+     * Sets the AnimatedEntity animation index.
      * 
      * @param index The value of the index
      */
     void setAnimationIndex(int index);
 
     /**
-     * Gets the current sprite index.
+     * Gets the current direction index.
      * 
      * @return the value of the current sprite index.
      */
-    int getSpriteIndex();
+    int getDirectionIndex();
 
     /**
      * Gets the current animation index.

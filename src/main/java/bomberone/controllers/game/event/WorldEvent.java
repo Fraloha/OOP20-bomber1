@@ -11,7 +11,8 @@ public interface WorldEvent {
 
     /**
      * In this method is done the routine to handle the Event.
-     * @param model to apply the event
+     * 
+     * @param match to apply the event
      */
-    void process(GameMatch model);
+    void process(GameMatch match);
 }

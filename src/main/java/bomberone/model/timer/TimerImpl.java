@@ -1,5 +1,8 @@
 package bomberone.model.timer;
 
+/**
+ * An implementation of Timer.
+ */
 public final class TimerImpl implements Timer {
 
     private Time time;

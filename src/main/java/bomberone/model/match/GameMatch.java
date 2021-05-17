@@ -6,7 +6,7 @@ import bomberone.model.user.User;
 import bomberone.model.world.World;
 
 /**
- * The Model of the Game.
+ * The Match of the Game.
  * 
  */
 public interface GameMatch {

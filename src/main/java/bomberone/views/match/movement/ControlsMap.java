@@ -1,4 +1,4 @@
-package bomberone.views.game.movement;
+package bomberone.views.match.movement;
 
 import java.util.HashMap;
 import java.util.Map;

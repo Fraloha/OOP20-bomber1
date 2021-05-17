@@ -1,7 +1,5 @@
 package bomberone.views;
 
-
-
 import bomberone.controllers.Controller;
 import bomberone.controllers.home.HomeControllerImpl;
 import bomberone.controllers.game.GameControllerImpl;
@@ -9,10 +7,9 @@ import bomberone.controllers.setUp.SetUpControllerImpl;
 import bomberone.controllers.rank.RankControllerImpl;
 
 /**
- * Enum for the Views, each one has her StyleFile and her specific Controller.
- * Type
+ * Enum for the Views, each one has her Style-File ".fxml" and her specific
+ * Controller. Type
  * 
- *
  */
 public enum ViewType {
 
@@ -29,7 +26,7 @@ public enum ViewType {
     /**
      * 
      */
-    GAME("GameView", new GameControllerImpl()), RANK("RankView", new RankControllerImpl());
+    MATCH("MatchView", new GameControllerImpl()), RANK("RankView", new RankControllerImpl());
 
     /**
      * Style files path.

@@ -12,11 +12,11 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.game.GameViewImpl">
+<AnchorPane prefHeight="612.0" prefWidth="576.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.match.MatchViewImpl">
    <children>
-      <BorderPane prefHeight="200.0" prefWidth="200.0">
+      <BorderPane>
          <top>
-            <HBox minHeight="50.0" prefHeight="48.0" prefWidth="200.0" style="-fx-background-color: LightSlateGrey; -fx-border-color: black; -fx-border-width: 2;" BorderPane.alignment="CENTER">
+            <HBox minHeight="50.0" minWidth="200.0" style="-fx-background-color: LightSlateGrey; -fx-border-color: black; -fx-border-width: 2;" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="miniBomber" fitHeight="37.0" fitWidth="45.0" pickOnBounds="true" preserveRatio="true">
                      <HBox.margin>
@@ -90,7 +90,7 @@
             </HBox>
          </top>
          <center>
-            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="576.0" prefWidth="576.0" BorderPane.alignment="CENTER">
+            <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="576.0" minWidth="576.0" BorderPane.alignment="CENTER">
                <children>
                   <Canvas fx:id="canvasBackground" height="576.0" width="576.0" />
                   <Canvas fx:id="canvasForegrounds" height="576.0" width="576.0" />

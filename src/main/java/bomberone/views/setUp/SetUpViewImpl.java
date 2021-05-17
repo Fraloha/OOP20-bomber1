@@ -10,7 +10,7 @@ import bomberone.views.AlertBox;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
-import bomberone.views.game.img.GameImages;
+import bomberone.views.match.img.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -96,7 +96,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @Override
     public final void switchToGame() {
         SoundsHandler.stopAudio();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
+        ViewsSwitcher.switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
     @Override

@@ -1,10 +1,13 @@
 package bomberone.model.gameObjects;
 
-
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import javafx.geometry.Rectangle2D;
 
+/**
+ * An implementation of AnimatedEntity.
+ *
+ */
 public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity {
 
     private static final double TIME_QUOTIENT = 5000.0;
@@ -12,12 +15,11 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
     private Direction dir;
     private double speed;
     private boolean isStatic;
-    private int spriteIndex; // 0:UP 1:DOWN 2:LEFT 3:RIGHT 4:DEATH
+    private int directionIndex; // 0:UP 1:DOWN 2:LEFT 3:RIGHT 4:DEATH
     private int animationsIndex;
 
     public AnimatedEntityImpl(final P2d pos, final int lifes) {
         super(pos, lifes);
-
         this.dir = Direction.DOWN;
         this.isStatic = true;
     }
@@ -140,8 +142,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      * {@inheritDoc}
      */
     @Override
-    public void setSpriteIndex(final int index) {
-        this.spriteIndex = index;
+    public void setDirectionIndex(final int index) {
+        this.directionIndex = index;
     }
 
     /**
@@ -156,8 +158,8 @@ public class AnimatedEntityImpl extends GameObjectImpl implements AnimatedEntity
      * {@inheritDoc}
      */
     @Override
-    public int getSpriteIndex() {
-        return this.spriteIndex;
+    public int getDirectionIndex() {
+        return this.directionIndex;
     }
 
     /**

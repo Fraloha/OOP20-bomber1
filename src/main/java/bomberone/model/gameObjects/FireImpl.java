@@ -4,7 +4,7 @@ package bomberone.model.gameObjects;
 import bomberone.model.common.P2d;
 
 /**
- * This class implements a simple Fire who extends a GameObject.
+ * An implementation of Fire.
  *
  */
 public class FireImpl extends GameObjectImpl implements Fire {

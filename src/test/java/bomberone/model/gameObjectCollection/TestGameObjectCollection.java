@@ -14,8 +14,8 @@ import bomberone.model.gameObjects.GameObject;
 import bomberone.model.gameObjects.GameObjectCollection;
 import bomberone.model.gameObjects.GameObjectCollectionImpl;
 import bomberone.model.gameObjects.HardWall;
-import bomberone.views.game.img.AnimatedObjectsSprites;
-import bomberone.views.game.img.GameImages;
+import bomberone.views.match.img.AnimatedObjectsSprites;
+import bomberone.views.match.img.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;

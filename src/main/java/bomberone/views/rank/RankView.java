@@ -24,7 +24,7 @@ import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.GameSounds;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.basic.ViewImpl;
-import bomberone.views.game.img.GameImages;
+import bomberone.views.match.img.GameImages;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.controllers.rank.RankController;

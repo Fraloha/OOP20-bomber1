@@ -12,8 +12,12 @@ import bomberone.model.match.Difficulty;
 import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
 import bomberone.tools.RankLoader;
-import bomberone.views.game.GameView;
+import bomberone.views.match.MatchView;
 
+/**
+ * An implementation of GameController.
+ *
+ */
 public class GameControllerImpl extends ControllerImpl implements GameController, Runnable {
 
     private static final double PERIOD = 16.6666;
@@ -21,7 +25,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     private WorldEventListener eventHandler;
     private CommandListener commandHandler;
     private Thread game;
-    private boolean wasStopped;
+    private boolean wasQuitted;
 
     /**
      * {@inheritDoc}
@@ -41,7 +45,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
         }
         this.getModel().getCurrentMatch().getTimerThread().stopTimer();
         this.getModel().getCurrentMatch().getUser().setScore(this.getModel().getCurrentMatch().getScore());
-        if (!this.wasStopped) {
+        if (!this.wasQuitted) {
             /* Add the user on the specific rank */
             if (this.getModel().getCurrentMatch().getDifficulty().equals(Difficulty.HARD)) {
                 this.getModel().getHardRank().add(this.getModel().getCurrentMatch().getUser());
@@ -49,9 +53,10 @@ public class GameControllerImpl extends ControllerImpl implements GameController
                 this.getModel().getStdRank().add(this.getModel().getCurrentMatch().getUser());
             }
             RankLoader.writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
-            ((GameView) this.getView()).switchToRank();
+            ((MatchView) this.getView()).switchToRank();
+        } else {
+            this.wasQuitted = false;
         }
-        this.wasStopped = false;
 
     }
 
@@ -71,7 +76,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
     @Override
     public void quitGame() {
         this.getModel().getCurrentMatch().setGameOver(true);
-        this.wasStopped = true;
+        this.wasQuitted = true;
     }
 
     /**
@@ -87,7 +92,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
      */
     @Override
     public void render() {
-        ((GameView) this.getView()).render();
+        ((MatchView) this.getView()).render();
     }
 
     /**

@@ -51,13 +51,13 @@ public final class BasicBehavior implements Actions{
 	        
 	        //Setting the sprite on the basis of the direction.
 	        if (this.selectedEnemy.getDir() == Direction.UP) {
-	            this.selectedEnemy.setSpriteIndex(3);
+	            this.selectedEnemy.setDirectionIndex(3);
 	        } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
-	            this.selectedEnemy.setSpriteIndex(1);
+	            this.selectedEnemy.setDirectionIndex(1);
 	        } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
-	            this.selectedEnemy.setSpriteIndex(2);
+	            this.selectedEnemy.setDirectionIndex(2);
 	        } else {
-	            this.selectedEnemy.setSpriteIndex(0);
+	            this.selectedEnemy.setDirectionIndex(0);
 	        }
 	        
 	        //Resetting the counter.

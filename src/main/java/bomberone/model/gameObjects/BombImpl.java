@@ -3,8 +3,6 @@ package bomberone.model.gameObjects;
 import java.util.Optional;
 
 import bomberone.model.common.P2d;
-import bomberone.tools.audio.SoundsHandler;
-import bomberone.tools.audio.GameSounds;
 
 /**
  * This class implements a simple Bomb who extends a GameObject.
@@ -21,7 +19,6 @@ public class BombImpl extends GameObjectImpl implements Bomb {
      */
     private static final int ANIMATION_COUNTDOWN = 2;
 
-
     private int thicks;
     private final int firePower;
     private final boolean pierced;
@@ -29,8 +26,7 @@ public class BombImpl extends GameObjectImpl implements Bomb {
     private int indexAnimation = 0;
     private int animationTimer = 0;
 
-    public BombImpl(final P2d pos, final int lifes, final int firePower,
-            final boolean pierced) {
+    public BombImpl(final P2d pos, final int lifes, final int firePower, final boolean pierced) {
         super(pos, lifes);
         this.explosion = Optional.empty();
         this.firePower = firePower;

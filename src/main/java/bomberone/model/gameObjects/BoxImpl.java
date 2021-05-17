@@ -4,6 +4,10 @@ import java.util.Optional;
 
 import bomberone.model.common.P2d;
 
+/**
+ * An implementation of Box.
+ *
+ */
 public class BoxImpl extends GameObjectImpl implements Box {
 
     private Optional<PowerUp> powerUp;

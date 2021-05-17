@@ -1,7 +1,7 @@
 package bomberone.model.gameObjects;
 
 /**
- * PowerUp that can change the Game's property.
+ * PowerUp Object that can change the Game's property.
  *
  */
 public interface PowerUp extends GameObject {

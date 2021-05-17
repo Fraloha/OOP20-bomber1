@@ -32,9 +32,9 @@ public interface WorldEventListener {
     /**
      * Set the GameModel linked to the Listener.
      * 
-     * @param game the Model to attach to the Listener
+     * @param match the Model to attach to the Listener
      */
-    void setGameMatch(GameMatch game);
+    void setGameMatch(GameMatch match);
 
     /**
      * Get the GameModel linked to the Listener.

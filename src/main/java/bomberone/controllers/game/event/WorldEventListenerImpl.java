@@ -5,9 +5,12 @@ import java.util.List;
 
 import bomberone.model.match.GameMatch;
 
+/**
+ * An implementation of WorldEventListener.
+ */
 public class WorldEventListenerImpl implements WorldEventListener {
 
-    private GameMatch model;
+    private GameMatch match;
     private List<WorldEvent> eventList = new ArrayList<>();
 
     /**
@@ -32,7 +35,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
     @Override
     public void processEvents() {
         this.eventList.stream().forEach(event -> {
-            event.process(model);
+            event.process(match);
         });
         this.eventList.clear();
     }
@@ -41,8 +44,8 @@ public class WorldEventListenerImpl implements WorldEventListener {
      * {@inheritDoc}
      */
     @Override
-    public void setGameMatch(final GameMatch game) {
-        this.model = game;
+    public void setGameMatch(final GameMatch match) {
+        this.match = match;
     }
 
     /**
@@ -50,7 +53,7 @@ public class WorldEventListenerImpl implements WorldEventListener {
      */
     @Override
     public GameMatch getGameMatch() {
-        return this.model;
+        return this.match;
     }
 
 }

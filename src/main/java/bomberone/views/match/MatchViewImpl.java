@@ -1,4 +1,4 @@
-    package bomberone.views.game;
+package bomberone.views.match;
 
 import bomberone.controllers.game.GameController;
 import bomberone.model.bomber.Bomber;
@@ -12,9 +12,9 @@ import bomberone.tools.audio.GameSounds;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.views.basic.ViewImpl;
-import bomberone.views.game.img.AnimatedObjectsSprites;
-import bomberone.views.game.img.GameImages;
-import bomberone.views.game.movement.ControlsMap;
+import bomberone.views.match.img.AnimatedObjectsSprites;
+import bomberone.views.match.img.GameImages;
+import bomberone.views.match.movement.ControlsMap;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -25,7 +25,11 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 
-public class GameViewImpl extends ViewImpl implements GameView {
+/**
+ * An implementation of MatchView.
+ *
+ */
+public class MatchViewImpl extends ViewImpl implements MatchView {
 
     private static final int FONT_SIZE = 30;
     private static final int ENEMY_WIDTH = 32;
@@ -239,7 +243,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         Platform.runLater(() -> {
             objListToRender.getEnemyList().stream().forEach(enemy -> {
                 this.gCForeground.drawImage(
-                        this.enemySprites[enemy.getSpriteIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
+                        this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
                         enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                         ENEMY_WIDTH, ENEMY_HEIGHT);
             });
@@ -248,7 +252,7 @@ public class GameViewImpl extends ViewImpl implements GameView {
         /* Draw the BomberMan */
         Bomber bomberTemp = ((GameController) this.getController()).getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(
-                this.bomberSprites[bomberTemp.getSpriteIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
+                this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
 
     }

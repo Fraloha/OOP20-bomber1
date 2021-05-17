@@ -71,7 +71,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.pierce = false;
         this.maxAmmo = AMMO;
         this.usedAmmo = 0;
-        this.setSpriteIndex(SPRITES);
+        this.setDirectionIndex(SPRITES);
         this.setAnimationIndex(0);
     }
 
@@ -87,7 +87,7 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
         this.firePower = FIRE_POWER;
         this.pierce = false;
         this.maxAmmo = AMMO;
-        this.setSpriteIndex(SPRITES);
+        this.setDirectionIndex(SPRITES);
         this.setAnimationIndex(0);
         this.fpAgg = 0;
     }
@@ -255,19 +255,19 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 switch (this.getDir()) {
                 case UP:
                     this.setAnimationIndex(0);
-                    this.setSpriteIndex(0);
+                    this.setDirectionIndex(0);
                     break;
                 case DOWN:
                     this.setAnimationIndex(0);
-                    this.setSpriteIndex(1);
+                    this.setDirectionIndex(1);
                     break;
                 case LEFT:
                     this.setAnimationIndex(0);
-                    this.setSpriteIndex(2);
+                    this.setDirectionIndex(2);
                     break;
                 case RIGHT:
                     this.setAnimationIndex(0);
-                    this.setSpriteIndex(3);
+                    this.setDirectionIndex(3);
                     break;
                 default:
                     break;
@@ -279,19 +279,19 @@ public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
                 this.setAnimationIndex((this.getAnimationIndex() + 1));
             }
         } else {
-            if (this.getSpriteIndex() != 4) {
+            if (this.getDirectionIndex() != 4) {
                 this.setAnimationIndex(0);
-                this.setSpriteIndex(4);
+                this.setDirectionIndex(4);
                 this.fpAgg = 0;
             } else if (++this.fpAgg == DEATH_TIME) {
                 this.fpAgg = 0;
                 this.setAnimationIndex((this.getAnimationIndex() + 1));
             }
-            if (this.getSpriteIndex() == 4 && this.getAnimationIndex() == 3) {
+            if (this.getDirectionIndex() == 4 && this.getAnimationIndex() == 3) {
                 this.respawn();
             }
         }
-        if (this.isStatic() && this.getSpriteIndex() != 4) {
+        if (this.isStatic() && this.getDirectionIndex() != 4) {
             this.setAnimationIndex(0);
         }
         super.update(elapsed);

@@ -3,6 +3,10 @@ package bomberone.controllers;
 import bomberone.model.GameModel;
 import bomberone.views.basic.View;
 
+/**
+ * An implementation of Controller.
+ *
+ */
 public abstract class ControllerImpl implements Controller {
 
     private GameModel model;

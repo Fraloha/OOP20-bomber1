@@ -18,6 +18,6 @@ public class TestViews {
      */
     @Test
     public void testViewsPath() {
-        assertEquals(DIRECTORY + "GameView" + FORMAT, ViewType.GAME.getPath());
+        assertEquals(DIRECTORY + "GameView" + FORMAT, ViewType.MATCH.getPath());
     }
 }

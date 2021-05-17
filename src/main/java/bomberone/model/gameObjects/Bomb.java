@@ -2,10 +2,15 @@ package bomberone.model.gameObjects;
 
 import java.util.Optional;
 
+/**
+ * Bomb Object.
+ *
+ */
 public interface Bomb extends GameObject {
 
     /**
-     * Method that generate the explosion of @this Bomb, and it fill the Optional with the Explosion.
+     * Method that generate the explosion of @this Bomb, and it fill the Optional
+     * with the Explosion.
      * 
      * @return the Explosion
      */
@@ -13,7 +18,8 @@ public interface Bomb extends GameObject {
 
     /**
      * 
-     * @return Optional.empty() if explode() isn't already called, else return the Optional filled by the Explosion
+     * @return Optional.empty() if explode() isn't already called, else return the
+     *         Optional filled by the Explosion
      * 
      */
     Optional<Explosion> getExplosion();

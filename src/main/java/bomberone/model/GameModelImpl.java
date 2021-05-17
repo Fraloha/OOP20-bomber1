@@ -7,6 +7,10 @@ import bomberone.model.match.GameMatch;
 import bomberone.model.user.User;
 import bomberone.tools.RankLoader;
 
+/**
+ * An implementation of GameModel.
+ *
+ */
 public class GameModelImpl implements GameModel {
 
     private List<User> standardRank = new ArrayList<User>();

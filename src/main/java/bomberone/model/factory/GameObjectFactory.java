@@ -7,7 +7,7 @@ import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 
 /**
- * A Factory class for create every GameObject.
+ * A Factory interface for create every GameObject.
  * 
  *
  */

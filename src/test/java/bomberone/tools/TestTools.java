@@ -16,8 +16,8 @@ import bomberone.model.user.UserImpl;
 import bomberone.tools.DirectoryLoader;
 import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
-import bomberone.views.game.img.AnimatedObjectsSprites;
-import bomberone.views.game.img.GameImages;
+import bomberone.views.match.img.AnimatedObjectsSprites;
+import bomberone.views.match.img.GameImages;
 
 public class TestTools {
 

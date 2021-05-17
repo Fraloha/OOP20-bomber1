@@ -1,10 +1,10 @@
-package bomberone.views.game.img;
+package bomberone.views.match.img;
 
 
 import javafx.scene.image.Image;
 
 /**
- * This enum contains the Sprites of the Object animated.
+ * This enum contains the Sprites of the animated GameObjects.
  * 
  *
  */

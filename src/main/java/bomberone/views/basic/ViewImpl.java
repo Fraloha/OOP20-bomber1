@@ -3,6 +3,10 @@ package bomberone.views.basic;
 import bomberone.controllers.Controller;
 import javafx.stage.Stage;
 
+/**
+ * An implementation of View.
+ *
+ */
 public abstract class ViewImpl implements View {
 
     private Controller controller;
