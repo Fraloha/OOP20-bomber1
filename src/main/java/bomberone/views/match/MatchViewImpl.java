@@ -220,7 +220,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /*
          * Draw the Bombs.
          */
-        objListToRender.getBombList().stream().forEach(bomb -> {
+        objListToRender.getBombList().forEach(bomb -> {
             final Image bombImage;
             if (bomb.getPierce()) {
                 bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
@@ -241,7 +241,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         });
 
         /* Draw enemies */
-        objListToRender.getEnemyList().stream().forEach(enemy -> {
+        objListToRender.getEnemyList().forEach(enemy -> {
             Platform.runLater(() -> this.gCForeground.drawImage(
                     this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
                     enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_WIDTH,
