@@ -182,71 +182,71 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
         /* Draw the boxes */
-        Platform.runLater(() -> {
-            Image boxImage = GameImages.BOX.getImage();
-            objListToRender.getBoxList().forEach(box -> {
-                this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
-                        IMAGE_SIZE);
-            });
+        Image boxImage = GameImages.BOX.getImage();
+        objListToRender.getBoxList().forEach(box -> {
+            Platform.runLater(() -> this.gCForeground.drawImage(boxImage, box.getPosition().getX(),
+                    box.getPosition().getY(), IMAGE_SIZE, IMAGE_SIZE));
+
         });
 
         /* Draw the powerUp */
-        Platform.runLater(() -> {
-            objListToRender.getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
-                Image powerUpImage = null;
-                PowerUp.Type type = pUp.getType();
-                if (type.equals(PowerUp.Type.FirePower)) {
-                    powerUpImage = GameImages.POWER_FIREPOWER.getImage();
-                }
-                if (type.equals(PowerUp.Type.Pierce)) {
-                    powerUpImage = GameImages.POWER_PIERCE.getImage();
-                }
-                if (type.equals(PowerUp.Type.Speed)) {
-                    powerUpImage = GameImages.POWER_SPEED.getImage();
-                }
-                if (type.equals(PowerUp.Type.Time)) {
-                    powerUpImage = GameImages.POWER_TIMER.getImage();
-                }
-                if (type.equals(PowerUp.Type.Ammo)) {
-                    powerUpImage = GameImages.POWER_BOMB.getImage();
-                }
-                this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
-            });
+        objListToRender.getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
+            final Image powerUpImage;
+            PowerUp.Type type = pUp.getType();
+            switch (type) {
+            case FirePower:
+                powerUpImage = GameImages.POWER_FIREPOWER.getImage();
+                break;
+            case Pierce:
+                powerUpImage = GameImages.POWER_PIERCE.getImage();
+                break;
+            case Speed:
+                powerUpImage = GameImages.POWER_SPEED.getImage();
+                break;
+            case Time:
+                powerUpImage = GameImages.POWER_TIMER.getImage();
+                break;
+            case Ammo:
+                powerUpImage = GameImages.POWER_BOMB.getImage();
+                break;
+            default:
+                powerUpImage = GameImages.POWER_BOMB.getImage();
+                break;
+            }
+            Platform.runLater(() -> this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(),
+                    pUp.getPosition().getY()));
         });
 
-        /* Draw bombs */
-        Platform.runLater(() -> {
-            objListToRender.getBombList().stream().forEach(bomb -> {
-                if (bomb.getPierce()) {
-                    this.gCForeground
-                            .drawImage(AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
-                                    % BOMB_N_ANIMATION], bomb.getPosition().getX(), bomb.getPosition().getY());
-                } else {
-                    this.gCForeground.drawImage(
-                            AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION],
-                            bomb.getPosition().getX(), bomb.getPosition().getY());
-                }
+        /*
+         * Draw the Bombs.
+         */
+        objListToRender.getBombList().stream().forEach(bomb -> {
+            final Image bombImage;
+            if (bomb.getPierce()) {
+                bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
+                        % BOMB_N_ANIMATION];
+            } else {
+                bombImage = AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION];
+            }
+            Platform.runLater(
+                    () -> this.gCForeground.drawImage(bombImage, bomb.getPosition().getX(), bomb.getPosition().getY()));
 
-            });
         });
 
         /* Draw the fire */
-        Platform.runLater(() -> {
-            objListToRender.getFireList().forEach(fire -> {
-                this.gCForeground.drawImage(
-                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
-                        fire.getPosition().getX(), fire.getPosition().getY());
-            });
+        objListToRender.getFireList().forEach(fire -> {
+            Platform.runLater(() -> this.gCForeground.drawImage(
+                    AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
+                    fire.getPosition().getX(), fire.getPosition().getY()));
         });
 
         /* Draw enemies */
-        Platform.runLater(() -> {
-            objListToRender.getEnemyList().stream().forEach(enemy -> {
-                this.gCForeground.drawImage(
-                        this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
-                        enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
-                        ENEMY_WIDTH, ENEMY_HEIGHT);
-            });
+        objListToRender.getEnemyList().stream().forEach(enemy -> {
+            Platform.runLater(() -> this.gCForeground.drawImage(
+                    this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
+                    enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_WIDTH,
+                    ENEMY_HEIGHT));
+
         });
 
         /* Draw the BomberMan */
