@@ -51,6 +51,7 @@ public class GameControllerImpl extends ControllerImpl implements GameController
             RankLoader.writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
             ((GameView) this.getView()).switchToRank();
         }
+        this.wasStopped = false;
 
     }
 
@@ -164,7 +165,8 @@ public class GameControllerImpl extends ControllerImpl implements GameController
      */
     @Override
     public GameObjectCollection getObjList() {
-        return this.getModel().getCurrentMatch().getWorld().getGameObjectCollection();
+        GameObjectCollection objListToRender = this.getModel().getCurrentMatch().getWorld().getGameObjectCollection();
+        return objListToRender;
     }
 
     /**

@@ -1,5 +1,4 @@
-package bomberone.views.game;
-
+    package bomberone.views.game;
 
 import bomberone.controllers.game.GameController;
 import bomberone.model.bomber.Bomber;
@@ -189,27 +188,26 @@ public class GameViewImpl extends ViewImpl implements GameView {
 
         /* Draw the powerUp */
         Platform.runLater(() -> {
-            objListToRender.getPowerUpList().stream().filter(PowerUp::isReleased)
-                    .forEach(pUp -> {
-                        Image powerUpImage = null;
-                        PowerUp.Type type = pUp.getType();
-                        if (type.equals(PowerUp.Type.FirePower)) {
-                            powerUpImage = GameImages.POWER_FIREPOWER.getImage();
-                        }
-                        if (type.equals(PowerUp.Type.Pierce)) {
-                            powerUpImage = GameImages.POWER_PIERCE.getImage();
-                        }
-                        if (type.equals(PowerUp.Type.Speed)) {
-                            powerUpImage = GameImages.POWER_SPEED.getImage();
-                        }
-                        if (type.equals(PowerUp.Type.Time)) {
-                            powerUpImage = GameImages.POWER_TIMER.getImage();
-                        }
-                        if (type.equals(PowerUp.Type.Ammo)) {
-                            powerUpImage = GameImages.POWER_BOMB.getImage();
-                        }
-                        this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
-                    });
+            objListToRender.getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
+                Image powerUpImage = null;
+                PowerUp.Type type = pUp.getType();
+                if (type.equals(PowerUp.Type.FirePower)) {
+                    powerUpImage = GameImages.POWER_FIREPOWER.getImage();
+                }
+                if (type.equals(PowerUp.Type.Pierce)) {
+                    powerUpImage = GameImages.POWER_PIERCE.getImage();
+                }
+                if (type.equals(PowerUp.Type.Speed)) {
+                    powerUpImage = GameImages.POWER_SPEED.getImage();
+                }
+                if (type.equals(PowerUp.Type.Time)) {
+                    powerUpImage = GameImages.POWER_TIMER.getImage();
+                }
+                if (type.equals(PowerUp.Type.Ammo)) {
+                    powerUpImage = GameImages.POWER_BOMB.getImage();
+                }
+                this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
+            });
         });
 
         /* Draw bombs */
