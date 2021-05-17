@@ -23,8 +23,7 @@ public abstract class AbstractActions implements Actions {
     }
 
     /* Methods. */
-    
-    private void manageSprite() {
+    private void manageAnimation() {
         if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
             this.selectedEnemy.setFrameCounterAnimation(0);
             this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
@@ -32,16 +31,28 @@ public abstract class AbstractActions implements Actions {
             this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
         }
     }
+
+    private void setSprite() {
+        if (this.selectedEnemy.getDir() == Direction.UP) {
+            this.selectedEnemy.setSpriteIndex(3);
+        } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
+            this.selectedEnemy.setSpriteIndex(2);
+        } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
+            this.selectedEnemy.setSpriteIndex(1);
+        } else {
+            this.selectedEnemy.setSpriteIndex(0);
+        }
+    }
+
     /**
      * {@inheritDoc}
      */
     public void doActions() {
-        int newDirection;
-        
+        // Checking if the some frames are passed to perform the next move.
         if (this.nextDirectionCounter == AbstractActions.FRAMES_TO_CHANGE_DIRECTION) {
-            
+
         } else {
-            
+            this.manageAnimation();
         }
     }
 
