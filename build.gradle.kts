@@ -23,7 +23,8 @@ val javaFXModules = listOf(
     "controls",
     "fxml",
     "swing",
-    "graphics"
+    "graphics",
+    "media"
 )
 
 val supportedPlatforms = listOf("linux", "mac", "win") // All required for OOP
@@ -59,7 +60,7 @@ tasks.withType<Test> {
 
 application {
     // Define the main class for the application
-    mainClass.set("bomberOne.Launcher")
+    mainClass.set("bomberone.Launcher")
 
     /*
      * mainClassName was deprecated by Gradle, but it is still required by John Engelman's Shadow plugin.

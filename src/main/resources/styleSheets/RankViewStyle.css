@@ -9,6 +9,11 @@
 .tableViewColumnStyle{
 	-fx-background-color: #000000;
 }
+
+.borderPaneStyle{
+	-fx-background-color: #000000;
+}
+
 .anchorPaneStyle{
-	-fx-background-image: url('../images/RankViewImages/StarNignt.png');
+	-fx-background-color: #000000;
 }
