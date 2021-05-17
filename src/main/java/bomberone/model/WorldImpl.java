@@ -167,7 +167,11 @@ public class WorldImpl implements World {
     public final void updateState(final int time) {
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
-            obj.update(time);
+            if (obj.getClass() == EnemyImpl.class) {
+                ((EnemyImpl) obj).update(time, this.bomberMan.getPosition());
+            } else {
+                obj.update(time);
+            }
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
