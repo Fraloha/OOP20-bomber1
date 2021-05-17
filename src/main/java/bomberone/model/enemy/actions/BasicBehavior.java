@@ -9,20 +9,27 @@ import bomberone.model.enemy.EnemyImpl;
 public final class BasicBehavior extends AbstractActions {
 
     /* Fields. */
+    /**
+     * This constant is the number of frames that the enemy has to wait to change
+     * his direction.
+     */
+    private static final int FRAMES_TO_CHANGE_DIRECTION = 120;
+    private int nextDirectionCounter;
 
     /* Constructors. */
     public BasicBehavior(final Enemy enemy) {
         super(enemy);
-        this.randomGenerator = new Random();
+        this.nextDirectionCounter = BasicBehavior.FRAMES_TO_CHANGE_DIRECTION;
     }
 
     /* Methods. */
+    @Override
     public void doActions() {
         /* Variables declaration. */
         int newDirection;
 
         // Checking if the enemy has to change the direction.
-        if (this.nextDirectionCounter == AbstractActions.FRAMES_TO_CHANGE_DIRECTION) {
+        if (this.nextDirectionCounter == BasicBehavior.FRAMES_TO_CHANGE_DIRECTION) {
             // Generating a new random direction.
             do {
                 newDirection = this.randomGenerator.nextInt(4);
@@ -33,25 +40,14 @@ public final class BasicBehavior extends AbstractActions {
             this.selectedEnemy.setAnimationIndex(0);
 
             // Setting the sprite on the basis of the direction.
-            if (this.selectedEnemy.getDir() == Direction.UP) {
-                this.selectedEnemy.setSpriteIndex(3);
-            } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
-                this.selectedEnemy.setSpriteIndex(1);
-            } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
-                this.selectedEnemy.setSpriteIndex(2);
-            } else {
-                this.selectedEnemy.setSpriteIndex(0);
-            }
+            this.setSprite();
 
             // Resetting the counter.
             this.nextDirectionCounter = 0;
         } else {
-            if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
-                this.selectedEnemy.setFrameCounterAnimation(0);
-                this.selectedEnemy.setAnimationIndex((this.selectedEnemy.getAnimationIndex() + 1));
-            } else {
-                this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
-            }
+            this.manageAnimation();
         }
+        this.nextDirectionCounter++;
+        this.nextMove();
     }
 }

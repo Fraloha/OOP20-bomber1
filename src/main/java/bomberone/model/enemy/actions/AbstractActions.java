@@ -7,13 +7,7 @@ import bomberone.model.enemy.Enemy;
 
 public abstract class AbstractActions implements Actions {
     /* Fields. */
-    /**
-     * This constant is the number of frames that the enemy has to wait to change
-     * his direction.
-     */
-    protected static final int FRAMES_TO_CHANGE_DIRECTION = 120;
     protected Enemy selectedEnemy;
-    protected int nextDirectionCounter;
     protected Random randomGenerator;
 
     /* Constructors. */
@@ -23,7 +17,7 @@ public abstract class AbstractActions implements Actions {
     }
 
     /* Methods. */
-    private void manageAnimation() {
+    public void manageAnimation() {
         if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
             this.selectedEnemy.setFrameCounterAnimation(0);
             this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
@@ -31,8 +25,8 @@ public abstract class AbstractActions implements Actions {
             this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
         }
     }
-
-    private void setSprite() {
+    
+    public void setSprite() {
         if (this.selectedEnemy.getDir() == Direction.UP) {
             this.selectedEnemy.setSpriteIndex(3);
         } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
@@ -48,12 +42,7 @@ public abstract class AbstractActions implements Actions {
      * {@inheritDoc}
      */
     public void doActions() {
-        // Checking if the some frames are passed to perform the next move.
-        if (this.nextDirectionCounter == AbstractActions.FRAMES_TO_CHANGE_DIRECTION) {
-
-        } else {
-            this.manageAnimation();
-        }
+        
     }
 
     /**

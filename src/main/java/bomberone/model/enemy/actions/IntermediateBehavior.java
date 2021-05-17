@@ -16,7 +16,6 @@ public final class IntermediateBehavior extends AbstractActions {
 
     /* Fields. */
     private P2d playerPosition;
-    private Random randomGenerator;
     private List<BoxImpl> boxes;
     private BasicBehavior basicActions;
     private List<HardWall> walls;
@@ -59,13 +58,21 @@ public final class IntermediateBehavior extends AbstractActions {
 
     private P2d doMovements(final Direction direction) {
         if (direction.equals(Direction.UP)) {
-            this.selectedEnemy.moveUp();
+            while(this.selectedEnemy.getPosition().getY() % 32 != 0) {
+                this.selectedEnemy.moveUp();
+            }
         } else if (direction.equals(Direction.DOWN)) {
-            this.selectedEnemy.moveDown();
+            while (this.selectedEnemy.getPosition().getY() % 32 != 0) {
+                this.selectedEnemy.moveDown();
+            }
         } else if (direction.equals(Direction.RIGHT)) {
-            this.selectedEnemy.moveRight();
+            while (this.selectedEnemy.getPosition().getX() % 32 != 0) {
+                this.selectedEnemy.moveRight();
+            }
         } else {
-            this.selectedEnemy.moveLeft();
+            while(this.selectedEnemy.getPosition().getX() % 32 != 0) {
+                this.selectedEnemy.moveLeft();
+            }
         }
 
         return this.selectedEnemy.getPosition();
