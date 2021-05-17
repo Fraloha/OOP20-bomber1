@@ -28,3 +28,6 @@ At the beginning of the game it will be possible to choose between two different
 - ![](src/main/resources/images/power_pierce.png?raw=true "Pierce") Make your bomb's fire **able to pierces** boxes.
 - ![](src/main/resources/images/power_speed.png?raw=true "SpeedInc") Increases your **movement speed**.
 - ![](src/main/resources/images/power_bomb.png?raw=true "MultiBomb") Increases the **number of bombs** that can be placed at a time.
+
+## License
+Distributed under the MIT License.
