@@ -1,16 +1,24 @@
 
 package bomberone.controllers.match;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import bomberone.controllers.ControllerImpl;
 import bomberone.controllers.match.event.WorldEventListener;
 import bomberone.controllers.match.event.WorldEventListenerImpl;
 import bomberone.controllers.match.input.CommandListener;
 import bomberone.controllers.match.input.CommandListenerImpl;
 import bomberone.model.bomber.Bomber;
+import bomberone.model.enemy.Enemy;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.box.Box;
+import bomberone.model.gameObjects.fire.Fire;
+import bomberone.model.gameObjects.hardwall.HardWall;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
-import bomberone.model.world.collection.GameObjectCollection;
 import bomberone.tools.RankLoader;
 import bomberone.views.match.MatchView;
 
@@ -169,15 +177,6 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      * {@inheritDoc}
      */
     @Override
-    public GameObjectCollection getObjList() {
-        GameObjectCollection objListToRender = this.getModel().getCurrentMatch().getWorld().getGameObjectCollection();
-        return objListToRender;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public int getScore() {
         return this.getModel().getCurrentMatch().getScore();
     }
@@ -188,6 +187,66 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
     @Override
     public Difficulty getDifficulty() {
         return this.getModel().getCurrentMatch().getDifficulty();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Fire> getFireList() {
+        List<Fire> fireList = new ArrayList<>();
+        fireList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getFireList());
+        return fireList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Bomb> getBombList() {
+        List<Bomb> bombList = new ArrayList<>();
+        bombList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBombList());
+        return bombList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Box> getBoxList() {
+        List<Box> boxList = new ArrayList<>();
+        boxList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBoxList());
+        return boxList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<HardWall> getHardWallList() {
+        List<HardWall> wallList = new ArrayList<>();
+        wallList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getHardWallList());
+        return wallList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<Enemy> getEnemyList() {
+        List<Enemy> enemyList = new ArrayList<>();
+        enemyList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getEnemyList());
+        return enemyList;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public List<PowerUp> getPowerUpList() {
+        List<PowerUp> pUpList = new ArrayList<>();
+        pUpList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getPowerUpList());
+        return pUpList;
     }
 
 }

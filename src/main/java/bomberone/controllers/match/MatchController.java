@@ -1,12 +1,19 @@
 package bomberone.controllers.match;
 
+import java.util.List;
+
 import bomberone.controllers.Controller;
 import bomberone.controllers.match.input.CommandListener;
 import bomberone.model.bomber.Bomber;
+import bomberone.model.enemy.Enemy;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.box.Box;
+import bomberone.model.gameObjects.fire.Fire;
+import bomberone.model.gameObjects.hardwall.HardWall;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
-import bomberone.model.world.collection.GameObjectCollection;
 
 /**
  * The Game Controller of the MatchView that contains the Gameloop and handles
@@ -72,13 +79,6 @@ public interface MatchController extends Controller {
     User getPlayerOfTheGame();
 
     /**
-     * Called if View needs the GameObjects list.
-     * 
-     * @return the GameObject list.
-     */
-    GameObjectCollection getObjList();
-
-    /**
      * Called if View needs the Game Score.
      * 
      * @return the Game Score.
@@ -91,5 +91,47 @@ public interface MatchController extends Controller {
      * @return the Game Difficulty.
      */
     Difficulty getDifficulty();
+    
+    /**
+     * Called if View needs the list of FireObject.
+     * 
+     * @return the list of Fire.
+     */
+    List<Fire> getFireList();
+    
+    /**
+     * Called if View needs the list of Bombs.
+     * 
+     * @return the list of Bombs.
+     */
+    List<Bomb> getBombList();
+    
+    /**
+     * Called if View needs the list of Boxes.
+     * 
+     * @return the list of Boxes.
+     */
+    List<Box> getBoxList();
+    
+    /**
+     * Called if View needs the list of Walls.
+     * 
+     * @return the list of Walls.
+     */
+    List<HardWall> getHardWallList();
+    
+    /**
+     * Called if View needs the list of Enemies.
+     * 
+     * @return the list of Enemies.
+     */
+    List<Enemy> getEnemyList();
+    
+    /**
+     * Called if View needs the list of PowerUp.
+     * 
+     * @return the list of PowerUp.
+     */
+    List<PowerUp> getPowerUpList();
 
 }

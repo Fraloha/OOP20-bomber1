@@ -5,7 +5,6 @@ import bomberone.model.bomber.Bomber;
 import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
-import bomberone.model.world.collection.GameObjectCollection;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
@@ -163,7 +162,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
         /* Draw the Walls */
         Image wallImage = GameImages.HARDWALL.getImage();
-        ((MatchController) this.getController()).getObjList().getHardWallList().stream().forEach(wall -> {
+        ((MatchController) this.getController()).getHardWallList().forEach(wall -> {
             gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
         });
 
@@ -176,77 +175,78 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-        GameObjectCollection objListToRender = ((MatchController) this.getController()).getObjList();
+        
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
         /* Draw the boxes */
-        Image boxImage = GameImages.BOX.getImage();
-        objListToRender.getBoxList().forEach(box -> {
-            Platform.runLater(() -> this.gCForeground.drawImage(boxImage, box.getPosition().getX(),
-                    box.getPosition().getY(), IMAGE_SIZE, IMAGE_SIZE));
-
+        Platform.runLater(() -> {
+            Image boxImage = GameImages.BOX.getImage();
+            
+            ((MatchController) this.getController()).getBoxList().forEach(box -> {
+                this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
+                        IMAGE_SIZE);
+            });
         });
 
         /* Draw the powerUp */
-        objListToRender.getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
-            final Image powerUpImage;
-            PowerUp.Type type = pUp.getType();
-            switch (type) {
-            case FirePower:
-                powerUpImage = GameImages.POWER_FIREPOWER.getImage();
-                break;
-            case Pierce:
-                powerUpImage = GameImages.POWER_PIERCE.getImage();
-                break;
-            case Speed:
-                powerUpImage = GameImages.POWER_SPEED.getImage();
-                break;
-            case Time:
-                powerUpImage = GameImages.POWER_TIMER.getImage();
-                break;
-            case Ammo:
-                powerUpImage = GameImages.POWER_BOMB.getImage();
-                break;
-            default:
-                powerUpImage = GameImages.POWER_BOMB.getImage();
-                break;
-            }
-            Platform.runLater(() -> this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(),
-                    pUp.getPosition().getY()));
+        Platform.runLater(() -> {
+            ((MatchController) this.getController()).getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
+                Image powerUpImage = null;
+                PowerUp.Type type = pUp.getType();
+                if (type.equals(PowerUp.Type.FirePower)) {
+                    powerUpImage = GameImages.POWER_FIREPOWER.getImage();
+                }
+                if (type.equals(PowerUp.Type.Pierce)) {
+                    powerUpImage = GameImages.POWER_PIERCE.getImage();
+                }
+                if (type.equals(PowerUp.Type.Speed)) {
+                    powerUpImage = GameImages.POWER_SPEED.getImage();
+                }
+                if (type.equals(PowerUp.Type.Time)) {
+                    powerUpImage = GameImages.POWER_TIMER.getImage();
+                }
+                if (type.equals(PowerUp.Type.Ammo)) {
+                    powerUpImage = GameImages.POWER_BOMB.getImage();
+                }
+                this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
+            });
         });
 
-        /*
-         * Draw the Bombs.
-         */
-        objListToRender.getBombList().forEach(bomb -> {
-            final Image bombImage;
-            if (bomb.getPierce()) {
-                bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
-                        % BOMB_N_ANIMATION];
-            } else {
-                bombImage = AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION];
-            }
-            Platform.runLater(
-                    () -> this.gCForeground.drawImage(bombImage, bomb.getPosition().getX(), bomb.getPosition().getY()));
+        /* Draw bombs */
+        Platform.runLater(() -> {
+            ((MatchController) this.getController()).getBombList().stream().forEach(bomb -> {
+                if (bomb.getPierce()) {
+                    this.gCForeground
+                            .drawImage(AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
+                                    % BOMB_N_ANIMATION], bomb.getPosition().getX(), bomb.getPosition().getY());
+                } else {
+                    this.gCForeground.drawImage(
+                            AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION],
+                            bomb.getPosition().getX(), bomb.getPosition().getY());
+                }
 
+            });
         });
 
         /* Draw the fire */
-        objListToRender.getFireList().forEach(fire -> {
-            Platform.runLater(() -> this.gCForeground.drawImage(
-                    AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
-                    fire.getPosition().getX(), fire.getPosition().getY()));
+        Platform.runLater(() -> {
+            ((MatchController) this.getController()).getFireList().forEach(fire -> {
+                this.gCForeground.drawImage(
+                        AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
+                        fire.getPosition().getX(), fire.getPosition().getY());
+            });
         });
 
         /* Draw enemies */
-        objListToRender.getEnemyList().forEach(enemy -> {
-            Platform.runLater(() -> this.gCForeground.drawImage(
-                    this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
-                    enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT, ENEMY_WIDTH,
-                    ENEMY_HEIGHT));
-
+        Platform.runLater(() -> {
+            ((MatchController) this.getController()).getEnemyList().stream().forEach(enemy -> {
+                this.gCForeground.drawImage(
+                        this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
+                        enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
+                        ENEMY_WIDTH, ENEMY_HEIGHT);
+            });
         });
 
         /* Draw the BomberMan */
