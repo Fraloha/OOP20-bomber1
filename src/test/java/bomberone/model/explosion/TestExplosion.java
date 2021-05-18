@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.ExplosionImpl;
+import bomberone.model.gameObjects.bomb.ExplosionImpl;
 
 /**
  * Tester for Explosion.

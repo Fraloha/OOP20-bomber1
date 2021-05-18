@@ -3,15 +3,15 @@ package bomberone.model.bomber;
 import java.util.Optional;
 
 import bomberone.model.common.Direction;
-import bomberone.model.gameObjects.AnimatedEntity;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.moveable.MoveableObject;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 
 /**
  * This is the interface of the Bomber.
  * 
  */
-public interface Bomber extends AnimatedEntity {
+public interface Bomber extends MoveableObject {
 
     /**
      * Method for the respawn of the Bomber who initialize all the parameter.

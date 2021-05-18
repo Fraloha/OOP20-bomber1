@@ -1,9 +1,9 @@
 package bomberone.views.credits;
 
+import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.basic.ViewImpl;
-import bomberone.views.match.img.GameImages;
+import bomberone.views.common.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.image.ImageView;
 

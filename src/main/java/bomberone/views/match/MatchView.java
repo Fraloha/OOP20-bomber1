@@ -1,6 +1,6 @@
 package bomberone.views.match;
 
-import bomberone.views.basic.View;
+import bomberone.views.View;
 
 /**
  * The View of the Match.

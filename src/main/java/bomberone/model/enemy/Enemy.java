@@ -5,9 +5,9 @@
 package bomberone.model.enemy;
 
 import bomberone.model.common.Direction;
-import bomberone.model.gameObjects.AnimatedEntity;
+import bomberone.model.gameObjects.moveable.MoveableObject;
 
-public interface Enemy extends AnimatedEntity {
+public interface Enemy extends MoveableObject {
 
     boolean isHittable();
         /* Methods. */

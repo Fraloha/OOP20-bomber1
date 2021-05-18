@@ -1,19 +1,19 @@
 package bomberone.views.match;
 
-import bomberone.controllers.game.GameController;
+import bomberone.controllers.match.MatchController;
 import bomberone.model.bomber.Bomber;
-import bomberone.model.gameObjects.GameObjectCollection;
-import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
+import bomberone.model.world.collection.GameObjectCollection;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
 import bomberone.tools.audio.GameSounds;
+import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.basic.ViewImpl;
-import bomberone.views.match.img.AnimatedObjectsSprites;
-import bomberone.views.match.img.GameImages;
+import bomberone.views.common.AnimatedObjectsSprites;
+import bomberone.views.common.GameImages;
 import bomberone.views.match.movement.ControlsMap;
 import javafx.application.Platform;
 import javafx.event.EventHandler;
@@ -91,7 +91,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     @FXML
     public void quitClicked() {
         SoundsHandler.stopAudio();
-        ((GameController) this.getController()).quitGame();
+        ((MatchController) this.getController()).quitGame();
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
@@ -107,8 +107,8 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.getController().init();
         this.drawGame();
-        this.controlsMap = new ControlsMap(((GameController) this.getController()).getPlayerOfTheGame().getControls(),
-                ((GameController) this.getController()).getCommandListener().getPlayerBehaviour());
+        this.controlsMap = new ControlsMap(((MatchController) this.getController()).getPlayerOfTheGame().getControls(),
+                ((MatchController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
     }
 
@@ -136,7 +136,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
          * Stop the Threads when the game is closed.
          */
         this.getStage().setOnCloseRequest(event -> {
-            ((GameController) this.getController()).quitGame();
+            ((MatchController) this.getController()).quitGame();
         });
     }
 
@@ -163,7 +163,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
         /* Draw the Walls */
         Image wallImage = GameImages.HARDWALL.getImage();
-        ((GameController) this.getController()).getObjList().getHardWallList().stream().forEach(wall -> {
+        ((MatchController) this.getController()).getObjList().getHardWallList().stream().forEach(wall -> {
             gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
         });
 
@@ -176,9 +176,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-        GameObjectCollection objListToRender = ((GameController) this.getController()).getObjList();
-        Platform.runLater(() -> this.timeLabel.setText(((GameController) this.getController()).getTimer().toString()));
-        Platform.runLater(() -> this.scoreLabel.setText(((GameController) this.getController()).getScore() + ""));
+        GameObjectCollection objListToRender = ((MatchController) this.getController()).getObjList();
+        Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
+        Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
         /* Draw the boxes */
@@ -250,7 +250,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         });
 
         /* Draw the BomberMan */
-        Bomber bomberTemp = ((GameController) this.getController()).getBomber();
+        Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
         Platform.runLater(() -> this.gCForeground.drawImage(
                 this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
                 bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
@@ -261,7 +261,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
      * Draw the hearts depending on the number of Bomber's Lifes.
      */
     private void drawLifes() {
-        int nLifes = ((GameController) this.getController()).getBomber().getLifes();
+        int nLifes = ((MatchController) this.getController()).getBomber().getLifes();
         Image lifeYes = GameImages.LIFE_YES.getImage();
         Image lifeNo = GameImages.LIFE_NO.getImage();
         Platform.runLater(() -> this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo));
@@ -275,14 +275,14 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     private void setUpSprites() {
         Image[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
-        if (((GameController) this.getController()).getDifficulty().equals(Difficulty.STANDARD)) {
+        if (((MatchController) this.getController()).getDifficulty().equals(Difficulty.STANDARD)) {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
         } else {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
         }
         this.enemySprites = spritesEnemy;
         Image[][] spritesBomber = null;
-        Skins color = ((GameController) this.getController()).getPlayerOfTheGame().getSkin();
+        Skins color = ((MatchController) this.getController()).getPlayerOfTheGame().getSkin();
 
         // Draw the icon of the Bomber and setUp his sprite.
         if (color.equals(Skins.WHITE)) {

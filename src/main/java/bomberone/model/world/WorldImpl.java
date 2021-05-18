@@ -6,11 +6,11 @@ import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
 
-import bomberone.controllers.game.event.ExplosionEvent;
-import bomberone.controllers.game.event.HitBorderEvent;
-import bomberone.controllers.game.event.HitEntityEvent;
-import bomberone.controllers.game.event.PickPowerUpEvent;
-import bomberone.controllers.game.event.WorldEventListener;
+import bomberone.controllers.match.event.ExplosionEvent;
+import bomberone.controllers.match.event.HitBorderEvent;
+import bomberone.controllers.match.event.HitEntityEvent;
+import bomberone.controllers.match.event.PickPowerUpEvent;
+import bomberone.controllers.match.event.WorldEventListener;
 import bomberone.model.bomber.BomberImpl;
 import bomberone.model.common.Maps;
 import bomberone.model.common.P2d;
@@ -18,15 +18,15 @@ import bomberone.model.enemy.Enemy;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.factory.GameObjectFactory;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.Box;
-import bomberone.model.gameObjects.Fire;
 import bomberone.model.gameObjects.GameObject;
-import bomberone.model.gameObjects.GameObjectCollection;
-import bomberone.model.gameObjects.GameObjectCollectionImpl;
-import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.box.Box;
+import bomberone.model.gameObjects.fire.Fire;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
+import bomberone.model.world.collection.GameObjectCollection;
+import bomberone.model.world.collection.GameObjectCollectionImpl;
 
 public class WorldImpl implements World {
 

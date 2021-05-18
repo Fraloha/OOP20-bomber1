@@ -2,7 +2,7 @@ package bomberone.views;
 
 import bomberone.controllers.Controller;
 import bomberone.controllers.home.HomeControllerImpl;
-import bomberone.controllers.game.GameControllerImpl;
+import bomberone.controllers.match.MatchControllerImpl;
 import bomberone.controllers.setUp.SetUpControllerImpl;
 import bomberone.controllers.rank.RankControllerImpl;
 
@@ -26,7 +26,7 @@ public enum ViewType {
     /**
      * 
      */
-    MATCH("MatchView", new GameControllerImpl()), RANK("RankView", new RankControllerImpl());
+    MATCH("MatchView", new MatchControllerImpl()), RANK("RankView", new RankControllerImpl());
 
     /**
      * Style files path.

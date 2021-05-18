@@ -1,6 +1,6 @@
 package bomberone.views.home;
 
-import bomberone.views.basic.View;
+import bomberone.views.View;
 
 public interface HomeView extends View {
 

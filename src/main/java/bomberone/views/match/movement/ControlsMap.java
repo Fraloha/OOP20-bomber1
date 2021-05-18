@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import bomberone.controllers.game.input.PlayerBehavior;
+import bomberone.controllers.match.input.PlayerBehavior;
 import bomberone.model.user.Controls;
 
 /**

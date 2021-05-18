@@ -1,9 +1,9 @@
 package bomberone.views.rules;
 
 import bomberone.tools.ResourcesLoader;
+import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.basic.ViewImpl;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.text.Font;

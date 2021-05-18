@@ -1,6 +1,6 @@
 package bomberone.views.credits;
 
-import bomberone.views.basic.View;
+import bomberone.views.View;
 
 public interface CreditsView extends View {
 

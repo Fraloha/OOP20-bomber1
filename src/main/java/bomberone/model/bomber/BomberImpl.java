@@ -5,12 +5,12 @@ import java.util.Optional;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.AnimatedEntityImpl;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.PowerUp.Type;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.bomb.BombImpl;
+import bomberone.model.gameObjects.moveable.MoveableObjectImpl;
+import bomberone.model.gameObjects.powerUp.PowerUp.Type;
 
-public final class BomberImpl extends AnimatedEntityImpl implements Bomber {
+public final class BomberImpl extends MoveableObjectImpl implements Bomber {
 
     /**
      * Constant to initialize the Bomber.

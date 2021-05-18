@@ -7,8 +7,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.PowerUp;
-import bomberone.model.gameObjects.PowerUpImpl;
+import bomberone.model.gameObjects.powerUp.PowerUp;
+import bomberone.model.gameObjects.powerUp.PowerUpImpl;
 
 public class TestPowerUps {
 

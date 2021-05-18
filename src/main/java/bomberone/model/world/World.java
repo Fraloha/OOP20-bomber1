@@ -1,9 +1,9 @@
 package bomberone.model.world;
 
-import bomberone.controllers.game.event.WorldEventListener;
+import bomberone.controllers.match.event.WorldEventListener;
 import bomberone.model.bomber.BomberImpl;
 import bomberone.model.factory.GameObjectFactory;
-import bomberone.model.gameObjects.GameObjectCollection;
+import bomberone.model.world.collection.GameObjectCollection;
 
 /**
  * The world of gameplay.

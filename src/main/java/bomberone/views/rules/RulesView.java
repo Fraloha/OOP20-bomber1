@@ -1,6 +1,6 @@
 package bomberone.views.rules;
 
-import bomberone.views.basic.View;
+import bomberone.views.View;
 
 public interface RulesView extends View {
 
