@@ -31,3 +31,9 @@ At the beginning of the game it will be possible to choose between two different
 
 ## License
 Distributed under the MIT License.
+
+## Credits
+- Borriello Luigi
+- Agostinelli Francesco
+- Mazzanti Gustavo
+- Brini Tommaso
