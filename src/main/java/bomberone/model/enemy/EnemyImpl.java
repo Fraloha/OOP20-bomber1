@@ -7,10 +7,10 @@ import bomberone.model.common.P2d;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
 import bomberone.model.enemy.actions.IntermediateBehavior;
-import bomberone.model.gameObjects.AnimatedEntityImpl;
+import bomberone.model.gameObjects.moveable.MoveableObjectImpl;
 import bomberone.model.match.Difficulty;
 
-public final class EnemyImpl extends AnimatedEntityImpl implements Enemy {
+public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     /* Fields. */
     private static final int NEXT_MOVE_FRAME_QUANTITY = 1;

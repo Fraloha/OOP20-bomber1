@@ -9,7 +9,7 @@ import org.junit.jupiter.api.Test;
 import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 

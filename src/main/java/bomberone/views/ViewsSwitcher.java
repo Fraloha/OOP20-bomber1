@@ -4,8 +4,7 @@ import java.io.IOException;
 
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
-import bomberone.views.basic.View;
-import bomberone.views.match.img.GameImages;
+import bomberone.views.common.GameImages;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;

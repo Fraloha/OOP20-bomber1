@@ -2,7 +2,7 @@ package bomberone.model.factory;
 
 import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.GameObject;
-import bomberone.model.gameObjects.PowerUp;
+import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 

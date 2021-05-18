@@ -10,8 +10,8 @@ import org.junit.jupiter.api.Test;
 
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.Explosion;
+import bomberone.model.gameObjects.bomb.BombImpl;
+import bomberone.model.gameObjects.bomb.Explosion;
 
 /**
  * Tester for Bomb.

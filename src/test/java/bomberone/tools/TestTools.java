@@ -5,7 +5,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
@@ -13,11 +12,8 @@ import org.junit.jupiter.api.Test;
 import bomberone.model.common.Maps;
 import bomberone.model.user.User;
 import bomberone.model.user.UserImpl;
-import bomberone.tools.DirectoryLoader;
-import bomberone.tools.RankLoader;
-import bomberone.tools.ResourcesLoader;
-import bomberone.views.match.img.AnimatedObjectsSprites;
-import bomberone.views.match.img.GameImages;
+import bomberone.views.common.AnimatedObjectsSprites;
+import bomberone.views.common.GameImages;
 
 public class TestTools {
 

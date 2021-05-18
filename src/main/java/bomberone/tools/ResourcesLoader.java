@@ -8,8 +8,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import bomberone.model.common.Maps;
-import bomberone.views.match.img.AnimatedObjectsSprites;
-import bomberone.views.match.img.GameImages;
+import bomberone.views.common.AnimatedObjectsSprites;
+import bomberone.views.common.GameImages;
 import javafx.scene.image.Image;
 import javafx.scene.image.WritableImage;
 import javafx.scene.text.Font;
