@@ -29,7 +29,7 @@ import bomberone.model.user.Skins;
 
 public class WorldImpl implements World {
 
-    private static final int ENEMYNUMBER = 3;
+    private static final int ENEMYNUMBER = 1;
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
     private static final int NUMTYPEPOWERUP = 5;

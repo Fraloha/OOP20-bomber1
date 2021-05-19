@@ -39,7 +39,10 @@ public final class IntermediateBehavior extends AbstractActions {
     @Override
     public void doActions() {
         P2d actualPosition = this.selectedEnemy.getPosition();
-        this.selectedEnemy.setDir(this.shortestPath(actualPosition, this.playerPosition).get(0));
+        List<Direction> route = this.shortestPath(actualPosition, this.playerPosition);
+        if (!route.isEmpty()) {
+            this.selectedEnemy.setDir(route.get(0));
+        }
         this.selectedEnemy.setPosition(actualPosition);
         this.nextMove();
     }
@@ -57,25 +60,20 @@ public final class IntermediateBehavior extends AbstractActions {
     }
 
     private P2d doMovements(final Direction direction) {
+        this.oldPosition = this.selectedEnemy.getPosition();
+        this.getLog();
+
         if (direction.equals(Direction.UP)) {
-            while(this.selectedEnemy.getPosition().getY() % 32 != 0) {
-                this.selectedEnemy.moveUp();
-            }
+            this.selectedEnemy.moveUp();
         } else if (direction.equals(Direction.DOWN)) {
-            while (this.selectedEnemy.getPosition().getY() % 32 != 0) {
-                this.selectedEnemy.moveDown();
-            }
+            this.selectedEnemy.moveDown();
         } else if (direction.equals(Direction.RIGHT)) {
-            while (this.selectedEnemy.getPosition().getX() % 32 != 0) {
-                this.selectedEnemy.moveRight();
-            }
+            this.selectedEnemy.moveRight();
         } else {
-            while(this.selectedEnemy.getPosition().getX() % 32 != 0) {
-                this.selectedEnemy.moveLeft();
-            }
+            this.selectedEnemy.moveLeft();
         }
 
-        return this.selectedEnemy.getPosition();
+        return this.oldPosition;
     }
 
     private boolean isAccessible() {
@@ -107,12 +105,13 @@ public final class IntermediateBehavior extends AbstractActions {
 
         for (Direction currentDirection : Direction.values()) {
             positionToCheck = this.doMovements(currentDirection);
-
+            this.getLog();
+            
             if (!this.visitedPosition.contains(positionToCheck) && isAccessible()) {
                 this.positionsToVisit.add(new NodeImpl(currentDirection, positionToCheck, node));
             }
+            this.selectedEnemy.setPosition(currentInitialPosition);
         }
-        this.selectedEnemy.setPosition(currentInitialPosition);
     }
 
     /**
@@ -125,7 +124,7 @@ public final class IntermediateBehavior extends AbstractActions {
      */
     private List<Direction> shortestPath(final P2d initialPosition, final P2d destination) {
         /* Variables declaration. */
-        List<Direction> path = null;
+        List<Direction> path = new LinkedList<Direction>();
 
         // Setting the initial node.
         this.positionsToVisit.add(new NodeImpl(null, initialPosition, null));

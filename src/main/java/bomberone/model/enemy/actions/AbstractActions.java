@@ -3,17 +3,20 @@ package bomberone.model.enemy.actions;
 import java.util.Random;
 
 import bomberone.model.common.Direction;
+import bomberone.model.common.P2d;
 import bomberone.model.enemy.Enemy;
 
 public abstract class AbstractActions implements Actions {
     /* Fields. */
     protected Enemy selectedEnemy;
     protected Random randomGenerator;
+    protected P2d oldPosition;
 
     /* Constructors. */
     public AbstractActions(final Enemy newEnemy) {
         this.selectedEnemy = newEnemy;
         this.randomGenerator = new Random();
+        this.oldPosition = new P2d(0, 0);
     }
 
     /* Methods. */
@@ -58,6 +61,13 @@ public abstract class AbstractActions implements Actions {
             this.selectedEnemy.moveRight();
         } else {
             this.selectedEnemy.moveLeft();
+        }
+    }
+    
+    public void getLog() {
+        if(!this.oldPosition.equals(this.selectedEnemy.getPosition())) {
+            System.out.println(oldPosition);
+            oldPosition = this.selectedEnemy.getPosition();
         }
     }
 }
