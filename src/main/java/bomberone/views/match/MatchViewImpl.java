@@ -2,7 +2,10 @@ package bomberone.views.match;
 
 import bomberone.controllers.match.MatchController;
 import bomberone.model.bomber.Bomber;
+import bomberone.model.common.P2d;
 import bomberone.model.gameObjects.powerUp.PowerUp;
+import bomberone.model.gameboard.GameBoard;
+import bomberone.model.gameboard.Markers;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
@@ -83,6 +86,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
     private Image[][] bomberSprites;
     private Image[][] enemySprites;
+    private int counter = 0;
+    private int counterTwo = 0;
+    private int counterThree = 0;
 
     /**
      * When the quitButton is pressed, this method stop the Game.
@@ -154,6 +160,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         for (int i = 0; i < WORLD_CELLS; i++) {
             for (int j = 0; j < WORLD_CELLS; j++) {
                 gCBackground.drawImage(backgroundImage, i * CELL_SIZE, j * CELL_SIZE);
+                GameBoard.getInstance().setItem(i, j, Markers.GROUND_MARKER);
             }
         }
         /* Draw the spawner */
@@ -164,6 +171,10 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         Image wallImage = GameImages.HARDWALL.getImage();
         ((MatchController) this.getController()).getHardWallList().forEach(wall -> {
             gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
+
+            int X = (int) wall.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+            int Y = (int) wall.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+            GameBoard.getInstance().setItem(X, Y, Markers.WALL_MARKER);
         });
 
     }
@@ -175,7 +186,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-        
+
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
@@ -183,35 +194,49 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
-            
+
             ((MatchController) this.getController()).getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
+
+                int Y = (int) box.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+                int X = (int) box.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+                GameBoard.getInstance().setItem(X, Y, Markers.BOX_MARKER);
+                if (this.counterThree < ((MatchController) this.getController()).getBoxList().size()) {
+                    System.out.println(X + "  " + Y);
+                    this.counterThree++;
+                }
             });
+
+            if (this.counterTwo == 0) {
+                System.out.println("\n\n");
+                this.counterTwo++;
+            }
         });
 
         /* Draw the powerUp */
         Platform.runLater(() -> {
-            ((MatchController) this.getController()).getPowerUpList().stream().filter(PowerUp::isReleased).forEach(pUp -> {
-                Image powerUpImage = null;
-                PowerUp.Type type = pUp.getType();
-                if (type.equals(PowerUp.Type.FirePower)) {
-                    powerUpImage = GameImages.POWER_FIREPOWER.getImage();
-                }
-                if (type.equals(PowerUp.Type.Pierce)) {
-                    powerUpImage = GameImages.POWER_PIERCE.getImage();
-                }
-                if (type.equals(PowerUp.Type.Speed)) {
-                    powerUpImage = GameImages.POWER_SPEED.getImage();
-                }
-                if (type.equals(PowerUp.Type.Time)) {
-                    powerUpImage = GameImages.POWER_TIMER.getImage();
-                }
-                if (type.equals(PowerUp.Type.Ammo)) {
-                    powerUpImage = GameImages.POWER_BOMB.getImage();
-                }
-                this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
-            });
+            ((MatchController) this.getController()).getPowerUpList().stream().filter(PowerUp::isReleased)
+                    .forEach(pUp -> {
+                        Image powerUpImage = null;
+                        PowerUp.Type type = pUp.getType();
+                        if (type.equals(PowerUp.Type.FirePower)) {
+                            powerUpImage = GameImages.POWER_FIREPOWER.getImage();
+                        }
+                        if (type.equals(PowerUp.Type.Pierce)) {
+                            powerUpImage = GameImages.POWER_PIERCE.getImage();
+                        }
+                        if (type.equals(PowerUp.Type.Speed)) {
+                            powerUpImage = GameImages.POWER_SPEED.getImage();
+                        }
+                        if (type.equals(PowerUp.Type.Time)) {
+                            powerUpImage = GameImages.POWER_TIMER.getImage();
+                        }
+                        if (type.equals(PowerUp.Type.Ammo)) {
+                            powerUpImage = GameImages.POWER_BOMB.getImage();
+                        }
+                        this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
+                    });
         });
 
         /* Draw bombs */
@@ -251,10 +276,27 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
         /* Draw the BomberMan */
         Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
-        Platform.runLater(() -> this.gCForeground.drawImage(
-                this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
-                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
+        Platform.runLater(() -> {
+            this.gCForeground.drawImage(
+                    this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex()
+                            % BOMBER_N_ANIMATION],
+                    bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
 
+            int X = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+            int Y = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+            GameBoard.getInstance().setItem(X, Y, Markers.PLAYER_MARKER);
+        });
+
+        if (this.counter == 0 && this.counterTwo == 1 && this.counterThree == ((MatchController) this.getController()).getBoxList().size()) {
+            // Printing the game board for debug purposes.
+            for (int i = 0; i < GameBoard.getInstance().getRowsQuantity(); i++) {
+                System.out.println();
+                for (int j = 0; j < GameBoard.getInstance().getColumnsQuantity(); j++) {
+                    System.out.print(GameBoard.getInstance().getItem(i, j) + "  ");
+                }
+            }
+            this.counter++;
+        }
     }
 
     /**
@@ -312,8 +354,8 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     @Override
     public void switchToRank() {
         SoundsHandler.stopAudio();
-        Platform.runLater(
-                () -> ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK, this.getController().getModel()));
+        Platform.runLater(() -> ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK,
+                this.getController().getModel()));
     }
 
 }
