@@ -10,13 +10,11 @@ public abstract class AbstractActions implements Actions {
     /* Fields. */
     protected Enemy selectedEnemy;
     protected Random randomGenerator;
-    protected P2d oldPosition;
 
     /* Constructors. */
     public AbstractActions(final Enemy newEnemy) {
         this.selectedEnemy = newEnemy;
         this.randomGenerator = new Random();
-        this.oldPosition = new P2d(0, 0);
     }
 
     /* Methods. */
@@ -31,13 +29,13 @@ public abstract class AbstractActions implements Actions {
     
     public void setSprite() {
         if (this.selectedEnemy.getDir() == Direction.UP) {
-            this.selectedEnemy.setSpriteIndex(3);
+            this.selectedEnemy.setDirectionIndex(3);
         } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
-            this.selectedEnemy.setSpriteIndex(2);
+            this.selectedEnemy.setDirectionIndex(2);
         } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
-            this.selectedEnemy.setSpriteIndex(1);
+            this.selectedEnemy.setDirectionIndex(1);
         } else {
-            this.selectedEnemy.setSpriteIndex(0);
+            this.selectedEnemy.setDirectionIndex(0);
         }
     }
 
@@ -61,13 +59,6 @@ public abstract class AbstractActions implements Actions {
             this.selectedEnemy.moveRight();
         } else {
             this.selectedEnemy.moveLeft();
-        }
-    }
-    
-    public void getLog() {
-        if(!this.oldPosition.equals(this.selectedEnemy.getPosition())) {
-            System.out.println(oldPosition);
-            oldPosition = this.selectedEnemy.getPosition();
         }
     }
 }
