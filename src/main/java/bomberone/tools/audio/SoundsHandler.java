@@ -75,6 +75,10 @@ public final class SoundsHandler {
         }
     }
 
+    /**
+     * Method that return true if playerAudio is already playing.
+     * @return boolean
+     */
     public static boolean isPlaying() {
         return playerAudio.getStatus().equals(Status.PLAYING);
     }

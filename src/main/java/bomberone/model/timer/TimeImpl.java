@@ -1,5 +1,9 @@
 package bomberone.model.timer;
 
+/**
+ * An implementation of Time.
+ *
+ */
 public final class TimeImpl implements Time {
 
     private static final int SECONDS_IN_A_MINUTE = 60;

@@ -1,34 +1,32 @@
 package bomberone.views;
 
-
-import java.util.Optional;
-
 import bomberone.controllers.Controller;
-import bomberone.controllers.game.GameControllerImpl;
+import bomberone.controllers.home.HomeControllerImpl;
+import bomberone.controllers.match.MatchControllerImpl;
 import bomberone.controllers.setUp.SetUpControllerImpl;
+import bomberone.controllers.rank.RankControllerImpl;
 
 /**
- * Enum for the Views, each one has her StyleFile and her specific Controller.
- * Type
+ * Enum for the Views, each one has her Style-File ".fxml" and her specific
+ * Controller. Type
  * 
- *
  */
 public enum ViewType {
 
     /**
      * TODOOOOOOOOOOOOOOOOOOOOOOOOOOOO.
      */
-    HOME("HomeView", Optional.empty()), SETUP("SetUpView", Optional.of(new SetUpControllerImpl())),
+    HOME("HomeView", new HomeControllerImpl()), SETUP("SetUpView", new SetUpControllerImpl()),
 
     /**
      * 
      */
-    CREDITS("CreditsView", Optional.empty()), RULES("RulesView", Optional.empty()),
+    CREDITS("CreditsView", new HomeControllerImpl()), RULES("RulesView", new HomeControllerImpl()),
 
     /**
      * 
      */
-    GAME("GameView", Optional.of(new GameControllerImpl())), RANK("RankView", Optional.empty());
+    MATCH("MatchView", new MatchControllerImpl()), RANK("RankView", new RankControllerImpl());
 
     /**
      * Style files path.
@@ -37,9 +35,9 @@ public enum ViewType {
     private static final String FORMAT = ".fxml";
 
     private String fileName;
-    private Optional<Controller> controller;
+    private Controller controller;
 
-    ViewType(final String string, final Optional<Controller> controller) {
+    ViewType(final String string, final Controller controller) {
         this.fileName = string;
         this.controller = controller;
     }
@@ -58,7 +56,7 @@ public enum ViewType {
      * 
      * @return the Controller
      */
-    public Optional<Controller> getController() {
+    public Controller getController() {
         return this.controller;
     }
 

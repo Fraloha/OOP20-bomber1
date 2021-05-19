@@ -17,17 +17,22 @@ import bomberone.views.ViewsSwitcher;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.BorderPane;
-import bomberone.views.basic.ViewImpl;
 import bomberone.tools.ResourcesLoader;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
 import bomberone.tools.audio.GameSounds;
 import javafx.collections.ObservableList;
 import bomberone.tools.audio.SoundsHandler;
-import bomberone.views.game.img.GameImages;
 import javafx.scene.control.TableColumn.SortType;
 import javafx.collections.transformation.SortedList;
 import javafx.scene.control.cell.PropertyValueFactory;
+import bomberone.views.common.GameImages;
+import bomberone.views.ViewImpl;
+import bomberone.views.ViewType;
+import bomberone.views.ViewsSwitcher;
+import bomberone.controllers.rank.RankController;
+import bomberone.model.user.User;
+import javafx.scene.image.Image;
 
 /**
  * This is the class that defines the view of the ranks.
@@ -83,11 +88,11 @@ public final class RankView extends ViewImpl {
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
         // Initializing the buttons.
-        this.setButtonsFonts(ResourcesLoader.getFont(20));
+        this.setButtonsFonts(ResourcesLoader.getInstance().getFont(20));
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
-        this.tableViewInitialization(ResourcesLoader.getFont(20));
+        this.tableViewInitialization(ResourcesLoader.getInstance().getFont(20));
 
         // Loading all the images that indicates the rank difficulty.
         this.loadImages();
@@ -201,9 +206,9 @@ public final class RankView extends ViewImpl {
 
     private void loadRanks() {
         // Loading the ranks.
-        RankLoader.readUsers();
-        ObservableList<User> standardRank = FXCollections.observableList(RankLoader.getRankStandard());
-        ObservableList<User> hardRank = FXCollections.observableList(RankLoader.getRankHard());
+        
+        ObservableList<User> standardRank = FXCollections.observableList(((RankController) this.getController()).getStdRank());
+        ObservableList<User> hardRank = FXCollections.observableList(((RankController) this.getController()).getHardRank());
 
         // Creating the sorted ranks.
         this.ranks = new ArrayList<SortedList<User>>();
@@ -231,6 +236,6 @@ public final class RankView extends ViewImpl {
     }
 
     private void onClickBackToMainMenu() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 }

@@ -1,15 +1,16 @@
 package bomberone.views.setUp;
 
 import bomberone.controllers.setUp.SetUpController;
-import bomberone.model.Difficulty;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.Controls;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.SoundsHandler;
+import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.basic.ViewImpl;
-import bomberone.views.game.img.GameImages;
+import bomberone.views.alert.AlertBox;
+import bomberone.views.common.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -61,7 +62,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private int count = 0;
 
-    private Font font = ResourcesLoader.getFont(SetUpViewImpl.SIZE);
+    private Font font = ResourcesLoader.getInstance().getFont(SetUpViewImpl.SIZE);
 
     @Override
     public final void init() {
@@ -95,12 +96,12 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @Override
     public final void switchToGame() {
         SoundsHandler.stopAudio();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.GAME, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
     @Override
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME);
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
     private void setPlayer(final String sign) {
@@ -193,6 +194,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
+        } else {
+            AlertBox alert = new AlertBox();
+            alert.display("WARNING", "INSERT THE NAME!!");
         }
     }
 }

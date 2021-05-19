@@ -1,7 +1,7 @@
 package bomberone.controllers;
 
 import bomberone.model.GameModel;
-import bomberone.views.basic.View;
+import bomberone.views.View;
 
 /**
  * This represent a generic Controller, every type of Controller extends it.

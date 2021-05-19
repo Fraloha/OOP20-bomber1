@@ -20,9 +20,19 @@ import bomberone.model.user.User;
  */
 public final class RankLoader {
 
-    private static List<User> rankStandard = new ArrayList<User>();
-    private static List<User> rankHard = new ArrayList<User>();
+    private List<User> rankStandard = new ArrayList<User>();
+    private List<User> rankHard = new ArrayList<User>();
 
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final RankLoader SINGLETON = new RankLoader();
+    }
+
+    // Create SINGLETON on the first call.
+    public static RankLoader getInstance() {
+        return LazyHolder.SINGLETON;
+    }
+    
     private RankLoader() {
     }
 
@@ -30,30 +40,32 @@ public final class RankLoader {
      * 
      * @return the Standard Difficulty Rank
      */
-    public static List<User> getRankStandard() {
-        return RankLoader.rankStandard;
+    public List<User> getRankStandard() {
+        return this.rankStandard;
     }
 
     /**
      * 
      * @return the Hard Difficulty Rank
      */
-    public static List<User> getRankHard() {
-        return RankLoader.rankHard;
+    public List<User> getRankHard() {
+        return this.rankHard;
     }
 
     /**
      * This method takes in input two Lists of Users and serialize every Object in
      * the corresponding file.
+     * @param hardList list to serialize
+     * @param stdList list to serialize
      * 
      */
-    public static void writeUsers() {
+    public void writeUsers(final List<User> hardList, final List<User> stdList) {
         try (ObjectOutput outputStd = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectOutput outputHard = new ObjectOutputStream(
                         new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankHardPath())));) {
-            outputStd.writeObject(rankStandard);
-            outputHard.writeObject(rankHard);
+            outputStd.writeObject(stdList);
+            outputHard.writeObject(hardList);
         } catch (IOException ex) {
             System.out.println("Cannot perform the output");
         }
@@ -64,15 +76,18 @@ public final class RankLoader {
      * ranks and puts them in the lists.
      * 
      */
-    @SuppressWarnings("unchecked")
-    public static void readUsers()  {
-        RankLoader.rankStandard.clear();
-        RankLoader.rankHard.clear();
+    public void readUsers()  {
+        this.rankStandard.clear();
+        this.rankHard.clear();
         try (ObjectInput inputStd = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectInput inputHard = new ObjectInputStream(
                         new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankHardPath())));) {
             // deserialize the List
+            Object stdList = inputStd.readObject();
+            if(stdList instanceof List<?>) {
+                rankStandard.addAll((List<User>) stdList);
+            }
             rankStandard.addAll((List<User>) inputStd.readObject());
             rankHard.addAll((List<User>) inputHard.readObject());
         } catch (ClassNotFoundException ex) {

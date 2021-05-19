@@ -7,20 +7,20 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import bomberone.controllers.game.event.ExplosionEvent;
-import bomberone.controllers.game.event.HitEntityEvent;
-import bomberone.controllers.game.event.WorldEventListener;
-import bomberone.controllers.game.event.WorldEventListenerImpl;
-import bomberone.model.Difficulty;
-import bomberone.model.GameModel;
-import bomberone.model.GameModelImpl;
-import bomberone.model.World;
-import bomberone.model.WorldImpl;
+import bomberone.controllers.match.event.ExplosionEvent;
+import bomberone.controllers.match.event.HitEntityEvent;
+import bomberone.controllers.match.event.WorldEventListener;
+import bomberone.controllers.match.event.WorldEventListenerImpl;
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactory;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.ExplosionImpl;
+import bomberone.model.gameObjects.bomb.ExplosionImpl;
+import bomberone.model.match.Difficulty;
+import bomberone.model.match.GameMatch;
+import bomberone.model.match.GameMatchImpl;
 import bomberone.model.user.Skins;
+import bomberone.model.world.World;
+import bomberone.model.world.WorldImpl;
 import bomberone.tools.ResourcesLoader;
 
 /**
@@ -49,7 +49,7 @@ public class TestWorldEventListener {
 
     private WorldEventListener listener;
     private World world;
-    private GameModel model;
+    private GameMatch match;
     private GameObjectFactory factory;
 
     /**
@@ -58,9 +58,9 @@ public class TestWorldEventListener {
     @BeforeEach
     public void init() {
         listener = new WorldEventListenerImpl();
-        ResourcesLoader.start();
+        ResourcesLoader.getInstance().start();
         world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
-        model = new GameModelImpl();
+        match = new GameMatchImpl();
         factory = new GameObjectFactoryImpl();
     }
 
@@ -70,13 +70,13 @@ public class TestWorldEventListener {
     @Test
     public void testCollisionEvent() {
 
-        model.setWorld(world);
-        this.listener.setGameModel(model);
-        assertEquals(this.model.getScore(), 0);
+        match.setWorld(world);
+        this.listener.setGameMatch(match);
+        assertEquals(this.match.getScore(), 0);
         world.getGameObjectCollection().spawn(factory.createBox(new P2d(CONSTANT_32, CONSTANT_32)));
         this.listener.notifyEvent(new HitEntityEvent(world.getGameObjectCollection().getBoxList().get(0)));
         this.listener.processEvents();
-        assertEquals(this.model.getScore(), EXPECTED_SCORE);
+        assertEquals(this.match.getScore(), EXPECTED_SCORE);
         assertFalse(world.getGameObjectCollection().getBoxList().get(0).isAlive());
     }
 
@@ -86,8 +86,8 @@ public class TestWorldEventListener {
      */
     @Test
     public void testExplosionWithoutPierce() {
-        model.setWorld(world);
-        this.listener.setGameModel(model);
+        match.setWorld(world);
+        this.listener.setGameMatch(match);
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_32, CONSTANT_32)));
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_96, CONSTANT_32)));
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_64, CONSTANT_0)));
@@ -103,8 +103,8 @@ public class TestWorldEventListener {
      */
     @Test
     public void testExplosionWithPierce() {
-        model.setWorld(world);
-        this.listener.setGameModel(model);
+        match.setWorld(world);
+        this.listener.setGameMatch(match);
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_32, CONSTANT_32)));
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_96, CONSTANT_32)));
         world.getGameObjectCollection().spawn(factory.createHardWall(new P2d(CONSTANT_64, CONSTANT_0)));

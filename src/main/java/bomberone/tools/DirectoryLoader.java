@@ -6,7 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 
 /**
- * Utility class that prepare the ".bomberOne" directory in the User's Home directory.
+ * Utility class that prepare the ".bomberOne" directory in the User's Home
+ * directory.
  *
  */
 public final class DirectoryLoader {
@@ -17,10 +18,19 @@ public final class DirectoryLoader {
     private static final String USER_DIRECTORY = System.getProperty("user.home");
     private static final String SEPARATOR = File.separator;
     private static final String CONFIGURATION_DIRECTORY_PATH = USER_DIRECTORY + SEPARATOR
-                                                                                + CONFIGURATION_DIRECTORY_NAME;
+            + CONFIGURATION_DIRECTORY_NAME;
     private static final String RANK_STANDARD_PATH = CONFIGURATION_DIRECTORY_PATH + SEPARATOR + RANK_STANDARD_NAME;
     private static final String RANK_HARD_PATH = CONFIGURATION_DIRECTORY_PATH + SEPARATOR + RANK_HARD_NAME;
 
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final DirectoryLoader SINGLETON = new DirectoryLoader();
+    }
+
+    // Create SINGLETON on the first call.
+    public static DirectoryLoader getInstance() {
+        return LazyHolder.SINGLETON;
+    }
 
     private DirectoryLoader() {
 
@@ -32,7 +42,7 @@ public final class DirectoryLoader {
      * 
      * @throws IOException
      */
-    public static void checkDirectory() throws IOException {
+    public void checkDirectory() throws IOException {
 
         if (!Files.isDirectory(Path.of(CONFIGURATION_DIRECTORY_PATH))) {
             Files.deleteIfExists(Path.of(CONFIGURATION_DIRECTORY_PATH));
@@ -48,7 +58,7 @@ public final class DirectoryLoader {
      * 
      * @throws IOException
      */
-    public static void checkFiles() throws IOException {
+    public void checkFiles() throws IOException {
 
         if (Files.notExists(Path.of(RANK_STANDARD_PATH))) {
             Files.createFile(Path.of(RANK_STANDARD_PATH));
@@ -60,14 +70,15 @@ public final class DirectoryLoader {
     }
 
     /**
-     * This method launch both the methods that do their controls on Files and Directory.
+     * This method launch both the methods that do their controls on Files and
+     * Directory.
      * 
      * 
      * @throws IOException
      */
-    public static void start() throws IOException {
-        DirectoryLoader.checkDirectory();
-        DirectoryLoader.checkFiles();
+    public void start() throws IOException {
+        this.checkDirectory();
+        this.checkFiles();
     }
 
     /**

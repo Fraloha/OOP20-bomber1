@@ -1,12 +1,11 @@
 package bomberone.views.home;
 
+import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.basic.ViewImpl;
-import bomberone.model.GameModelImpl;
+import bomberone.views.common.GameImages;
 import bomberone.tools.audio.GameSounds;
 import bomberone.tools.audio.SoundsHandler;
-import bomberone.views.game.img.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.image.ImageView;
@@ -34,6 +33,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     @Override
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
+        this.getController().init();
     }
 
     /**
@@ -41,7 +41,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToSetUp() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, new GameModelImpl());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
     }
 
     /**
@@ -49,7 +49,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToCredits() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS);
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
     }
 
     /**
@@ -57,7 +57,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRank() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK);
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     /**
@@ -65,7 +65,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRules() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES);
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
     }
 
     /**

@@ -4,8 +4,6 @@ package bomberone.model.timer;
  * This interface let's the user to manage a quantity of time through minutes
  * and seconds.
  * 
- * 
- *
  */
 public interface Time {
 

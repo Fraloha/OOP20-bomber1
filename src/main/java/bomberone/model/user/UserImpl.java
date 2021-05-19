@@ -1,5 +1,9 @@
 package bomberone.model.user;
 
+/**
+ * An implementation of User.
+ *
+ */
 public class UserImpl implements User {
 
     private static final long serialVersionUID = -9028500705336408837L;

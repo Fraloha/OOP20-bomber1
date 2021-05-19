@@ -1,52 +1,54 @@
 package bomberone.views;
 
 import java.io.IOException;
-import java.util.Optional;
 
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
-import bomberone.views.basic.View;
-import javafx.application.Platform;
+import bomberone.views.common.GameImages;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * This Utility Class load the Views-style and switch the Stage's content.
+ *
+ */
 public final class ViewsSwitcher {
 
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final ViewsSwitcher SINGLETON = new ViewsSwitcher();
+    }
+
+    // Create SINGLETON on the first call.
+    public static ViewsSwitcher getInstance() {
+        return LazyHolder.SINGLETON;
+    }
+    
+    
     private ViewsSwitcher() {
 
     }
 
     /**
-     * Switch the view displayed on the Stage, if it has a controller.
+     * Switch the view displayed on the Stage.
      * 
      * @param stage
      * @param viewType the type of the View to switch
      * @param model    the Istance of the GameModel
      * @throws IOException
      */
-    public static void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
-        View view = loadStyle(stage, viewType);
-        Controller controller = viewType.getController().get();
+    public void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
+        View view = this.loadStyle(stage, viewType);
+        Controller controller = viewType.getController();
         controller.attachView(view);
         controller.attachModel(model);
         view.attachController(controller);
         view.setStage(stage);
         view.init();
-        stage.show();
-    }
-
-    /**
-     * Switch the view displayed on the Stage, if it hasn't a controller.
-     * 
-     * @param stage
-     * @param viewType the type of the new View be staged.
-     * @throws IOException
-     */
-    public static void switchView(final Stage stage, final ViewType viewType) {
-        View view = loadStyle(stage, viewType);
-        view.init();
+        stage.getIcons().add(GameImages.ICON.getImage());
+        stage.setTitle("BomberOne");
         stage.show();
     }
 
@@ -57,7 +59,7 @@ public final class ViewsSwitcher {
      * @param viewType of new View
      * @return The View
      */
-    private static View loadStyle(final Stage stage, final ViewType viewType) {
+    private View loadStyle(final Stage stage, final ViewType viewType) {
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(viewType.getPath()));
         Parent root = null;
         try {

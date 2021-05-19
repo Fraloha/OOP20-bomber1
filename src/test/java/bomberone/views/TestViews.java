@@ -6,7 +6,6 @@ import java.io.File;
 
 import org.junit.jupiter.api.Test;
 
-import bomberone.views.ViewType;
 
 public class TestViews {
 
@@ -18,6 +17,6 @@ public class TestViews {
      */
     @Test
     public void testViewsPath() {
-        assertEquals(DIRECTORY + "GameView" + FORMAT, ViewType.GAME.getPath());
+        assertEquals(DIRECTORY + "GameView" + FORMAT, ViewType.MATCH.getPath());
     }
 }

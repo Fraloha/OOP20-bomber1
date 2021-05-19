@@ -6,16 +6,16 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 
 import bomberone.model.common.P2d;
-import bomberone.model.gameObjects.Bomb;
-import bomberone.model.gameObjects.BombImpl;
-import bomberone.model.gameObjects.Box;
-import bomberone.model.gameObjects.BoxImpl;
 import bomberone.model.gameObjects.GameObject;
-import bomberone.model.gameObjects.GameObjectCollection;
-import bomberone.model.gameObjects.GameObjectCollectionImpl;
-import bomberone.model.gameObjects.HardWall;
-import bomberone.views.game.img.AnimatedObjectsSprites;
-import bomberone.views.game.img.GameImages;
+import bomberone.model.gameObjects.bomb.Bomb;
+import bomberone.model.gameObjects.bomb.BombImpl;
+import bomberone.model.gameObjects.box.Box;
+import bomberone.model.gameObjects.box.BoxImpl;
+import bomberone.model.gameObjects.hardwall.HardWall;
+import bomberone.model.world.collection.GameObjectCollection;
+import bomberone.model.world.collection.GameObjectCollectionImpl;
+import bomberone.views.common.AnimatedObjectsSprites;
+import bomberone.views.common.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;

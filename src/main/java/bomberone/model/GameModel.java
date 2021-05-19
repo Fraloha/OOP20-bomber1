@@ -1,108 +1,39 @@
 package bomberone.model;
 
-import bomberone.model.timer.Timer;
-import bomberone.model.timer.TimerThread;
+import java.util.List;
+
+import bomberone.model.match.GameMatch;
 import bomberone.model.user.User;
 
 /**
- * The Model of the Game.
- * 
+ * The domain of the Application.
+ *
  */
 public interface GameModel {
 
     /**
-     * Initialize the entire game world.
-     */
-    void init();
-
-    /**
-     * set the User of this game.
-     * @param user
-     */
-    void setUser(User user);
-
-    /**
+     * Return the Rank of Hard-Level Players.
      * 
-     * @return the user
+     * @return the List of User(the rank)
      */
-    User getUser();
+    List<User> getStdRank();
 
     /**
-     * Initialize the difficulty of the gameplay.
+     * Return the Rank of Standard-Level Players.
      * 
-     * @param difficulty
+     * @return the List of User(the rank)
      */
-    void setDifficulty(Difficulty difficulty);
+    List<User> getHardRank();
 
     /**
-     * 
-     * @return the Difficulty of the Game.
+     * Return the current Match.
+     * @return the current GameMatch
      */
-    Difficulty getDifficulty();
+    GameMatch getCurrentMatch();
 
     /**
-     * 
-     * @return the World of this game
+     * Create a new GameMatch().
+     * @param match to Create
      */
-    World getWorld();
-
-    /**
-     * 
-     * @return the current score.
-     */
-    int getScore();
-
-    /**
-     * Setting the World.
-     * 
-     * @param world
-     */
-    void setWorld(World world);
-
-    /**
-     * Decrease the current score by the param dec.
-     * 
-     * @param dec
-     */
-    void decScore(int dec);
-
-    /**
-     * Increase the current score by the param inc.
-     * 
-     * @param inc
-     */
-    void incScore(int inc);
-
-    /**
-     * This method recall the method updateState of the World.
-     * @param elapsed
-     */
-    void updateGame(int elapsed);
-
-    /**
-     * This method sets the boolean gameOver
-     * @param gameOver
-     */
-    void setGameOver(boolean gameOver);
-    
-    /**
-     * @return the boolean gameOver
-     */
-    boolean getGameOver();
-
-    /**
-     * This method check if the boolean gameOver must be setted to true.
-     */
-    void checkGameOver();
-
-    /**
-     * @return timer
-     */
-    Timer getTimer();
-    
-    /**
-     * 
-     * @return timer thread
-     */
-    TimerThread getTimerThread();
+    void createMatch(GameMatch match);
 }

@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 
 import bomberone.model.common.P2d;
 import bomberone.model.factory.GameObjectFactoryImpl;
-import bomberone.model.gameObjects.FireImpl;
+import bomberone.model.gameObjects.fire.FireImpl;
 
 /**
  * Tester for Fire.

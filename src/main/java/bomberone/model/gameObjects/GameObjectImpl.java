@@ -3,6 +3,10 @@ package bomberone.model.gameObjects;
 import bomberone.model.common.P2d;
 import javafx.geometry.Rectangle2D;
 
+/**
+ * An implementation of GameObject.
+ *
+ */
 public abstract class GameObjectImpl implements GameObject {
 
     private static final int RECTDIMENTIONS = 32;
