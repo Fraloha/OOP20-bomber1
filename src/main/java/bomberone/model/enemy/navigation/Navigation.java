@@ -4,6 +4,7 @@ import java.util.List;
 import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 import bomberone.model.enemy.navigation.Node;
+import bomberone.model.gameboard.GameBoard;
 
 /**
  * This interface defines an object that gives a route to the player. This
@@ -23,7 +24,7 @@ public interface Navigation {
      *                     will be created.
      * @param currentPoint The currentPosition of the node.
      */
-    void addTargets(Node currentNode, P2d currentPoint);
+    void addTargets(Node currentNode);
     
     /**
      * This method search the shortest path to reach the player.
@@ -32,5 +33,5 @@ public interface Navigation {
      * @param destination The player position.
      * @return A list of directions that defines the shortest path.
      */
-    List<Direction> searchShortestPath(P2d initialPosition, P2d destination);
+    List<Direction> searchShortestPath(P2d enemyLocation);
 }
