@@ -1,7 +1,5 @@
 package bomberone.model.enemy;
 
-import bomberone.model.match.Difficulty;
-import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
@@ -63,9 +61,9 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
                 this.nextMoveFrameCounter = 0;
                 
                 // If the difficulty is hard the enemy has to keep track of the player.
-                if (this.behavior.getClass() == IntermediateBehavior.class) {
+                /*if (this.behavior.getClass() == IntermediateBehavior.class) {
                     ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition);
-                }
+                }*/
                 this.behavior.doActions();
                 super.update(elapsed);
             }
