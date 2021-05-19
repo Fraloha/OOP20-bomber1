@@ -133,5 +133,4 @@ public interface MatchController extends Controller {
      * @return the list of PowerUp.
      */
     List<PowerUp> getPowerUpList();
-
 }

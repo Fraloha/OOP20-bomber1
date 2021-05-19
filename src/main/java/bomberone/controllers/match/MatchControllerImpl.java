@@ -3,7 +3,6 @@ package bomberone.controllers.match;
 
 import java.util.ArrayList;
 import java.util.List;
-
 import bomberone.controllers.ControllerImpl;
 import bomberone.controllers.match.event.WorldEventListener;
 import bomberone.controllers.match.event.WorldEventListenerImpl;
@@ -248,5 +247,4 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
         pUpList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getPowerUpList());
         return pUpList;
     }
-
 }
