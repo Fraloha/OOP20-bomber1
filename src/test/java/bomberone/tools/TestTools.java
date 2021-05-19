@@ -27,7 +27,7 @@ public class TestTools {
     public void testDirectoryLoader() {
         boolean done = true;
         try {
-            DirectoryLoader.start();
+            DirectoryLoader.getInstance().start();
         } catch (IOException e) {
             done = false;
         }
@@ -41,7 +41,7 @@ public class TestTools {
     @Test
     public void testRankLoader() throws IOException {
 
-        DirectoryLoader.start();
+        DirectoryLoader.getInstance().start();
         // Create some User and put them on the Lists
         User user1 = new UserImpl();
         User user2 = new UserImpl();
@@ -49,20 +49,20 @@ public class TestTools {
         user1.setScore(SCORE_1);
         user2.setName("MARIO");
         user2.setScore(SCORE_2);
-        RankLoader.getRankStandard().add(user1);
-        RankLoader.getRankHard().add(user2);
+        RankLoader.getInstance().getRankStandard().add(user1);
+        RankLoader.getInstance().getRankHard().add(user2);
         // Save the lists on the file
-        RankLoader.writeUsers(RankLoader.getRankHard(), RankLoader.getRankStandard());
+        RankLoader.getInstance().writeUsers(RankLoader.getInstance().getRankHard(), RankLoader.getInstance().getRankStandard());
         // Clear the lists
-        RankLoader.getRankHard().clear();
-        RankLoader.getRankStandard().clear();
+        RankLoader.getInstance().getRankHard().clear();
+        RankLoader.getInstance().getRankStandard().clear();
         // Restore the lists
-        RankLoader.readUsers();
+        RankLoader.getInstance().readUsers();
         // Check if the lists were restored correctly
-        assertTrue(RankLoader.getRankStandard().get(0).getName().equals(user1.getName()));
-        assertTrue(RankLoader.getRankStandard().get(0).getScore() == (user1.getScore()));
-        assertTrue(RankLoader.getRankHard().get(0).getName().equals(user2.getName()));
-        assertTrue(RankLoader.getRankHard().get(0).getScore() == (user2.getScore()));
+        assertTrue(RankLoader.getInstance().getRankStandard().get(0).getName().equals(user1.getName()));
+        assertTrue(RankLoader.getInstance().getRankStandard().get(0).getScore() == (user1.getScore()));
+        assertTrue(RankLoader.getInstance().getRankHard().get(0).getName().equals(user2.getName()));
+        assertTrue(RankLoader.getInstance().getRankHard().get(0).getScore() == (user2.getScore()));
     }
 
     /**
@@ -70,7 +70,7 @@ public class TestTools {
      */
     @Test
     public void testResourceLoader() {
-        ResourcesLoader.start();
+        ResourcesLoader.getInstance().start();
         assertNotNull(GameImages.BOMBER1SCOREBOARD.getImage());
         assertNotNull(GameImages.BACKGROUND.getImage());
         assertNotNull(GameImages.BOMB.getImage());
@@ -94,7 +94,7 @@ public class TestTools {
 
     @Test
     public void testMapLoader() {
-        ResourcesLoader.start();
+        ResourcesLoader.getInstance().start();
         List<List<String>> list = Maps.MAP1.getList();
         assertNotNull(list);
         assertTrue(list.get(0).get(0).equals("H"));

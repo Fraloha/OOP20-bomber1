@@ -85,11 +85,11 @@ public final class RankView extends ViewImpl {
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
         // Initializing the buttons.
-        this.setButtonsFonts(ResourcesLoader.getFont(20));
+        this.setButtonsFonts(ResourcesLoader.getInstance().getFont(20));
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
-        this.tableViewInitialization(ResourcesLoader.getFont(20));
+        this.tableViewInitialization(ResourcesLoader.getInstance().getFont(20));
 
         // Loading all the images that indicates the rank difficulty.
         this.loadImages();
@@ -233,6 +233,6 @@ public final class RankView extends ViewImpl {
     }
 
     private void onClickBackToMainMenu() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 }

@@ -20,9 +20,19 @@ import bomberone.model.user.User;
  */
 public final class RankLoader {
 
-    private static List<User> rankStandard = new ArrayList<User>();
-    private static List<User> rankHard = new ArrayList<User>();
+    private List<User> rankStandard = new ArrayList<User>();
+    private List<User> rankHard = new ArrayList<User>();
 
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final RankLoader SINGLETON = new RankLoader();
+    }
+
+    // Create SINGLETON on the first call.
+    public static RankLoader getInstance() {
+        return LazyHolder.SINGLETON;
+    }
+    
     private RankLoader() {
     }
 
@@ -30,16 +40,16 @@ public final class RankLoader {
      * 
      * @return the Standard Difficulty Rank
      */
-    public static List<User> getRankStandard() {
-        return RankLoader.rankStandard;
+    public List<User> getRankStandard() {
+        return this.rankStandard;
     }
 
     /**
      * 
      * @return the Hard Difficulty Rank
      */
-    public static List<User> getRankHard() {
-        return RankLoader.rankHard;
+    public List<User> getRankHard() {
+        return this.rankHard;
     }
 
     /**
@@ -49,7 +59,7 @@ public final class RankLoader {
      * @param stdList list to serialize
      * 
      */
-    public static void writeUsers(final List<User> hardList, final List<User> stdList) {
+    public void writeUsers(final List<User> hardList, final List<User> stdList) {
         try (ObjectOutput outputStd = new ObjectOutputStream(
                 new BufferedOutputStream(new FileOutputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectOutput outputHard = new ObjectOutputStream(
@@ -66,10 +76,9 @@ public final class RankLoader {
      * ranks and puts them in the lists.
      * 
      */
-    @SuppressWarnings("unchecked")
-    public static void readUsers()  {
-        RankLoader.rankStandard.clear();
-        RankLoader.rankHard.clear();
+    public void readUsers()  {
+        this.rankStandard.clear();
+        this.rankHard.clear();
         try (ObjectInput inputStd = new ObjectInputStream(
                 new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankStandardPath())));
                 ObjectInput inputHard = new ObjectInputStream(

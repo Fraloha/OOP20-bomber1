@@ -18,10 +18,10 @@ public final class BomberOne extends Application {
     @Override
     public void start(final Stage primaryStage) throws Exception {
         primaryStage.setResizable(false);
-        ResourcesLoader.start();
-        DirectoryLoader.start();
-        RankLoader.readUsers();
-        ViewsSwitcher.switchView(primaryStage, ViewType.HOME, new GameModelImpl());
+        ResourcesLoader.getInstance().start();
+        DirectoryLoader.getInstance().start();
+        RankLoader.getInstance().readUsers();
+        ViewsSwitcher.getInstance().switchView(primaryStage, ViewType.HOME, new GameModelImpl());
     }
 
 }

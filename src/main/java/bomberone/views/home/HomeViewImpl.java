@@ -41,7 +41,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToSetUp() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.SETUP, this.getController().getModel());
     }
 
     /**
@@ -49,7 +49,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToCredits() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.CREDITS, this.getController().getModel());
     }
 
     /**
@@ -57,7 +57,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRank() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK, this.getController().getModel());
     }
 
     /**
@@ -65,7 +65,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void switchToRules() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RULES, this.getController().getModel());
     }
 
     /**

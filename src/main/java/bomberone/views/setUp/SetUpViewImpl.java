@@ -62,7 +62,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private int count = 0;
 
-    private Font font = ResourcesLoader.getFont(SetUpViewImpl.SIZE);
+    private Font font = ResourcesLoader.getInstance().getFont(SetUpViewImpl.SIZE);
 
     @Override
     public final void init() {
@@ -96,12 +96,12 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @Override
     public final void switchToGame() {
         SoundsHandler.stopAudio();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
     @Override
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
     private void setPlayer(final String sign) {

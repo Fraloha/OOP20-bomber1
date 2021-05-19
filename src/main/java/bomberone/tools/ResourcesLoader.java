@@ -23,15 +23,25 @@ public final class ResourcesLoader {
     private ResourcesLoader() {
 
     }
+    
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final ResourcesLoader SINGLETON = new ResourcesLoader();
+    }
+
+    // Create SINGLETON on the first call.
+    public static ResourcesLoader getInstance() {
+        return LazyHolder.SINGLETON;
+    }
 
     /**
      * When this method is called, the ResourceLoader launch "loadImages() and
      * sliceSprite()".
      */
-    public static void start() {
-        ResourcesLoader.loadImages();
-        ResourcesLoader.sliceSprite();
-        ResourcesLoader.loadMap();
+    public void start() {
+        this.loadImages();
+        this.sliceSprite();
+        this.loadMap();
     }
 
     /**
@@ -40,7 +50,7 @@ public final class ResourcesLoader {
      * 
      * @throws IOException if it can't read the Files
      */
-    public static void loadImages() {
+    public void loadImages() {
         Arrays.stream(GameImages.values()).forEach(value -> {
             value.setImage(new Image(ClassLoader.getSystemResourceAsStream(value.getFilePath())));
         });
@@ -55,7 +65,7 @@ public final class ResourcesLoader {
      * 
      * @throws IOException if it can't read the Files
      */
-    public static void loadMap() {
+    public void loadMap() {
         Arrays.stream(Maps.values()).forEach(value -> {
             try {
                 BufferedReader reader = new BufferedReader(
@@ -81,14 +91,14 @@ public final class ResourcesLoader {
      * @param size
      * @return Font
      */
-    public static Font getFont(final int size) {
+    public Font getFont(final int size) {
         return Font.loadFont(ClassLoader.getSystemResource("font/AtlantisInternational-jen0.ttf").toString(), size);
     }
 
     /**
      * Slice and load sprite maps.
      */
-    public static void sliceSprite() {
+    public void sliceSprite() {
         Arrays.stream(AnimatedObjectsSprites.values()).forEach(value -> {
             value.setSprite(sliceSpriteMap(value.getImage(), value.getWidth(), value.getHeight()));
         });
@@ -102,7 +112,7 @@ public final class ResourcesLoader {
      * @param spriteHeight Height of each individual sprite
      * @return Two-dimensional array of sprites
      */
-    private static Image[][] sliceSpriteMap(final Image spriteMap, final int spriteWidth,
+    private Image[][] sliceSpriteMap(final Image spriteMap, final int spriteWidth,
             final int spriteHeight) {
         int rows = (int) (spriteMap.getHeight() / spriteHeight);
         int cols = (int) (spriteMap.getWidth() / spriteWidth);

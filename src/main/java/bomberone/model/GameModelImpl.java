@@ -18,8 +18,8 @@ public class GameModelImpl implements GameModel {
     private GameMatch currentMatch;
 
     public GameModelImpl() {
-        this.hardRank = RankLoader.getRankHard();
-        this.standardRank = RankLoader.getRankStandard();
+        this.hardRank = RankLoader.getInstance().getRankHard();
+        this.standardRank = RankLoader.getInstance().getRankStandard();
     }
 
     /**

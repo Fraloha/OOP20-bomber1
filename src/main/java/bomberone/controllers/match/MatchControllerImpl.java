@@ -60,7 +60,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
             } else {
                 this.getModel().getStdRank().add(this.getModel().getCurrentMatch().getUser());
             }
-            RankLoader.writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
+            RankLoader.getInstance().writeUsers(this.getModel().getHardRank(), this.getModel().getStdRank());
             ((MatchView) this.getView()).switchToRank();
         } else {
             this.wasQuitted = false;

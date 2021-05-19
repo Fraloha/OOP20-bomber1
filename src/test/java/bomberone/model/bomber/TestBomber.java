@@ -25,7 +25,7 @@ public class TestBomber {
      */
     @BeforeEach
     public void init() {
-        ResourcesLoader.start();
+        ResourcesLoader.getInstance().start();
         bomber = (BomberImpl) new GameObjectFactoryImpl().createBomber(new P2d(2, 2), Skins.BLACK);
     }
 

@@ -45,8 +45,8 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
      */
     @Override
     public void init() {
-        this.arcade20 = ResourcesLoader.getFont(FONT_SIZE_20);
-        this.arcade16 = ResourcesLoader.getFont(FONT_SIZE_16);
+        this.arcade20 = ResourcesLoader.getInstance().getFont(FONT_SIZE_20);
+        this.arcade16 = ResourcesLoader.getInstance().getFont(FONT_SIZE_16);
         this.rules.setFont(arcade20);
         this.textPU.setFont(arcade20);
         this.textPU1.setFont(arcade16);
@@ -61,6 +61,6 @@ public class RulesViewImpl extends ViewImpl implements RulesView {
      */
     @Override
     public final void switchToHome() {
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 }

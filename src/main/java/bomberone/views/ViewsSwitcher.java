@@ -16,6 +16,17 @@ import javafx.stage.Stage;
  */
 public final class ViewsSwitcher {
 
+    /* Singleton Pattern */
+    private static class LazyHolder {
+        private static final ViewsSwitcher SINGLETON = new ViewsSwitcher();
+    }
+
+    // Create SINGLETON on the first call.
+    public static ViewsSwitcher getInstance() {
+        return LazyHolder.SINGLETON;
+    }
+    
+    
     private ViewsSwitcher() {
 
     }
@@ -28,8 +39,8 @@ public final class ViewsSwitcher {
      * @param model    the Istance of the GameModel
      * @throws IOException
      */
-    public static void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
-        View view = loadStyle(stage, viewType);
+    public void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
+        View view = this.loadStyle(stage, viewType);
         Controller controller = viewType.getController();
         controller.attachView(view);
         controller.attachModel(model);
@@ -48,7 +59,7 @@ public final class ViewsSwitcher {
      * @param viewType of new View
      * @return The View
      */
-    private static View loadStyle(final Stage stage, final ViewType viewType) {
+    private View loadStyle(final Stage stage, final ViewType viewType) {
         FXMLLoader loader = new FXMLLoader(ClassLoader.getSystemResource(viewType.getPath()));
         Parent root = null;
         try {

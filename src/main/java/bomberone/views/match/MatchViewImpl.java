@@ -91,7 +91,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void quitClicked() {
         SoundsHandler.stopAudio();
         ((MatchController) this.getController()).quitGame();
-        ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+        ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
     /**
@@ -100,8 +100,8 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     @Override
     public void init() {
         SoundsHandler.start(GameSounds.CLASSIC);
-        this.scoreLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
-        this.timeLabel.setFont(ResourcesLoader.getFont(FONT_SIZE));
+        this.scoreLabel.setFont(ResourcesLoader.getInstance().getFont(FONT_SIZE));
+        this.timeLabel.setFont(ResourcesLoader.getInstance().getFont(FONT_SIZE));
         this.gCBackground = this.canvasBackground.getGraphicsContext2D();
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.getController().init();
@@ -313,7 +313,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void switchToRank() {
         SoundsHandler.stopAudio();
         Platform.runLater(
-                () -> ViewsSwitcher.switchView(this.getStage(), ViewType.RANK, this.getController().getModel()));
+                () -> ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK, this.getController().getModel()));
     }
 
 }

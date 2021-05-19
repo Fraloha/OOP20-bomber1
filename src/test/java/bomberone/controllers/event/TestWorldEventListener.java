@@ -58,7 +58,7 @@ public class TestWorldEventListener {
     @BeforeEach
     public void init() {
         listener = new WorldEventListenerImpl();
-        ResourcesLoader.start();
+        ResourcesLoader.getInstance().start();
         world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
         match = new GameMatchImpl();
         factory = new GameObjectFactoryImpl();
