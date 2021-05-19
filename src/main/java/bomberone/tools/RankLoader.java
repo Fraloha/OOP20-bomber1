@@ -84,6 +84,10 @@ public final class RankLoader {
                 ObjectInput inputHard = new ObjectInputStream(
                         new BufferedInputStream(new FileInputStream(DirectoryLoader.getRankHardPath())));) {
             // deserialize the List
+            Object stdList = inputStd.readObject();
+            if(stdList instanceof List<?>) {
+                rankStandard.addAll((List<User>) stdList);
+            }
             rankStandard.addAll((List<User>) inputStd.readObject());
             rankHard.addAll((List<User>) inputHard.readObject());
         } catch (ClassNotFoundException ex) {
