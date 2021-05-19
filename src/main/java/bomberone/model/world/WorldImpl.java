@@ -23,6 +23,7 @@ import bomberone.model.gameObjects.bomb.Bomb;
 import bomberone.model.gameObjects.box.Box;
 import bomberone.model.gameObjects.fire.Fire;
 import bomberone.model.gameObjects.powerUp.PowerUp;
+import bomberone.model.gameboard.GameBoard;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.model.world.collection.GameObjectCollection;
@@ -168,11 +169,7 @@ public class WorldImpl implements World {
     public final void updateState(final int time) {
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
-            if (obj.getClass() == EnemyImpl.class) {
-                ((EnemyImpl) obj).update(time, this.bomberMan.getPosition());
-            } else {
-                obj.update(time);
-            }
+            obj.update(time);
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
