@@ -106,7 +106,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         this.gCForeground = this.canvasForegrounds.getGraphicsContext2D();
         this.getController().init();
         this.drawGame();
-        this.controlsMap = new ControlsMap(((MatchController) this.getController()).getPlayerOfTheGame().getControls(),
+        this.controlsMap = new ControlsMap(((MatchController) this.getController()).getUserOfTheMatch().getControls(),
                 ((MatchController) this.getController()).getCommandListener().getPlayerBehaviour());
         this.setViewEventListener();
     }
@@ -282,7 +282,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         }
         this.enemySprites = spritesEnemy;
         Image[][] spritesBomber = null;
-        Skins color = ((MatchController) this.getController()).getPlayerOfTheGame().getSkin();
+        Skins color = ((MatchController) this.getController()).getUserOfTheMatch().getSkin();
 
         // Draw the icon of the Bomber and setUp his sprite.
         if (color.equals(Skins.WHITE)) {

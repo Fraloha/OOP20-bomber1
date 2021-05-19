@@ -67,21 +67,21 @@ public interface MatchController extends Controller {
     /**
      * Called if the View needs Timer Info.
      * 
-     * @return the GameModel's timer.
+     * @return the GameMatch's timer.
      */
     Timer getTimer();
 
     /**
      * Called if the View needs the User Info.
      * 
-     * @return the GameModel's User
+     * @return the GameMatch's User
      */
-    User getPlayerOfTheGame();
+    User getUserOfTheMatch();
 
     /**
      * Called if View needs the Game Score.
      * 
-     * @return the Game Score.
+     * @return the Match Score.
      */
     int getScore();
 

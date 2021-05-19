@@ -169,7 +169,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      * {@inheritDoc}
      */
     @Override
-    public User getPlayerOfTheGame() {
+    public User getUserOfTheMatch() {
         return this.getModel().getCurrentMatch().getUser();
     }
 
