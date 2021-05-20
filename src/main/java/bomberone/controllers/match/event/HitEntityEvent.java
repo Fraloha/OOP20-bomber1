@@ -48,7 +48,7 @@ public class HitEntityEvent implements WorldEvent {
             if (!this.entity.isAlive()) {
                 return;
             } else {
-                SoundsHandler.start(GameSounds.HITTED); // This is the Audio Effect for Bomber's death
+                SoundsHandler.getInstance().start(GameSounds.HITTED); // This is the Audio Effect for Bomber's death
                 /*
                  * If there is a fireObject on the respawn cell, it is removed to avoid
                  * death-loop bugs
@@ -67,7 +67,7 @@ public class HitEntityEvent implements WorldEvent {
             match.incScore(BOX_INC_SCORE);
         }
         if (this.entity.getClass().equals(EnemyImpl.class)) {
-            SoundsHandler.start(GameSounds.ENEMY_HIT); // This is the Sound Effect for Enemy hitted
+            SoundsHandler.getInstance().start(GameSounds.ENEMY_HIT); // This is the Sound Effect for Enemy hitted
             match.incScore(ENEMY_INC_SCORE);
         }
     }

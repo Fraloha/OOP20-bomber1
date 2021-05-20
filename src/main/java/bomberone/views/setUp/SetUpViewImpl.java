@@ -95,7 +95,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
-        SoundsHandler.stopAudio();
+        SoundsHandler.getInstance().stopAudio();
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
