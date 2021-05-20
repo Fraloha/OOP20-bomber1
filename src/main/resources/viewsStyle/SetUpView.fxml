@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.*?>
-<?import javafx.scene.paint.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import java.lang.*?>
-<?import javafx.scene.canvas.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="612.0" prefWidth="575.0" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
+<AnchorPane minHeight="612.0" minWidth="576.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
    <children>
-      <Pane prefHeight="612.0" prefWidth="575.0" style="-fx-background-color: black;">
+      <Pane minHeight="612.0" minWidth="576.0" style="-fx-background-color: black;">
          <children>
             <ImageView fx:id="boxPlayer" fitHeight="150.0" fitWidth="200.0" layoutX="238.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
                <image>
