@@ -32,7 +32,7 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void init() {
-        SoundsHandler.start(GameSounds.HOME);
+        SoundsHandler.getInstance().start(GameSounds.HOME);
         this.getController().init();
     }
 

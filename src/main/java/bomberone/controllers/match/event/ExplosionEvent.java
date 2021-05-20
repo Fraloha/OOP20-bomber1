@@ -21,7 +21,7 @@ public class ExplosionEvent implements WorldEvent {
     private Explosion explosion;
 
     public ExplosionEvent(final Explosion exp) {
-        SoundsHandler.start(GameSounds.BOMB);
+        SoundsHandler.getInstance().start(GameSounds.BOMB);
         this.explosion = exp;
     }
 

@@ -83,7 +83,7 @@ public final class RankView extends ViewImpl {
 
     @Override
     public void init() {
-        SoundsHandler.start(GameSounds.HOME);
+        SoundsHandler.getInstance().start(GameSounds.HOME);
         // Initializing the buttons.
         this.setButtonsFonts(ResourcesLoader.getInstance().getFont(20));
         this.setButtonsEventHandlers();
