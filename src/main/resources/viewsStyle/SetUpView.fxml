@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
@@ -9,7 +15,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="612.0" minWidth="576.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
+<AnchorPane minHeight="612.0" minWidth="576.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
    <children>
       <Pane minHeight="612.0" minWidth="576.0" style="-fx-background-color: black;">
          <children>
@@ -27,7 +33,7 @@
                   <Font name="Lucida Sans Regular" size="33.0" />
                </font>
             </Label>
-            <TextField fx:id="textNickname" layoutX="308.0" layoutY="267.0" promptText="Insert NickName">
+            <TextField fx:id="textNickname" layoutX="308.0" layoutY="267.0" pickOnBounds="false" promptText="Insert Nickname">
                <font>
                   <Font name="System Bold Italic" size="16.0" />
                </font>

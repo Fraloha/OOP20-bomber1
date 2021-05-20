@@ -188,11 +188,14 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
     }
 
+    @FXML
     public final void play() {
-        if (!textNickname.getText().isEmpty()) {
+        if (!textNickname.getText().isEmpty() && !textNickname.getText().equals("Insert Nickname")) {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
+        } else {
+            this.textNickname.setText("Insert Nickname");
         }
     }
 }
