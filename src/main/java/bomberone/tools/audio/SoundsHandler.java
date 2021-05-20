@@ -41,12 +41,18 @@ public final class SoundsHandler {
         playerAudio = new MediaPlayer(this.cacheAudio.get(GameSounds.HOME));
     }
 
-    /* Singleton Pattern */
+    /**
+     * SINGLETON pattern.
+     */
     private static class LazyHolder {
         private static final SoundsHandler SINGLETON = new SoundsHandler();
     }
 
-    // Create SINGLETON on the first call.
+    /**
+     * Create SINGLETON on the first call.
+     * 
+     * @return SoundsHandler
+     */
     public static SoundsHandler getInstance() {
         return LazyHolder.SINGLETON;
     }
@@ -67,6 +73,7 @@ public final class SoundsHandler {
         } else {
             if (!isPlaying()) {
                 if (!playerAudio.getMedia().equals(this.cacheAudio.get(type))) {
+                    playerAudio.dispose();
                     playerAudio = new MediaPlayer(this.cacheAudio.get(type));
                 }
                 playerAudio.setVolume(type.getVolume());
@@ -90,13 +97,17 @@ public final class SoundsHandler {
         return playerAudio.getStatus().equals(Status.PLAYING);
     }
 
+    /**
+     * Method that restart the playerAudio.
+     */
     public synchronized void replayAudio() {
         playerAudio.stop();
         playerAudio.play();
     }
 
     /**
-     * Static method that stop the last audio played.
+     * Method that stop the last audio played and free all resources associated with
+     * playerAudio.
      */
     public synchronized void stopAudio() {
         playerAudio.stop();
