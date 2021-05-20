@@ -1,6 +1,5 @@
 package bomberone.views.match.img;
 
-
 import javafx.scene.image.Image;
 
 /**
@@ -236,7 +235,32 @@ public enum GameImages {
     /**
      * 
      */
-    HARDMODE("hard_logo.png");
+    HARDMODE("hard_logo.png"),
+
+    /**
+     * 
+     */
+    NEXT_SET("NEXT_set.png"),
+
+    /**
+     * 
+     */
+    NEXT_UNSET("NEXT_unset.png"),
+
+    /**
+     * 
+     */
+    PREV_SET("PREV_set.png"),
+
+    /**
+     * 
+     */
+    PREV_UNSET("PREV_unset.png"),
+
+    /**
+     * 
+     */
+    HOME_BUTTON("HOME_button.png");
 
     private static final String RES_PATH = "images/";
 

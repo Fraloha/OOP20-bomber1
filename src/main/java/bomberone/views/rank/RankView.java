@@ -38,11 +38,12 @@ public final class RankView extends ViewImpl {
 
     /* Fields. */
     private static final int RANKS = 2;
+    private static final int BUTTONS_IMAGES = 2;
 
     private int currentRank;
-
     private Image rankDifficultyImages[];
-
+    private Image imagesPrevButtons[];
+    private Image imagesNextButtons[];
     private ArrayList<SortedList<User>> ranks;
 
     @FXML
@@ -70,22 +71,18 @@ public final class RankView extends ViewImpl {
     private HBox hBoxOptions;
 
     @FXML
-    private Button hBoxButtonPrevious;
+    private ImageView imageViewPreviousButton;
 
     @FXML
-    private Button hBoxButtonExit;
+    private ImageView imageViewHomeButton;
 
     @FXML
-    private Button hBoxButtonMainMenu;
-
-    @FXML
-    private Button hBoxButtonNext;
+    private ImageView imageViewNextButton;
 
     @Override
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
         // Initializing the buttons.
-        this.setButtonsFonts(ResourcesLoader.getFont(20));
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
@@ -103,31 +100,37 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
-    private void setButtonsFonts(Font fontToSet) {
-        this.hBoxButtonExit.setFont(fontToSet);
-        this.hBoxButtonMainMenu.setFont(fontToSet);
-        this.hBoxButtonNext.setFont(fontToSet);
-        this.hBoxButtonPrevious.setFont(fontToSet);
+    private void setButtonImages() {
+        this.setButton(false, GameImages.PREV_SET.getImage(), GameImages.PREV_UNSET.getImage(),
+                this.imageViewPreviousButton);
+        this.setButton(false, GameImages.NEXT_SET.getImage(), GameImages.NEXT_UNSET.getImage(),
+                this.imageViewNextButton);
+        this.imageViewHomeButton.setImage(GameImages.HOME_BUTTON.getImage());
+    }
+
+    private void setButton(boolean set, Image verified, Image notVerified, ImageView imageToSet) {
+        Image image = set ? verified : notVerified;
+        imageToSet.setImage(image);
     }
 
     /**
      * This method sets all the buttons event handlers.
      */
     private void setButtonsEventHandlers() {
-        this.hBoxButtonExit.setOnAction((event) -> {
-            this.getStage().close();
+        this.imageViewPreviousButton.setOnMouseEntered(e -> {
+            setButton(true, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
-
-        this.hBoxButtonMainMenu.setOnAction((event) -> {
-            this.onClickBackToMainMenu();
+        
+        this.imageViewPreviousButton.setOnMouseExited(e -> {
+           setButton(false, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
-
-        this.hBoxButtonNext.setOnAction((event) -> {
-            this.onClickChangeRank(true);
+        
+        this.imageViewNextButton.setOnMouseEntered(e -> {
+            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
-
-        this.hBoxButtonPrevious.setOnAction((event) -> {
-            this.onClickChangeRank(false);
+        
+        this.imageViewNextButton.setOnMouseExited(e -> {
+            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
     }
 
@@ -196,16 +199,28 @@ public final class RankView extends ViewImpl {
      */
     private void loadImages() {
         this.rankDifficultyImages = new Image[RankView.RANKS];
+        this.imagesPrevButtons = new Image[RankView.BUTTONS_IMAGES];
+        this.imagesNextButtons = new Image[RankView.BUTTONS_IMAGES];
+
+        // Loading the images.
         this.rankDifficultyImages[0] = GameImages.EASYMODE.getImage();
         this.rankDifficultyImages[1] = GameImages.HARDMODE.getImage();
+        this.imagesPrevButtons[0] = GameImages.PREV_SET.getImage();
+        this.imagesPrevButtons[1] = GameImages.PREV_UNSET.getImage();
+        this.imagesNextButtons[0] = GameImages.NEXT_SET.getImage();
+        this.imagesNextButtons[1] = GameImages.NEXT_UNSET.getImage();
+
+        this.imageViewHomeButton.setImage(GameImages.HOME_BUTTON.getImage());
         this.imageViewRankTitle.setImage(GameImages.RANKVIEWTITLE.getImage());
     }
 
     private void loadRanks() {
         // Loading the ranks.
-        
-        ObservableList<User> standardRank = FXCollections.observableList(((RankController) this.getController()).getStdRank());
-        ObservableList<User> hardRank = FXCollections.observableList(((RankController) this.getController()).getHardRank());
+
+        ObservableList<User> standardRank = FXCollections
+                .observableList(((RankController) this.getController()).getStdRank());
+        ObservableList<User> hardRank = FXCollections
+                .observableList(((RankController) this.getController()).getHardRank());
 
         // Creating the sorted ranks.
         this.ranks = new ArrayList<SortedList<User>>();
