@@ -9,7 +9,6 @@ import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.alert.AlertBox;
 import bomberone.views.common.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -194,9 +193,6 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
-        } else {
-            AlertBox alert = new AlertBox();
-            alert.display("WARNING", "INSERT THE NAME!!");
         }
     }
 }

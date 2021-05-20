@@ -85,4 +85,32 @@ public class UserImpl implements User {
         return this.controls;
     }
 
+    public static class Builder {
+        private String name;
+        private Skins skin;
+        private Controls controls;
+
+        public Builder(final String name) {
+            this.name = name;
+        }
+
+        public final Builder skin(final Skins skin) {
+            this.skin = skin;
+            return this;
+        }
+
+        public final Builder controls(final Controls control) {
+            this.controls = control;
+            return this;
+        }
+
+        public final User build() {
+            User user = new UserImpl();
+            user.setControls(this.controls);
+            user.setName(this.name);
+            user.setSkin(this.skin);
+            return user;
+        }
+    }
+
 }
