@@ -151,7 +151,7 @@ public final class RankView extends ViewImpl {
     }
 
     private void tableViewInitialization(final Font fontToSet) {
-
+        
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
@@ -263,7 +263,7 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
     
-    private void onBackToMainMenuClicked() {
+    public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 

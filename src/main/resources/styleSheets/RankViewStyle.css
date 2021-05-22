@@ -1,10 +1,8 @@
-.table-view{
-	-fx-background-color: trasparent;
-}
+.root{ -fx-background-color: #000000; }
 
-.table-view:focused{
-	-fx-background-color: trasparent;
-}
+.table-view{ -fx-background-color: trasparent; }
+
+.table-view:focused{ -fx-background-color: trasparent; }
 
 .table-view .column-header-background{
 	-fx-background-color: linear-gradient(#131313 0%, #424141 100%);
@@ -12,7 +10,7 @@
 
 .table-view .column-header-background .label{
 	-fx-background-color: trasparent;
-	-fx-text-fill: white;
+	-fx-text-fill: #FFFFFF;
 }
 
 .table-view .column-header{
@@ -20,7 +18,7 @@
 }
 
 .table-view .table-cell{
-	-fx-text-fill: white;
+	-fx-text-fill: #FFFFFF;
 }
 
 .table-row-cell{
@@ -42,10 +40,6 @@
 }
 
 .hBoxStyle{
-	-fx-background-color: #000000;
-}
-
-.tableViewColumnStyle{
 	-fx-background-color: #000000;
 }
 
