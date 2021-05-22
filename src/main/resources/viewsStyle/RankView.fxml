@@ -2,7 +2,6 @@
 
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
@@ -13,7 +12,7 @@
    <children>
       <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="612.0" prefWidth="575.0" styleClass="borderPaneStyle" stylesheets="@../styleSheets/RankViewStyle.css">
          <center>
-            <TableView fx:id="tableView" prefHeight="438.0" prefWidth="575.0" BorderPane.alignment="CENTER">
+            <TableView fx:id="tableView" prefHeight="438.0" prefWidth="575.0" styleClass="table-view" stylesheets="@../styleSheets/RankViewStyle.css" BorderPane.alignment="CENTER">
               <columns>
                 <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" text="Player" />
                 <TableColumn fx:id="tableViewScores" prefWidth="287.5" text="Score" />
@@ -23,25 +22,17 @@
          <bottom>
             <HBox fx:id="hBoxOptions" alignment="CENTER" prefHeight="78.0" prefWidth="556.0" spacing="20.0" styleClass="hBoxStyle" stylesheets="@../styleSheets/RankViewStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="imageViewPreviousButton" onMouseClicked="#onPreviousClicked" fitHeight="80.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageViewHomeButton" onMouseClicked="#onBackToMainMenuClicked" fitHeight="89.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageViewNextButton" onMouseClicked="#onNextClicked" fitHeight="86.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewPreviousButton" fitHeight="80.0" fitWidth="178.0" onMouseClicked="#onPreviousClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewHomeButton" fitHeight="89.0" fitWidth="180.0" onMouseClicked="#onBackToMainMenuClicked" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewNextButton" fitHeight="86.0" fitWidth="168.0" onMouseClicked="#onNextClicked" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </bottom>
          <top>
             <VBox fx:id="vBoxImages" alignment="CENTER" prefHeight="117.0" prefWidth="431.0" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="imageViewRankTitle" fitHeight="94.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/RankViewImages/RankViewTitle.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="imageViewDifficulty" fitHeight="127.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/RankViewImages/EasyModeImage.png" />
-                     </image>
-                  </ImageView>
+                  <ImageView fx:id="imageViewRankTitle" fitHeight="94.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewDifficulty" fitHeight="127.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </top>
