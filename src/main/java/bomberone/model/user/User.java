@@ -52,6 +52,7 @@ public interface User extends Serializable {
     /**
      * 
      * Set the controls of the User.
+     * 
      * @param controls
      */
     void setControls(Controls controls);
@@ -61,5 +62,4 @@ public interface User extends Serializable {
      * @return the controls of the User
      */
     Controls getControls();
-
 }

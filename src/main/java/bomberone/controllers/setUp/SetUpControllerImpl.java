@@ -38,10 +38,10 @@ public final class SetUpControllerImpl extends ControllerImpl implements SetUpCo
     }
 
     public void buildUser() {
-        User user = new UserImpl();
-        user.setControls(this.controls);
-        user.setName(this.name);
-        user.setSkin(this.skin);
+        User user = new UserImpl.Builder(this.name)
+                            .skin(this.skin)
+                            .controls(this.controls)
+                            .build();
         this.match = new GameMatchImpl();
         this.match.setDifficulty(this.difficulty);
         this.match.setUser(user);

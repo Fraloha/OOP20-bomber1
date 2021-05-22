@@ -4,26 +4,27 @@ import java.net.URISyntaxException;
 import java.util.Arrays;
 import java.util.EnumMap;
 import java.util.Map;
+
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.MediaPlayer.Status;
 
 public final class SoundsHandler {
 
-    private static final Map<GameSounds, Media> CACHE_AUDIO;
-    private static final Map<GameSounds, Media> CACHE_EFFECTS;
-    private static MediaPlayer playerAudio;
-    private static MediaPlayer playerEffects;
+    private Map<GameSounds, Media> cacheAudio;
+    private Map<GameSounds, Media> cacheEffects;
+    private MediaPlayer playerAudio;
+    private MediaPlayer playerEffects;
 
-    static {
-        CACHE_AUDIO = new EnumMap<>(GameSounds.class);
-        CACHE_EFFECTS = new EnumMap<>(GameSounds.class);
+    private SoundsHandler() {
+        this.cacheAudio = new EnumMap<>(GameSounds.class);
+        this.cacheEffects = new EnumMap<>(GameSounds.class);
         Arrays.stream(GameSounds.values()).forEach(values -> {
             if (values.getType().equals(Sounds.EFFECT)) {
                 try {
                     final Media audio = new Media(
                             ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
-                    CACHE_EFFECTS.put(values, audio);
+                    this.cacheEffects.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
@@ -31,17 +32,29 @@ public final class SoundsHandler {
                 try {
                     final Media audio = new Media(
                             ClassLoader.getSystemResource(values.getMediaPath()).toURI().toString());
-                    CACHE_AUDIO.put(values, audio);
+                    this.cacheAudio.put(values, audio);
                 } catch (URISyntaxException e) {
                     e.printStackTrace();
                 }
             }
         });
-        playerAudio = new MediaPlayer(CACHE_AUDIO.get(GameSounds.HOME));
+        playerAudio = new MediaPlayer(this.cacheAudio.get(GameSounds.HOME));
     }
 
-    private SoundsHandler() {
+    /**
+     * SINGLETON pattern.
+     */
+    private static class LazyHolder {
+        private static final SoundsHandler SINGLETON = new SoundsHandler();
+    }
 
+    /**
+     * Create SINGLETON on the first call.
+     * 
+     * @return SoundsHandler
+     */
+    public static SoundsHandler getInstance() {
+        return LazyHolder.SINGLETON;
     }
 
     /**
@@ -51,24 +64,24 @@ public final class SoundsHandler {
      * 
      * @param type
      */
-    public static synchronized void start(final GameSounds type) {
+    public synchronized void start(final GameSounds type) {
         if (type.getType().equals(Sounds.EFFECT)) {
-            playerEffects = new MediaPlayer(CACHE_EFFECTS.get(type));
+            playerEffects = new MediaPlayer(this.cacheEffects.get(type));
             playerEffects.setVolume(type.getVolume());
             playerEffects.play();
             playerEffects.setOnEndOfMedia(playerEffects::dispose);
         } else {
             if (!isPlaying()) {
-                if (!playerAudio.getMedia().equals(CACHE_AUDIO.get(type))) {
-                    playerAudio = new MediaPlayer(CACHE_AUDIO.get(type));
+                if (!playerAudio.getMedia().equals(this.cacheAudio.get(type))) {
+                    playerAudio.dispose();
+                    playerAudio = new MediaPlayer(this.cacheAudio.get(type));
                 }
                 playerAudio.setVolume(type.getVolume());
                 playerAudio.play();
                 playerAudio.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
-                        playerAudio.stop();
-                        playerAudio.play();
+                        SoundsHandler.getInstance().replayAudio();
                     }
                 });
             }
@@ -77,16 +90,26 @@ public final class SoundsHandler {
 
     /**
      * Method that return true if playerAudio is already playing.
+     * 
      * @return boolean
      */
-    public static boolean isPlaying() {
+    public boolean isPlaying() {
         return playerAudio.getStatus().equals(Status.PLAYING);
     }
 
     /**
-     * Static method that stop the last audio played.
+     * Method that restart the playerAudio.
      */
-    public static synchronized void stopAudio() {
+    public synchronized void replayAudio() {
+        playerAudio.stop();
+        playerAudio.play();
+    }
+
+    /**
+     * Method that stop the last audio played and free all resources associated with
+     * playerAudio.
+     */
+    public synchronized void stopAudio() {
         playerAudio.stop();
         playerAudio.dispose();
     }

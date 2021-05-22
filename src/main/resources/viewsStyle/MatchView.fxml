@@ -12,9 +12,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="612.0" prefWidth="576.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.match.MatchViewImpl">
+<AnchorPane minHeight="612.0" minWidth="576.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.match.MatchViewImpl">
    <children>
-      <BorderPane>
+      <BorderPane minHeight="612.0" minWidth="576.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <top>
             <HBox minHeight="50.0" minWidth="200.0" style="-fx-background-color: LightSlateGrey; -fx-border-color: black; -fx-border-width: 2;" BorderPane.alignment="CENTER">
                <children>

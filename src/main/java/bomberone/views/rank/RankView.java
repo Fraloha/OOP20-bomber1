@@ -1,22 +1,22 @@
 package bomberone.views.rank;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.SortedList;
 import javafx.fxml.FXML;
+import javafx.scene.control.TableCell;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableColumn.SortType;
+import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.util.Callback;
-import javafx.scene.text.Font;
-import bomberone.views.ViewType;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
-import javafx.scene.image.Image;
-import bomberone.model.user.User;
-import bomberone.tools.RankLoader;
-import javafx.scene.control.Button;
-import javafx.scene.image.ImageView;
-import bomberone.views.ViewsSwitcher;
-import javafx.scene.control.TableCell;
-import javafx.scene.control.TableView;
-import javafx.scene.layout.BorderPane;
 import bomberone.tools.ResourcesLoader;
 import javafx.collections.FXCollections;
 import javafx.scene.control.TableColumn;
@@ -41,11 +41,12 @@ public final class RankView extends ViewImpl {
 
     /* Fields. */
     private static final int RANKS = 2;
+    private static final int BUTTONS_IMAGES = 2;
 
     private int currentRank;
-
     private Image rankDifficultyImages[];
-
+    private Image imagesPrevButtons[];
+    private Image imagesNextButtons[];
     private ArrayList<SortedList<User>> ranks;
 
     @FXML
@@ -73,22 +74,20 @@ public final class RankView extends ViewImpl {
     private HBox hBoxOptions;
 
     @FXML
-    private Button hBoxButtonPrevious;
+    private ImageView imageViewPreviousButton;
 
     @FXML
-    private Button hBoxButtonExit;
+    private ImageView imageViewHomeButton;
 
     @FXML
-    private Button hBoxButtonMainMenu;
-
-    @FXML
-    private Button hBoxButtonNext;
+    private ImageView imageViewNextButton;
 
     @Override
     public void init() {
-        SoundsHandler.start(GameSounds.HOME);
+        SoundsHandler.getInstance().start(GameSounds.HOME);
+
         // Initializing the buttons.
-        this.setButtonsFonts(ResourcesLoader.getInstance().getFont(20));
+        this.setButtonImages();
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
@@ -106,36 +105,59 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
-    private void setButtonsFonts(Font fontToSet) {
-        this.hBoxButtonExit.setFont(fontToSet);
-        this.hBoxButtonMainMenu.setFont(fontToSet);
-        this.hBoxButtonNext.setFont(fontToSet);
-        this.hBoxButtonPrevious.setFont(fontToSet);
+    /**
+     * This method sets an Image object to an ImageView object, on the basis of a
+     * boolean value. If the first parameter is true, the "verified" argument is set
+     * as the image of the ImageView object, otherwise the "notVerified" argument is
+     * set.
+     * 
+     * @param set         The boolean value that acts like a condition.
+     * @param verified    The Image object that has to be set if the "set" argument
+     *                    is true.
+     * @param notVerified The Image object that has to be set if the "set argument
+     *                    is false.
+     * @param imageToSet  The ImageView where the second or third argument has to be
+     *                    set.
+     */
+    private void setButton(boolean set, Image verified, Image notVerified, ImageView imageToSet) {
+        Image image = set ? verified : notVerified;
+        imageToSet.setImage(image);
+    }
+
+    /**
+     * This method sets the initial images at the form initialization.
+     */
+    private void setButtonImages() {
+        this.setButton(false, GameImages.PREV_SET.getImage(), GameImages.PREV_UNSET.getImage(),
+                this.imageViewPreviousButton);
+        this.setButton(false, GameImages.NEXT_SET.getImage(), GameImages.NEXT_UNSET.getImage(),
+                this.imageViewNextButton);
+        this.imageViewHomeButton.setImage(GameImages.HOME_BUTTON.getImage());
     }
 
     /**
      * This method sets all the buttons event handlers.
      */
     private void setButtonsEventHandlers() {
-        this.hBoxButtonExit.setOnAction((event) -> {
-            this.getStage().close();
+        this.imageViewPreviousButton.setOnMouseEntered(e -> {
+            setButton(true, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
 
-        this.hBoxButtonMainMenu.setOnAction((event) -> {
-            this.onClickBackToMainMenu();
+        this.imageViewPreviousButton.setOnMouseExited(e -> {
+            setButton(false, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
 
-        this.hBoxButtonNext.setOnAction((event) -> {
-            this.onClickChangeRank(true);
+        this.imageViewNextButton.setOnMouseEntered(e -> {
+            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
 
-        this.hBoxButtonPrevious.setOnAction((event) -> {
-            this.onClickChangeRank(false);
+        this.imageViewNextButton.setOnMouseExited(e -> {
+            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
     }
 
     private void tableViewInitialization(final Font fontToSet) {
-
+        
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
@@ -199,16 +221,28 @@ public final class RankView extends ViewImpl {
      */
     private void loadImages() {
         this.rankDifficultyImages = new Image[RankView.RANKS];
+        this.imagesPrevButtons = new Image[RankView.BUTTONS_IMAGES];
+        this.imagesNextButtons = new Image[RankView.BUTTONS_IMAGES];
+
+        // Loading the images.
         this.rankDifficultyImages[0] = GameImages.EASYMODE.getImage();
         this.rankDifficultyImages[1] = GameImages.HARDMODE.getImage();
+        this.imagesPrevButtons[0] = GameImages.PREV_SET.getImage();
+        this.imagesPrevButtons[1] = GameImages.PREV_UNSET.getImage();
+        this.imagesNextButtons[0] = GameImages.NEXT_SET.getImage();
+        this.imagesNextButtons[1] = GameImages.NEXT_UNSET.getImage();
+
+        this.imageViewHomeButton.setImage(GameImages.HOME_BUTTON.getImage());
         this.imageViewRankTitle.setImage(GameImages.RANKVIEWTITLE.getImage());
     }
 
     private void loadRanks() {
         // Loading the ranks.
-        
-        ObservableList<User> standardRank = FXCollections.observableList(((RankController) this.getController()).getStdRank());
-        ObservableList<User> hardRank = FXCollections.observableList(((RankController) this.getController()).getHardRank());
+
+        ObservableList<User> standardRank = FXCollections
+                .observableList(((RankController) this.getController()).getStdRank());
+        ObservableList<User> hardRank = FXCollections
+                .observableList(((RankController) this.getController()).getHardRank());
 
         // Creating the sorted ranks.
         this.ranks = new ArrayList<SortedList<User>>();
@@ -226,7 +260,7 @@ public final class RankView extends ViewImpl {
         }
     }
 
-    private void onClickChangeRank(final boolean next) {
+    private void changeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
         this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
 
@@ -234,8 +268,16 @@ public final class RankView extends ViewImpl {
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-
-    private void onClickBackToMainMenu() {
+    
+    public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+    }
+
+    public void onNextClicked() {
+        this.changeRank(true);
+    }
+
+    public void onPreviousClicked() {
+        this.changeRank(false);
     }
 }
