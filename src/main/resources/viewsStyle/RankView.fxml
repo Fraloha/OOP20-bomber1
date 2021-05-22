@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="612.0" prefWidth="575.0" styleClass="anchorPaneStyle" stylesheets="@../styleSheets/RankViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
+<AnchorPane prefHeight="612.0" prefWidth="575.0" styleClass="anchorPaneStyle" stylesheets="@../styleSheets/RankViewStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
       <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="612.0" prefWidth="575.0" styleClass="borderPaneStyle" stylesheets="@../styleSheets/RankViewStyle.css">
          <center>
@@ -23,9 +23,9 @@
          <bottom>
             <HBox fx:id="hBoxOptions" alignment="CENTER" prefHeight="78.0" prefWidth="556.0" spacing="20.0" styleClass="hBoxStyle" stylesheets="@../styleSheets/RankViewStyle.css" BorderPane.alignment="CENTER">
                <children>
-                  <ImageView fx:id="imageViewPreviousButton" fitHeight="80.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageViewHomeButton" fitHeight="89.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
-                  <ImageView fx:id="imageViewNextButton" fitHeight="86.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewPreviousButton" onMouseClicked="#onPreviousClicked" fitHeight="80.0" fitWidth="178.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewHomeButton" onMouseClicked="#onBackToMainMenuClicked" fitHeight="89.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="imageViewNextButton" onMouseClicked="#onNextClicked" fitHeight="86.0" fitWidth="168.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </HBox>
          </bottom>

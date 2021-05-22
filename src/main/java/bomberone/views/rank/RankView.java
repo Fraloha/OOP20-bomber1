@@ -3,9 +3,7 @@ package bomberone.views.rank;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.SortedList;
-import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
 import javafx.scene.control.TableCell;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableColumn.SortType;
@@ -19,7 +17,6 @@ import javafx.scene.text.Font;
 import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.util.Callback;
-import bomberone.tools.RankLoader;
 import bomberone.tools.ResourcesLoader;
 import bomberone.tools.audio.GameSounds;
 import bomberone.tools.audio.SoundsHandler;
@@ -82,7 +79,9 @@ public final class RankView extends ViewImpl {
     @Override
     public void init() {
         SoundsHandler.start(GameSounds.HOME);
+
         // Initializing the buttons.
+        this.setButtonImages();
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
@@ -100,17 +99,34 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
+    /**
+     * This method sets an Image object to an ImageView object, on the basis of a
+     * boolean value. If the first parameter is true, the "verified" argument is set
+     * as the image of the ImageView object, otherwise the "notVerified" argument is
+     * set.
+     * 
+     * @param set         The boolean value that acts like a condition.
+     * @param verified    The Image object that has to be set if the "set" argument
+     *                    is true.
+     * @param notVerified The Image object that has to be set if the "set argument
+     *                    is false.
+     * @param imageToSet  The ImageView where the second or third argument has to be
+     *                    set.
+     */
+    private void setButton(boolean set, Image verified, Image notVerified, ImageView imageToSet) {
+        Image image = set ? verified : notVerified;
+        imageToSet.setImage(image);
+    }
+
+    /**
+     * This method sets the initial images at the form initialization.
+     */
     private void setButtonImages() {
         this.setButton(false, GameImages.PREV_SET.getImage(), GameImages.PREV_UNSET.getImage(),
                 this.imageViewPreviousButton);
         this.setButton(false, GameImages.NEXT_SET.getImage(), GameImages.NEXT_UNSET.getImage(),
                 this.imageViewNextButton);
         this.imageViewHomeButton.setImage(GameImages.HOME_BUTTON.getImage());
-    }
-
-    private void setButton(boolean set, Image verified, Image notVerified, ImageView imageToSet) {
-        Image image = set ? verified : notVerified;
-        imageToSet.setImage(image);
     }
 
     /**
@@ -120,15 +136,15 @@ public final class RankView extends ViewImpl {
         this.imageViewPreviousButton.setOnMouseEntered(e -> {
             setButton(true, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
-        
+
         this.imageViewPreviousButton.setOnMouseExited(e -> {
-           setButton(false, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
+            setButton(false, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
-        
+
         this.imageViewNextButton.setOnMouseEntered(e -> {
             setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
-        
+
         this.imageViewNextButton.setOnMouseExited(e -> {
             setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
@@ -238,7 +254,7 @@ public final class RankView extends ViewImpl {
         }
     }
 
-    private void onClickChangeRank(final boolean next) {
+    private void changeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
         this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
 
@@ -247,7 +263,15 @@ public final class RankView extends ViewImpl {
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
 
-    private void onClickBackToMainMenu() {
+    public void onBackToMainMenuClicked() {
         ViewsSwitcher.switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
+    }
+
+    public void onNextClicked() {
+        this.changeRank(true);
+    }
+
+    public void onPreviousClicked() {
+        this.changeRank(false);
     }
 }
