@@ -3,7 +3,6 @@ package bomberone.model.enemy.actions;
 import java.util.Random;
 
 import bomberone.model.common.Direction;
-import bomberone.model.common.P2d;
 import bomberone.model.enemy.Enemy;
 
 public abstract class AbstractActions implements Actions {

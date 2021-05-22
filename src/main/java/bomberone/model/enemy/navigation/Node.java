@@ -2,7 +2,6 @@ package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
 import bomberone.model.common.P2d;
-import bomberone.model.enemy.Enemy;
 import bomberone.model.common.Direction;
 
 /**

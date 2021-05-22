@@ -3,8 +3,6 @@ package bomberone.model.enemy.navigation;
 import java.util.List;
 import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
-import bomberone.model.enemy.navigation.Node;
-import bomberone.model.gameboard.GameBoard;
 
 /**
  * This interface defines an object that gives a route to the player. This

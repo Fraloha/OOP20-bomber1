@@ -1,7 +1,5 @@
 package bomberone.model.enemy.actions;
 
-import bomberone.model.enemy.Enemy;
-
 /**
  * This interface defines the actions of an enemy.
  */

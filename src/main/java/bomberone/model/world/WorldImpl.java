@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Random;
 import java.util.stream.Collectors;
-
 import bomberone.controllers.match.event.ExplosionEvent;
 import bomberone.controllers.match.event.HitBorderEvent;
 import bomberone.controllers.match.event.HitEntityEvent;
@@ -23,7 +22,6 @@ import bomberone.model.gameObjects.bomb.Bomb;
 import bomberone.model.gameObjects.box.Box;
 import bomberone.model.gameObjects.fire.Fire;
 import bomberone.model.gameObjects.powerUp.PowerUp;
-import bomberone.model.gameboard.GameBoard;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.model.world.collection.GameObjectCollection;

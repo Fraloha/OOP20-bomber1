@@ -4,7 +4,6 @@
 
 package bomberone.model.enemy;
 
-import bomberone.model.common.Direction;
 import bomberone.model.gameObjects.moveable.MoveableObject;
 
 public interface Enemy extends MoveableObject {
