@@ -5,9 +5,11 @@ import java.io.IOException;
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
 import bomberone.views.common.GameImages;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -70,6 +72,14 @@ public final class ViewsSwitcher {
         Scene newScene = new Scene(root);
         stage.setScene(newScene);
         View view = loader.getController();
+        stage.setMinHeight(((AnchorPane) stage.getScene().getRoot()).getMinHeight());
+        stage.setMinWidth(((AnchorPane) stage.getScene().getRoot()).getMinWidth());
+        if (root != null) {
+            root.scaleXProperty().bind(Bindings.min(stage.widthProperty().divide(stage.minWidthProperty()),
+                    stage.heightProperty().divide(stage.minHeightProperty())));
+
+            root.scaleYProperty().bind(root.scaleXProperty());
+        }
         view.setStage(stage);
         stage.setScene(newScene);
         return view;
