@@ -26,7 +26,7 @@ public interface Bomber extends MoveableObject {
     void addLifes(int lifes);
 
     /**
-     * Method for restore the usedAmmo to 0.
+     * Method for restore an ammo.
      */
     void restoreAmmo();
 
