@@ -20,7 +20,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonPlay" fitHeight="45.0" fitWidth="116.0" onMouseClicked="#switchToSetUp" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonPlay" fitHeight="59.0" fitWidth="148.0" onMouseClicked="#switchToSetUp" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/PLAY_unset.png" />
                </image>
@@ -28,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonRank" fitHeight="45.0" fitWidth="116.0" onMouseClicked="#switchToRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRank" fitHeight="59.0" fitWidth="148.0" onMouseClicked="#switchToRank" onMouseEntered="#setRank" onMouseExited="#unsetRank" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/RANK_unset.png" />
                </image>
@@ -36,7 +36,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonRules" fitHeight="45.0" fitWidth="116.0" onMouseEntered="#setRules" onMouseExited="#unsetRules" onMousePressed="#switchToRules" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonRules" fitHeight="59.0" fitWidth="148.0" onMouseEntered="#setRules" onMouseExited="#unsetRules" onMousePressed="#switchToRules" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/RULES_unset.png" />
                </image>

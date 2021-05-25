@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  */
 public final class ViewsSwitcher {
 
+    private boolean firstSwitch = true;
+
     /* Singleton Pattern */
     private static class LazyHolder {
         private static final ViewsSwitcher SINGLETON = new ViewsSwitcher();
@@ -27,8 +29,7 @@ public final class ViewsSwitcher {
     public static ViewsSwitcher getInstance() {
         return LazyHolder.SINGLETON;
     }
-    
-    
+
     private ViewsSwitcher() {
 
     }
@@ -38,7 +39,7 @@ public final class ViewsSwitcher {
      * 
      * @param stage
      * @param viewType the type of the View to switch
-     * @param model    the Istance of the GameModel
+     * @param model    the Instance of the GameModel
      * @throws IOException
      */
     public void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
@@ -49,6 +50,11 @@ public final class ViewsSwitcher {
         view.attachController(controller);
         view.setStage(stage);
         view.init();
+        if (viewType.equals(ViewType.CREDITS)) {
+            stage.setResizable(false);
+        } else {
+            stage.setResizable(true);
+        }
         stage.getIcons().add(GameImages.ICON.getImage());
         stage.setTitle("BomberOne");
         stage.show();
