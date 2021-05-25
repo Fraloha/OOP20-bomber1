@@ -18,6 +18,8 @@ import javafx.stage.Stage;
  */
 public final class ViewsSwitcher {
 
+    private boolean firstSwitch = true;
+
     /* Singleton Pattern */
     private static class LazyHolder {
         private static final ViewsSwitcher SINGLETON = new ViewsSwitcher();
@@ -48,11 +50,6 @@ public final class ViewsSwitcher {
         view.attachController(controller);
         view.setStage(stage);
         view.init();
-        if (viewType.equals(ViewType.CREDITS)) {
-            stage.setResizable(false);
-        } else {
-            stage.setResizable(true);
-        }
         stage.getIcons().add(GameImages.ICON.getImage());
         stage.setTitle("BomberOne");
         stage.show();
@@ -73,7 +70,15 @@ public final class ViewsSwitcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Scene newScene = new Scene(root);
+        Scene newScene;
+        if (this.firstSwitch) {
+            newScene = new Scene(root);
+            this.firstSwitch = false;
+        } else {
+            /* Do not resize the stage */
+            newScene = new Scene(root, stage.getScene().getWidth(), stage.getScene().getHeight());
+            root.autosize();
+        }
         stage.setScene(newScene);
         View view = loader.getController();
         stage.setMinHeight(((AnchorPane) stage.getScene().getRoot()).getMinHeight());
