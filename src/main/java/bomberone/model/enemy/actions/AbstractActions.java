@@ -6,7 +6,9 @@ import bomberone.model.common.Direction;
 import bomberone.model.enemy.Enemy;
 
 public abstract class AbstractActions implements Actions {
+
     /* Fields. */
+    private static final int ANIMATION_FRAME_QUANTITY = 10;
     protected Enemy selectedEnemy;
     protected Random randomGenerator;
 
@@ -18,14 +20,14 @@ public abstract class AbstractActions implements Actions {
 
     /* Methods. */
     public void manageAnimation() {
-        if (this.selectedEnemy.getFrameCounterAnimation() == 10) {
+        if (this.selectedEnemy.getFrameCounterAnimation() == AbstractActions.ANIMATION_FRAME_QUANTITY) {
             this.selectedEnemy.setFrameCounterAnimation(0);
             this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
         } else {
             this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
         }
     }
-    
+
     public void setSprite() {
         if (this.selectedEnemy.getDir() == Direction.UP) {
             this.selectedEnemy.setDirectionIndex(3);
@@ -42,7 +44,7 @@ public abstract class AbstractActions implements Actions {
      * {@inheritDoc}
      */
     public void doActions() {
-        
+
     }
 
     /**
