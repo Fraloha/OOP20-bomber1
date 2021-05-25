@@ -282,9 +282,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                             % BOMBER_N_ANIMATION],
                     bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
 
-            int X = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-            int Y = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-            GameBoard.getInstance().setItem(X, Y, Markers.PLAYER_MARKER);
+            int X = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+            int Y = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+            GameBoard.getInstance().setPlayerLocation(X, Y);
         });
 
         if (this.counter == 0 && this.counterTwo == 1 && this.counterThree == ((MatchController) this.getController()).getBoxList().size()) {
