@@ -9,10 +9,6 @@ import bomberone.model.gameObjects.moveable.MoveableObject;
 public interface Enemy extends MoveableObject {
 
     /* Methods. */
-    void setBoxes();
-
-    void setHardWalls();
-
     boolean isHittable();
 
     void update(int elapsed);

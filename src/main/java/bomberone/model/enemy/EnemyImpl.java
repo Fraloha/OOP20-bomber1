@@ -25,6 +25,8 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     public EnemyImpl(final P2d position, final int lifes, Difficulty mode) {
         super(position, lifes);
 
+        this.frameCounterAnimation = 0;
+
         // Setting the number of frames that the enemy has to wait before start moving.
         this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
 
@@ -47,7 +49,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     /**
      * {@inheritDoc}
      */
-    public void update(int elapsed, P2d playerPosition) {
+    public void update(int elapsed) {
         // The enemy before acts has to wait four second that are 240 frames.
         // Checking if the frame counter is greater than zero.
         if (this.frameCounter > 0) {
@@ -59,11 +61,12 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
                 this.nextMoveFrameCounter = 0;
-                
+
                 // If the difficulty is hard the enemy has to keep track of the player.
-                /*if (this.behavior.getClass() == IntermediateBehavior.class) {
-                    ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition);
-                }*/
+                /*
+                 * if (this.behavior.getClass() == IntermediateBehavior.class) {
+                 * ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition); }
+                 */
                 this.behavior.doActions();
                 super.update(elapsed);
             }
@@ -80,15 +83,5 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     public boolean isHittable() {
         return this.isHittable;
-    }
-
-    @Override
-    public void setBoxes() {
-        
-    }
-
-    @Override
-    public void setHardWalls() {
-        
     }
 }
