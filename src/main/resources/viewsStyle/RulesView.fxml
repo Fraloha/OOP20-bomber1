@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -10,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rules.RulesViewImpl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rules.RulesViewImpl">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -76,24 +83,7 @@
                               <Insets left="60.0" />
                            </HBox.margin>
                         </ImageView>
-                        <Label fx:id="textPU4" prefHeight="40.0" prefWidth="174.0" text="Increases your movement speed." textFill="WHITE" wrapText="true">
-                           <font>
-                              <Font size="12.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../images/power_timer.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="textPU5" prefHeight="40.0" prefWidth="180.0" text="Increases by 30sec the game-timer." textFill="WHITE" wrapText="true">
+                        <Label fx:id="textPU4" prefHeight="40.0" prefWidth="180.0" text="Increases your movement speed." textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="12.0" />
                            </font>
@@ -127,6 +117,23 @@
                            </HBox.margin>
                         </ImageView>
                         <Label fx:id="textPU3" prefHeight="40.0" prefWidth="180.0" text="Make your bomb's fire able to pierce boxes." textFill="WHITE" wrapText="true">
+                           <font>
+                              <Font size="12.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/power_timer.png" />
+                           </image>
+                        </ImageView>
+                        <Label fx:id="textPU5" prefHeight="40.0" prefWidth="180.0" text="Increases by 30sec the game-timer." textFill="WHITE" wrapText="true">
                            <font>
                               <Font size="12.0" />
                            </font>
