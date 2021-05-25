@@ -39,7 +39,7 @@ public final class IntermediateBehavior extends AbstractActions {
                 this.selectedEnemy.setDir(nextStep);
                 this.nextMove();
             } catch (Exception e) {
-                System.out.println("The list is empty.");
+                System.out.println("Unable to find a path.");
             }
         } else {
             this.basicActions.doActions();
