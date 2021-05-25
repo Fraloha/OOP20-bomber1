@@ -111,7 +111,12 @@ public enum GameImages {
     /**
      * 
      */
-    HOME_LOGO("logo_BomberOne.png"),
+    BOMBER_LOGO("logo_bomber.png"),
+
+    /**
+     * 
+     */
+    ONE_LOGO("logo_one.png"),
 
     /**
      * 
