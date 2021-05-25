@@ -18,8 +18,6 @@ import javafx.stage.Stage;
  */
 public final class ViewsSwitcher {
 
-    private boolean firstSwitch = true;
-
     /* Singleton Pattern */
     private static class LazyHolder {
         private static final ViewsSwitcher SINGLETON = new ViewsSwitcher();
