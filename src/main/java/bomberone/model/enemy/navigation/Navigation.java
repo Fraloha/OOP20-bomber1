@@ -23,12 +23,13 @@ public interface Navigation {
      * @param currentPoint The currentPosition of the node.
      */
     void addTargets(Node currentNode);
-    
+
     /**
-     * This method search the shortest path to reach the player.
-     * The searching algorithm is a Breadth-First Search algorithm.
+     * This method search the shortest path to reach the player. The searching
+     * algorithm is a Breadth-First Search algorithm.
+     * 
      * @param initialPosition The enemy position.
-     * @param destination The player position.
+     * @param destination     The player position.
      * @return A list of directions that defines the shortest path.
      */
     List<Direction> searchShortestPath(P2d enemyLocation);
