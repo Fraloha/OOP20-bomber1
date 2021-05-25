@@ -1,7 +1,6 @@
 package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
-import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 
 /**
@@ -30,7 +29,7 @@ public interface Node {
      * The actual position of the node.
      * @return the coordinates of the node.
      */
-    P2d getPosition();
+    int[] getPosition();
     
     /**
      * This method returns the parent of this node.

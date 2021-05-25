@@ -1,7 +1,6 @@
 package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
-import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 
 /**
@@ -11,11 +10,11 @@ public class NodeImpl implements Node {
 
     /* Fields. */
     private Node parent;
-    private P2d position;
+    private int[] position;
     private Direction direction;
 
     /* Constructors. */
-    public NodeImpl(final Direction directionToSet, final P2d positionToSet, final Node nodeParent) {
+    public NodeImpl(final Direction directionToSet, final int[] positionToSet, final Node nodeParent) {
         this.parent = nodeParent;
         this.position = positionToSet;
         this.direction = directionToSet;
@@ -32,7 +31,7 @@ public class NodeImpl implements Node {
     /**
      * {@inheritDoc}
      */
-    public P2d getPosition() {
+    public int[] getPosition() {
         return this.position;
     }
 
