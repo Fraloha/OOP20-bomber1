@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
+<AnchorPane minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -54,7 +54,7 @@
                         <Font name="Lucida Sans Regular" size="33.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textNickname" pickOnBounds="false" promptText="Insert Nickname">
+                  <TextField fx:id="textNickname" onMouseClicked="#deleteText" pickOnBounds="false" promptText="Insert Nickname">
                      <font>
                         <Font name="System Bold Italic" size="16.0" />
                      </font>

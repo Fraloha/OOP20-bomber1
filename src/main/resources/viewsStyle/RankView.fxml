@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="612.0" minWidth="575.0" stylesheets="@..\\styleSheets\\RankViewStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
+<AnchorPane minHeight="612.0" minWidth="575.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -26,8 +26,8 @@
                <children>
                   <TableView fx:id="tableView" minHeight="366.0" minWidth="575.0" prefHeight="366.0" prefWidth="575.0">
                     <columns>
-                      <TableColumn fx:id="tableViewPlayers" style="-fx-background-color: transparent;" prefWidth="287.5" text="Player" />
-                      <TableColumn fx:id="tableViewScores" style="-fx-background-color: transparent;" prefWidth="287.5" text="Score" />
+                      <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" style="-fx-background-color: transparent;" text="Player" />
+                      <TableColumn fx:id="tableViewScores" prefWidth="287.5" style="-fx-background-color: transparent;" text="Score" />
                     </columns>
                   </TableView>
                </children>

@@ -198,4 +198,12 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
             this.textNickname.setText("Insert Nickname");
         }
     }
+
+    /**
+     * Delete the text "Insert NickName" on the TextField when clicked.
+     */
+    @FXML
+    public void deleteText() {
+        this.textNickname.setText("");
+    }
 }
