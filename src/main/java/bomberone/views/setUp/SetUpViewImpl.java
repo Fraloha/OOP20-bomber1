@@ -18,6 +18,8 @@ import javafx.scene.text.Font;
 
 public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
+    private static final int TF_NICKNAME_FONTSIZE = 30;
+
     private static final int SIZE = 44;
 
     @FXML
@@ -90,6 +92,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.nickname.setFont(font);
         this.difficulty.setFont(font);
         this.controls.setFont(font);
+        this.textNickname.setFont(ResourcesLoader.getInstance().getFont(TF_NICKNAME_FONTSIZE));
     }
 
     @Override
