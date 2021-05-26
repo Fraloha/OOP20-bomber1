@@ -2,6 +2,7 @@ package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
 import bomberone.model.common.Direction;
+import bomberone.model.gameboard.BoardPoint;
 
 /**
  * This interface defines a point in the game map where an enemy can pass through or
@@ -29,7 +30,7 @@ public interface Node {
      * The actual position of the node.
      * @return the coordinates of the node.
      */
-    int[] getPosition();
+    BoardPoint getPosition();
     
     /**
      * This method returns the parent of this node.

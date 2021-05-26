@@ -2,6 +2,7 @@ package bomberone.model.enemy.navigation;
 
 import java.util.LinkedList;
 import bomberone.model.common.Direction;
+import bomberone.model.gameboard.BoardPoint;
 
 /**
  * {@inheritDoc}
@@ -10,11 +11,11 @@ public class NodeImpl implements Node {
 
     /* Fields. */
     private Node parent;
-    private int[] position;
+    private BoardPoint position;
     private Direction direction;
 
     /* Constructors. */
-    public NodeImpl(final Direction directionToSet, final int[] positionToSet, final Node nodeParent) {
+    public NodeImpl(final Direction directionToSet, final BoardPoint positionToSet, final Node nodeParent) {
         this.parent = nodeParent;
         this.position = positionToSet;
         this.direction = directionToSet;
@@ -31,7 +32,7 @@ public class NodeImpl implements Node {
     /**
      * {@inheritDoc}
      */
-    public int[] getPosition() {
+    public BoardPoint getPosition() {
         return this.position;
     }
 
