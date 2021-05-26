@@ -8,17 +8,9 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="612.0" prefWidth="575.0" stylesheets="@..\\styleSheets\\RankViewStyle.css" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
+<AnchorPane minHeight="612.0" minWidth="575.0" stylesheets="@..\\styleSheets\\RankViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
-      <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="612.0" prefWidth="575.0" >
-         <center>
-            <TableView fx:id="tableView" prefHeight="438.0" prefWidth="575.0" BorderPane.alignment="CENTER">
-              <columns>
-                <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" text="Player" />
-                <TableColumn fx:id="tableViewScores" prefWidth="287.5" text="Score" />
-              </columns>
-            </TableView>
-         </center>
+      <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="612.0" prefWidth="575.0">
          <bottom>
             <HBox fx:id="hBoxOptions" alignment="CENTER" prefHeight="78.0" prefWidth="556.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
@@ -36,6 +28,18 @@
                </children>
             </VBox>
          </top>
+         <center>
+            <VBox fx:id="vBoxTable" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+               <children>
+                  <TableView fx:id="tableView" minHeight="438.0" minWidth="575.0">
+                    <columns>
+                      <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" text="Player" />
+                      <TableColumn fx:id="tableViewScores" prefWidth="287.5" text="Score" />
+                    </columns>
+                  </TableView>
+               </children>
+            </VBox>
+         </center>
       </BorderPane>
    </children>
 </AnchorPane>
