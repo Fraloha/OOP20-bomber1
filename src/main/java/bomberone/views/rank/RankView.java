@@ -43,8 +43,6 @@ public final class RankView extends ViewImpl {
     private Image imagesNextButtons[];
     private ArrayList<SortedList<User>> ranks;
 
-    @FXML
-    private BorderPane borderPane;
     
     @FXML
     private VBox vBoxTable;
@@ -148,7 +146,7 @@ public final class RankView extends ViewImpl {
         });
 
         this.imageViewNextButton.setOnMouseExited(e -> {
-            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
+            setButton(false, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
     }
 
