@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -18,14 +17,8 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import javafx.util.Callback;
 import bomberone.tools.ResourcesLoader;
-import javafx.collections.FXCollections;
-import javafx.scene.control.TableColumn;
 import bomberone.tools.audio.GameSounds;
-import javafx.collections.ObservableList;
 import bomberone.tools.audio.SoundsHandler;
-import javafx.scene.control.TableColumn.SortType;
-import javafx.collections.transformation.SortedList;
-import javafx.scene.control.cell.PropertyValueFactory;
 import bomberone.views.common.GameImages;
 import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
@@ -39,19 +32,19 @@ import javafx.scene.image.Image;
  */
 public final class RankView extends ViewImpl {
 
+    private static final int FONT_SIZE = 20;
     /* Fields. */
     private static final int RANKS = 2;
     private static final int BUTTONS_IMAGES = 2;
 
     private int currentRank;
-    private Image rankDifficultyImages[];
-    private Image imagesPrevButtons[];
-    private Image imagesNextButtons[];
+    private Image[] rankDifficultyImages;
+    private Image[] imagesPrevButtons;
+    private Image[] imagesNextButtons;
     private ArrayList<SortedList<User>> ranks;
 
     @FXML
-    private BorderPane borderPane;
-
+    private VBox vBoxTable;
     @FXML
     private TableView<User> tableView;
 
@@ -91,7 +84,7 @@ public final class RankView extends ViewImpl {
         this.setButtonsEventHandlers();
 
         // Initializing the TableView.
-        this.tableViewInitialization(ResourcesLoader.getInstance().getFont(20));
+        this.tableViewInitialization(ResourcesLoader.getInstance().getFont(FONT_SIZE));
 
         // Loading all the images that indicates the rank difficulty.
         this.loadImages();
@@ -119,7 +112,8 @@ public final class RankView extends ViewImpl {
      * @param imageToSet  The ImageView where the second or third argument has to be
      *                    set.
      */
-    private void setButton(boolean set, Image verified, Image notVerified, ImageView imageToSet) {
+    private void setButton(final boolean set, final Image verified, final Image notVerified,
+            final ImageView imageToSet) {
         Image image = set ? verified : notVerified;
         imageToSet.setImage(image);
     }
@@ -152,12 +146,12 @@ public final class RankView extends ViewImpl {
         });
 
         this.imageViewNextButton.setOnMouseExited(e -> {
-            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
+            setButton(false, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
     }
 
     private void tableViewInitialization(final Font fontToSet) {
-        
+
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
@@ -168,10 +162,10 @@ public final class RankView extends ViewImpl {
         this.tableViewPlayers.setCellFactory(new Callback<TableColumn<User, String>, TableCell<User, String>>() {
 
             @Override
-            public TableCell<User, String> call(TableColumn<User, String> param) {
+            public TableCell<User, String> call(final TableColumn<User, String> param) {
                 return new TableCell<User, String>() {
                     @Override
-                    public void updateItem(String item, boolean empty) {
+                    public void updateItem(final String item, final boolean empty) {
                         super.updateItem(item, empty);
 
                         if (isEmpty()) {
@@ -189,10 +183,10 @@ public final class RankView extends ViewImpl {
         this.tableViewScores.setCellFactory(new Callback<TableColumn<User, Integer>, TableCell<User, Integer>>() {
 
             @Override
-            public TableCell<User, Integer> call(TableColumn<User, Integer> param) {
+            public TableCell<User, Integer> call(final TableColumn<User, Integer> param) {
                 return new TableCell<User, Integer>() {
                     @Override
-                    public void updateItem(Integer item, boolean empty) {
+                    public void updateItem(final Integer item, final boolean empty) {
                         super.updateItem(item, empty);
 
                         if (isEmpty()) {
@@ -268,7 +262,7 @@ public final class RankView extends ViewImpl {
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
@@ -280,4 +274,5 @@ public final class RankView extends ViewImpl {
     public void onPreviousClicked() {
         this.changeRank(false);
     }
+
 }

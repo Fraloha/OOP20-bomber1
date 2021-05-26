@@ -23,7 +23,7 @@ public final class ResourcesLoader {
     private ResourcesLoader() {
 
     }
-    
+
     /* Singleton Pattern */
     private static class LazyHolder {
         private static final ResourcesLoader SINGLETON = new ResourcesLoader();
@@ -124,5 +124,13 @@ public final class ResourcesLoader {
             }
         }
         return sprites;
+    }
+
+    /**
+     * Get the URL of RankView StyleSheets.
+     * @return the URL.toString() of RankViewStyleSheets
+     */
+    public String getRankStyleSheets() {
+        return ClassLoader.getSystemResource("styleSheets/RankViewStyle.css").toString();
     }
 }

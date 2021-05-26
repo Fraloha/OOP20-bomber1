@@ -111,7 +111,12 @@ public enum GameImages {
     /**
      * 
      */
-    HOME_LOGO("logo_BomberOne.png"),
+    BOMBER_LOGO("logo_bomber.png"),
+
+    /**
+     * 
+     */
+    ONE_LOGO("logo_one.png"),
 
     /**
      * 
@@ -215,12 +220,12 @@ public enum GameImages {
     /**
      * 
      */
-    NORMAL_SET("NORMAL_set.png"),
+    EASY_SET("EASY_set.png"),
 
     /**
      * 
      */
-    NORMAL_UNSET("NORMAL_unset.png"),
+    EASY_UNSET("EASY_unset.png"),
 
     /**
      * 

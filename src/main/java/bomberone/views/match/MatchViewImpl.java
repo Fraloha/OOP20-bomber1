@@ -245,16 +245,15 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /* Draw bombs */
         Platform.runLater(() -> {
             ((MatchController) this.getController()).getBombList().stream().forEach(bomb -> {
+                Image bombImage = null;
                 if (bomb.getPierce()) {
-                    this.gCForeground
-                            .drawImage(AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
-                                    % BOMB_N_ANIMATION], bomb.getPosition().getX(), bomb.getPosition().getY());
+                    bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
+                            % BOMB_N_ANIMATION];
                 } else {
-                    this.gCForeground.drawImage(
-                            AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation() % BOMB_N_ANIMATION],
-                            bomb.getPosition().getX(), bomb.getPosition().getY());
+                    bombImage = AnimatedObjectsSprites.BOMB.getSprites()[0][bomb.getIndexAnimation()
+                            % BOMB_N_ANIMATION];
                 }
-
+                this.gCForeground.drawImage(bombImage, bomb.getPosition().getX(), bomb.getPosition().getY());
             });
         });
 
@@ -358,8 +357,8 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     @Override
     public void switchToRank() {
         SoundsHandler.getInstance().stopAudio();
-        Platform.runLater(
-                () -> ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK, this.getController().getModel()));
+        Platform.runLater(() -> ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.RANK,
+                this.getController().getModel()));
     }
 
 }

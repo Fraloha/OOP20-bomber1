@@ -81,7 +81,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.boxPlayer.setImage(GameImages.P1.getImage());
         this.buttonSX.setImage(GameImages.SX.getImage());
         this.buttonDX.setImage(GameImages.DX.getImage());
-        this.buttonNormal.setImage(GameImages.NORMAL_SET.getImage());
+        this.buttonNormal.setImage(GameImages.EASY_SET.getImage());
         this.buttonHard.setImage(GameImages.HARD_UNSET.getImage());
         this.buttonWASD.setImage(GameImages.WASD_SET.getImage());
         this.buttonArrows.setImage(GameImages.ARROWS_UNSET.getImage());
@@ -152,7 +152,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @FXML
     private void setNormal() {
-        this.buttonNormal.setImage(GameImages.NORMAL_SET.getImage());
+        this.buttonNormal.setImage(GameImages.EASY_SET.getImage());
         this.buttonHard.setImage(GameImages.HARD_UNSET.getImage());
         ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
     }
@@ -160,7 +160,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     @FXML
     private void setHard() {
         this.buttonHard.setImage(GameImages.HARD_SET.getImage());
-        this.buttonNormal.setImage(GameImages.NORMAL_UNSET.getImage());
+        this.buttonNormal.setImage(GameImages.EASY_UNSET.getImage());
         ((SetUpController) this.getController()).setDifficulty(Difficulty.HARD);
     }
 
@@ -197,5 +197,13 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         } else {
             this.textNickname.setText("Insert Nickname");
         }
+    }
+
+    /**
+     * Delete the text "Insert NickName" on the TextField when clicked.
+     */
+    @FXML
+    public void deleteText() {
+        this.textNickname.setText("");
     }
 }

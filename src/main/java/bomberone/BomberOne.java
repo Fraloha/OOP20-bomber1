@@ -17,7 +17,7 @@ public final class BomberOne extends Application {
 
     @Override
     public void start(final Stage primaryStage) throws Exception {
-        primaryStage.setResizable(false);
+//        primaryStage.setResizable(false);
         ResourcesLoader.getInstance().start();
         DirectoryLoader.getInstance().start();
         RankLoader.getInstance().readUsers();
