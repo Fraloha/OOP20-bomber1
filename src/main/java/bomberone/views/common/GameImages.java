@@ -220,12 +220,12 @@ public enum GameImages {
     /**
      * 
      */
-    NORMAL_SET("NORMAL_set.png"),
+    EASY_SET("EASY_set.png"),
 
     /**
      * 
      */
-    NORMAL_UNSET("NORMAL_unset.png"),
+    EASY_UNSET("EASY_unset.png"),
 
     /**
      * 
