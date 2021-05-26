@@ -1,5 +1,9 @@
 .root{ -fx-background-color: #000000; }
 
+.table-view {
+	-fx-background-color: transparent;
+}
+
 .table-view:focused{ -fx-background-color: transparent; }
 
 .table-view .column-header-background{

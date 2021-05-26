@@ -1,97 +1,117 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="612.0" minWidth="576.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
+<AnchorPane minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.setUp.SetUpViewImpl">
    <children>
-      <Pane minHeight="612.0" minWidth="576.0" style="-fx-background-color: black;">
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <ImageView fx:id="boxPlayer" fitHeight="150.0" fitWidth="200.0" layoutX="238.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="buttonHome" fitHeight="74.0" fitWidth="75.0" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../../../../Bomber/BomberMan/src/resources/p1.png" />
-               </image></ImageView>
-            <Label fx:id="nickname" layoutX="60.0" layoutY="265.0" prefHeight="41.0" prefWidth="187.0" text="NICKNAME:" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Sans Regular" size="33.0" />
-               </font>
-            </Label>
-            <Label fx:id="difficulty" layoutX="60.0" layoutY="344.0" prefHeight="43.0" prefWidth="196.0" text="DIFFICULTY:" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Sans Regular" size="33.0" />
-               </font>
-            </Label>
-            <TextField fx:id="textNickname" layoutX="308.0" layoutY="267.0" pickOnBounds="false" promptText="Insert Nickname">
-               <font>
-                  <Font name="System Bold Italic" size="16.0" />
-               </font>
-            </TextField>
-            <Label fx:id="controls" layoutX="60.0" layoutY="429.0" text="CONTROLS:" textFill="WHITE">
-               <font>
-                  <Font name="Lucida Sans Regular" size="33.0" />
-               </font>
-            </Label>
-            <ImageView fx:id="buttonDX" fitHeight="88.0" fitWidth="82.0" layoutX="363.0" layoutY="93.0" onMouseClicked="#dx" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/DX.png" />
+                  <Image url="@../images/quitGame.png" />
                </image>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
+               <VBox.margin>
+                  <Insets left="400.0" />
+               </VBox.margin>
             </ImageView>
-            <ImageView fx:id="buttonSX" fitHeight="88.0" fitWidth="82.0" layoutX="160.0" layoutY="93.0" onMouseClicked="#sx" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/SX.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="buttonWASD" fitHeight="48.0" fitWidth="142.0" layoutX="273.0" layoutY="429.0" onMouseClicked="#setWASD" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/WASD_unset.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="buttonNormal" fitHeight="48.0" fitWidth="142.0" layoutX="273.0" layoutY="344.0" onMouseClicked="#setNormal" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/NORMAL_unset.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="buttonArrows" fitHeight="48.0" fitWidth="142.0" layoutX="425.0" layoutY="429.0" onMouseClicked="#setArrows" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/ARROWS_unset.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="buttonHard" fitHeight="48.0" fitWidth="142.0" layoutX="425.0" layoutY="344.0" onMouseClicked="#setHard" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/HARD_unset.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
-            <ImageView fx:id="buttonPlay" fitHeight="64.0" fitWidth="214.0" layoutX="183.0" layoutY="520.0" onMouseClicked="#play" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <ImageView fx:id="buttonSX" fitHeight="88.0" fitWidth="82.0" onMouseClicked="#sx" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/SX.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="boxPlayer" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="buttonDX" fitHeight="88.0" fitWidth="82.0" onMouseClicked="#dx" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/DX.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="16.0">
+               <children>
+                  <Label fx:id="nickname" prefHeight="41.0" prefWidth="187.0" text="NICKNAME:" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="33.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="textNickname" pickOnBounds="false" promptText="Insert Nickname">
+                     <font>
+                        <Font name="System Bold Italic" size="16.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="difficulty" prefHeight="43.0" prefWidth="196.0" text="DIFFICULTY:" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="33.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="buttonNormal" fitHeight="48.0" fitWidth="142.0" onMouseClicked="#setNormal" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/NORMAL_unset.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="buttonHard" fitHeight="48.0" fitWidth="142.0" onMouseClicked="#setHard" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/HARD_unset.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label fx:id="controls" text="CONTROLS:" textFill="WHITE">
+                     <font>
+                        <Font name="Lucida Sans Regular" size="33.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="buttonWASD" fitHeight="48.0" fitWidth="142.0" onMouseClicked="#setWASD" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/WASD_unset.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+                  <ImageView fx:id="buttonArrows" fitHeight="48.0" fitWidth="142.0" onMouseClicked="#setArrows" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/ARROWS_unset.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </ImageView>
+               </children>
+            </HBox>
+            <ImageView fx:id="buttonPlay" fitHeight="64.0" fitWidth="214.0" onMouseClicked="#play" onMouseEntered="#setPlay" onMouseExited="#unsetPlay" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/PLAY_unset.png" />
                </image>
@@ -99,15 +119,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </ImageView>
-            <ImageView fx:id="buttonHome" fitHeight="74.0" fitWidth="75.0" layoutX="485.0" layoutY="14.0" onMouseClicked="#switchToHome" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../images/quitGame.png" />
-               </image>
-               <cursor>
-                  <Cursor fx:constant="HAND" />
-               </cursor>
-            </ImageView>
          </children>
-      </Pane>
+      </VBox>
    </children>
 </AnchorPane>

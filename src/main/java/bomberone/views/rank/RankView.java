@@ -10,7 +10,6 @@ import javafx.scene.control.TableColumn.SortType;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -43,9 +42,6 @@ public final class RankView extends ViewImpl {
     private Image imagesNextButtons[];
     private ArrayList<SortedList<User>> ranks;
 
-    @FXML
-    private BorderPane borderPane;
-    
     @FXML
     private VBox vBoxTable;
     @FXML
@@ -148,12 +144,12 @@ public final class RankView extends ViewImpl {
         });
 
         this.imageViewNextButton.setOnMouseExited(e -> {
-            setButton(true, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
+            setButton(false, this.imagesNextButtons[0], this.imagesNextButtons[1], this.imageViewNextButton);
         });
     }
 
     private void tableViewInitialization(final Font fontToSet) {
-        
+
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
         this.tableViewScores.setEditable(false);
@@ -264,7 +260,7 @@ public final class RankView extends ViewImpl {
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
