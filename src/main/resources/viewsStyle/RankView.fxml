@@ -31,10 +31,10 @@
          <center>
             <VBox fx:id="vBoxTable" alignment="CENTER" minHeight="200.0" minWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableView" prefHeight="438.0" prefWidth="575.0">
+                  <TableView fx:id="tableView" style="-fx-background-color: transparent" prefHeight="438.0" prefWidth="575.0">
                     <columns>
-                      <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" text="Player" />
-                      <TableColumn fx:id="tableViewScores" prefWidth="287.5" text="Score" />
+                      <TableColumn fx:id="tableViewPlayers" style="-fx-background-color: transparent;" prefWidth="287.5" text="Player" />
+                      <TableColumn fx:id="tableViewScores" style="-fx-background-color: transparent;" prefWidth="287.5" text="Score" />
                     </columns>
                   </TableView>
                </children>
