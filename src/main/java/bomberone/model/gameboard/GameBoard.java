@@ -1,5 +1,7 @@
 package bomberone.model.gameboard;
 
+import bomberone.model.common.P2d;
+
 public class GameBoard {
 
     /* Fields. */
@@ -29,7 +31,7 @@ public class GameBoard {
         return this.currentGameBoard;
     }
 
-    public void setGameBoard(char[][] gameBoard) {
+    public void setGameBoard(final char[][] gameBoard) {
         this.currentGameBoard = gameBoard;
     }
 
@@ -94,8 +96,9 @@ public class GameBoard {
      */
 
     public boolean isAccessible(final BoardPoint locationToCheck) {
-        return this.getItem(locationToCheck) != Markers.WALL_MARKER.getMarker()
-                && this.getItem(locationToCheck) != Markers.BOX_MARKER.getMarker();
+        char item = this.getItem(locationToCheck);
+        boolean result = item != Markers.BOX_MARKER.getMarker() && item != Markers.WALL_MARKER.getMarker() ? true : false;
+        return (item != 'N') &&  result;
     }
 
     private boolean isRowAccessible(final BoardPoint currentPoint, final BoardPoint playerPosition) {
@@ -161,6 +164,13 @@ public class GameBoard {
     public void setPlayerLocation(final BoardPoint newPosition) {
         this.resetPlayerLocation();
         this.setItem(newPosition, Markers.PLAYER_MARKER);
+    }
+    
+    public BoardPoint convertPosition(P2d positionToConvert) {
+        int X = (int) positionToConvert.getY() / GameBoard.WORLD_SIZE;
+        int Y = (int) positionToConvert.getX() / GameBoard.WORLD_SIZE;
+        
+        return new BoardPointImpl(X, Y);
     }
 
     public void printBoard() {

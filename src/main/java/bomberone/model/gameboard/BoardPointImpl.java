@@ -59,4 +59,12 @@ public class BoardPointImpl implements BoardPoint {
     public boolean isEquals(final BoardPoint pointToCheck) {
         return this.x == pointToCheck.getX() && this.y == pointToCheck.getY();
     }
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String toString() {
+        return this.x + ", " + this.y;
+    }
 }

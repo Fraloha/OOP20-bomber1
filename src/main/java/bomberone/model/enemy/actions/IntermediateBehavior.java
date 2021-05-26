@@ -1,10 +1,11 @@
 package bomberone.model.enemy.actions;
 
-import bomberone.model.common.P2d;
 import bomberone.model.enemy.EnemyImpl;
+import bomberone.model.enemy.Log;
 import bomberone.model.common.Direction;
 import bomberone.model.enemy.navigation.Navigation;
 import bomberone.model.enemy.navigation.NavigationImpl;
+import bomberone.model.gameboard.BoardPoint;
 import bomberone.model.gameboard.GameBoard;
 
 public final class IntermediateBehavior extends AbstractActions {
@@ -29,17 +30,16 @@ public final class IntermediateBehavior extends AbstractActions {
      */
     @Override
     public void doActions() {
-        int X = (int) (this.selectedEnemy.getPosition().getY() / 32);
-        int Y = (int) (this.selectedEnemy.getPosition().getX() / 32);
-        this.playerFound = this.playerFound ? true : GameBoard.getInstance().isPlayerVisible(X, Y);
-        if (this.playerFound) {
-            P2d enemyLocation = this.selectedEnemy.getPosition();
+        // BoardPoint enemyLocation = GameBoard.getInstance().convertPosition(this.selectedEnemy.getPosition());
+        // this.playerFound = this.playerFound ? true : GameBoard.getInstance().isPlayerVisible(enemyLocation);
+        if (true) {
             try {
-                Direction nextStep = this.navigator.searchShortestPath(enemyLocation).get(0);
+                Direction nextStep = this.navigator.searchShortestPath(this.selectedEnemy.getPosition()).get(0);
+                System.out.println(nextStep);
                 this.selectedEnemy.setDir(nextStep);
                 this.nextMove();
             } catch (Exception e) {
-                System.out.println("Unable to find a path.");
+                Log.getInstance().getLog("Unable to find a path", true);
             }
         } else {
             this.basicActions.doActions();
