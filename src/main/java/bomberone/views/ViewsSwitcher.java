@@ -77,7 +77,6 @@ public final class ViewsSwitcher {
         } else {
             /* Do not resize the stage */
             newScene = new Scene(root, stage.getScene().getWidth(), stage.getScene().getHeight());
-            root.autosize();
         }
         stage.setScene(newScene);
         View view = loader.getController();
