@@ -45,7 +45,9 @@ public final class RankView extends ViewImpl {
 
     @FXML
     private BorderPane borderPane;
-
+    
+    @FXML
+    private VBox vBoxTable;
     @FXML
     private TableView<User> tableView;
 

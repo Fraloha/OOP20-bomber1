@@ -10,9 +10,9 @@
 
 <AnchorPane minHeight="612.0" minWidth="575.0" stylesheets="@..\\styleSheets\\RankViewStyle.css" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rank.RankView">
    <children>
-      <BorderPane fx:id="borderPane" layoutY="20.0" prefHeight="612.0" prefWidth="575.0">
+      <BorderPane fx:id="borderPane" layoutY="20.0" minHeight="612.0" minWidth="575.0">
          <bottom>
-            <HBox fx:id="hBoxOptions" alignment="CENTER" prefHeight="78.0" prefWidth="556.0" spacing="20.0" BorderPane.alignment="CENTER">
+            <HBox fx:id="hBoxOptions" alignment="CENTER" minHeight="78.0" minWidth="556.0" spacing="20.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="imageViewPreviousButton" fitHeight="80.0" fitWidth="178.0" onMouseClicked="#onPreviousClicked" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imageViewHomeButton" fitHeight="89.0" fitWidth="180.0" onMouseClicked="#onBackToMainMenuClicked" pickOnBounds="true" preserveRatio="true" />
@@ -21,7 +21,7 @@
             </HBox>
          </bottom>
          <top>
-            <VBox fx:id="vBoxImages" alignment="CENTER" prefHeight="117.0" prefWidth="431.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="vBoxImages" alignment="CENTER" minHeight="117.0" minWidth="431.0" BorderPane.alignment="CENTER">
                <children>
                   <ImageView fx:id="imageViewRankTitle" fitHeight="94.0" fitWidth="257.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="imageViewDifficulty" fitHeight="127.0" fitWidth="341.0" pickOnBounds="true" preserveRatio="true" />
@@ -29,9 +29,9 @@
             </VBox>
          </top>
          <center>
-            <VBox fx:id="vBoxTable" alignment="CENTER" prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
+            <VBox fx:id="vBoxTable" alignment="CENTER" minHeight="200.0" minWidth="100.0" BorderPane.alignment="CENTER">
                <children>
-                  <TableView fx:id="tableView" minHeight="438.0" minWidth="575.0">
+                  <TableView fx:id="tableView" prefHeight="438.0" prefWidth="575.0">
                     <columns>
                       <TableColumn fx:id="tableViewPlayers" prefWidth="287.5" text="Player" />
                       <TableColumn fx:id="tableViewScores" prefWidth="287.5" text="Score" />
