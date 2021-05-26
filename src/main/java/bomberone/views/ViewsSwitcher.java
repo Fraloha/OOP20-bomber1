@@ -5,9 +5,11 @@ import java.io.IOException;
 import bomberone.controllers.Controller;
 import bomberone.model.GameModel;
 import bomberone.views.common.GameImages;
+import javafx.beans.binding.Bindings;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
 /**
@@ -15,6 +17,8 @@ import javafx.stage.Stage;
  *
  */
 public final class ViewsSwitcher {
+
+    private boolean firstSwitch = true;
 
     /* Singleton Pattern */
     private static class LazyHolder {
@@ -25,8 +29,7 @@ public final class ViewsSwitcher {
     public static ViewsSwitcher getInstance() {
         return LazyHolder.SINGLETON;
     }
-    
-    
+
     private ViewsSwitcher() {
 
     }
@@ -36,7 +39,7 @@ public final class ViewsSwitcher {
      * 
      * @param stage
      * @param viewType the type of the View to switch
-     * @param model    the Istance of the GameModel
+     * @param model    the Instance of the GameModel
      * @throws IOException
      */
     public void switchView(final Stage stage, final ViewType viewType, final GameModel model) {
@@ -67,9 +70,24 @@ public final class ViewsSwitcher {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        Scene newScene = new Scene(root);
+        Scene newScene;
+        if (this.firstSwitch) {
+            newScene = new Scene(root);
+            this.firstSwitch = false;
+        } else {
+            /* Do not resize the stage */
+            newScene = new Scene(root, stage.getScene().getWidth(), stage.getScene().getHeight());
+        }
         stage.setScene(newScene);
         View view = loader.getController();
+        stage.setMinHeight(((AnchorPane) stage.getScene().getRoot()).getMinHeight());
+        stage.setMinWidth(((AnchorPane) stage.getScene().getRoot()).getMinWidth());
+        if (root != null) {
+            root.scaleXProperty().bind(Bindings.min(stage.widthProperty().divide(stage.minWidthProperty()),
+                    stage.heightProperty().divide(stage.minHeightProperty())));
+
+            root.scaleYProperty().bind(root.scaleXProperty());
+        }
         view.setStage(stage);
         stage.setScene(newScene);
         return view;

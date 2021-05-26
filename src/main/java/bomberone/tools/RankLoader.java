@@ -74,8 +74,9 @@ public final class RankLoader {
     /**
      * This method take in input two list of User, load from file the different
      * ranks and puts them in the lists.
-     * 
+     * I suppress this Warning because I try many ways to Fix it but i didn't succeed.
      */
+    @SuppressWarnings("unchecked")
     public void readUsers()  {
         this.rankStandard.clear();
         this.rankHard.clear();

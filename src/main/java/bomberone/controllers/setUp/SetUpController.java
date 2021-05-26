@@ -40,6 +40,6 @@ public interface SetUpController extends Controller {
      * @param choice
      */
     void setControls(Controls choice);
-    
+
     void buildUser();
 }

@@ -15,7 +15,7 @@ public class PickPowerUpEvent implements WorldEvent {
     private PowerUp powerUp;
 
     public PickPowerUpEvent(final PowerUp pU) {
-        SoundsHandler.start(GameSounds.POWER_UP); // This is the Sound Effect for pickUp powerUp
+        SoundsHandler.getInstance().start(GameSounds.POWER_UP); // This is the Sound Effect for pickUp powerUp
         this.powerUp = pU;
     }
 

@@ -9,7 +9,6 @@ import bomberone.tools.audio.SoundsHandler;
 import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
-import bomberone.views.alert.AlertBox;
 import bomberone.views.common.GameImages;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -95,7 +94,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     @Override
     public final void switchToGame() {
-        SoundsHandler.stopAudio();
+        SoundsHandler.getInstance().stopAudio();
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
@@ -189,14 +188,14 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
     }
 
+    @FXML
     public final void play() {
-        if (!textNickname.getText().isEmpty()) {
+        if (!textNickname.getText().isEmpty() && !textNickname.getText().equals("Insert Nickname")) {
             ((SetUpController) this.getController()).setUser(textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
         } else {
-            AlertBox alert = new AlertBox();
-            alert.display("WARNING", "INSERT THE NAME!!");
+            this.textNickname.setText("Insert Nickname");
         }
     }
 }
