@@ -12,26 +12,29 @@ import bomberone.model.enemy.Log;
 
 public class NavigationImpl implements Navigation {
 
-    private List<int[]> visitedPosition;
-    private List<Node> positionsToVisit;
+    private List<int[]> exploredNodes;
+    private List<Node> discoveredNodes;
 
     public NavigationImpl() {
-        this.visitedPosition = new LinkedList<int[]>();
-        this.positionsToVisit = new LinkedList<Node>();
+        this.exploredNodes = new LinkedList<int[]>();
+        this.discoveredNodes = new LinkedList<Node>();
     }
 
-    private int[] getNeighbours(int currentX, int currentY, Direction directionToCheck) {
+    private int[] getNeighbours(final int currentX, final int currentY, final Direction directionToCheck) {
+        int newX = currentX;
+        int newY = currentY;
+        
         if (directionToCheck.equals(Direction.UP)) {
-            currentX--;
+            newX--;
         } else if (directionToCheck.equals(Direction.DOWN)) {
-            currentX++;
+            newX++;
         } else if (directionToCheck.equals(Direction.RIGHT)) {
-            currentY++;
-        } else if (directionToCheck.equals(Direction.LEFT)) {
-            currentY--;
+            newY++;
+        } else {
+            newY--;
         }
 
-        return new int[] { currentX, currentY };
+        return new int[] { newX, newY };
     }
 
     @Override
@@ -43,9 +46,9 @@ public class NavigationImpl implements Navigation {
             position = currentNode.getPosition();
             positionToCheck = this.getNeighbours(position[0], position[1], currentDirection);
 
-            if (!this.visitedPosition.contains(positionToCheck)) {
+            if (!this.exploredNodes.contains(positionToCheck)) {
                 if (GameBoard.getInstance().isAccessible(positionToCheck[0], positionToCheck[1])) {
-                    this.positionsToVisit.add(new NodeImpl(currentDirection, positionToCheck, currentNode));
+                    this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck, currentNode));
                 }
             }
         }
@@ -64,9 +67,9 @@ public class NavigationImpl implements Navigation {
         Node currentNode = null;
         int[] playerLocation;
 
-        this.positionsToVisit.add(new NodeImpl(null, GameBoard.getInstance().convertLocation(enemyLocation), null));
-        while (!this.positionsToVisit.isEmpty()) {
-            currentNode = this.positionsToVisit.remove(0);
+        this.discoveredNodes.add(new NodeImpl(null, GameBoard.getInstance().convertLocation(enemyLocation), null));
+        while (!this.discoveredNodes.isEmpty()) {
+            currentNode = this.discoveredNodes.remove(0);
             playerLocation = GameBoard.getInstance().findPlayerLocation();
             
             System.out.println("\n\n\n\n\n\n\n\n\n");
@@ -81,14 +84,14 @@ public class NavigationImpl implements Navigation {
                 break;
             }
 
-            this.visitedPosition.add(currentNode.getPosition());
+            this.exploredNodes.add(currentNode.getPosition());
             this.addTargets(currentNode);
         }
 
         if (found) {
             path = currentNode.getPath();
-            this.positionsToVisit.clear();
-            this.visitedPosition.clear();
+            this.discoveredNodes.clear();
+            this.exploredNodes.clear();
         }
 
         return path;
