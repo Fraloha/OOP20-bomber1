@@ -73,7 +73,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     private void defaultSetUp() {
         ((SetUpController) this.getController()).setSkin(Skins.WHITE);
         ((SetUpController) this.getController()).setControls(Controls.WASD);
-        ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
+        ((SetUpController) this.getController()).setDifficulty(Difficulty.EASY);
     }
 
     @Override
@@ -154,7 +154,7 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
     private void setNormal() {
         this.buttonNormal.setImage(GameImages.EASY_SET.getImage());
         this.buttonHard.setImage(GameImages.HARD_UNSET.getImage());
-        ((SetUpController) this.getController()).setDifficulty(Difficulty.STANDARD);
+        ((SetUpController) this.getController()).setDifficulty(Difficulty.EASY);
     }
 
     @FXML

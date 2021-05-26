@@ -59,7 +59,7 @@ public class TestWorldEventListener {
     public void init() {
         listener = new WorldEventListenerImpl();
         ResourcesLoader.getInstance().start();
-        world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
+        world = new WorldImpl(Difficulty.EASY, Skins.BLACK);
         match = new GameMatchImpl();
         factory = new GameObjectFactoryImpl();
     }

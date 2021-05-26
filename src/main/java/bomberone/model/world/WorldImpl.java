@@ -45,7 +45,7 @@ public class WorldImpl implements World {
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
-        if (difficulty.equals(Difficulty.STANDARD)) {
+        if (difficulty.equals(Difficulty.EASY)) {
             this.respawn = false;
         } else {
             this.respawn = true;

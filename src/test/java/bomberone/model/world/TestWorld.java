@@ -18,7 +18,7 @@ public class TestWorld {
     @BeforeEach
     public void init() {
         ResourcesLoader.getInstance().start();
-        world = new WorldImpl(Difficulty.STANDARD, Skins.BLACK);
+        world = new WorldImpl(Difficulty.EASY, Skins.BLACK);
     }
 
     @Test

@@ -275,7 +275,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     private void setUpSprites() {
         Image[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
-        if (((MatchController) this.getController()).getDifficulty().equals(Difficulty.STANDARD)) {
+        if (((MatchController) this.getController()).getDifficulty().equals(Difficulty.EASY)) {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
         } else {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
