@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Label?>
@@ -10,13 +17,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rules.RulesViewImpl">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.rules.RulesViewImpl">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <HBox alignment="CENTER" spacing="15.0">
                <children>
-                  <ImageView fitHeight="145.0" fitWidth="276.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="rulesLogo" fitHeight="145.0" fitWidth="276.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/rules_logo.png" />
                      </image>
@@ -55,7 +62,7 @@
                   </Label>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="firePower" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/power_firepower.png" />
                            </image>
@@ -68,7 +75,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="speedPower" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/power_speed.png" />
                            </image>
@@ -88,7 +95,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="bombPower" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/power_bomb.png" />
                            </image>
@@ -101,7 +108,7 @@
                               <Insets left="5.0" />
                            </padding>
                         </Label>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="piercePower" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/power_pierce.png" />
                            </image>
@@ -121,7 +128,7 @@
                   </HBox>
                   <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fx:id="timePower" fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../images/power_timer.png" />
                            </image>
