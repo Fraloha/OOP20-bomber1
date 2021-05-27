@@ -175,7 +175,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
@@ -183,7 +182,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
-
             ((MatchController) this.getController()).getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
