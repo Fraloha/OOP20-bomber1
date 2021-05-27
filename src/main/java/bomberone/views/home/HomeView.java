@@ -5,6 +5,11 @@ import bomberone.views.View;
 public interface HomeView extends View {
 
     /**
+     * Method that load the resources.
+     */
+    void drawHome();
+
+    /**
      * Method that switch the view to SetUpView.
      */
     void switchToSetUp();
