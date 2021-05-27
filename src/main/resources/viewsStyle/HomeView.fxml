@@ -10,13 +10,13 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/15.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.home.HomeViewImpl">
+<AnchorPane minHeight="620.0" minWidth="600.0" style="-fx-background-color: black;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="bomberone.views.home.HomeViewImpl">
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="30.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="CENTER" prefHeight="102.0" prefWidth="600.0">
                <children>
-                  <ImageView fx:id="boxLogo" fitHeight="175.0" fitWidth="557.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="boxLogo1" fitHeight="175.0" fitWidth="557.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/logo_bomber.png" />
                      </image>
@@ -24,7 +24,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </ImageView>
-                  <ImageView fitHeight="184.0" fitWidth="708.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="boxLogo2" fitHeight="184.0" fitWidth="708.0" onMouseClicked="#switchToCredits" pickOnBounds="true" preserveRatio="true">
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
