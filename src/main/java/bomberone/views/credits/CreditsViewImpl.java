@@ -17,6 +17,14 @@ public class CreditsViewImpl extends ViewImpl implements CreditsView {
      */
     @Override
     public void init() {
+        this.drawCredits();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void drawCredits() {
         this.creditsImage.setImage(GameImages.CREDITS.getImage());
     }
 
@@ -27,5 +35,4 @@ public class CreditsViewImpl extends ViewImpl implements CreditsView {
     public void switchToHome() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
-
 }
