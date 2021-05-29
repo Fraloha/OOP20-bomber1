@@ -16,7 +16,10 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
     private Canvas homeCanvas;
 
     @FXML
-    private ImageView boxLogo;
+    private ImageView boxLogo1;
+
+    @FXML
+    private ImageView boxLogo2;
 
     @FXML
     private ImageView buttonPlay;
@@ -32,8 +35,21 @@ public class HomeViewImpl extends ViewImpl implements HomeView {
      */
     @Override
     public void init() {
+        this.drawHome();
         SoundsHandler.getInstance().start(GameSounds.HOME);
         this.getController().init();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void drawHome() {
+        this.boxLogo1.setImage(GameImages.BOMBER_LOGO.getImage());
+        this.boxLogo2.setImage(GameImages.ONE_LOGO.getImage());
+        this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
+        this.buttonRank.setImage(GameImages.RANK_UNSET.getImage());
+        this.buttonRules.setImage(GameImages.RULES_UNSET.getImage());
     }
 
     /**

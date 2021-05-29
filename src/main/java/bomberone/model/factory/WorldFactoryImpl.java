@@ -9,7 +9,7 @@ public class WorldFactoryImpl implements WorldFactory {
 
     @Override
     public final World createWorldStandard(final User user) {
-        return new WorldImpl(Difficulty.STANDARD, user.getSkin());
+        return new WorldImpl(Difficulty.EASY, user.getSkin());
     }
 
     @Override

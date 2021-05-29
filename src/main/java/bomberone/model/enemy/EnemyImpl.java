@@ -35,7 +35,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
 
         // Creating the enemy behavior on the basis of the mode chosen by the user.
-        if (mode.equals(Difficulty.STANDARD)) {
+        if (mode.equals(Difficulty.EASY)) {
             this.behavior = new BasicBehavior(this);
             this.setSpeed(LOW_SPEED);
         } else if (mode.equals(Difficulty.HARD)) {

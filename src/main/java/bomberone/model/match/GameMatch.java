@@ -29,7 +29,7 @@ public interface GameMatch {
     User getUser();
 
     /**
-     * Initialize the difficulty of the gameplay.
+     * Initialize the difficulty of the Match.
      * 
      * @param difficulty
      */

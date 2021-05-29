@@ -9,7 +9,7 @@ public enum Difficulty {
     /**
      * 
      */
-    STANDARD(80),
+    EASY(80),
 
     /**
      * 

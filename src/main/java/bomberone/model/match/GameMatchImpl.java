@@ -28,7 +28,7 @@ public class GameMatchImpl implements GameMatch {
 
     @Override
     public final void init() {
-        if (this.difficulty.equals(Difficulty.STANDARD)) {
+        if (this.difficulty.equals(Difficulty.EASY)) {
             this.world = factory.createWorldStandard(this.user);
         } else {
             this.world = factory.createWorldHard(this.user);

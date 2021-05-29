@@ -189,7 +189,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     public void render() {
         /* Update Scorebar */
         this.drawLifes();
-
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
         Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
@@ -197,7 +196,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
-
             ((MatchController) this.getController()).getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
@@ -320,7 +318,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
     private void setUpSprites() {
         Image[][] spritesEnemy = null;
         // Choosing the enemy sprites on the basis of the difficulty game mode chosen.
-        if (((MatchController) this.getController()).getDifficulty().equals(Difficulty.STANDARD)) {
+        if (((MatchController) this.getController()).getDifficulty().equals(Difficulty.EASY)) {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_STANDARD.getSprites();
         } else {
             spritesEnemy = AnimatedObjectsSprites.ENEMIES_HARD.getSprites();
