@@ -41,7 +41,7 @@ public interface World {
     BomberImpl getBomber();
 
     /**
-     * Update the state of the game.
+     * Update the state of the game and calls the update of each GameObject.
      * 
      * @param time
      */
@@ -54,7 +54,7 @@ public interface World {
     void checkCollision();
 
     /**
-     * Check if the enemy can be respawned.
+     * Check if the enemy can be respawned and eventually respawns them.
      */
     void checkRespawn();
 
