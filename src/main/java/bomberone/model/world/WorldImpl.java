@@ -30,9 +30,19 @@ import bomberone.model.world.collection.GameObjectCollectionImpl;
 
 public class WorldImpl implements World {
 
+    /**
+     * Costant to set the number of enemies.
+     */
     private static final int ENEMYNUMBER = 3;
+
+    /**
+     * Size of the playground.
+     */
     private static final int DIMENSION = 18;
     private static final int FRAME = 32;
+    /**
+     * Number of PowerUp's types.
+     */
     private static final int NUMTYPEPOWERUP = 5;
 
     private GameObjectCollection collection = new GameObjectCollectionImpl();
@@ -139,31 +149,49 @@ public class WorldImpl implements World {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean getRespawn() {
         return this.respawn;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final GameObjectCollection getGameObjectCollection() {
         return collection;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final GameObjectFactory getGameObjectFactory() {
         return objectFactory;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setEventListener(final WorldEventListener event) {
         this.listener = event;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final BomberImpl getBomber() {
         return this.bomberMan;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void updateState(final int time) {
         this.bomberMan.update(time);
@@ -179,6 +207,9 @@ public class WorldImpl implements World {
 
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void checkCollision() {
         List<Fire> fireList = collection.getFireList();
@@ -205,7 +236,6 @@ public class WorldImpl implements World {
                 this.listener.notifyEvent(new PickPowerUpEvent(power));
             }
         }
-        /* Check if enemy hit Bomberman */
         this.collection.getEnemyList().stream().forEach(enemy -> {
             if (enemy.getCollider().intersects(this.bomberMan.getCollider())) {
                 this.listener.notifyEvent(new HitEntityEvent(this.bomberMan));
@@ -213,6 +243,9 @@ public class WorldImpl implements World {
         });
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void checkRespawn() {
         if (collection.getBoxList().size() == 0) {
@@ -229,6 +262,9 @@ public class WorldImpl implements World {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void checkBoundary() {
         List<Enemy> enemyList = collection.getEnemyList();
@@ -249,6 +285,9 @@ public class WorldImpl implements World {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void checkExplosion() {
         List<Bomb> bombList = collection.getBombList();
