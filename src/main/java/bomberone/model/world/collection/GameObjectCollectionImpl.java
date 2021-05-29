@@ -3,7 +3,6 @@ package bomberone.model.world.collection;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
 import bomberone.model.enemy.Enemy;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.gameObjects.GameObject;
@@ -27,84 +26,117 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
         this.gameObjectList = new ArrayList<>();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<GameObject> getGameObjectCollection() {
         return gameObjectList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Bomb> getBombList() {
         List<Bomb> bombList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(BombImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BombImpl.class)).forEach(e -> {
             bombList.add((Bomb) e);
         });
         return bombList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Explosion> getExplosionList() {
         List<Explosion> explosionList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(ExplosionImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(ExplosionImpl.class)).forEach(e -> {
             explosionList.add((Explosion) e);
         });
         return explosionList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Box> getBoxList() {
         List<Box> boxList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(BoxImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BoxImpl.class)).forEach(e -> {
             boxList.add((Box) e);
         });
         return boxList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<HardWall> getHardWallList() {
         List<HardWall> hardWallList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(HardWall.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(HardWall.class)).forEach(e -> {
             hardWallList.add((HardWall) e);
         });
         return hardWallList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<PowerUp> getPowerUpList() {
         List<PowerUp> powerUpList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(PowerUpImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(PowerUpImpl.class)).forEach(e -> {
             powerUpList.add((PowerUp) e);
         });
         return powerUpList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Enemy> getEnemyList() {
         List<Enemy> enemyList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(EnemyImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(EnemyImpl.class)).forEach(e -> {
             enemyList.add((Enemy) e);
         });
         return enemyList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<Fire> getFireList() {
         List<Fire> fireList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p.getClass().equals(FireImpl.class)).forEach(e -> {
+        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(FireImpl.class)).forEach(e -> {
             fireList.add((Fire) e);
         });
         return fireList;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void spawn(final GameObject obj) {
         gameObjectList.add(obj);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void despawn(final GameObject obj) {
         gameObjectList.remove(obj);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final List<GameObject> getDespawnedObject() {
         return this.gameObjectList.stream()
