@@ -172,7 +172,6 @@ public class WorldImpl implements World {
         }
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
-        this.checkExplosion();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
         }

@@ -109,6 +109,8 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
     @Override
     public void updateGame(final int elapsedTime) {
         this.getModel().getCurrentMatch().updateGame(elapsedTime);
+        this.getModel().getCurrentMatch().getWorld().checkExplosion();
+        this.processEvent();
         this.getModel().getCurrentMatch().getWorld().checkBoundary();
         this.processEvent();
         this.getModel().getCurrentMatch().getWorld().checkCollision();
