@@ -26,6 +26,9 @@ public class GameMatchImpl implements GameMatch {
         this.factory = new WorldFactoryImpl();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void init() {
         if (this.difficulty.equals(Difficulty.EASY)) {
@@ -38,62 +41,98 @@ public class GameMatchImpl implements GameMatch {
         this.thread = new TimerThread(timer);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setUser(final User user) {
         this.user = user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final User getUser() {
         return this.user;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setDifficulty(final Difficulty difficulty) {
         this.difficulty = difficulty;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final World getWorld() {
         return this.world;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final int getScore() {
         return this.score;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setWorld(final World world) {
         this.world = world;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void decScore(final int dec) {
         this.score -= dec;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void incScore(final int inc) {
         this.score += inc;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void updateGame(final int elapsed) {
         world.updateState(elapsed);
         this.checkGameOver();
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void setGameOver(final boolean gameOver) {
         this.gameOver = gameOver;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final boolean getGameOver() {
         return this.gameOver;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void checkGameOver() {
         if (this.world.getBomber().getLifes() == 0) {
@@ -106,19 +145,26 @@ public class GameMatchImpl implements GameMatch {
         } else {
             this.gameOver = false;
         }
-
-
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public final Difficulty getDifficulty() {
         return this.difficulty;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final Timer getTimer() {
         return this.timer;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final TimerThread getTimerThread() {
         return this.thread;

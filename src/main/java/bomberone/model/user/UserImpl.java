@@ -85,6 +85,9 @@ public class UserImpl implements User {
         return this.controls;
     }
 
+    /**
+     * Pattern Builder.
+     */
     public static class Builder {
         private String name;
         private Skins skin;

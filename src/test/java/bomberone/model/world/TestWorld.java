@@ -11,22 +11,31 @@ import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
 
+/**
+ * Test the world.
+ */
 public class TestWorld {
 
+    private static final int NUMBOX = 80;
+    private static final int NUMPOWERUP = 20;
     private World world;
 
     @BeforeEach
-    public void init() {
+    public final void init() {
         ResourcesLoader.getInstance().start();
         world = new WorldImpl(Difficulty.EASY, Skins.BLACK);
     }
 
+    /**
+     * Test if each GameObject has been created.
+     */
     @Test
-    public void testSetBox() {
+    public void testWorld() {
         assertFalse(world.getGameObjectCollection().getHardWallList().size() == 0);
-        assertEquals(world.getBomber().getPosition(), new P2d(32,32));
-        assertEquals(world.getGameObjectCollection().getBoxList().size(), 80);
-        assertEquals(world.getGameObjectCollection().getPowerUpList().size(), 20);
-        assertEquals(world.getGameObjectCollection().getEnemyList().size(), 0);
+        assertEquals(world.getBomber().getPosition(), new P2d(32, 32));
+        assertEquals(world.getGameObjectCollection().getBoxList().size(), NUMBOX);
+        assertEquals(world.getGameObjectCollection().getPowerUpList().size(), NUMPOWERUP);
+        assertEquals(world.getGameObjectCollection().getEnemyList().size(), 3);
+        assertEquals(world.getRespawn(), false);
     }
 }

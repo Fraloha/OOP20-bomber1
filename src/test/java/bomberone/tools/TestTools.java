@@ -19,6 +19,7 @@ public class TestTools {
 
     private static final int SCORE_1 = 100;
     private static final int SCORE_2 = 150;
+    private static final int PROVAPOS = 9;
 
     /**
      * Test if the methods of DirectoryLoader throw IOException.
@@ -92,12 +93,15 @@ public class TestTools {
         assertNotNull(AnimatedObjectsSprites.ENEMIES_STANDARD.getImage());
     }
 
+    /**
+     * This method tests if the map has been loaded correctly.
+     */
     @Test
     public void testMapLoader() {
         ResourcesLoader.getInstance().start();
         List<List<String>> list = Maps.MAP1.getList();
         assertNotNull(list);
         assertTrue(list.get(0).get(0).equals("H"));
-        assertFalse(list.get(9).get(9).equals("H"));
+        assertFalse(list.get(PROVAPOS).get(PROVAPOS).equals("H"));
     }
 }

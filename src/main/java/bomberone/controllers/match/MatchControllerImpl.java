@@ -1,7 +1,6 @@
 
 package bomberone.controllers.match;
 
-import java.util.ArrayList;
 import java.util.List;
 import bomberone.controllers.ControllerImpl;
 import bomberone.controllers.match.event.WorldEventListener;
@@ -193,9 +192,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<Fire> getFireList() {
-        List<Fire> fireList = new ArrayList<>();
-        fireList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getFireList());
-        return fireList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getFireList());
     }
 
     /**
@@ -203,9 +200,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<Bomb> getBombList() {
-        List<Bomb> bombList = new ArrayList<>();
-        bombList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBombList());
-        return bombList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBombList());
     }
 
     /**
@@ -213,9 +208,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<Box> getBoxList() {
-        List<Box> boxList = new ArrayList<>();
-        boxList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBoxList());
-        return boxList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getBoxList());
     }
 
     /**
@@ -223,9 +216,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<HardWall> getHardWallList() {
-        List<HardWall> wallList = new ArrayList<>();
-        wallList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getHardWallList());
-        return wallList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getHardWallList());
     }
 
     /**
@@ -233,9 +224,7 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<Enemy> getEnemyList() {
-        List<Enemy> enemyList = new ArrayList<>();
-        enemyList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getEnemyList());
-        return enemyList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getEnemyList());
     }
 
     /**
@@ -243,8 +232,6 @@ public class MatchControllerImpl extends ControllerImpl implements MatchControll
      */
     @Override
     public List<PowerUp> getPowerUpList() {
-        List<PowerUp> pUpList = new ArrayList<>();
-        pUpList.addAll(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getPowerUpList());
-        return pUpList;
+        return List.copyOf(this.getModel().getCurrentMatch().getWorld().getGameObjectCollection().getPowerUpList());
     }
 }
