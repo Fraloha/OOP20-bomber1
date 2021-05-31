@@ -6,6 +6,7 @@ public class GameBoard {
 
     /* Fields. */
     private static final int WORLD_SIZE = 18;
+    private static final int CELL_SIZE = 32;
     private char[][] currentGameBoard;
     private int rows;
     private int columns;
@@ -85,91 +86,57 @@ public class GameBoard {
         }
     }
 
-    /*
-     * public int[] findEnemyLocation(final int enemyNumber) { int currentEnemy = 1;
-     * 
-     * for (int i = 0; i < this.rows; i++) { for (int j = 0; j < this.columns; j++)
-     * { if (this.getItem(i, j) == 'E' && currentEnemy == enemyNumber) { return new
-     * int[] { i, j }; } else { currentEnemy++; } } }
-     * 
-     * return new int[] { -1, -1 }; }
-     */
-
     public boolean isAccessible(final BoardPoint locationToCheck) {
         char item = this.getItem(locationToCheck);
-        boolean result = item != Markers.BOX_MARKER.getMarker() && item != Markers.WALL_MARKER.getMarker() ? true : false;
-        return (item != 'N') &&  result;
+        boolean result = item != Markers.BOX_MARKER.getMarker() && item != Markers.WALL_MARKER.getMarker() ? true
+                : false;
+        return (item != 'N') && result;
     }
 
-    private boolean isRowAccessible(final BoardPoint currentPoint, final BoardPoint playerPosition) {
+    private boolean checkAccessibility(final BoardPoint currentPoint, final BoardPoint playerPosition,
+            final Accessibility mode) {
 
         boolean result = true;
+        int coordinateEnemy = mode.equals(Accessibility.ROWS) ? currentPoint.getY() : currentPoint.getX();
+        int coordinatePlayer = mode.equals(Accessibility.ROWS) ? playerPosition.getY() : playerPosition.getX();
 
-        if (currentPoint.getY() == playerPosition.getY()) {
-            result = false;
-        } else {
-            BoardPoint nextPoint = new BoardPointImpl(0, 0);
-            int i = Math.min(currentPoint.getX(), playerPosition.getX());
-            int m = Math.max(currentPoint.getX(), playerPosition.getX());
+        if (coordinateEnemy == coordinatePlayer) {
+            int k = mode.equals(Accessibility.ROWS) ? Math.min(currentPoint.getX(), playerPosition.getX())
+                    : Math.min(currentPoint.getY(), playerPosition.getY());
+            int m = mode.equals(Accessibility.ROWS) ? Math.max(currentPoint.getX(), playerPosition.getX())
+                    : Math.max(currentPoint.getY(), playerPosition.getY());
+            BoardPoint nextPoint = new BoardPointImpl(k, m);
 
-            while (i <= m) {
-                nextPoint.setPoint(i, m);
+            while (k <= m) {
                 if (!this.isLegal(nextPoint) || !this.isAccessible(nextPoint)) {
                     result = false;
                     break;
                 }
-                i++;
+                k++;
+                nextPoint.setPoint(k, m);
             }
-        }
-
-        return result;
-    }
-
-    private boolean isColumnAccessible(final BoardPoint currentPoint, final BoardPoint playerPosition) {
-        boolean result = true;
-        
-        if (currentPoint.getX() == playerPosition.getX()) {
-            result = false;
         } else {
-            BoardPoint nextPoint = new BoardPointImpl(0, 0);
-            int j = Math.min(currentPoint.getY(), playerPosition.getY());
-            int m = Math.max(currentPoint.getY(), playerPosition.getY());
-            
-            while (j <= m) {
-                nextPoint.setPoint(j, m);
-                if (!this.isLegal(nextPoint) || !this.isAccessible(nextPoint)) {
-                    result = false;
-                    break;
-                }
-                j++;
-            }
+            result = false;
         }
-        
+
         return result;
     }
 
     public boolean isPlayerVisible(BoardPoint currentPosition) {
-        boolean result = false;
         BoardPoint playerLocation = this.findPlayerLocation();
-        if (this.isLegal(currentPosition) && this.isAccessible(currentPosition)) {
-            if (this.isRowAccessible(currentPosition, playerLocation)
-                    || this.isColumnAccessible(currentPosition, playerLocation)) {
-                result = true;
-            }
-        }
-
-        return result;
+        return this.checkAccessibility(currentPosition, playerLocation, Accessibility.ROWS)
+                || this.checkAccessibility(currentPosition, playerLocation, Accessibility.COLUMNS);
     }
 
     public void setPlayerLocation(final BoardPoint newPosition) {
         this.resetPlayerLocation();
         this.setItem(newPosition, Markers.PLAYER_MARKER);
     }
-    
+
     public BoardPoint convertPosition(P2d positionToConvert) {
-        int X = (int) positionToConvert.getY() / GameBoard.WORLD_SIZE;
-        int Y = (int) positionToConvert.getX() / GameBoard.WORLD_SIZE;
-        
+        int X = (int) Math.round(positionToConvert.getY() / GameBoard.CELL_SIZE);
+        int Y = (int) Math.round(positionToConvert.getX() / GameBoard.CELL_SIZE);
+
         return new BoardPointImpl(X, Y);
     }
 
@@ -179,6 +146,19 @@ public class GameBoard {
                 System.out.print(this.getItem(new BoardPointImpl(i, j)) + "  ");
             }
             System.out.println();
+        }
+    }
+
+    public void resetBoxes() {
+        BoardPoint currentPosition = new BoardPointImpl(0, 0);
+
+        for (int i = 0; i < this.rows; i++) {
+            for (int j = 0; j < this.columns; j++) {
+                if (this.getItem(currentPosition) == Markers.BOX_MARKER.getMarker()) {
+                    this.setItem(currentPosition, Markers.GROUND_MARKER);
+                }
+                currentPosition.setPoint(i, j);
+            }
         }
     }
 }
