@@ -1,13 +1,20 @@
 package bomberone.model.enemy.actions;
 
 import java.util.Random;
-
-import bomberone.model.common.Direction;
 import bomberone.model.enemy.Enemy;
+import bomberone.model.common.Direction;
 
+/**
+ * This class defines a basic design and implementation of all the enemies
+ * behavior.
+ */
 public abstract class AbstractActions implements Actions {
 
     /* Fields. */
+    /**
+     * This constant is the amount of frames to wait until the next animation. This
+     * constant makes the animation as smooth as possible.
+     */
     private static final int ANIMATION_FRAME_QUANTITY = 10;
     protected Enemy selectedEnemy;
     protected Random randomGenerator;
@@ -19,6 +26,9 @@ public abstract class AbstractActions implements Actions {
     }
 
     /* Methods. */
+    /**
+     * {@inheritDoc}
+     */
     public void manageAnimation() {
         if (this.selectedEnemy.getFrameCounterAnimation() == AbstractActions.ANIMATION_FRAME_QUANTITY) {
             this.selectedEnemy.setFrameCounterAnimation(0);
@@ -28,6 +38,9 @@ public abstract class AbstractActions implements Actions {
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public void setSprite() {
         if (this.selectedEnemy.getDir() == Direction.UP) {
             this.selectedEnemy.setDirectionIndex(3);

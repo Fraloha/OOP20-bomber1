@@ -6,6 +6,17 @@ package bomberone.model.enemy.actions;
 public interface Actions {
 
     /**
+     * This method animates the enemy selecting the right "sprite animation" on the
+     * basis of the direction of it.
+     */
+    void manageAnimations();
+
+    /**
+     * This method sets the proper sprite on the basis of the enemy direction.
+     */
+    void setSprite();
+
+    /**
      * This method contains all the actions that the enemy can perform in the
      * specified behavior, so for each difficulty mode, the behavior of the enemies
      * is different. The various behaviors are designed and developed using a
