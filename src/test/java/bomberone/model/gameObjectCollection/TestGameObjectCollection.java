@@ -14,16 +14,13 @@ import bomberone.model.gameObjects.box.BoxImpl;
 import bomberone.model.gameObjects.hardwall.HardWall;
 import bomberone.model.world.collection.GameObjectCollection;
 import bomberone.model.world.collection.GameObjectCollectionImpl;
-import bomberone.views.common.AnimatedObjectsSprites;
-import bomberone.views.common.GameImages;
 
 import java.util.LinkedList;
 import java.util.List;
 
-import java.awt.image.BufferedImage;
 
 /**
- * Test if the gameObjectCollection is ok.
+ * Test if the gameObjectCollection works correctly.
  *
  */
 public class TestGameObjectCollection {
@@ -49,7 +46,7 @@ public class TestGameObjectCollection {
         Box box = new BoxImpl(new P2d(32, 1), 1);
         boxList.add(box);
         List<HardWall> wallList = new LinkedList<>();
-        HardWall wall = new HardWall(new P2d(33, 1), 1);
+        HardWall wall = new HardWall(new P2d(32, 1), 1);
         wallList.add(wall);
         collection.spawn(box);
         collection.spawn(wall);

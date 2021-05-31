@@ -41,5 +41,8 @@ public interface SetUpController extends Controller {
      */
     void setControls(Controls choice);
 
+    /**
+     * This method builds the User following the pattern Builder.
+     */
     void buildUser();
 }
