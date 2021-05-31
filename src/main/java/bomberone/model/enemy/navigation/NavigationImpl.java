@@ -8,7 +8,6 @@ import bomberone.model.common.Direction;
 import bomberone.model.gameboard.BoardPoint;
 import bomberone.model.gameboard.BoardPointImpl;
 import bomberone.model.gameboard.GameBoard;
-import bomberone.model.enemy.Log;
 
 public class NavigationImpl implements Navigation {
 
@@ -80,22 +79,25 @@ public class NavigationImpl implements Navigation {
         List<Direction> path = new LinkedList<Direction>();
         
         // System.out.println("[Enemy] :" + GameBoard.getInstance().convertPosition(enemyLocation).toString() + "\t[Player] :" + GameBoard.getInstance().findPlayerLocation().toString());
+        if (GameBoard.getInstance().findPlayerLocation().isEquals(new BoardPointImpl(7,8))) {
+            System.out.print("");
+        }
         this.discoveredNodes.add(new NodeImpl(null, GameBoard.getInstance().convertPosition(enemyLocation), null));
         while (!this.discoveredNodes.isEmpty()) {
             currentNode = this.discoveredNodes.remove(0);
             playerLocation = GameBoard.getInstance().findPlayerLocation();
             
             if (currentNode.getPosition().isEquals(playerLocation)) {
-                Log.getInstance().getLog("Found a path", true);
+                System.out.print("");
                 path = currentNode.getPath();
-                this.discoveredNodes.clear();
-                this.exploredNodes.clear();
                 break;
             }
 
             this.exploredNodes.add(currentNode.getPosition());
             this.addTargets(currentNode);
         }
+        this.discoveredNodes.clear();
+        this.exploredNodes.clear();
         return path;
     }
 }

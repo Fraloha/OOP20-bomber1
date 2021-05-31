@@ -196,6 +196,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         /* Draw the boxes */
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
+            GameBoard.getInstance().resetBoxes();
             ((MatchController) this.getController()).getBoxList().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
