@@ -217,16 +217,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                 int Y = (int) box.getPosition().getX() / MatchViewImpl.CELL_SIZE;
                 int X = (int) box.getPosition().getY() / MatchViewImpl.CELL_SIZE;
                 GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.BOX_MARKER);
-                if (this.counterThree < ((MatchController) this.getController()).getBoxList().size()) {
-                    System.out.println(X + "  " + Y);
-                    this.counterThree++;
-                }
             });
-
-            if (this.counterTwo == 0) {
-                System.out.println("\n\n");
-                this.counterTwo++;
-            }
         });
 
         /* Draw the powerUp */
@@ -298,19 +289,7 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
             int X = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
             int Y = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
             GameBoard.getInstance().setPlayerLocation(new BoardPointImpl(X, Y));
-            // System.out.println(X + "  " + Y);
         });
-
-        if (this.counter == 0 && this.counterTwo == 1 && this.counterThree == ((MatchController) this.getController()).getBoxList().size()) {
-            // Printing the game board for debug purposes.
-            for (int i = 0; i < GameBoard.getInstance().getRowsQuantity(); i++) {
-                System.out.println();
-                for (int j = 0; j < GameBoard.getInstance().getColumnsQuantity(); j++) {
-                    System.out.print(GameBoard.getInstance().getItem(new BoardPointImpl(i, j)) + "  ");
-                }
-            }
-            this.counter++;
-        }
     }
 
     /**
