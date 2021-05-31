@@ -2,6 +2,7 @@ package bomberone.model.enemy.navigation;
 
 import java.util.List;
 import bomberone.model.common.P2d;
+import bomberone.model.gameboard.BoardPoint;
 import bomberone.model.common.Direction;
 
 /**
@@ -12,6 +13,15 @@ import bomberone.model.common.Direction;
 public interface Navigation {
 
     /* Methods. */
+
+    /**
+     * This method checks if the BoardPoint object passed as argument was already
+     * explored.
+     * 
+     * @param poitnToCheck The point to check.
+     * @return true if the point was already explored, otherwise false.
+     */
+    boolean explored(BoardPoint pointToCheck);
 
     /**
      * This method adds new positions to check in the search algorithm. In

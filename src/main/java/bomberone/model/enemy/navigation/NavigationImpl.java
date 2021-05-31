@@ -35,8 +35,11 @@ public class NavigationImpl implements Navigation {
 
         return new BoardPointImpl(newX, newY);
     }
-
-    private boolean explored(final BoardPoint pointToCheck) {
+    
+    /**
+     * {@inheritDoc}
+     */
+    public boolean explored(final BoardPoint pointToCheck) {
         boolean result = false;
         Iterator<BoardPoint> iterator = this.exploredNodes.iterator();
 
@@ -51,6 +54,9 @@ public class NavigationImpl implements Navigation {
         return result;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void addTargets(final Node currentNode) {
         BoardPoint positionToCheck;
@@ -77,18 +83,13 @@ public class NavigationImpl implements Navigation {
         Node currentNode = null;
         BoardPoint playerLocation;
         List<Direction> path = new LinkedList<Direction>();
-        
-        // System.out.println("[Enemy] :" + GameBoard.getInstance().convertPosition(enemyLocation).toString() + "\t[Player] :" + GameBoard.getInstance().findPlayerLocation().toString());
-        if (GameBoard.getInstance().findPlayerLocation().isEquals(new BoardPointImpl(7,8))) {
-            System.out.print("");
-        }
+
         this.discoveredNodes.add(new NodeImpl(null, GameBoard.getInstance().convertPosition(enemyLocation), null));
         while (!this.discoveredNodes.isEmpty()) {
             currentNode = this.discoveredNodes.remove(0);
             playerLocation = GameBoard.getInstance().findPlayerLocation();
-            
+
             if (currentNode.getPosition().isEquals(playerLocation)) {
-                System.out.print("");
                 path = currentNode.getPath();
                 break;
             }

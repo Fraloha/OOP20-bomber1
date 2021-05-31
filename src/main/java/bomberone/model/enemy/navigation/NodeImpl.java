@@ -4,9 +4,6 @@ import java.util.LinkedList;
 import bomberone.model.common.Direction;
 import bomberone.model.gameboard.BoardPoint;
 
-/**
- * {@inheritDoc}
- */
 public class NodeImpl implements Node {
 
     /* Fields. */
