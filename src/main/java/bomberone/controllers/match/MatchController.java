@@ -91,42 +91,42 @@ public interface MatchController extends Controller {
      * @return the Game Difficulty.
      */
     Difficulty getDifficulty();
-    
+
     /**
      * Called if View needs the list of FireObject.
      * 
      * @return the list of Fire.
      */
     List<Fire> getFireList();
-    
+
     /**
      * Called if View needs the list of Bombs.
      * 
      * @return the list of Bombs.
      */
     List<Bomb> getBombList();
-    
+
     /**
      * Called if View needs the list of Boxes.
      * 
      * @return the list of Boxes.
      */
     List<Box> getBoxList();
-    
+
     /**
      * Called if View needs the list of Walls.
      * 
      * @return the list of Walls.
      */
     List<HardWall> getHardWallList();
-    
+
     /**
      * Called if View needs the list of Enemies.
      * 
      * @return the list of Enemies.
      */
     List<Enemy> getEnemyList();
-    
+
     /**
      * Called if View needs the list of PowerUp.
      * 
