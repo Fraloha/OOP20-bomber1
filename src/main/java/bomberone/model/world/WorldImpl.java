@@ -63,15 +63,15 @@ public class WorldImpl implements World {
         this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
-        this.setEnemy();
+        this.setEnemy(WorldImpl.ENEMYNUMBER);
         this.setBox(this.difficulty);
     }
 
     /**
      * This method create the enemies at the start of the game.
      */
-    private void setEnemy() {
-        for (int i = 0; i < WorldImpl.ENEMYNUMBER; i++) {
+    private void setEnemy(final int n) {
+        for (int i = 0; i < n; i++) {
             this.collection
                     .spawn(this.objectFactory.createEnemy(
                             new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
@@ -194,13 +194,19 @@ public class WorldImpl implements World {
      */
     @Override
     public final void updateState(final int time) {
+        if (!this.bomberMan.isAlive()) {
+            List<Enemy> enemyList = collection.getEnemyList();
+            for (Enemy enemy:collection.getEnemyList()) {
+                collection.despawn(enemy);
+            }
+            this.setEnemy(enemyList.size());
+        }
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
         }
         this.checkExplosion();
-        List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
-                .collect(Collectors.toList());
+        List<GameObject> deathObject = collection.getDespawnedObject();
         for (GameObject obj : deathObject) {
             collection.despawn(obj);
         }
