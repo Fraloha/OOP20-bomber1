@@ -183,8 +183,8 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         this.drawLifes();
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
-        Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
+        /* Get the objects list to render */
         List<Box> boxList = ((MatchController) this.getController()).getBoxList();
         List<PowerUp> pUpList = ((MatchController) this.getController()).getPowerUpList();
         List<Bomb> bombList = ((MatchController) this.getController()).getBombList();
@@ -193,15 +193,14 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
         /* Draw the boxes */
         Platform.runLater(() -> {
+            this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
             Image boxImage = GameImages.BOX.getImage();
-            boxList.forEach(box -> {
+            boxList.stream().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
             });
-        });
 
-        /* Draw the powerUp */
-        Platform.runLater(() -> {
+            /* Draw the powerUp */
             pUpList.stream().filter(PowerUp::isReleased).forEach(pUp -> {
                 Image powerUpImage = null;
                 PowerUp.Type type = pUp.getType();
@@ -222,11 +221,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                 }
                 this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
             });
-        });
 
-        /* Draw bombs */
-        Platform.runLater(() -> {
-            bombList.forEach(bomb -> {
+            /* Draw bombs */
+            bombList.stream().forEach(bomb -> {
                 Image bombImage = null;
                 if (bomb.getPierce()) {
                     bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
@@ -237,32 +234,30 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                 }
                 this.gCForeground.drawImage(bombImage, bomb.getPosition().getX(), bomb.getPosition().getY());
             });
-        });
 
-        /* Draw the fire */
-        Platform.runLater(() -> {
-            fireList.forEach(fire -> {
+            /* Draw the fire */
+            fireList.stream().forEach(fire -> {
                 this.gCForeground.drawImage(
                         AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
                         fire.getPosition().getX(), fire.getPosition().getY());
             });
-        });
 
-        /* Draw enemies */
-        Platform.runLater(() -> {
-            enemyList.forEach(enemy -> {
+            /* Draw enemies */
+            enemyList.stream().forEach(enemy -> {
                 this.gCForeground.drawImage(
                         this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
                         enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                         ENEMY_WIDTH, ENEMY_HEIGHT);
             });
-        });
 
-        /* Draw the BomberMan */
-        Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
-        Platform.runLater(() -> this.gCForeground.drawImage(
-                this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex() % BOMBER_N_ANIMATION],
-                bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT));
+            /* Draw the BomberMan */
+            Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
+            this.gCForeground.drawImage(
+                    this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex()
+                            % BOMBER_N_ANIMATION],
+                    bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
+
+        });
 
     }
 
