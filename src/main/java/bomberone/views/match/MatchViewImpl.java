@@ -191,10 +191,10 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         List<Fire> fireList = ((MatchController) this.getController()).getFireList();
         List<Enemy> enemyList = ((MatchController) this.getController()).getEnemyList();
 
-        /* Draw the boxes */
         Platform.runLater(() -> {
+            /* Clear the Canvas */
             this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
-            Image boxImage = GameImages.BOX.getImage();
+            /* Draw the boxes */            Image boxImage = GameImages.BOX.getImage();
             boxList.stream().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
