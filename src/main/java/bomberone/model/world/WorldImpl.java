@@ -195,11 +195,11 @@ public class WorldImpl implements World {
     @Override
     public final void updateState(final int time) {
         if (!this.bomberMan.isAlive()) {
-            int enemyNumber = collection.getEnemyList().size();
-            for (Enemy enemy:collection.getEnemyList()) {
+            List<Enemy> enemyList = collection.getEnemyList();
+            for (Enemy enemy : enemyList) {
                 collection.despawn(enemy);
             }
-            this.setEnemy(enemyNumber);
+            this.setEnemy(enemyList.size());
         }
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
