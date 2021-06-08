@@ -195,10 +195,11 @@ public class WorldImpl implements World {
     @Override
     public final void updateState(final int time) {
         if (!this.bomberMan.isAlive()) {
-            for (Enemy enemy : collection.getEnemyList()) {
-                enemy.setPosition(new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
-                        (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2));
+            int enemyNumber = collection.getEnemyList().size();
+            for (Enemy enemy:collection.getEnemyList()) {
+                collection.despawn(enemy);
             }
+            this.setEnemy(enemyNumber);
         }
         this.bomberMan.update(time);
         for (GameObject obj : collection.getGameObjectCollection()) {
