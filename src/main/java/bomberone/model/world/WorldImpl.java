@@ -11,6 +11,7 @@ import bomberone.controllers.match.event.HitEntityEvent;
 import bomberone.controllers.match.event.PickPowerUpEvent;
 import bomberone.controllers.match.event.WorldEventListener;
 import bomberone.model.bomber.BomberImpl;
+import bomberone.model.bombergameboard.BomberOneBoard;
 import bomberone.model.common.Maps;
 import bomberone.model.common.P2d;
 import bomberone.model.enemy.Enemy;
@@ -22,13 +23,16 @@ import bomberone.model.gameObjects.bomb.Bomb;
 import bomberone.model.gameObjects.box.Box;
 import bomberone.model.gameObjects.fire.Fire;
 import bomberone.model.gameObjects.powerUp.PowerUp;
+import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.gameboard.GameBoard;
+import bomberone.model.gameboard.Markers;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.model.world.collection.GameObjectCollection;
 import bomberone.model.world.collection.GameObjectCollectionImpl;
 
 public class WorldImpl implements World {
-    
+
     /**
      * Costant to set the number of enemies.
      */
@@ -51,6 +55,7 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
+    private int counter = 0;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -193,10 +198,27 @@ public class WorldImpl implements World {
      */
     @Override
     public final void updateState(final int time) {
+        @SuppressWarnings("unused")
+        GameBoard test = new GameBoard(Maps.MAP1);
+        BomberOneBoard.getInstance().resetItem(Markers.PLAYER_MARKER);
         this.bomberMan.update(time);
+        BomberOneBoard.getInstance().setItem(BomberOneBoard.getInstance().convertPosition(this.bomberMan.getPosition()),
+                Markers.PLAYER_MARKER);
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
         }
+        
+        BomberOneBoard.getInstance().resetAllItems(Markers.BOX_MARKER);
+        for (Box currentBox : collection.getBoxList()) {
+            BoardPoint currentBoxPosition = BomberOneBoard.getInstance().convertPosition(currentBox.getPosition());
+            BomberOneBoard.getInstance().setItem(currentBoxPosition, Markers.BOX_MARKER);
+        }
+        
+        if (this.counter == 0) {
+            BomberOneBoard.getInstance().printBoard();
+            this.counter++;
+        }
+        
         this.checkExplosion();
         List<GameObject> deathObject = collection.getGameObjectCollection().stream().filter(p -> !p.isAlive())
                 .collect(Collectors.toList());
