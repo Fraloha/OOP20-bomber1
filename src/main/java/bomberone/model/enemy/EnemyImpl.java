@@ -10,8 +10,8 @@ import bomberone.model.match.Difficulty;
 public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     /* Fields. */
-    private static final int LOW_SPEED = 500;
-    private static final int HIGH_SPEED = 600;
+    private static final int HARD_SPEED = 400;
+    private static final int BASIC_SPEED = 500;
     private static final int SECONDS_TO_WAIT = 4;
     private static final int FRAME_PER_SECOND = 60;
     private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
@@ -37,10 +37,10 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         // Creating the enemy behavior on the basis of the mode chosen by the user.
         if (mode.equals(Difficulty.EASY)) {
             this.behavior = new BasicBehavior(this);
-            this.setSpeed(LOW_SPEED);
+            this.setSpeed(EnemyImpl.BASIC_SPEED);
         } else if (mode.equals(Difficulty.HARD)) {
             this.behavior = new IntermediateBehavior(this);
-            this.setSpeed(HIGH_SPEED);
+            this.setSpeed(EnemyImpl.HARD_SPEED);
         }
     }
 
