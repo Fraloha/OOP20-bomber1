@@ -24,7 +24,6 @@ import bomberone.model.gameObjects.box.Box;
 import bomberone.model.gameObjects.fire.Fire;
 import bomberone.model.gameObjects.powerUp.PowerUp;
 import bomberone.model.gameboard.BoardPoint;
-import bomberone.model.gameboard.GameBoard;
 import bomberone.model.gameboard.Markers;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
@@ -198,9 +197,6 @@ public class WorldImpl implements World {
      */
     @Override
     public final void updateState(final int time) {
-        @SuppressWarnings("unused")
-        GameBoard test = new GameBoard(Maps.MAP1);
-        
         if (!this.bomberMan.isAlive()) {
             List<Enemy> enemyList = collection.getEnemyList();
             for (Enemy enemy : enemyList) {
@@ -208,7 +204,7 @@ public class WorldImpl implements World {
             }
             this.setEnemy(enemyList.size());
         }
-        
+
         BomberOneBoard.getInstance().resetItem(Markers.PLAYER_MARKER);
         this.bomberMan.update(time);
         BomberOneBoard.getInstance().setItem(BomberOneBoard.getInstance().convertPosition(this.bomberMan.getPosition()),
@@ -216,18 +212,18 @@ public class WorldImpl implements World {
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
         }
-        
+
         BomberOneBoard.getInstance().resetAllItems(Markers.BOX_MARKER);
         for (Box currentBox : collection.getBoxList()) {
             BoardPoint currentBoxPosition = BomberOneBoard.getInstance().convertPosition(currentBox.getPosition());
             BomberOneBoard.getInstance().setItem(currentBoxPosition, Markers.BOX_MARKER);
         }
-        
+
         if (this.counter == 0) {
             BomberOneBoard.getInstance().printBoard();
             this.counter++;
         }
-        
+
         this.checkExplosion();
         List<GameObject> deathObject = collection.getDespawnedObject();
         for (GameObject obj : deathObject) {
