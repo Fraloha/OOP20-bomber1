@@ -36,7 +36,7 @@ public class WorldImpl implements World {
     /**
      * Costant to set the number of enemies.
      */
-    private static final int ENEMYNUMBER = 1;
+    private static final int ENEMYNUMBER = 3;
 
     /**
      * Size of the playground.

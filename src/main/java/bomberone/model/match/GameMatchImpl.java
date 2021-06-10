@@ -11,7 +11,7 @@ import bomberone.model.world.World;
 
 public class GameMatchImpl implements GameMatch {
 
-    private static final int TIME = 1200;
+    private static final int TIME = 300;
     private User user;
     private World world;
     private Difficulty difficulty;
