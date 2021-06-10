@@ -1,12 +1,11 @@
 package bomberone.model.enemy.actions;
 
-import java.util.List;
 import bomberone.model.enemy.EnemyImpl;
 import bomberone.model.common.Direction;
+import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.bombergameboard.BomberOneBoard;
 import bomberone.model.enemy.navigation.Navigation;
 import bomberone.model.enemy.navigation.NavigationImpl;
-import bomberone.model.gameboard.BoardPoint;
-import bomberone.model.gameboard.GameBoard;
 
 public final class IntermediateBehavior extends AbstractActions {
 
@@ -19,8 +18,8 @@ public final class IntermediateBehavior extends AbstractActions {
     public IntermediateBehavior(final EnemyImpl newEnemy) {
         super(newEnemy);
         this.playerFound = false;
-        this.basicActions = new BasicBehavior(this.selectedEnemy);
         this.navigator = new NavigationImpl();
+        this.basicActions = new BasicBehavior(this.selectedEnemy);
     }
 
     /* Methods. */
@@ -30,20 +29,26 @@ public final class IntermediateBehavior extends AbstractActions {
      */
     @Override
     public void doActions() {
-        BoardPoint enemyLocation = GameBoard.getInstance().convertPosition(this.selectedEnemy.getPosition());
-
+        BoardPoint enemyLocation = BomberOneBoard.getInstance().convertPosition(this.selectedEnemy.getPosition());
+        
         if (this.playerFound) {
-            List<Direction> computedPath = this.navigator.searchShortestPath(this.selectedEnemy.getPosition());
-            if (computedPath.isEmpty()) {
-                System.out.println("Unable to find a path.");
-            } else {
-                this.selectedEnemy.setDir(computedPath.get(0));
+            try {
+                Direction nextStep = this.navigator.searchShortestPath(this.selectedEnemy.getPosition()).get(0);
+                this.selectedEnemy.setDir(nextStep);
+                this.setSprite();
+                this.manageAnimations();
                 this.nextMove();
-                computedPath.clear();
+            } catch(Exception e) {
+                System.out.println("Unable to find a path.");
             }
         } else {
             this.basicActions.doActions();
-            this.playerFound = GameBoard.getInstance().isPlayerVisible(enemyLocation);
+            this.playerFound = BomberOneBoard.getInstance().isPlayerVisible(enemyLocation);
+            if (this.playerFound) {
+                System.out.println("Found");
+                // GameBoard.getInstance().printBoard();
+                BomberOneBoard.getInstance().isPlayerVisible(enemyLocation);
+            }
         }
     }
 }

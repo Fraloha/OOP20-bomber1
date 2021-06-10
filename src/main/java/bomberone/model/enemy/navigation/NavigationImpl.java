@@ -1,13 +1,14 @@
 package bomberone.model.enemy.navigation;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.Iterator;
 import java.util.LinkedList;
 import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 import bomberone.model.gameboard.BoardPoint;
 import bomberone.model.gameboard.BoardPointImpl;
-import bomberone.model.gameboard.GameBoard;
+import bomberone.model.bombergameboard.BomberOneBoard;
 
 public class NavigationImpl implements Navigation {
 
@@ -35,7 +36,7 @@ public class NavigationImpl implements Navigation {
 
         return new BoardPointImpl(newX, newY);
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -66,7 +67,7 @@ public class NavigationImpl implements Navigation {
             positionToCheck = this.getNeighbours(position, currentDirection);
 
             if (!this.explored(positionToCheck)) {
-                if (GameBoard.getInstance().isAccessible(positionToCheck)) {
+                if (BomberOneBoard.getInstance().isAccessible(positionToCheck)) {
                     this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck, currentNode));
                 }
             }
@@ -81,15 +82,15 @@ public class NavigationImpl implements Navigation {
     public List<Direction> searchShortestPath(final P2d enemyLocation) {
         /* Variables declaration. */
         Node currentNode = null;
-        BoardPoint playerLocation;
+        Optional<BoardPoint> playerLocation;
         List<Direction> path = new LinkedList<Direction>();
 
-        this.discoveredNodes.add(new NodeImpl(null, GameBoard.getInstance().convertPosition(enemyLocation), null));
+        this.discoveredNodes.add(new NodeImpl(null, BomberOneBoard.getInstance().convertPosition(enemyLocation), null));
         while (!this.discoveredNodes.isEmpty()) {
             currentNode = this.discoveredNodes.remove(0);
-            playerLocation = GameBoard.getInstance().findPlayerLocation();
+            playerLocation = BomberOneBoard.getInstance().findPlayerLocation();
 
-            if (currentNode.getPosition().isEquals(playerLocation)) {
+            if (!playerLocation.isEmpty() && currentNode.getPosition().isEquals(playerLocation.get())) {
                 path = currentNode.getPath();
                 break;
             }
