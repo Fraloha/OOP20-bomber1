@@ -179,7 +179,7 @@ public final class BomberImpl extends MoveableObjectImpl implements Bomber {
     public boolean getPierce() {
         return this.pierce;
     }
-    
+
     /**
      * {@inheritDoc}
      */

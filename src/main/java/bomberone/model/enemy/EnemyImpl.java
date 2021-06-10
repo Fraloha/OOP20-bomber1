@@ -14,7 +14,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     private static final int SECONDS_TO_WAIT = 4;
     private static final int FRAME_PER_SECOND = 60;
     private static final int LOW_SPEED = 300;
-    private static final int HIGH_SPEED = 600;
+    private static final int HIGH_SPEED = 200;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
@@ -22,7 +22,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     private boolean isHittable = false;
 
     /* Constructors. */
-    public EnemyImpl(final P2d position, final int lifes, Difficulty mode) {
+    public EnemyImpl(final P2d position, final int lifes, final Difficulty mode) {
         super(position, lifes);
 
         // Setting the number of frames that the enemy has to wait before start moving.
@@ -47,7 +47,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     /**
      * {@inheritDoc}
      */
-    public void update(int elapsed) {
+    public void update(final int elapsed) {
         // The enemy before acts has to wait four second that are 240 frames.
         // Checking if the frame counter is greater than zero.
         if (this.frameCounter > 0) {
@@ -69,7 +69,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         return this.frameCounterAnimation;
     }
 
-    public void setFrameCounterAnimation(int value) {
+    public void setFrameCounterAnimation(final int value) {
         this.frameCounterAnimation = value;
     }
 

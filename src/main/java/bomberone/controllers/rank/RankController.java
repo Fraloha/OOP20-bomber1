@@ -7,8 +7,7 @@ import bomberone.model.user.User;
 
 public interface RankController extends Controller {
 
-    /**
-     */
+
     List<User> getStdRank();
 
     List<User> getHardRank();

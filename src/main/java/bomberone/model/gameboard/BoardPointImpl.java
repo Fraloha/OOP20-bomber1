@@ -1,16 +1,16 @@
 package bomberone.model.gameboard;
 
 public class BoardPointImpl implements BoardPoint {
-    
+
     /* Fields. */
     private int x;
     private int y;
-    
+
     public BoardPointImpl(final int xToSet, final int yToSet) {
         this.x = xToSet;
         this.y = yToSet;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -18,7 +18,7 @@ public class BoardPointImpl implements BoardPoint {
     public int getX() {
         return this.x;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -26,7 +26,7 @@ public class BoardPointImpl implements BoardPoint {
     public int getY() {
         return this.y;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -34,7 +34,7 @@ public class BoardPointImpl implements BoardPoint {
     public void setX(final int newX) {
         this.x = newX;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -42,7 +42,7 @@ public class BoardPointImpl implements BoardPoint {
     public void setY(final int newY) {
         this.y = newY;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -51,7 +51,7 @@ public class BoardPointImpl implements BoardPoint {
         this.x = newX;
         this.y = newY;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -59,7 +59,7 @@ public class BoardPointImpl implements BoardPoint {
     public boolean isEquals(final BoardPoint pointToCheck) {
         return this.x == pointToCheck.getX() && this.y == pointToCheck.getY();
     }
-    
+
     /**
      * {@inheritDoc}
      */

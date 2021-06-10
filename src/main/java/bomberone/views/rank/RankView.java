@@ -274,5 +274,4 @@ public final class RankView extends ViewImpl {
     public void onPreviousClicked() {
         this.changeRank(false);
     }
-
 }

@@ -6,6 +6,7 @@ import bomberone.model.common.Maps;
 
 public class GameBoard {
 
+    private static final int BOUNDS_CELLS = 18;
     /* Fields. */
     private int rows;
     private int columns;
@@ -26,26 +27,26 @@ public class GameBoard {
             }
         }
     }
-    
+
     public GameBoard(final Maps mapLayout) {
         Markers newMarker;
         List<List<String>> map = mapLayout.getList();
         BoardPoint currentPosition = new BoardPointImpl(0, 0);
-        
+
         this.rows = map.size();
         this.columns = map.get(0).size();
         this.currentGameBoard = new char[this.rows][this.columns];
-        
+
         // Setting the map.
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
-                
+
                 if (map.get(j).get(i).equals("H")) {
                     newMarker = Markers.WALL_MARKER;
                 } else {
                     newMarker = Markers.GROUND_MARKER;
                 }
-                
+
                 currentPosition.setPoint(j, i);
                 this.setItem(currentPosition, newMarker);
             }
@@ -108,8 +109,8 @@ public class GameBoard {
      * @return true if the position is valid, otherwise false.
      */
     private boolean isLegal(final BoardPoint locationToCheck) {
-        boolean result = locationToCheck.getX() >= 0 && locationToCheck.getX() < 18 ? true : false;
-        boolean secondResult = locationToCheck.getY() >= 0 && locationToCheck.getY() < 18 ? true : false;
+        boolean result = locationToCheck.getX() >= 0 && locationToCheck.getX() < BOUNDS_CELLS ? true : false;
+        boolean secondResult = locationToCheck.getY() >= 0 && locationToCheck.getY() < BOUNDS_CELLS ? true : false;
 
         return result && secondResult;
     }
@@ -217,7 +218,7 @@ public class GameBoard {
      * @param currentPosition The starting position.
      * @return true if the player is visible, otherwise false.
      */
-    public boolean isPlayerVisible(BoardPoint currentPosition) {
+    public boolean isPlayerVisible(final BoardPoint currentPosition) {
         boolean result = false;
         Optional<BoardPoint> playerLocation = this.findPlayerLocation();
 
@@ -247,7 +248,7 @@ public class GameBoard {
      *         marker passed as argument, if it is found, otherwise an empty
      *         Optional object.
      */
-    public Optional<BoardPoint> searchMarker(Markers markerToFind) {
+    public Optional<BoardPoint> searchMarker(final Markers markerToFind) {
         BoardPoint itemPoint = new BoardPointImpl(0, 0);
         Optional<BoardPoint> position = Optional.empty();
 
@@ -272,7 +273,7 @@ public class GameBoard {
      * @return true if the marker if the marker is present in the game board and it
      *         is changed, otherwise false.
      */
-    public boolean changeItem(Markers markerToChange, Markers newMarker) {
+    public boolean changeItem(final Markers markerToChange, final Markers newMarker) {
         boolean result = true;
         Optional<BoardPoint> itemToChange = this.searchMarker(markerToChange);
         if (itemToChange.isEmpty()) {
@@ -291,7 +292,7 @@ public class GameBoard {
      * @param markerToChange The marker to change.
      * @param newMarker      The new Marker.
      */
-    public void changeAllItems(Markers markerToChange, Markers newMarker) {
+    public void changeAllItems(final Markers markerToChange, final Markers newMarker) {
         while (this.changeItem(markerToChange, newMarker))
             ;
     }
@@ -302,7 +303,7 @@ public class GameBoard {
      * 
      * @param markerToChange The marker to change
      */
-    public void resetItem(Markers markerToChange) {
+    public void resetItem(final Markers markerToChange) {
         this.changeItem(markerToChange, Markers.GROUND_MARKER);
     }
 
@@ -312,7 +313,7 @@ public class GameBoard {
      * 
      * @param markerToChange The maker to change.
      */
-    public void resetAllItems(Markers markerToChange) {
+    public void resetAllItems(final Markers markerToChange) {
         this.changeAllItems(markerToChange, Markers.GROUND_MARKER);
     }
 

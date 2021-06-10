@@ -6,11 +6,11 @@ public interface BoardPoint {
 
     int getY();
 
-    void setX(final int newX);
+    void setX(int newX);
 
-    void setY(final int newY);
-    
-    void setPoint(final int newX, final int newY);
-    
-    boolean isEquals(final BoardPoint pointToCheck);
+    void setY(int newY);
+
+    void setPoint(int newX, int newY);
+
+    boolean isEquals(BoardPoint pointToCheck);
 }
