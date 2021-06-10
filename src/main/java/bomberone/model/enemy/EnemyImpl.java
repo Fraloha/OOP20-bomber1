@@ -1,20 +1,20 @@
 package bomberone.model.enemy;
 
 import bomberone.model.common.P2d;
+import bomberone.model.match.Difficulty;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
 import bomberone.model.enemy.actions.IntermediateBehavior;
 import bomberone.model.gameObjects.moveable.MoveableObjectImpl;
-import bomberone.model.match.Difficulty;
 
 public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     /* Fields. */
-    private static final int HARD_SPEED = 400;
-    private static final int BASIC_SPEED = 500;
+    private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
     private static final int SECONDS_TO_WAIT = 4;
     private static final int FRAME_PER_SECOND = 60;
-    private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
+    private static final int LOW_SPEED = 300;
+    private static final int HIGH_SPEED = 600;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
@@ -24,8 +24,6 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     /* Constructors. */
     public EnemyImpl(final P2d position, final int lifes, Difficulty mode) {
         super(position, lifes);
-
-        this.frameCounterAnimation = 0;
 
         // Setting the number of frames that the enemy has to wait before start moving.
         this.frameCounter = SECONDS_TO_WAIT * FRAME_PER_SECOND;
@@ -37,10 +35,10 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         // Creating the enemy behavior on the basis of the mode chosen by the user.
         if (mode.equals(Difficulty.EASY)) {
             this.behavior = new BasicBehavior(this);
-            this.setSpeed(EnemyImpl.BASIC_SPEED);
+            this.setSpeed(LOW_SPEED);
         } else if (mode.equals(Difficulty.HARD)) {
             this.behavior = new IntermediateBehavior(this);
-            this.setSpeed(EnemyImpl.HARD_SPEED);
+            this.setSpeed(HIGH_SPEED);
         }
     }
 
@@ -61,12 +59,6 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
                 this.nextMoveFrameCounter = 0;
-
-                // If the difficulty is hard the enemy has to keep track of the player.
-                /*
-                 * if (this.behavior.getClass() == IntermediateBehavior.class) {
-                 * ((IntermediateBehavior) this.behavior).setPlayerPosition(playerPosition); }
-                 */
                 this.behavior.doActions();
                 super.update(elapsed);
             }

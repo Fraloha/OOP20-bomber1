@@ -32,7 +32,7 @@ public final class RankLoader {
     public static RankLoader getInstance() {
         return LazyHolder.SINGLETON;
     }
-    
+
     private RankLoader() {
     }
 

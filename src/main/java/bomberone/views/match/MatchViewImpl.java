@@ -9,10 +9,6 @@ import bomberone.model.gameObjects.bomb.Bomb;
 import bomberone.model.gameObjects.box.Box;
 import bomberone.model.gameObjects.fire.Fire;
 import bomberone.model.gameObjects.powerUp.PowerUp;
-import bomberone.model.gameboard.BoardPoint;
-import bomberone.model.gameboard.BoardPointImpl;
-import bomberone.model.gameboard.GameBoard;
-import bomberone.model.gameboard.Markers;
 import bomberone.model.match.Difficulty;
 import bomberone.model.user.Skins;
 import bomberone.tools.ResourcesLoader;
@@ -191,31 +187,24 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         this.drawLifes();
         Platform.runLater(() -> this.timeLabel.setText(((MatchController) this.getController()).getTimer().toString()));
         Platform.runLater(() -> this.scoreLabel.setText(((MatchController) this.getController()).getScore() + ""));
-        Platform.runLater(() -> this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT));
 
+        /* Get the objects list to render */
         List<Box> boxList = ((MatchController) this.getController()).getBoxList();
         List<PowerUp> pUpList = ((MatchController) this.getController()).getPowerUpList();
         List<Bomb> bombList = ((MatchController) this.getController()).getBombList();
         List<Fire> fireList = ((MatchController) this.getController()).getFireList();
         List<Enemy> enemyList = ((MatchController) this.getController()).getEnemyList();
 
-        /* Draw the boxes */
         Platform.runLater(() -> {
-            Image boxImage = GameImages.BOX.getImage();
-            
-            // GameBoard.getInstance().resetBoxes();
-            boxList.forEach(box -> {
+            /* Clear the Canvas */
+            this.gCForeground.clearRect(0, 0, WORLD_WIDTH, WORLD_HEIGHT);
+            /* Draw the boxes */            Image boxImage = GameImages.BOX.getImage();
+            boxList.stream().forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
-
-                // int Y = (int) box.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-                // int X = (int) box.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-                // GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.BOX_MARKER);
             });
-        });
 
-        /* Draw the powerUp */
-        Platform.runLater(() -> {
+            /* Draw the powerUp */
             pUpList.stream().filter(PowerUp::isReleased).forEach(pUp -> {
                 Image powerUpImage = null;
                 PowerUp.Type type = pUp.getType();
@@ -236,11 +225,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                 }
                 this.gCForeground.drawImage(powerUpImage, pUp.getPosition().getX(), pUp.getPosition().getY());
             });
-        });
 
-        /* Draw bombs */
-        Platform.runLater(() -> {
-            bombList.forEach(bomb -> {
+            /* Draw bombs */
+            bombList.stream().forEach(bomb -> {
                 Image bombImage = null;
                 if (bomb.getPierce()) {
                     bombImage = AnimatedObjectsSprites.PIERCE_BOMB.getSprites()[0][bomb.getIndexAnimation()
@@ -251,38 +238,28 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                 }
                 this.gCForeground.drawImage(bombImage, bomb.getPosition().getX(), bomb.getPosition().getY());
             });
-        });
 
-        /* Draw the fire */
-        Platform.runLater(() -> {
-            fireList.forEach(fire -> {
+            /* Draw the fire */
+            fireList.stream().forEach(fire -> {
                 this.gCForeground.drawImage(
                         AnimatedObjectsSprites.FIRE.getSprites()[0][fire.getIndexAnimation() % FIRE_N_ANIMATION],
                         fire.getPosition().getX(), fire.getPosition().getY());
             });
-        });
 
-        /* Draw enemies */
-        Platform.runLater(() -> {
-            enemyList.forEach(enemy -> {
+            /* Draw enemies */
+            enemyList.stream().forEach(enemy -> {
                 this.gCForeground.drawImage(
                         this.enemySprites[enemy.getDirectionIndex()][enemy.getAnimationIndex() % ENEMY_N_ANIMATION],
                         enemy.getPosition().getX(), enemy.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT,
                         ENEMY_WIDTH, ENEMY_HEIGHT);
             });
-        });
 
-        /* Draw the BomberMan */
-        Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
-        Platform.runLater(() -> {
+            /* Draw the BomberMan */
+            Bomber bomberTemp = ((MatchController) this.getController()).getBomber();
             this.gCForeground.drawImage(
                     this.bomberSprites[bomberTemp.getDirectionIndex()][bomberTemp.getAnimationIndex()
                             % BOMBER_N_ANIMATION],
                     bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
-
-            // int X = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-            // int Y = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-            // GameBoard.getInstance().setPlayerLocation(new BoardPointImpl(X, Y));
         });
     }
 
