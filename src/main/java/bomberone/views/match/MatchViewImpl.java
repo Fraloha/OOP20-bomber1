@@ -93,9 +93,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
 
     private Image[][] bomberSprites;
     private Image[][] enemySprites;
-    private int counter = 0;
-    private int counterTwo = 0;
-    private int counterThree = 0;
 
     /**
      * When the quitButton is pressed, this method stop the Game.
@@ -164,12 +161,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         this.quitButton.setImage(GameImages.QUIT_GAME.getImage());
         /* Draw the background */
         Image backgroundImage = GameImages.BACKGROUND.getImage();
-        BoardPoint currentPoint = new BoardPointImpl(0, 0);
         for (int i = 0; i < WORLD_CELLS; i++) {
             for (int j = 0; j < WORLD_CELLS; j++) {
                 gCBackground.drawImage(backgroundImage, i * CELL_SIZE, j * CELL_SIZE);
-                currentPoint.setPoint(i, j);
-                GameBoard.getInstance().setItem(currentPoint, Markers.GROUND_MARKER);
             }
         }
         /* Draw the spawner */
@@ -181,9 +175,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         ((MatchController) this.getController()).getHardWallList().forEach(wall -> {
             gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
 
-            int X = (int) wall.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-            int Y = (int) wall.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-            GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.WALL_MARKER);
+            // int X = (int) wall.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+            // int Y = (int) wall.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+            // GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.WALL_MARKER);
         });
 
     }
@@ -209,14 +203,14 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         Platform.runLater(() -> {
             Image boxImage = GameImages.BOX.getImage();
             
-            GameBoard.getInstance().resetBoxes();
+            // GameBoard.getInstance().resetBoxes();
             boxList.forEach(box -> {
                 this.gCForeground.drawImage(boxImage, box.getPosition().getX(), box.getPosition().getY(), IMAGE_SIZE,
                         IMAGE_SIZE);
 
-                int Y = (int) box.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-                int X = (int) box.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-                GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.BOX_MARKER);
+                // int Y = (int) box.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+                // int X = (int) box.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+                // GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.BOX_MARKER);
             });
         });
 
@@ -286,9 +280,9 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
                             % BOMBER_N_ANIMATION],
                     bomberTemp.getPosition().getX(), bomberTemp.getPosition().getY() - ANIMATED_ENTITY_IMAGE_HEIGHT);
 
-            int X = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-            int Y = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-            GameBoard.getInstance().setPlayerLocation(new BoardPointImpl(X, Y));
+            // int X = (int) bomberTemp.getPosition().getY() / MatchViewImpl.CELL_SIZE;
+            // int Y = (int) bomberTemp.getPosition().getX() / MatchViewImpl.CELL_SIZE;
+            // GameBoard.getInstance().setPlayerLocation(new BoardPointImpl(X, Y));
         });
     }
 
