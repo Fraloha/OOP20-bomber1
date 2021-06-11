@@ -90,7 +90,7 @@ public class WorldImpl implements World {
         for (int y = 0; y < WorldImpl.DIMENSION; y++) {
             for (int x = 0; x < WorldImpl.DIMENSION; x++) {
                 if (mapLayout.get(y).get(x).equals("H")) {
-                    collection.spawn(objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
+                    this.collection.spawn(objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
                 }
             }
         }
@@ -277,8 +277,8 @@ public class WorldImpl implements World {
             this.respawn = false;
         }
         if (this.respawn) {
-            if (collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
-                collection
+            if (this.collection.getEnemyList().size() != WorldImpl.ENEMYNUMBER) {
+                this.collection
                         .spawn(objectFactory.createEnemy(
                                 new P2d((WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2,
                                         (WorldImpl.DIMENSION / 2) * WorldImpl.FRAME - WorldImpl.FRAME / 2),
@@ -298,13 +298,13 @@ public class WorldImpl implements World {
         wallBoxList.addAll(collection.getBoxList());
         for (GameObject wall : wallBoxList) {
             if (wall.getCollider().intersects(this.bomberMan.getCollider())) {
-                listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
+                this.listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
             }
         }
         for (Enemy enemy : enemyList) {
             for (GameObject wall : wallBoxList) {
                 if (wall.getCollider().intersects(enemy.getCollider())) {
-                    listener.notifyEvent(new HitBorderEvent(enemy, wall));
+                    this.listener.notifyEvent(new HitBorderEvent(enemy, wall));
                 }
             }
         }
@@ -318,7 +318,7 @@ public class WorldImpl implements World {
         List<Bomb> bombList = collection.getBombList();
         for (Bomb bomb : bombList) {
             if (!bomb.getExplosion().equals(Optional.empty())) {
-                listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
+                this.listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
             }
         }
     }
