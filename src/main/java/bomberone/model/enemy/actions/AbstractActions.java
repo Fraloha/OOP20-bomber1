@@ -1,6 +1,5 @@
 package bomberone.model.enemy.actions;
 
-import java.util.Random;
 import bomberone.model.enemy.Enemy;
 import bomberone.model.common.Direction;
 
@@ -16,13 +15,15 @@ public abstract class AbstractActions implements Actions {
      * constant makes the animation as smooth as possible.
      */
     private static final int ANIMATION_FRAME_QUANTITY = 10;
-    protected Enemy selectedEnemy;
-    protected Random randomGenerator;
+
+    /**
+     * The enemy object that uses an instance of AbstractActions.
+     */
+    private Enemy selectedEnemy;
 
     /* Constructors. */
     public AbstractActions(final Enemy newEnemy) {
         this.selectedEnemy = newEnemy;
-        this.randomGenerator = new Random();
     }
 
     /* Methods. */
@@ -53,6 +54,22 @@ public abstract class AbstractActions implements Actions {
         } else {
             this.selectedEnemy.setDirectionIndex(0);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setEnemy(final Enemy newEnemy) {
+        this.selectedEnemy = newEnemy;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Enemy getEnemy() {
+        return this.selectedEnemy;
     }
 
     /**
