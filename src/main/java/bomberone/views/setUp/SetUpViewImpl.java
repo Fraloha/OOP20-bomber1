@@ -65,6 +65,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
 
     private Font font = ResourcesLoader.getInstance().getFont(SetUpViewImpl.SIZE);
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void init() {
         this.drawSetUp();
@@ -72,12 +75,18 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.defaultSetUp();
     }
 
+    /**
+     * This method sets the default settings.
+     */
     private void defaultSetUp() {
         ((SetUpController) this.getController()).setSkin(Skins.WHITE);
         ((SetUpController) this.getController()).setControls(Controls.WASD);
         ((SetUpController) this.getController()).setDifficulty(Difficulty.EASY);
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void drawSetUp() {
         this.boxPlayer.setImage(GameImages.P1.getImage());
@@ -95,17 +104,28 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.textNickname.setFont(ResourcesLoader.getInstance().getFont(TF_NICKNAME_FONTSIZE));
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void switchToGame() {
         SoundsHandler.getInstance().stopAudio();
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.MATCH, this.getController().getModel());
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public final void switchToHome() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
 
+    /**
+     * This method set the skin of the BomberMan.
+     * @param sign
+     *        If sign is "+" the boxPlayer shift to right, if "-" it shift to left. 
+     */
     private void setPlayer(final String sign) {
         if (sign.equals("+")) {
             if (count == 3) {
@@ -143,16 +163,25 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         }
     }
 
+    /**
+     * This method is connected to buttonDx.
+     */
     @FXML
     private void dx() {
         this.setPlayer("+");
     }
 
+    /**
+     * This method is connected to buttonSx.
+     */
     @FXML
     private void sx() {
         this.setPlayer("-");
     }
 
+    /**
+     * This method is connected to buttonNormal.
+     */
     @FXML
     private void setNormal() {
         this.buttonNormal.setImage(GameImages.EASY_SET.getImage());
@@ -160,6 +189,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         ((SetUpController) this.getController()).setDifficulty(Difficulty.EASY);
     }
 
+    /**
+     * This method is connected to buttonHard.
+     */
     @FXML
     private void setHard() {
         this.buttonHard.setImage(GameImages.HARD_SET.getImage());
@@ -167,6 +199,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         ((SetUpController) this.getController()).setDifficulty(Difficulty.HARD);
     }
 
+    /**
+     * This method is connected to buttonWASD.
+     */
     @FXML
     private void setWASD() {
         this.buttonWASD.setImage(GameImages.WASD_SET.getImage());
@@ -174,6 +209,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         ((SetUpController) this.getController()).setControls(Controls.WASD);
     }
 
+    /**
+     * This method is connected to buttonArrows.
+     */
     @FXML
     private void setArrows() {
         this.buttonArrows.setImage(GameImages.ARROWS_SET.getImage());
@@ -181,16 +219,26 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         ((SetUpController) this.getController()).setControls(Controls.ARROW);
     }
 
+    /**
+     * This method is connected to buttonPlay.
+     */
     @FXML
     private void setPlay() {
         this.buttonPlay.setImage(GameImages.PLAY_SET.getImage());
     }
 
+    /**
+     * This method is connected to buttonPlay.
+     */
     @FXML
     private void unsetPlay() {
         this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
     }
 
+    /**
+     * This method is connected to buttonDx.
+     * If all the settings are been set, it calls the method switchToGame.
+     */
     @FXML
     public final void play() {
         if (!textNickname.getText().isEmpty() && !textNickname.getText().equals("Insert Nickname")) {
