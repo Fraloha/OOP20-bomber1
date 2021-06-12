@@ -18,7 +18,7 @@ public interface Navigation {
      * This method checks if the BoardPoint object passed as argument was already
      * explored.
      * 
-     * @param poitnToCheck The point to check.
+     * @param pointToCheck The point to check.
      * @return true if the point was already explored, otherwise false.
      */
     boolean explored(BoardPoint pointToCheck);
@@ -28,9 +28,7 @@ public interface Navigation {
      * particular, this method builds the tree or graph, where the BFS has to be
      * performed.
      * 
-     * @param currentNode  The current node to set as a parent of the nodes that
-     *                     will be created.
-     * @param currentPoint The currentPosition of the node.
+     * @param currentNode The node from which the neighbors are searched.
      */
     void addTargets(Node currentNode);
 
@@ -38,8 +36,7 @@ public interface Navigation {
      * This method search the shortest path to reach the player. The searching
      * algorithm is a Breadth-First Search algorithm.
      * 
-     * @param initialPosition The enemy position.
-     * @param destination     The player position.
+     * @param enemyLocation The initial enemy's position.
      * @return A list of directions that defines the shortest path.
      */
     List<Direction> searchShortestPath(P2d enemyLocation);
