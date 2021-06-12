@@ -19,7 +19,7 @@ public final class IntermediateBehavior extends AbstractActions {
         super(newEnemy);
         this.playerFound = false;
         this.navigator = new NavigationImpl();
-        this.basicActions = new BasicBehavior(this.selectedEnemy);
+        this.basicActions = new BasicBehavior(this.getEnemy());
     }
 
     /* Methods. */
@@ -29,16 +29,16 @@ public final class IntermediateBehavior extends AbstractActions {
      */
     @Override
     public void doActions() {
-        BoardPoint enemyLocation = BomberOneBoard.getInstance().convertPosition(this.selectedEnemy.getPosition());
-        
+        BoardPoint enemyLocation = BomberOneBoard.getInstance().convertPosition(this.getEnemy().getPosition());
+
         if (this.playerFound) {
             try {
-                Direction nextStep = this.navigator.searchShortestPath(this.selectedEnemy.getPosition()).get(0);
-                this.selectedEnemy.setDir(nextStep);
+                Direction nextStep = this.navigator.searchShortestPath(this.getEnemy().getPosition()).get(0);
+                this.getEnemy().setDir(nextStep);
                 this.setSprite();
                 this.manageAnimations();
                 this.nextMove();
-            } catch(Exception e) {
+            } catch (Exception e) {
                 System.out.println("Unable to find a path.");
             }
         } else {

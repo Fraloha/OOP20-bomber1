@@ -6,6 +6,7 @@ public class BoardPointImpl implements BoardPoint {
     private int x;
     private int y;
 
+    /* Constructors. */
     public BoardPointImpl(final int xToSet, final int yToSet) {
         this.x = xToSet;
         this.y = yToSet;

@@ -1,5 +1,7 @@
 package bomberone.model.enemy.actions;
 
+import java.util.Random;
+
 import bomberone.model.common.Direction;
 import bomberone.model.enemy.Enemy;
 
@@ -11,11 +13,13 @@ public final class BasicBehavior extends AbstractActions {
      * his direction.
      */
     private static final int FRAMES_TO_CHANGE_DIRECTION = 120;
+    private Random randomGenerator;
     private int nextDirectionCounter;
 
     /* Constructors. */
     public BasicBehavior(final Enemy enemy) {
         super(enemy);
+        this.randomGenerator = new Random();
         this.nextDirectionCounter = BasicBehavior.FRAMES_TO_CHANGE_DIRECTION;
     }
 
@@ -30,11 +34,11 @@ public final class BasicBehavior extends AbstractActions {
             // Generating a new random direction.
             do {
                 newDirection = this.randomGenerator.nextInt(4);
-            } while (newDirection == this.selectedEnemy.getDir().ordinal());
+            } while (newDirection == this.getEnemy().getDir().ordinal());
 
             // Setting the new direction.
-            this.selectedEnemy.setDir(Direction.values()[newDirection]);
-            this.selectedEnemy.setAnimationIndex(0);
+            this.getEnemy().setDir(Direction.values()[newDirection]);
+            this.getEnemy().setAnimationIndex(0);
 
             // Setting the sprite on the basis of the direction.
             this.setSprite();

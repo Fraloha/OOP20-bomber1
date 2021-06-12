@@ -293,8 +293,11 @@ public class GameBoard {
      * @param newMarker      The new Marker.
      */
     public void changeAllItems(final Markers markerToChange, final Markers newMarker) {
-        while (this.changeItem(markerToChange, newMarker))
-            ;
+        boolean result;
+
+        do {
+            result = this.changeItem(markerToChange, newMarker);
+        } while (result);
     }
 
     /**
@@ -317,6 +320,9 @@ public class GameBoard {
         this.changeAllItems(markerToChange, Markers.GROUND_MARKER);
     }
 
+    /**
+     * Writes the whole board to standard output.
+     */
     public void printBoard() {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {

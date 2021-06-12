@@ -10,17 +10,17 @@ public enum Markers {
     /**
      * 
      */
-    GROUND_MARKER('G'), 
+    GROUND_MARKER('G'),
 
     /**
      * 
      */
-    BOX_MARKER('B'), 
+    BOX_MARKER('B'),
 
     /**
      * 
      */
-    WALL_MARKER('W'), 
+    WALL_MARKER('W'),
 
     /**
      * 
