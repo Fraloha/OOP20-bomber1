@@ -20,9 +20,11 @@ public abstract class AbstractActions implements Actions {
      * The enemy object that uses an instance of AbstractActions.
      */
     private Enemy selectedEnemy;
+    private int animationCounter;
 
     /* Constructors. */
     public AbstractActions(final Enemy newEnemy) {
+        this.animationCounter = 0;
         this.selectedEnemy = newEnemy;
     }
 
@@ -32,11 +34,11 @@ public abstract class AbstractActions implements Actions {
      */
     @Override
     public void manageAnimations() {
-        if (this.selectedEnemy.getFrameCounterAnimation() == AbstractActions.ANIMATION_FRAME_QUANTITY) {
-            this.selectedEnemy.setFrameCounterAnimation(0);
+        if (this.animationCounter == AbstractActions.ANIMATION_FRAME_QUANTITY) {
+            this.animationCounter = 0;
             this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
         } else {
-            this.selectedEnemy.setFrameCounterAnimation(this.selectedEnemy.getFrameCounterAnimation() + 1);
+            this.animationCounter++;
         }
     }
 

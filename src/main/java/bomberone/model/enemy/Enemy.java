@@ -12,8 +12,4 @@ public interface Enemy extends MoveableObject {
     boolean isHittable();
 
     void update(int elapsed);
-
-    int getFrameCounterAnimation();
-
-    void setFrameCounterAnimation(int i);
 }

@@ -23,7 +23,6 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
-    private int frameCounterAnimation;
     private boolean isHittable = false;
 
     /* Constructors. */
@@ -68,14 +67,6 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
                 super.update(elapsed);
             }
         }
-    }
-
-    public int getFrameCounterAnimation() {
-        return this.frameCounterAnimation;
-    }
-
-    public void setFrameCounterAnimation(final int value) {
-        this.frameCounterAnimation = value;
     }
 
     public boolean isHittable() {
