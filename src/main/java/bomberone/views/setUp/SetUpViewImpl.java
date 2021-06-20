@@ -98,9 +98,9 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
         this.buttonArrows.setImage(GameImages.ARROWS_UNSET.getImage());
         this.buttonPlay.setImage(GameImages.PLAY_UNSET.getImage());
         this.buttonHome.setImage(GameImages.QUIT_GAME.getImage());
-        this.nickname.setFont(font);
-        this.difficulty.setFont(font);
-        this.controls.setFont(font);
+        this.nickname.setFont(this.font);
+        this.difficulty.setFont(this.font);
+        this.controls.setFont(this.font);
         this.textNickname.setFont(ResourcesLoader.getInstance().getFont(TF_NICKNAME_FONTSIZE));
     }
 
@@ -128,20 +128,20 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
      */
     private void setPlayer(final String sign) {
         if (sign.equals("+")) {
-            if (count == 3) {
-                count = 0;
+            if (this.count == 3) {
+                this.count = 0;
             } else {
-                count++;
+                this.count++;
             }
         } else {
-            if (count == 0) {
-                count = 3;
+            if (this.count == 0) {
+                this.count = 3;
             } else {
-                count--;
+                this.count--;
             }
         }
 
-        switch (count) {
+        switch (this.count) {
         case 0:
             this.boxPlayer.setImage(GameImages.P1.getImage());
             ((SetUpController) this.getController()).setSkin(Skins.WHITE);
@@ -241,8 +241,8 @@ public class SetUpViewImpl extends ViewImpl implements SetUpView {
      */
     @FXML
     public final void play() {
-        if (!textNickname.getText().isEmpty() && !textNickname.getText().equals("Insert Nickname")) {
-            ((SetUpController) this.getController()).setUser(textNickname.getText());
+        if (!this.textNickname.getText().isEmpty() && !this.textNickname.getText().equals("Insert Nickname")) {
+            ((SetUpController) this.getController()).setUser(this.textNickname.getText());
             ((SetUpController) this.getController()).buildUser();
             this.switchToGame();
         } else {

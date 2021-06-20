@@ -27,6 +27,6 @@ public enum Maps {
     }
 
     public String getFilePath() {
-        return RES_PATH + this.fileName;
+        return Maps.RES_PATH + this.fileName;
     }
 }

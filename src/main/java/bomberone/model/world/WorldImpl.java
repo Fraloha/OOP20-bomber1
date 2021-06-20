@@ -63,7 +63,7 @@ public class WorldImpl implements World {
         } else {
             this.respawn = true;
         }
-        this.bomberMan = (BomberImpl) objectFactory.createBomber(new P2d(32, 32), skin);
+        this.bomberMan = (BomberImpl) this.objectFactory.createBomber(new P2d(32, 32), skin);
         this.mapLayout = Maps.MAP1.getList();
         this.setHardWall();
         this.setEnemy(WorldImpl.ENEMYNUMBER);
@@ -89,8 +89,8 @@ public class WorldImpl implements World {
     private void setHardWall() {
         for (int y = 0; y < WorldImpl.DIMENSION; y++) {
             for (int x = 0; x < WorldImpl.DIMENSION; x++) {
-                if (mapLayout.get(y).get(x).equals("H")) {
-                    this.collection.spawn(objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
+                if (this.mapLayout.get(y).get(x).equals("H")) {
+                    this.collection.spawn(this.objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
                 }
             }
         }
@@ -165,7 +165,7 @@ public class WorldImpl implements World {
      */
     @Override
     public final GameObjectCollection getGameObjectCollection() {
-        return collection;
+        return this.collection;
     }
 
     /**
@@ -173,7 +173,7 @@ public class WorldImpl implements World {
      */
     @Override
     public final GameObjectFactory getGameObjectFactory() {
-        return objectFactory;
+        return this.objectFactory;
     }
 
     /**
@@ -198,9 +198,9 @@ public class WorldImpl implements World {
     @Override
     public final void updateState(final int time) {
         if (!this.bomberMan.isAlive()) {
-            List<Enemy> enemyList = collection.getEnemyList();
+            List<Enemy> enemyList = this.collection.getEnemyList();
             for (Enemy enemy : enemyList) {
-                collection.despawn(enemy);
+                this.collection.despawn(enemy);
             }
             this.setEnemy(enemyList.size());
         }
@@ -210,7 +210,7 @@ public class WorldImpl implements World {
         BoardPoint bomberPosition = BomberOneBoard.getInstance().convertPosition(this.bomberMan.getPosition(),
                 Markers.SPOT);
         BomberOneBoard.getInstance().setItem(bomberPosition);
-        for (GameObject obj : collection.getGameObjectCollection()) {
+        for (GameObject obj : this.collection.getGameObjectCollection()) {
             obj.update(time);
         }
 
@@ -227,9 +227,9 @@ public class WorldImpl implements World {
         }
 
         this.checkExplosion();
-        List<GameObject> deathObject = collection.getDespawnedObject();
+        List<GameObject> deathObject = this.collection.getDespawnedObject();
         for (GameObject obj : deathObject) {
-            collection.despawn(obj);
+            this.collection.despawn(obj);
         }
 
     }
@@ -239,11 +239,11 @@ public class WorldImpl implements World {
      */
     @Override
     public final void checkCollision() {
-        List<Fire> fireList = collection.getFireList();
+        List<Fire> fireList = this.collection.getFireList();
         List<GameObject> list = new LinkedList<>();
         list.add(bomberMan);
-        list.addAll(collection.getBoxList());
-        list.addAll(collection.getEnemyList());
+        list.addAll(this.collection.getBoxList());
+        list.addAll(this.collection.getEnemyList());
         for (GameObject obj : list) {
             for (Fire fire : fireList) {
                 if (fire.getCollider().intersects(obj.getCollider())) {
@@ -275,7 +275,7 @@ public class WorldImpl implements World {
      */
     @Override
     public final void checkRespawn() {
-        if (collection.getBoxList().size() == 0) {
+        if (this.collection.getBoxList().size() == 0) {
             this.respawn = false;
         }
         if (this.respawn) {
@@ -294,10 +294,10 @@ public class WorldImpl implements World {
      */
     @Override
     public final void checkBoundary() {
-        List<Enemy> enemyList = collection.getEnemyList();
+        List<Enemy> enemyList = this.collection.getEnemyList();
         List<GameObject> wallBoxList = new LinkedList<>();
-        wallBoxList.addAll(collection.getHardWallList());
-        wallBoxList.addAll(collection.getBoxList());
+        wallBoxList.addAll(this.collection.getHardWallList());
+        wallBoxList.addAll(this.collection.getBoxList());
         for (GameObject wall : wallBoxList) {
             if (wall.getCollider().intersects(this.bomberMan.getCollider())) {
                 this.listener.notifyEvent(new HitBorderEvent(this.bomberMan, wall));
@@ -317,7 +317,7 @@ public class WorldImpl implements World {
      */
     @Override
     public final void checkExplosion() {
-        List<Bomb> bombList = collection.getBombList();
+        List<Bomb> bombList = this.collection.getBombList();
         for (Bomb bomb : bombList) {
             if (!bomb.getExplosion().equals(Optional.empty())) {
                 this.listener.notifyEvent(new ExplosionEvent(bomb.getExplosion().get()));
