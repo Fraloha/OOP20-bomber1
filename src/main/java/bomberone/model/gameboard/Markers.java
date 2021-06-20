@@ -1,31 +1,34 @@
 package bomberone.model.gameboard;
 
+/**
+ * This enumerator contains values to set to a BoardPoint object. Every value
+ * indicates a specific status of a BoardPoint object.
+ */
 public enum Markers {
 
     /**
-     * 
+     * This value indicates that the BoardPoint object is accessible, so walkable.
      */
-    PLAYER_MARKER('P'),
+    ACCESSIBLE('F'),
 
     /**
-     * 
+     * This value indicates that the BoardPoint object is not accessible, so
+     * non-walkable.
      */
-    GROUND_MARKER('G'),
+    NOTACCESSIBLE('N'),
 
     /**
-     * 
+     * This value indicates that the BoardPoint object is not accessible but there
+     * is an removable entity in. If the entity was removed, the BoardPoint's would
+     * be accessible.
      */
-    BOX_MARKER('B'),
+    REMOVABLE('D'),
 
     /**
-     * 
+     * This value indicates that the BoardPoint object is the spot that the enemy
+     * will try to reach using path finding.
      */
-    WALL_MARKER('W'),
-
-    /**
-     * 
-     */
-    ENEMY_MARKER('E');
+    SPOT('X');
 
     private char marker;
 

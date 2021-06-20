@@ -21,6 +21,20 @@ public interface BoardPoint {
     int getY();
 
     /**
+     * This method gets the BoardPoint's marker.
+     * 
+     * @return The point's marker.
+     */
+    Markers getMarker();
+
+    /**
+     * This method gets the current marker's value.
+     * 
+     * @return a character that is the marker value.
+     */
+    char getMarkerValue();
+
+    /**
      * This method sets the BoardPoint's first coordinate.
      * 
      * @param newX The new value of the first coordinate.
@@ -33,6 +47,13 @@ public interface BoardPoint {
      * @param newY The new value of the second coordinate.
      */
     void setY(int newY);
+
+    /**
+     * This method sets a new marker.
+     * 
+     * @param markerToSet the marker to set.
+     */
+    void setMarker(Markers markerToSet);
 
     /**
      * This method sets the BoardPoint's coordinates.

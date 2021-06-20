@@ -15,6 +15,9 @@ public class NavigationImpl implements Navigation {
     private List<BoardPoint> exploredNodes;
     private List<Node> discoveredNodes;
 
+    /**
+     * Creates a new Navigation object.
+     */
     public NavigationImpl() {
         this.exploredNodes = new LinkedList<BoardPoint>();
         this.discoveredNodes = new LinkedList<Node>();
@@ -67,7 +70,7 @@ public class NavigationImpl implements Navigation {
             positionToCheck = this.getNeighbours(position, currentDirection);
 
             if (!this.explored(positionToCheck)) {
-                if (BomberOneBoard.getInstance().isAccessible(positionToCheck)) {
+                if (BomberOneBoard.getInstance().isAccessible(positionToCheck.getX(), position.getY())) {
                     this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck, currentNode));
                 }
             }
@@ -88,7 +91,7 @@ public class NavigationImpl implements Navigation {
         this.discoveredNodes.add(new NodeImpl(null, BomberOneBoard.getInstance().convertPosition(enemyLocation), null));
         while (!this.discoveredNodes.isEmpty()) {
             currentNode = this.discoveredNodes.remove(0);
-            playerLocation = BomberOneBoard.getInstance().findPlayerLocation();
+            playerLocation = BomberOneBoard.getInstance().findSpotLocation();
 
             if (!playerLocation.isEmpty() && currentNode.getPosition().isEquals(playerLocation.get())) {
                 path = currentNode.getPath();

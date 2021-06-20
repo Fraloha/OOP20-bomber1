@@ -4,9 +4,14 @@ import bomberone.model.common.P2d;
 import bomberone.model.match.Difficulty;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
-import bomberone.model.enemy.actions.IntermediateBehavior;
+import bomberone.model.enemy.actions.HardBehavior;
 import bomberone.model.gameObjects.moveable.MoveableObjectImpl;
 
+/**
+ * This class represent an enemy. On the basis of the difficulty chosen by the
+ * user, the enemy has a different behavior. (For further information about the
+ * behavior see the documentation in the actions package.)
+ */
 public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     /* Fields. */
@@ -37,7 +42,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
             this.behavior = new BasicBehavior(this);
             this.setSpeed(LOW_SPEED);
         } else if (mode.equals(Difficulty.HARD)) {
-            this.behavior = new IntermediateBehavior(this);
+            this.behavior = new HardBehavior(this);
             this.setSpeed(HIGH_SPEED);
         }
     }
