@@ -1,13 +1,17 @@
 package bomberone.model.enemy.actions;
 
-import bomberone.model.enemy.EnemyImpl;
+import bomberone.model.enemy.Enemy;
 import bomberone.model.common.Direction;
 import bomberone.model.gameboard.BoardPoint;
 import bomberone.model.bombergameboard.BomberOneBoard;
 import bomberone.model.enemy.navigation.Navigation;
 import bomberone.model.enemy.navigation.NavigationImpl;
 
-public final class IntermediateBehavior extends AbstractActions {
+/**
+ * This class is an enemy behavior and uses a path finding algorithm to find the
+ * player.
+ */
+public final class HardBehavior extends AbstractActions {
 
     /* Fields. */
     private boolean playerFound;
@@ -15,7 +19,12 @@ public final class IntermediateBehavior extends AbstractActions {
     private BasicBehavior basicActions;
 
     /* Constructor. */
-    public IntermediateBehavior(final EnemyImpl newEnemy) {
+    /**
+     * Creates a new IntermediateBehavior object.
+     * 
+     * @param newEnemy The enemy that uses this behavior.
+     */
+    public HardBehavior(final Enemy newEnemy) {
         super(newEnemy);
         this.playerFound = false;
         this.navigator = new NavigationImpl();
@@ -43,11 +52,11 @@ public final class IntermediateBehavior extends AbstractActions {
             }
         } else {
             this.basicActions.doActions();
-            this.playerFound = BomberOneBoard.getInstance().isPlayerVisible(enemyLocation);
+            this.playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyLocation);
             if (this.playerFound) {
                 System.out.println("Found");
                 // GameBoard.getInstance().printBoard();
-                BomberOneBoard.getInstance().isPlayerVisible(enemyLocation);
+                BomberOneBoard.getInstance().isSpotVisible(enemyLocation);
             }
         }
     }

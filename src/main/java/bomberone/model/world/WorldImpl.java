@@ -205,18 +205,20 @@ public class WorldImpl implements World {
             this.setEnemy(enemyList.size());
         }
 
-        BomberOneBoard.getInstance().resetItem(Markers.PLAYER_MARKER);
+        BomberOneBoard.getInstance().resetItem(Markers.SPOT);
         this.bomberMan.update(time);
-        BomberOneBoard.getInstance().setItem(BomberOneBoard.getInstance().convertPosition(this.bomberMan.getPosition()),
-                Markers.PLAYER_MARKER);
+        BoardPoint bomberPosition = BomberOneBoard.getInstance().convertPosition(this.bomberMan.getPosition(),
+                Markers.SPOT);
+        BomberOneBoard.getInstance().setItem(bomberPosition);
         for (GameObject obj : collection.getGameObjectCollection()) {
             obj.update(time);
         }
 
-        BomberOneBoard.getInstance().resetAllItems(Markers.BOX_MARKER);
+        BomberOneBoard.getInstance().resetAllItems(Markers.REMOVABLE);
         for (Box currentBox : collection.getBoxList()) {
-            BoardPoint currentBoxPosition = BomberOneBoard.getInstance().convertPosition(currentBox.getPosition());
-            BomberOneBoard.getInstance().setItem(currentBoxPosition, Markers.BOX_MARKER);
+            BoardPoint currentBoxPosition = BomberOneBoard.getInstance().convertPosition(currentBox.getPosition(),
+                    Markers.REMOVABLE);
+            BomberOneBoard.getInstance().setItem(currentBoxPosition);
         }
 
         if (this.counter == 0) {

@@ -1,54 +1,54 @@
 package bomberone.model.gameboard;
 
+import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import bomberone.model.common.Maps;
 
+/**
+ * This object represent the playground of the game, more clearly a current
+ * status of the game ground. This object is used in the path finding enemy AI.
+ */
 public class GameBoard {
 
-    private static final int BOUNDS_CELLS = 18;
     /* Fields. */
     private int rows;
     private int columns;
-    private char[][] currentGameBoard;
+    private ArrayList<ArrayList<BoardPoint>> currentGameBoard;
 
     /* Constructors. */
     public GameBoard(final int rowsToSet, final int columnsToSet) {
         this.rows = rowsToSet;
         this.columns = columnsToSet;
-        this.currentGameBoard = new char[this.rows][this.columns];
+        this.currentGameBoard = new ArrayList<ArrayList<BoardPoint>>();
 
         // Setting the ground.
-        BoardPoint currentPosition = new BoardPointImpl(0, 0);
         for (int i = 0; i < this.rows; i++) {
+            this.currentGameBoard.add(new ArrayList<BoardPoint>());
             for (int j = 0; j < this.columns; j++) {
-                this.setItem(currentPosition, Markers.GROUND_MARKER);
-                currentPosition.setPoint(i, j);
+                this.currentGameBoard.get(i).add(new BoardPointImpl(i, j, Markers.ACCESSIBLE));
             }
         }
     }
 
-    public GameBoard(final Maps mapLayout) {
-        Markers newMarker;
-        List<List<String>> map = mapLayout.getList();
-        BoardPoint currentPosition = new BoardPointImpl(0, 0);
-
-        this.rows = map.size();
-        this.columns = map.get(0).size();
-        this.currentGameBoard = new char[this.rows][this.columns];
+    public GameBoard(final List<List<String>> mapLayout) {
+        this.rows = mapLayout.size();
+        this.columns = mapLayout.get(0).size();
+        this.currentGameBoard = new ArrayList<ArrayList<BoardPoint>>();
 
         // Setting the map.
         for (int i = 0; i < this.rows; i++) {
+            this.currentGameBoard.add(new ArrayList<BoardPoint>());
             for (int j = 0; j < this.columns; j++) {
 
-                if (map.get(j).get(i).equals("H")) {
-                    newMarker = Markers.WALL_MARKER;
+                BoardPoint newPoint = new BoardPointImpl(j, i);
+                if (mapLayout.get(j).get(i).equals("H")) {
+                    newPoint.setMarker(Markers.NOTACCESSIBLE);
                 } else {
-                    newMarker = Markers.GROUND_MARKER;
+                    newPoint.setMarker(Markers.ACCESSIBLE);
                 }
 
-                currentPosition.setPoint(j, i);
-                this.setItem(currentPosition, newMarker);
+                this.currentGameBoard.get(i).add(newPoint);
             }
         }
     }
@@ -56,12 +56,14 @@ public class GameBoard {
     /* Methods. */
 
     /**
-     * Gets the game board as a 2D char array. For each cell there is a char that
-     * represents the current game object that occupies the position.
+     * Gets the game board as an ArrayList<ArrayList<BoardPoint>>. The first
+     * ArrayList represents the rows of the game board. Every row of the game board
+     * is filled with BoardPoint objects that represent the current status of a
+     * specific tile.
      * 
-     * @return the game board as a 2D char array.
+     * @return the game board as an ArrayList<ArrayList<BoardPoint>>.
      */
-    public char[][] getGameBoard() {
+    public ArrayList<ArrayList<BoardPoint>> getGameBoard() {
         return this.currentGameBoard;
     }
 
@@ -70,7 +72,7 @@ public class GameBoard {
      * 
      * @param gameBoard the new game board.
      */
-    public void setGameBoard(final char[][] gameBoard) {
+    public void setGameBoard(final ArrayList<ArrayList<BoardPoint>> gameBoard) {
         this.currentGameBoard = gameBoard;
     }
 
@@ -93,12 +95,12 @@ public class GameBoard {
     }
 
     /**
-     * This method finds the player position in the game board.
+     * This method finds the spot position in the game board.
      * 
-     * @return the player position.
+     * @return the spot position.
      */
-    public Optional<BoardPoint> findPlayerLocation() {
-        return this.searchMarker(Markers.PLAYER_MARKER);
+    public Optional<BoardPoint> findSpotLocation() {
+        return this.searchMarker(Markers.SPOT);
     }
 
     /**
@@ -108,11 +110,49 @@ public class GameBoard {
      * @param locationToCheck the position to check.
      * @return true if the position is valid, otherwise false.
      */
-    private boolean isLegal(final BoardPoint locationToCheck) {
-        boolean result = locationToCheck.getX() >= 0 && locationToCheck.getX() < BOUNDS_CELLS ? true : false;
-        boolean secondResult = locationToCheck.getY() >= 0 && locationToCheck.getY() < BOUNDS_CELLS ? true : false;
+    public boolean isLegal(final BoardPoint locationToCheck) {
+        boolean result = locationToCheck.getX() >= 0 && locationToCheck.getX() < this.rows ? true : false;
+        boolean secondResult = locationToCheck.getY() >= 0 && locationToCheck.getY() < this.columns ? true : false;
 
         return result && secondResult;
+    }
+
+    /**
+     * This method checks if the arguments passed could be an actual position.
+     * 
+     * @param x the first coordinate.
+     * @param y the second coordinate.
+     * @return true if the position is in the game board boundaries, otherwise
+     *         false.
+     */
+    public boolean isLegal(final int x, final int y) {
+        return (x >= 0 && x < this.rows) && (y >= 0 && y < this.columns);
+    }
+
+    /**
+     * This method gets an item at the position specified by the arguments.
+     * 
+     * @param x the first coordinate of the board point.
+     * @param y the second coordinate of the board point.
+     * @return the BoardPoint object.
+     */
+    public Optional<BoardPoint> getItem(final int x, final int y) {
+        return this.isLegal(x, y) ? Optional.of(this.currentGameBoard.get(x).get(y)) : Optional.empty();
+    }
+
+    /**
+     * This method sets an item at the position specified by the arguments.
+     * 
+     * @param newPoint The point to set.
+     * @return true if the item is valid, otherwise false.
+     */
+    public boolean setItem(final BoardPoint newPoint) {
+        boolean result = this.isLegal(newPoint);
+        if (result) {
+            this.currentGameBoard.get(newPoint.getX()).set(newPoint.getY(), newPoint);
+        }
+
+        return result;
     }
 
     /**
@@ -121,53 +161,43 @@ public class GameBoard {
      * @param locationToSet the position where the marker has to be set.
      * @param marker        the marker to set.
      */
-    public void setItem(final BoardPoint locationToSet, final Markers marker) {
-        int currentX = locationToSet.getX();
-        int currentY = locationToSet.getY();
-        this.currentGameBoard[currentX][currentY] = this.isLegal(locationToSet) ? marker.getMarker() : 'N';
+    public boolean setItem(final int x, final int y, final Markers marker) {
+        Optional<BoardPoint> item = this.getItem(x, y);
+
+        if (!item.isEmpty()) {
+            this.currentGameBoard.get(x).get(y).setMarker(marker);
+        }
+
+        return !item.isEmpty();
     }
 
     /**
-     * This method sets a marker to some specified positions.
+     * This method sets some new BoardPoints object to some specified positions.
      * 
      * @param positions A List of BoardPoint, so the positions where the marker has
      *                  to be set.
-     * @param marker    The marker to set.
      */
-    public void setItems(final List<BoardPoint> positions, final Markers marker) {
+    public void setItems(final List<BoardPoint> positions) {
         for (BoardPoint currentPosition : positions) {
-            this.setItem(currentPosition, marker);
+            this.setItem(currentPosition);
         }
     }
 
     /**
-     * This method gets an item at the position specified by the BoardPoint object
-     * passed as an argument.
+     * This method checks if the position specified by the arguments is accessible,
+     * so checks if the marker in the position is a walkable marker.
      * 
-     * @param location the item's position.
-     * @return the marker of the specified position.
-     */
-    public char getItem(final BoardPoint location) {
-        if (this.isLegal(location)) {
-            return this.currentGameBoard[location.getX()][location.getY()];
-        } else {
-            return 'N';
-        }
-    }
-
-    /**
-     * This method checks if the position specified by the argument is accessible,
-     * so checks if the marker in the position is the ground marker.
-     * 
-     * @param locationToCheck the position to check.
+     * @param x The first coordinate of the point to check.
+     * @param y The second coordinate of the point to check.
      * @return true if the marker in the position is equal to the ground marker,
      *         otherwise false.
      */
-    public boolean isAccessible(final BoardPoint locationToCheck) {
-        char item = this.getItem(locationToCheck);
-        boolean result = item != Markers.BOX_MARKER.getMarker() && item != Markers.WALL_MARKER.getMarker() ? true
-                : false;
-        return (item != 'N') && result;
+    public boolean isAccessible(final int x, final int y) {
+        boolean result = this.isLegal(x, y);
+        Markers marker = this.currentGameBoard.get(x).get(y).getMarker();
+        boolean secondResult = marker == Markers.ACCESSIBLE || marker == Markers.SPOT;
+
+        return result && secondResult;
     }
 
     /**
@@ -183,30 +213,45 @@ public class GameBoard {
      */
     private boolean checkAccessibility(final BoardPoint currentPoint, final BoardPoint destination,
             final Accessibility mode) {
+        int k;
+        int m;
+        boolean result = false;
+        int currentCoordinates;
+        int destinationCoordinates;
 
-        boolean result = true;
-        int currentCoordinates = mode.equals(Accessibility.ROWS) ? currentPoint.getX() : currentPoint.getY();
-        int destinationCoordinates = mode.equals(Accessibility.ROWS) ? destination.getX() : destination.getY();
+        if (mode.equals(Accessibility.ROWS)) {
+            currentCoordinates = currentPoint.getY();
+            destinationCoordinates = destination.getY();
+            k = Math.min(currentPoint.getX(), destination.getX());
+            m = Math.max(currentPoint.getX(), destination.getX());
+        } else {
+            currentCoordinates = currentPoint.getX();
+            destinationCoordinates = destination.getX();
+            k = Math.min(currentPoint.getY(), destination.getY());
+            m = Math.max(currentPoint.getY(), destination.getY());
+        }
 
         if (currentCoordinates == destinationCoordinates) {
-            int k = mode.equals(Accessibility.ROWS) ? Math.min(currentPoint.getY(), destination.getY())
-                    : Math.min(currentPoint.getX(), destination.getX());
-            int m = mode.equals(Accessibility.ROWS) ? Math.max(currentPoint.getY(), destination.getY())
-                    : Math.max(currentPoint.getX(), destination.getX());
-            BoardPoint nextPoint = new BoardPointImpl(k, m);
-
+            boolean check = true;
             while (k <= m) {
-                if (!this.isLegal(nextPoint) || !this.isAccessible(nextPoint)) {
-                    result = false;
+                if (mode.equals(Accessibility.ROWS)) {
+                    if (!this.isLegal(k, currentCoordinates) || !this.isAccessible(k, currentCoordinates)) {
+                        check = false;
+                    }
+                } else {
+                    if (!this.isLegal(currentCoordinates, k) || !this.isAccessible(currentCoordinates, k)) {
+                        check = false;
+                    }
+                }
+
+                if (check) {
+                    result = true;
+                } else {
                     break;
                 }
                 k++;
-                nextPoint.setPoint(k, m);
             }
-        } else {
-            result = false;
         }
-
         return result;
     }
 
@@ -218,9 +263,9 @@ public class GameBoard {
      * @param currentPosition The starting position.
      * @return true if the player is visible, otherwise false.
      */
-    public boolean isPlayerVisible(final BoardPoint currentPosition) {
+    public boolean isSpotVisible(final BoardPoint currentPosition) {
         boolean result = false;
-        Optional<BoardPoint> playerLocation = this.findPlayerLocation();
+        Optional<BoardPoint> playerLocation = this.findSpotLocation();
 
         if (!playerLocation.isEmpty()) {
             result = this.checkAccessibility(currentPosition, playerLocation.get(), Accessibility.ROWS)
@@ -231,13 +276,35 @@ public class GameBoard {
     }
 
     /**
+     * This method checks if the BoardPoint marked as a spot is visible from the
+     * position passed as arguments.
+     * 
+     * @param x The first coordinate of the current position.
+     * @param y The second coordinate of the current position.
+     * @return true if the spot is on the same row or column of the current position
+     *         and all the BoardPoint objects are marked as accessible.
+     */
+    public boolean isSpotVisible(final int x, final int y) {
+        boolean result = false;
+        Optional<BoardPoint> currentPosition = this.getItem(x, y);
+        Optional<BoardPoint> spotLocation = this.findSpotLocation();
+
+        if (!spotLocation.isEmpty() && !currentPosition.isEmpty()) {
+            result = this.checkAccessibility(currentPosition.get(), spotLocation.get(), Accessibility.ROWS)
+                    || this.checkAccessibility(currentPosition.get(), spotLocation.get(), Accessibility.COLUMNS);
+        }
+
+        return result;
+    }
+
+    /**
      * This method sets the player position in the game board.
      * 
      * @param newPosition The new position of the player.
      */
-    public void setPlayerLocation(final BoardPoint newPosition) {
-        this.resetItem(Markers.PLAYER_MARKER);
-        this.setItem(newPosition, Markers.PLAYER_MARKER);
+    public void setSpotLocation(final int x, final int y) {
+        this.resetItem(Markers.SPOT);
+        this.setItem(new BoardPointImpl(x, y, Markers.SPOT));
     }
 
     /**
@@ -249,18 +316,20 @@ public class GameBoard {
      *         Optional object.
      */
     public Optional<BoardPoint> searchMarker(final Markers markerToFind) {
-        BoardPoint itemPoint = new BoardPointImpl(0, 0);
         Optional<BoardPoint> position = Optional.empty();
+        Iterator<ArrayList<BoardPoint>> rowsIterator = this.currentGameBoard.iterator();
 
-        for (int i = 0; i < this.rows; i++) {
-            for (int j = 0; j < this.columns; j++) {
-                if (this.getItem(itemPoint) == markerToFind.getMarker()) {
-                    position = Optional.of(itemPoint);
+        while (rowsIterator.hasNext()) {
+            Iterator<BoardPoint> itemIterator = rowsIterator.next().iterator();
+            while (itemIterator.hasNext()) {
+                BoardPoint currentItem = itemIterator.next();
+                if (currentItem.getMarker() == markerToFind) {
+                    position = Optional.of(currentItem);
                     break;
                 }
-                itemPoint.setPoint(i, j);
             }
         }
+
         return position;
     }
 
@@ -279,7 +348,9 @@ public class GameBoard {
         if (itemToChange.isEmpty()) {
             result = false;
         } else {
-            this.setItem(itemToChange.get(), newMarker);
+            BoardPoint newItem = itemToChange.get();
+            newItem.setMarker(newMarker);
+            this.setItem(newItem);
         }
 
         return result;
@@ -307,7 +378,7 @@ public class GameBoard {
      * @param markerToChange The marker to change
      */
     public void resetItem(final Markers markerToChange) {
-        this.changeItem(markerToChange, Markers.GROUND_MARKER);
+        this.changeItem(markerToChange, Markers.ACCESSIBLE);
     }
 
     /**
@@ -317,7 +388,7 @@ public class GameBoard {
      * @param markerToChange The maker to change.
      */
     public void resetAllItems(final Markers markerToChange) {
-        this.changeAllItems(markerToChange, Markers.GROUND_MARKER);
+        this.changeAllItems(markerToChange, Markers.ACCESSIBLE);
     }
 
     /**
@@ -326,7 +397,7 @@ public class GameBoard {
     public void printBoard() {
         for (int i = 0; i < this.rows; i++) {
             for (int j = 0; j < this.columns; j++) {
-                System.out.print(this.getItem(new BoardPointImpl(i, j)) + "  ");
+                System.out.print(this.getItem(i, j).get().getMarker().getMarker() + "   ");
             }
             System.out.println();
         }

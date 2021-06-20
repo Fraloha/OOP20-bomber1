@@ -32,9 +32,20 @@ import javafx.scene.image.Image;
  */
 public final class RankView extends ViewImpl {
 
-    private static final int FONT_SIZE = 20;
     /* Fields. */
+    /**
+     * This constant indicates the number of ranks.
+     */
     private static final int RANKS = 2;
+
+    /**
+     * This constant indicates the font size.
+     */
+    private static final int FONT_SIZE = 20;
+
+    /**
+     * This constant indicates the size of the button images.
+     */
     private static final int BUTTONS_IMAGES = 2;
 
     private int currentRank;
@@ -75,6 +86,9 @@ public final class RankView extends ViewImpl {
     @FXML
     private ImageView imageViewNextButton;
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public void init() {
         SoundsHandler.getInstance().start(GameSounds.HOME);
@@ -93,7 +107,7 @@ public final class RankView extends ViewImpl {
         this.loadRanks();
 
         // Setting the initial rank to show.
-        this.currentRank = 0;
+        this.currentRank = this.getController().getModel().getCurrentMatch().getDifficulty().ordinal();
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
@@ -150,6 +164,11 @@ public final class RankView extends ViewImpl {
         });
     }
 
+    /**
+     * This method initiliaze the TableView object, setting the font and the style.
+     * 
+     * @param fontToSet The font of the cells.
+     */
     private void tableViewInitialization(final Font fontToSet) {
 
         this.tableView.setEditable(false);
@@ -230,9 +249,11 @@ public final class RankView extends ViewImpl {
         this.imageViewRankTitle.setImage(GameImages.RANKVIEWTITLE.getImage());
     }
 
+    /**
+     * This method loads the ranks.
+     */
     private void loadRanks() {
         // Loading the ranks.
-
         ObservableList<User> standardRank = FXCollections
                 .observableList(((RankController) this.getController()).getStdRank());
         ObservableList<User> hardRank = FXCollections
@@ -254,6 +275,14 @@ public final class RankView extends ViewImpl {
         }
     }
 
+    /**
+     * This method changes the rank to visualize on the basis of the click event in
+     * the next or previous buttons.
+     * 
+     * @param next This arguments has to be true if the next rank (a more difficult
+     *             mode rank) is to be showed, otherwise false to visualize the
+     *             previous rank (a less difficult mode rank).
+     */
     private void changeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
         this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
