@@ -3,8 +3,12 @@ package bomberone.controllers.rank;
 import java.util.List;
 
 import bomberone.controllers.ControllerImpl;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 
+/**
+ * This class is the rank view controller.
+ */
 public class RankControllerImpl extends ControllerImpl implements RankController {
 
     /**
@@ -30,5 +34,4 @@ public class RankControllerImpl extends ControllerImpl implements RankController
     public void init() {
 
     }
-
 }
