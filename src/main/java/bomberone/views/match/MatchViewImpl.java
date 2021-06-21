@@ -267,9 +267,11 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         int nLifes = ((MatchController) this.getController()).getBomber().getLifes();
         Image lifeYes = GameImages.LIFE_YES.getImage();
         Image lifeNo = GameImages.LIFE_NO.getImage();
-        Platform.runLater(() -> this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo));
-        Platform.runLater(() -> this.lifeTwo.setImage((nLifes >= N_LIFES_TWO) ? lifeYes : lifeNo));
-        Platform.runLater(() -> this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo));
+        Platform.runLater(() -> {
+            this.lifeThree.setImage((nLifes >= N_LIFES_THREE) ? lifeYes : lifeNo);
+            this.lifeTwo.setImage((nLifes >= N_LIFES_TWO) ? lifeYes : lifeNo);
+            this.lifeOne.setImage((nLifes >= N_LIFES_ONE) ? lifeYes : lifeNo);
+        });
     }
 
     /**
