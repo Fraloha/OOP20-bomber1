@@ -29,7 +29,7 @@ public final class BomberOneBoard extends GameBoard {
     /**
      * This method gets the instance of the object.
      * 
-     * @return The instanche of the object.
+     * @return The instance of the object.
      */
     public static BomberOneBoard getInstance() {
         return BomberOneBoard.SINGLETON;

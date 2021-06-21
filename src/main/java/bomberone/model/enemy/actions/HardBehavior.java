@@ -5,6 +5,9 @@ import bomberone.model.common.Direction;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.pathfinding.navigation.Navigation;
 import bomberone.model.pathfinding.navigation.NavigationImpl;
+
+import java.util.List;
+
 import bomberone.model.bombergameboard.BomberOneBoard;
 
 /**
@@ -41,23 +44,17 @@ public final class HardBehavior extends AbstractActions {
         BoardPoint enemyLocation = BomberOneBoard.getInstance().convertPosition(this.getEnemy().getPosition());
 
         if (this.playerFound) {
-            try {
-                Direction nextStep = this.navigator.searchShortestPath(this.getEnemy().getPosition()).get(0);
-                this.getEnemy().setDir(nextStep);
+            List<Direction> computedPath = this.navigator.searchShortestPath(this.getEnemy().getPosition());
+            if (!computedPath.isEmpty()) {
+                this.getEnemy().setDir(computedPath.get(0));
                 this.setSprite();
                 this.manageAnimations();
                 this.nextMove();
-            } catch (Exception e) {
-                System.out.println("Unable to find a path.");
             }
+            computedPath.clear();
         } else {
             this.basicActions.doActions();
             this.playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyLocation);
-            if (this.playerFound) {
-                System.out.println("Found");
-                // GameBoard.getInstance().printBoard();
-                BomberOneBoard.getInstance().isSpotVisible(enemyLocation);
-            }
         }
     }
 }
