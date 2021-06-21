@@ -31,7 +31,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
      */
     @Override
     public final List<GameObject> getGameObjectCollection() {
-        return gameObjectList;
+        return this.gameObjectList;
     }
 
     /**
@@ -40,7 +40,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Bomb> getBombList() {
         List<Bomb> bombList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BombImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BombImpl.class)).forEach(e -> {
             bombList.add((Bomb) e);
         });
         return bombList;
@@ -52,7 +52,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Explosion> getExplosionList() {
         List<Explosion> explosionList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(ExplosionImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(ExplosionImpl.class)).forEach(e -> {
             explosionList.add((Explosion) e);
         });
         return explosionList;
@@ -64,7 +64,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Box> getBoxList() {
         List<Box> boxList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BoxImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(BoxImpl.class)).forEach(e -> {
             boxList.add((Box) e);
         });
         return boxList;
@@ -76,7 +76,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<HardWall> getHardWallList() {
         List<HardWall> hardWallList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(HardWall.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(HardWall.class)).forEach(e -> {
             hardWallList.add((HardWall) e);
         });
         return hardWallList;
@@ -88,7 +88,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<PowerUp> getPowerUpList() {
         List<PowerUp> powerUpList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(PowerUpImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(PowerUpImpl.class)).forEach(e -> {
             powerUpList.add((PowerUp) e);
         });
         return powerUpList;
@@ -100,7 +100,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Enemy> getEnemyList() {
         List<Enemy> enemyList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(EnemyImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(EnemyImpl.class)).forEach(e -> {
             enemyList.add((Enemy) e);
         });
         return enemyList;
@@ -112,7 +112,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
     @Override
     public final List<Fire> getFireList() {
         List<Fire> fireList = new ArrayList<>();
-        gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(FireImpl.class)).forEach(e -> {
+        this.gameObjectList.stream().filter(p -> p != null).filter(p -> p.getClass().equals(FireImpl.class)).forEach(e -> {
             fireList.add((Fire) e);
         });
         return fireList;
@@ -123,7 +123,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
      */
     @Override
     public final void spawn(final GameObject obj) {
-        gameObjectList.add(obj);
+        this.gameObjectList.add(obj);
     }
 
     /**
@@ -131,7 +131,7 @@ public class GameObjectCollectionImpl implements GameObjectCollection {
      */
     @Override
     public final void despawn(final GameObject obj) {
-        gameObjectList.remove(obj);
+        this.gameObjectList.remove(obj);
     }
 
     /**

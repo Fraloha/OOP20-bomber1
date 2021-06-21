@@ -61,7 +61,7 @@ public final class SetUpControllerImpl extends ControllerImpl implements SetUpCo
         this.match = new GameMatchImpl();
         this.match.setDifficulty(this.difficulty);
         this.match.setUser(user);
-        this.getModel().createMatch(match);
+        this.getModel().createMatch(this.match);
     }
 
     /**

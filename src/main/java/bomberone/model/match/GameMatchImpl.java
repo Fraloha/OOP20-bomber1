@@ -32,13 +32,13 @@ public class GameMatchImpl implements GameMatch {
     @Override
     public final void init() {
         if (this.difficulty.equals(Difficulty.EASY)) {
-            this.world = factory.createWorldStandard(this.user);
+            this.world = this.factory.createWorldStandard(this.user);
         } else {
-            this.world = factory.createWorldHard(this.user);
+            this.world = this.factory.createWorldHard(this.user);
         }
 
         this.timer = new TimerImpl(GameMatchImpl.TIME);
-        this.thread = new TimerThread(timer);
+        this.thread = new TimerThread(this.timer);
     }
 
     /**
@@ -110,7 +110,7 @@ public class GameMatchImpl implements GameMatch {
      */
     @Override
     public final void updateGame(final int elapsed) {
-        world.updateState(elapsed);
+        this.world.updateState(elapsed);
         this.checkGameOver();
     }
 
