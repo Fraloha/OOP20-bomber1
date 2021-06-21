@@ -66,19 +66,19 @@ public final class SoundsHandler {
      */
     public synchronized void start(final GameSounds type) {
         if (type.getType().equals(Sounds.EFFECT)) {
-            playerEffects = new MediaPlayer(this.cacheEffects.get(type));
-            playerEffects.setVolume(type.getVolume());
-            playerEffects.play();
-            playerEffects.setOnEndOfMedia(playerEffects::dispose);
+            this.playerEffects = new MediaPlayer(this.cacheEffects.get(type));
+            this.playerEffects.setVolume(type.getVolume());
+            this.playerEffects.play();
+            this.playerEffects.setOnEndOfMedia(this.playerEffects::dispose);
         } else {
             if (!isPlaying()) {
-                if (!playerAudio.getMedia().equals(this.cacheAudio.get(type))) {
-                    playerAudio.dispose();
-                    playerAudio = new MediaPlayer(this.cacheAudio.get(type));
+                if (!this.playerAudio.getMedia().equals(this.cacheAudio.get(type))) {
+                    this.playerAudio.dispose();
+                    this.playerAudio = new MediaPlayer(this.cacheAudio.get(type));
                 }
-                playerAudio.setVolume(type.getVolume());
-                playerAudio.play();
-                playerAudio.setOnEndOfMedia(new Runnable() {
+                this.playerAudio.setVolume(type.getVolume());
+                this.playerAudio.play();
+                this.playerAudio.setOnEndOfMedia(new Runnable() {
                     @Override
                     public void run() {
                         SoundsHandler.getInstance().replayAudio();
@@ -94,15 +94,15 @@ public final class SoundsHandler {
      * @return boolean
      */
     public boolean isPlaying() {
-        return playerAudio.getStatus().equals(Status.PLAYING);
+        return this.playerAudio.getStatus().equals(Status.PLAYING);
     }
 
     /**
      * Method that restart the playerAudio.
      */
     public synchronized void replayAudio() {
-        playerAudio.stop();
-        playerAudio.play();
+        this.playerAudio.stop();
+        this.playerAudio.play();
     }
 
     /**
@@ -110,7 +110,7 @@ public final class SoundsHandler {
      * playerAudio.
      */
     public synchronized void stopAudio() {
-        playerAudio.stop();
-        playerAudio.dispose();
+        this.playerAudio.stop();
+        this.playerAudio.dispose();
     }
 }
