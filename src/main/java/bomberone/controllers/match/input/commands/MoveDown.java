@@ -11,6 +11,9 @@ public class MoveDown implements Command {
         this.dir = Direction.DOWN;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Direction dir() {
         return this.dir;
@@ -21,7 +24,8 @@ public class MoveDown implements Command {
      */
     @Override
     public void execute(final GameMatch gameMatch) {
-        gameMatch.getWorld().getBomber().moveDown();  
+        gameMatch.getWorld().getBomber().moveDown();
         gameMatch.getWorld().getBomber().setStatic(false);
     }
 }
+
