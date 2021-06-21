@@ -63,7 +63,7 @@ public class MoveableObjectImpl extends GameObjectImpl implements MoveableObject
     @Override
     public void moveUp() {
         this.setPosition(new P2d(this.getPosition().getX(),
-                this.getPosition().getY() - Math.round(this.speed * (elapsed / TIME_QUOTIENT))));
+                this.getPosition().getY() - Math.round(this.speed * (this.elapsed / TIME_QUOTIENT))));
         this.setStatic(false);
     }
 
@@ -73,7 +73,7 @@ public class MoveableObjectImpl extends GameObjectImpl implements MoveableObject
     @Override
     public void moveDown() {
         this.setPosition(new P2d(this.getPosition().getX(),
-                this.getPosition().getY() + Math.round(this.speed * (elapsed / TIME_QUOTIENT))));
+                this.getPosition().getY() + Math.round(this.speed * (this.elapsed / TIME_QUOTIENT))));
         this.setStatic(false);
 
     }
@@ -83,7 +83,7 @@ public class MoveableObjectImpl extends GameObjectImpl implements MoveableObject
      */
     @Override
     public void moveLeft() {
-        this.setPosition(new P2d(this.getPosition().getX() - Math.round(this.speed * (elapsed / TIME_QUOTIENT)),
+        this.setPosition(new P2d(this.getPosition().getX() - Math.round(this.speed * (this.elapsed / TIME_QUOTIENT)),
                 this.getPosition().getY()));
         this.setStatic(false);
     }
@@ -93,7 +93,7 @@ public class MoveableObjectImpl extends GameObjectImpl implements MoveableObject
      */
     @Override
     public void moveRight() {
-        this.setPosition(new P2d(this.getPosition().getX() + Math.round(this.speed * (elapsed / TIME_QUOTIENT)),
+        this.setPosition(new P2d(this.getPosition().getX() + Math.round(this.speed * (this.elapsed / TIME_QUOTIENT)),
                 this.getPosition().getY()));
         this.setStatic(false);
     }
