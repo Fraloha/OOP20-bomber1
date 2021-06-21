@@ -1,4 +1,4 @@
-package bomberone.model.gameboard;
+package bomberone.model.pathfinding.gameboard;
 
 /**
  * A simple enumerator to specify if has to be checked the accessibility of a

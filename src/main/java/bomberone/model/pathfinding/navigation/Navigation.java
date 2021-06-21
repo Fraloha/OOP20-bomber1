@@ -1,8 +1,8 @@
-package bomberone.model.enemy.navigation;
+package bomberone.model.pathfinding.navigation;
 
 import java.util.List;
 import bomberone.model.common.P2d;
-import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.common.Direction;
 
 /**

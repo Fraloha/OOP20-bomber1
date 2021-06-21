@@ -1,8 +1,8 @@
-package bomberone.model.enemy.navigation;
+package bomberone.model.pathfinding.navigation;
 
-import java.util.LinkedList;
+import java.util.List;
 import bomberone.model.common.Direction;
-import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
 
 /**
  * This interface defines a point in the game map where an enemy can pass
@@ -48,5 +48,5 @@ public interface Node {
      * 
      * @return a List of Direction.
      */
-    LinkedList<Direction> getPath();
+    List<Direction> getPath();
 }

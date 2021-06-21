@@ -1,4 +1,4 @@
-package bomberone.model.gameboard;
+package bomberone.model.pathfinding.gameboard;
 
 /**
  * This object represent the GameBoard unit, indeed the GameBoard is composed by
@@ -112,9 +112,10 @@ public class BoardPointImpl implements BoardPoint {
      * {@inheritDoc}
      */
     @Override
-    public void setPoint(final int newX, final int newY) {
+    public void setPoint(final int newX, final int newY, final Markers newMarker) {
         this.x = newX;
         this.y = newY;
+        this.pointMarker = newMarker;
     }
 
     /**

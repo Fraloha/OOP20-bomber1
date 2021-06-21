@@ -1,8 +1,9 @@
-package bomberone.model.enemy.navigation;
+package bomberone.model.pathfinding.navigation;
 
+import java.util.List;
 import java.util.LinkedList;
 import bomberone.model.common.Direction;
-import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
 
 public class NodeImpl implements Node {
 
@@ -43,11 +44,11 @@ public class NodeImpl implements Node {
     /**
      * {@inheritDoc}
      */
-    public LinkedList<Direction> getPath() {
+    public List<Direction> getPath() {
         if (this.parent == null) {
             return new LinkedList<Direction>();
         } else {
-            LinkedList<Direction> path = this.parent.getPath();
+            List<Direction> path = this.parent.getPath();
             path.add(getDirection());
             return path;
         }

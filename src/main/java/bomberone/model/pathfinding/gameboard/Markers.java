@@ -1,4 +1,4 @@
-package bomberone.model.gameboard;
+package bomberone.model.pathfinding.gameboard;
 
 /**
  * This enumerator contains values to set to a BoardPoint object. Every value

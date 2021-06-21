@@ -1,4 +1,4 @@
-package bomberone.model.gameboard;
+package bomberone.model.pathfinding.gameboard;
 
 /**
  * This interfaces defines a game board point. A BoardPoint has two coordinates,
@@ -58,11 +58,13 @@ public interface BoardPoint {
     /**
      * This method sets the BoardPoint's coordinates.
      * 
-     * @param newX The first coordinate's new value.
+     * @param newX      The first coordinate's new value.
      * 
-     * @param newY The second coordinate's new value.
+     * @param newY      The second coordinate's new value.
+     * 
+     * @param newMarker The new marker value.
      */
-    void setPoint(int newX, int newY);
+    void setPoint(int newX, int newY, Markers newMarker);
 
     /**
      * This method checks if the arguments passed is equal to the current BoardPoint

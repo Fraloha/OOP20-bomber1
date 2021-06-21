@@ -1,4 +1,4 @@
-package bomberone.model.gameboard;
+package bomberone.model.pathfinding.gameboard;
 
 import java.util.ArrayList;
 import java.util.Iterator;

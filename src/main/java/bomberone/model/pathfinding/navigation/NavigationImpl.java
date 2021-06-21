@@ -1,4 +1,4 @@
-package bomberone.model.enemy.navigation;
+package bomberone.model.pathfinding.navigation;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,8 +6,8 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
-import bomberone.model.gameboard.BoardPoint;
-import bomberone.model.gameboard.BoardPointImpl;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPointImpl;
 import bomberone.model.bombergameboard.BomberOneBoard;
 
 public class NavigationImpl implements Navigation {

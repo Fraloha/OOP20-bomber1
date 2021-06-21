@@ -2,10 +2,10 @@ package bomberone.model.bombergameboard;
 
 import bomberone.model.common.P2d;
 import bomberone.model.common.Maps;
-import bomberone.model.gameboard.GameBoard;
-import bomberone.model.gameboard.Markers;
-import bomberone.model.gameboard.BoardPoint;
-import bomberone.model.gameboard.BoardPointImpl;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPointImpl;
+import bomberone.model.pathfinding.gameboard.GameBoard;
+import bomberone.model.pathfinding.gameboard.Markers;
 
 /**
  * This class represent the BomberOne playground.

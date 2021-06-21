@@ -2,10 +2,10 @@ package bomberone.model.enemy.actions;
 
 import bomberone.model.enemy.Enemy;
 import bomberone.model.common.Direction;
-import bomberone.model.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
+import bomberone.model.pathfinding.navigation.Navigation;
+import bomberone.model.pathfinding.navigation.NavigationImpl;
 import bomberone.model.bombergameboard.BomberOneBoard;
-import bomberone.model.enemy.navigation.Navigation;
-import bomberone.model.enemy.navigation.NavigationImpl;
 
 /**
  * This class is an enemy behavior and uses a path finding algorithm to find the
