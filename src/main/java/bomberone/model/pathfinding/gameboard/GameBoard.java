@@ -215,6 +215,8 @@ public class GameBoard {
             final Accessibility mode) {
         int k;
         int m;
+        int xToCheck = 0;
+        int yToCheck = 0;
         boolean result = false;
         int currentCoordinates;
         int destinationCoordinates;
@@ -232,26 +234,20 @@ public class GameBoard {
         }
 
         if (currentCoordinates == destinationCoordinates) {
-            boolean check = true;
             while (k <= m) {
-                if (mode.equals(Accessibility.ROWS)) {
-                    if (!this.isLegal(k, currentCoordinates) || !this.isAccessible(k, currentCoordinates)) {
-                        check = false;
-                    }
-                } else {
-                    if (!this.isLegal(currentCoordinates, k) || !this.isAccessible(currentCoordinates, k)) {
-                        check = false;
-                    }
-                }
 
-                if (check) {
-                    result = true;
-                } else {
+                xToCheck = mode.equals(Accessibility.ROWS) ? k : currentCoordinates;
+                yToCheck = mode.equals(Accessibility.ROWS) ? currentCoordinates : k;
+                result = this.isAccessible(xToCheck, yToCheck);
+
+                if (!result) {
                     break;
                 }
+
                 k++;
             }
         }
+
         return result;
     }
 
