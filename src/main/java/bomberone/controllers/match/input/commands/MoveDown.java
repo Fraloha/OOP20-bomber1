@@ -5,17 +5,17 @@ import bomberone.model.match.GameMatch;
 
 public class MoveDown implements Command {
 
-    Direction dir;
-    
+    private Direction dir;
+
     public MoveDown() {
         this.dir = Direction.DOWN;
     }
-    
+
     @Override
     public Direction dir() {
         return this.dir;
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -24,7 +24,4 @@ public class MoveDown implements Command {
         gameMatch.getWorld().getBomber().moveDown();  
         gameMatch.getWorld().getBomber().setStatic(false);
     }
-
-    
-
 }

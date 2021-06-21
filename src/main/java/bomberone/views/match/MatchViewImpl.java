@@ -171,9 +171,6 @@ public class MatchViewImpl extends ViewImpl implements MatchView {
         ((MatchController) this.getController()).getHardWallList().forEach(wall -> {
             gCBackground.drawImage(wallImage, wall.getPosition().getX(), wall.getPosition().getY());
 
-            // int X = (int) wall.getPosition().getY() / MatchViewImpl.CELL_SIZE;
-            // int Y = (int) wall.getPosition().getX() / MatchViewImpl.CELL_SIZE;
-            // GameBoard.getInstance().setItem(new BoardPointImpl(X, Y), Markers.WALL_MARKER);
         });
 
     }
