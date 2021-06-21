@@ -5,12 +5,15 @@ import bomberone.model.match.GameMatch;
 
 public class MoveRight implements Command {
 
-    Direction dir;
+    private Direction dir;
 
     public MoveRight() {
         this.dir = Direction.RIGHT;
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Direction dir() {
         return this.dir;
@@ -26,3 +29,4 @@ public class MoveRight implements Command {
     }
 
 }
+

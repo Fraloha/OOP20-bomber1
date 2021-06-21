@@ -14,14 +14,16 @@ public class PlantBomb implements Command {
     @Override
     public void execute(final GameMatch gameMatch) {
         Optional<Bomb> bomb = gameMatch.getWorld().getBomber().plantBomb();
-        if(!bomb.isEmpty()) {
+        if (!bomb.isEmpty()) {
             gameMatch.getWorld().getGameObjectCollection().spawn(bomb.get());
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     @Override
     public Direction dir() {
-        // TODO Auto-generated method stub
         return null;
     }
 

@@ -11,6 +11,6 @@ public interface Command {
      * @param gameMatch
      */
     void execute(GameMatch gameMatch);
-    
+
     Direction dir();
 }
