@@ -116,8 +116,8 @@ public final class BomberImpl extends MoveableObjectImpl implements Bomber {
     @Override
     public Optional<Bomb> plantBomb() {
         if (this.maxAmmo > this.usedAmmo) {
-            usedAmmo++;
-            return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(getPosition()),
+            this.usedAmmo++;
+            return Optional.of((BombImpl) new GameObjectFactoryImpl().createBomb(this.roundingBombPos(this.getPosition()),
                     this.firePower, this.pierce));
         }
         return Optional.empty();
