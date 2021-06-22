@@ -11,12 +11,19 @@ public interface Actions {
      * This method animates the enemy selecting the right "sprite animation" on the
      * basis of the direction of it.
      */
-    void manageAnimations();
+    void setAnimation();
 
     /**
      * This method sets the proper sprite on the basis of the enemy direction.
      */
     void setSprite();
+
+    /**
+     * This method sets the proper sprite and the animations. This method is a
+     * Template method, it calls the setSprite() method and the setAnimation()
+     * method
+     */
+    void manageAnimations();
 
     /**
      * This method sets a new enemy object in the current Actions instance.

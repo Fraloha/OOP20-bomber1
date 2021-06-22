@@ -1,7 +1,9 @@
 package bomberone.model.enemy;
 
+import bomberone.model.bombergameboard.BomberOneBoard;
 import bomberone.model.common.P2d;
 import bomberone.model.match.Difficulty;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
 import bomberone.model.enemy.actions.HardBehavior;
@@ -20,13 +22,14 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     private static final int FRAME_PER_SECOND = 60;
     private static final int LOW_SPEED = 300;
     private static final int HIGH_SPEED = 200;
+    private Difficulty mode;
     private Actions behavior;
     private int frameCounter;
     private int nextMoveFrameCounter;
     private boolean isHittable = false;
 
     /* Constructors. */
-    public EnemyImpl(final P2d position, final int lifes, final Difficulty mode) {
+    public EnemyImpl(final P2d position, final int lifes, final Difficulty gameMode) {
         super(position, lifes);
 
         // Setting the number of frames that the enemy has to wait before start moving.
@@ -35,15 +38,10 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         // Setting the frames number that the enemy has to wait to perform the next
         // move.
         this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
-
-        // Creating the enemy behavior on the basis of the mode chosen by the user.
-        if (mode.equals(Difficulty.EASY)) {
-            this.behavior = new BasicBehavior(this);
-            this.setSpeed(LOW_SPEED);
-        } else if (mode.equals(Difficulty.HARD)) {
-            this.behavior = new HardBehavior(this);
-            this.setSpeed(HIGH_SPEED);
-        }
+        
+        this.mode = gameMode;
+        this.setSpeed(LOW_SPEED);
+        this.behavior = new BasicBehavior(this);
     }
 
     /* Methods. */
@@ -60,8 +58,18 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
             if (!this.isHittable) {
                 this.isHittable = true;
             }
+            
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
+                
+                if (this.mode.equals(Difficulty.HARD)) {
+                    BoardPoint enemyPosition = BomberOneBoard.getInstance().convertPosition(this.getPosition());
+                    boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition);
+                    if (playerFound && this.behavior.getClass() == BasicBehavior.class) {
+                        this.behavior = new HardBehavior(this);
+                        this.setSpeed(HIGH_SPEED);
+                    }
+                }
                 this.nextMoveFrameCounter = 0;
                 this.behavior.doActions();
                 super.update(elapsed);

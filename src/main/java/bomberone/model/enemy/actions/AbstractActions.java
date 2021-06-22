@@ -33,7 +33,7 @@ public abstract class AbstractActions implements Actions {
      * {@inheritDoc}
      */
     @Override
-    public void manageAnimations() {
+    public void setAnimation() {
         if (this.animationCounter == AbstractActions.ANIMATION_FRAME_QUANTITY) {
             this.animationCounter = 0;
             this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
@@ -56,6 +56,15 @@ public abstract class AbstractActions implements Actions {
         } else {
             this.selectedEnemy.setDirectionIndex(0);
         }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void manageAnimations() {
+        this.setAnimation();
+        this.setSprite();
     }
 
     /**

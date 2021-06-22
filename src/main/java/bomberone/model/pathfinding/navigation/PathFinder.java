@@ -1,18 +1,13 @@
 package bomberone.model.pathfinding.navigation;
 
 import java.util.List;
-import bomberone.model.common.P2d;
-import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.common.Direction;
+import bomberone.model.pathfinding.gameboard.BoardPoint;
 
 /**
- * This interface defines an object that gives a route to the player. This
- * object uses a Breadth-First Search (BFS) to search the player analyzing the
- * game map.
+ * This interface defines a generic path finding algorithm.
  */
-public interface Navigation {
-
-    /* Methods. */
+public interface PathFinder {
 
     /**
      * This method checks if the BoardPoint object passed as argument was already
@@ -25,19 +20,18 @@ public interface Navigation {
 
     /**
      * This method adds new positions to check in the search algorithm. In
-     * particular, this method builds the tree or graph, where the BFS has to be
-     * performed.
+     * particular, this method builds the tree or graph, where the searching
+     * algorithm can be performed.
      * 
      * @param currentNode The node from which the neighbors are searched.
      */
     void addTargets(Node currentNode);
 
     /**
-     * This method search the shortest path to reach the player. The searching
-     * algorithm is a Breadth-First Search algorithm.
+     * This method search the path to reach the player.
      * 
      * @param enemyLocation The initial enemy's position.
-     * @return A list of directions that defines the shortest path.
+     * @return A list of directions that defines the path.
      */
-    List<Direction> searchShortestPath(P2d enemyLocation);
+    List<Direction> searchPath(BoardPoint enemyLocation);
 }

@@ -1,16 +1,18 @@
-package bomberone.model.pathfinding.navigation;
+package bomberone.model.pathfinding;
 
 import java.util.List;
 import java.util.Optional;
 import java.util.Iterator;
 import java.util.LinkedList;
-import bomberone.model.common.P2d;
 import bomberone.model.common.Direction;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.pathfinding.gameboard.BoardPointImpl;
+import bomberone.model.pathfinding.navigation.Node;
+import bomberone.model.pathfinding.navigation.NodeImpl;
+import bomberone.model.pathfinding.navigation.PathFinder;
 import bomberone.model.bombergameboard.BomberOneBoard;
 
-public class NavigationImpl implements Navigation {
+public class BFSSearch implements PathFinder {
 
     private List<BoardPoint> exploredNodes;
     private List<Node> discoveredNodes;
@@ -18,7 +20,7 @@ public class NavigationImpl implements Navigation {
     /**
      * Creates a new Navigation object.
      */
-    public NavigationImpl() {
+    public BFSSearch() {
         this.exploredNodes = new LinkedList<BoardPoint>();
         this.discoveredNodes = new LinkedList<Node>();
     }
@@ -82,18 +84,19 @@ public class NavigationImpl implements Navigation {
      * {@inheritDoc}
      */
     @Override
-    public List<Direction> searchShortestPath(final P2d enemyLocation) {
+    public List<Direction> searchPath(final BoardPoint enemyLocation) {
         /* Variables declaration. */
         Node currentNode = null;
         Optional<BoardPoint> playerLocation;
         List<Direction> path = new LinkedList<Direction>();
 
-        this.discoveredNodes.add(new NodeImpl(null, BomberOneBoard.getInstance().convertPosition(enemyLocation), null));
+        this.discoveredNodes.add(new NodeImpl(null, enemyLocation, null));
         while (!this.discoveredNodes.isEmpty()) {
             currentNode = this.discoveredNodes.remove(0);
             playerLocation = BomberOneBoard.getInstance().findSpotLocation();
 
             if (!playerLocation.isEmpty() && currentNode.getPosition().isEquals(playerLocation.get())) {
+                // this.discoveredNodes.add(currentNode);
                 path = currentNode.getPath();
                 break;
             }
