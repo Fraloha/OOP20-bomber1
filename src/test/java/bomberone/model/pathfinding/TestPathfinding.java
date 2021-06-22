@@ -19,9 +19,14 @@ import bomberone.model.common.Direction;
  */
 public class TestPathfinding {
 
-    PathFinder pathFinder;
-    GameBoard testBoard;
+    private static final int POS_8 = 8;
+    private static final int POS_7 = 7;
+    private PathFinder pathFinder;
+    private GameBoard testBoard;
 
+    /**
+     * 
+     */
     @BeforeEach
     public void init() {
         this.pathFinder = new BFSSearch();
@@ -31,7 +36,7 @@ public class TestPathfinding {
         try {
             Scanner reader = new Scanner(new File("./bin/test/bomberone/model/pathfinding/TestBoard.txt"));
             while (reader.hasNextLine()) {
-                char array[] = reader.nextLine().toCharArray();
+                char [] array = reader.nextLine().toCharArray();
                 for (char item : array) {
                     buffer.add(String.valueOf(item));
                 }
@@ -47,8 +52,8 @@ public class TestPathfinding {
     }
 
     @Test
-    public void NoWayOutTest() {
-        BoardPoint startPosition = new BoardPointImpl(7, 8);
+    public void noWayOutTest() {
+        BoardPoint startPosition = new BoardPointImpl(POS_7, POS_8);
         List<Direction> path = this.pathFinder.searchPath(startPosition);
         System.out.println(path.isEmpty());
         assertTrue(path.isEmpty());

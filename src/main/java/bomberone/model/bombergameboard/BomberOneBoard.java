@@ -55,7 +55,7 @@ public final class BomberOneBoard extends GameBoard {
      * @param pointMarker       The marker of the new BoardPoint object.
      * @return The position converted into a BoardPoint object.
      */
-    public BoardPoint convertPosition(final P2d positionToConvert, Markers pointMarker) {
+    public BoardPoint convertPosition(final P2d positionToConvert, final Markers pointMarker) {
         BoardPoint position = this.convertPosition(positionToConvert);
         position.setMarker(pointMarker);
         return position;

@@ -19,7 +19,7 @@ public interface RankController extends Controller {
     /**
      * This method gets the users hard mode rank.
      * 
-     * @return A List<User that contains all the hard mode players.
+     * @return A List<>User that contains all the hard mode players.
      */
     List<User> getHardRank();
 }
