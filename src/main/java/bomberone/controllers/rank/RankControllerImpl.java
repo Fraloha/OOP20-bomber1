@@ -1,9 +1,7 @@
 package bomberone.controllers.rank;
 
 import java.util.List;
-
 import bomberone.controllers.ControllerImpl;
-import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 
 /**

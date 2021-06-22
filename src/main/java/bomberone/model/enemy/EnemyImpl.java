@@ -38,7 +38,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         // Setting the frames number that the enemy has to wait to perform the next
         // move.
         this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
-        
+
         this.mode = gameMode;
         this.setSpeed(LOW_SPEED);
         this.behavior = new BasicBehavior(this);
@@ -58,13 +58,14 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
             if (!this.isHittable) {
                 this.isHittable = true;
             }
-            
+
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
-                
+
                 if (this.mode.equals(Difficulty.HARD)) {
                     BoardPoint enemyPosition = BomberOneBoard.getInstance().convertPosition(this.getPosition());
-                    boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition);
+                    boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition.getX(),
+                            enemyPosition.getY());
                     if (playerFound && this.behavior.getClass() == BasicBehavior.class) {
                         this.behavior = new HardBehavior(this);
                         this.setSpeed(HIGH_SPEED);

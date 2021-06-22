@@ -6,26 +6,32 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import bomberone.model.common.Direction;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
-import bomberone.model.pathfinding.gameboard.BoardPointImpl;
 import bomberone.model.pathfinding.navigation.Node;
 import bomberone.model.pathfinding.navigation.NodeImpl;
 import bomberone.model.pathfinding.navigation.PathFinder;
 import bomberone.model.bombergameboard.BomberOneBoard;
 
-public class BFSSearch implements PathFinder {
+public final class BFSSearch implements PathFinder {
 
     private List<BoardPoint> exploredNodes;
     private List<Node> discoveredNodes;
 
     /**
-     * Creates a new Navigation object.
+     * Creates a new BFSSearch object.
      */
     public BFSSearch() {
         this.exploredNodes = new LinkedList<BoardPoint>();
         this.discoveredNodes = new LinkedList<Node>();
     }
 
-    private BoardPoint getNeighbours(final BoardPoint currentPosition, final Direction directionToCheck) {
+    /**
+     * This method gets the neighbor BoardPoint at the specified direction
+     * 
+     * @param currentPosition  A BoardPoint object.
+     * @param directionToCheck The direction that specify the neighbor.
+     * @return A BoardPoint object at the specified direction.
+     */
+    private Optional<BoardPoint> getNeighbors(final BoardPoint currentPosition, final Direction directionToCheck) {
         int newX = currentPosition.getX();
         int newY = currentPosition.getY();
 
@@ -39,11 +45,15 @@ public class BFSSearch implements PathFinder {
             newY--;
         }
 
-        return new BoardPointImpl(newX, newY);
+        return BomberOneBoard.getInstance().getItem(newX, newY);
     }
 
     /**
-     * {@inheritDoc}
+     * This method checks if the BoardPoint object passed as argument was already
+     * explored.
+     * 
+     * @param pointToCheck The point to check.
+     * @return true if the point was already explored, otherwise false.
      */
     public boolean explored(final BoardPoint pointToCheck) {
         boolean result = false;
@@ -61,19 +71,24 @@ public class BFSSearch implements PathFinder {
     }
 
     /**
-     * {@inheritDoc}
+     * This method adds new positions to check in the search algorithm. In
+     * particular, this method builds the tree or graph, where the searching
+     * algorithm can be performed.
+     * 
+     * @param currentNode The node from which the neighbors are searched.
      */
-    @Override
     public void addTargets(final Node currentNode) {
-        BoardPoint positionToCheck;
+        Optional<BoardPoint> positionToCheck;
         BoardPoint position = currentNode.getPosition();
 
         for (Direction currentDirection : Direction.values()) {
-            positionToCheck = this.getNeighbours(position, currentDirection);
+            positionToCheck = this.getNeighbors(position, currentDirection);
 
-            if (!this.explored(positionToCheck)) {
-                if (BomberOneBoard.getInstance().isAccessible(positionToCheck.getX(), position.getY())) {
-                    this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck, currentNode));
+            if (!positionToCheck.isEmpty()) {
+                if (!this.explored(positionToCheck.get())) {
+                    if (BomberOneBoard.getInstance().isAccessible(positionToCheck.get().getX(), position.getY())) {
+                        this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck.get(), currentNode));
+                    }
                 }
             }
         }

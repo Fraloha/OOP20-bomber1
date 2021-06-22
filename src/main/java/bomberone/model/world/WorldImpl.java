@@ -54,7 +54,6 @@ public class WorldImpl implements World {
     private boolean respawn;
     private Difficulty difficulty;
     private List<List<String>> mapLayout;
-    private int counter = 0;
 
     public WorldImpl(final Difficulty difficulty, final Skins skin) {
         this.difficulty = difficulty;
@@ -219,11 +218,6 @@ public class WorldImpl implements World {
             BoardPoint currentBoxPosition = BomberOneBoard.getInstance().convertPosition(currentBox.getPosition(),
                     Markers.REMOVABLE);
             BomberOneBoard.getInstance().setItem(currentBoxPosition);
-        }
-
-        if (this.counter == 0) {
-            BomberOneBoard.getInstance().printBoard();
-            this.counter++;
         }
 
         this.checkExplosion();

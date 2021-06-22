@@ -104,20 +104,6 @@ public class GameBoard {
     }
 
     /**
-     * This method checks if the location passed as an argument is in the game board
-     * boundaries.
-     * 
-     * @param locationToCheck the position to check.
-     * @return true if the position is valid, otherwise false.
-     */
-    public boolean isLegal(final BoardPoint locationToCheck) {
-        boolean result = locationToCheck.getX() >= 0 && locationToCheck.getX() < this.rows ? true : false;
-        boolean secondResult = locationToCheck.getY() >= 0 && locationToCheck.getY() < this.columns ? true : false;
-
-        return result && secondResult;
-    }
-
-    /**
      * This method checks if the arguments passed could be an actual position.
      * 
      * @param x the first coordinate.
@@ -147,7 +133,7 @@ public class GameBoard {
      * @return true if the item is valid, otherwise false.
      */
     public boolean setItem(final BoardPoint newPoint) {
-        boolean result = this.isLegal(newPoint);
+        boolean result = this.isLegal(newPoint.getX(), newPoint.getY());
         if (result) {
             this.currentGameBoard.get(newPoint.getX()).set(newPoint.getY(), newPoint);
         }
@@ -246,26 +232,6 @@ public class GameBoard {
 
                 k++;
             }
-        }
-
-        return result;
-    }
-
-    /**
-     * This method checks if the player is "visible" from the position passed as an
-     * argument. The player is visible if the positions between the point argument
-     * and the player position are accessible.
-     * 
-     * @param currentPosition The starting position.
-     * @return true if the player is visible, otherwise false.
-     */
-    public boolean isSpotVisible(final BoardPoint currentPosition) {
-        boolean result = false;
-        Optional<BoardPoint> playerLocation = this.findSpotLocation();
-
-        if (!playerLocation.isEmpty()) {
-            result = this.checkAccessibility(currentPosition, playerLocation.get(), Accessibility.ROWS)
-                    || this.checkAccessibility(currentPosition, playerLocation.get(), Accessibility.COLUMNS);
         }
 
         return result;
@@ -385,17 +351,5 @@ public class GameBoard {
      */
     public void resetAllItems(final Markers markerToChange) {
         this.changeAllItems(markerToChange, Markers.ACCESSIBLE);
-    }
-
-    /**
-     * Writes the whole board to standard output.
-     */
-    public void printBoard() {
-        for (int i = 0; i < this.rows; i++) {
-            for (int j = 0; j < this.columns; j++) {
-                System.out.print(this.getItem(i, j).get().getMarker().getMarker() + "   ");
-            }
-            System.out.println();
-        }
     }
 }
