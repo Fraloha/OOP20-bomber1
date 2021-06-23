@@ -37,13 +37,14 @@ public final class BasicBehavior extends AbstractActions {
             } while (newDirection == this.getEnemy().getDir().ordinal());
 
             // Setting the new direction.
-            this.getEnemy().setDir(Direction.values()[newDirection]);
-
+            Direction newDir = Direction.values()[newDirection];
+            this.getEnemy().setDir(newDir);
+            this.getEnemy().setSprite();
             // Resetting the counter.
             this.nextDirectionCounter = 0;
         }
         
-        this.manageAnimations();
+        this.getEnemy().setAnimation();
         this.nextDirectionCounter++;
         this.nextMove();
     }

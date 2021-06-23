@@ -4,7 +4,6 @@ import java.util.List;
 import bomberone.model.enemy.Enemy;
 import bomberone.model.bombergameboard.BomberOneBoard;
 import bomberone.model.common.Direction;
-import bomberone.model.pathfinding.BFSSearch;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.pathfinding.navigation.PathFinder;
 
@@ -23,9 +22,9 @@ public final class HardBehavior extends AbstractActions {
      * 
      * @param newEnemy The enemy that uses this behavior.
      */
-    public HardBehavior(final Enemy newEnemy) {
+    public HardBehavior(final Enemy newEnemy, final PathFinder finder) {
         super(newEnemy);
-        this.navigator = new BFSSearch();
+        this.navigator = finder;
     }
 
     /* Methods. */
@@ -37,10 +36,8 @@ public final class HardBehavior extends AbstractActions {
     public void doActions() {
         BoardPoint enemyPosition = BomberOneBoard.getInstance().convertPosition(this.getEnemy().getPosition());
         List<Direction> computedPath = this.navigator.searchPath(enemyPosition);
-        if (!computedPath.isEmpty()) {
-            this.getEnemy().setDir(computedPath.get(0));
-            this.manageAnimations();
-            this.nextMove();
-        }
+        this.getEnemy().setDir(computedPath.get(0));
+        this.getEnemy().manageAnimations();
+        this.nextMove();
     }
 }
