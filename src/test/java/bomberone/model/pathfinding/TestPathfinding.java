@@ -19,8 +19,26 @@ import bomberone.model.common.Direction;
  */
 public class TestPathfinding {
 
+    /**
+     * The eighth position.
+     */
     private static final int POS_8 = 8;
+
+    /**
+     * The seventh position.
+     */
     private static final int POS_7 = 7;
+
+    /**
+     * The third position.
+     */
+    private static final int POS_3 = 3;
+
+    /**
+     * The first position.
+     */
+    private static final int POS_1 = 1;
+
     BoardPoint startPosition;
     private PathFinder pathFinder;
     private GameBoard testBoard;
@@ -59,10 +77,10 @@ public class TestPathfinding {
     public void firstTest() {
         BoardPoint startPosition = new BoardPointImpl(POS_7, POS_8);
         List<BoardPoint> pointsToReset = new LinkedList<BoardPoint>();
-        pointsToReset.add(new BoardPointImpl(3, 7));
-        pointsToReset.add(new BoardPointImpl(3, 8));
-        pointsToReset.add(new BoardPointImpl(1, 8));
-        pointsToReset.add(new BoardPointImpl(1, 3));
+        pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_3, TestPathfinding.POS_7));
+        pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_3, TestPathfinding.POS_8));
+        pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_1, TestPathfinding.POS_8));
+        pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_1, TestPathfinding.POS_3));
         this.testBoard.resetAllItems(pointsToReset);
 
         this.pathFinder = new BFSSearch(this.testBoard);
