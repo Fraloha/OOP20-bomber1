@@ -2,6 +2,7 @@ package bomberone.controllers.rank;
 
 import java.util.List;
 import bomberone.controllers.ControllerImpl;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 
 /**
@@ -23,6 +24,14 @@ public class RankControllerImpl extends ControllerImpl implements RankController
     @Override
     public List<User> getHardRank() {
         return this.getModel().getHardRank();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public Difficulty getMatchDifficulty() {
+        return this.getModel().getCurrentMatch().getDifficulty();
     }
 
     /**
