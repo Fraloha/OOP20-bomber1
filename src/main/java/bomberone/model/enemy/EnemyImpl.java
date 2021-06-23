@@ -1,8 +1,10 @@
 package bomberone.model.enemy;
 
 import bomberone.model.bombergameboard.BomberOneBoard;
+import bomberone.model.common.Direction;
 import bomberone.model.common.P2d;
 import bomberone.model.match.Difficulty;
+import bomberone.model.pathfinding.BFSSearch;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.enemy.actions.Actions;
 import bomberone.model.enemy.actions.BasicBehavior;
@@ -17,14 +19,42 @@ import bomberone.model.gameObjects.moveable.MoveableObjectImpl;
 public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     /* Fields. */
+    /**
+     * This constant is the amount of frames to wait until the next animation. This
+     * constant makes the animation as smooth as possible.
+     */
+    private static final int ANIMATION_FRAME_QUANTITY = 10;
+
+    /**
+     * This constant is the amount of frames to wait until the next enemy movement
+     * can be executed.
+     */
     private static final int NEXT_MOVE_FRAME_QUANTITY = 1;
+
+    /**
+     * This constant is the amount of seconds to wait until the enemy can start
+     * moving.
+     */
     private static final int SECONDS_TO_WAIT = 4;
+
+    /**
+     * This constant is the number of frames per second
+     */
     private static final int FRAME_PER_SECOND = 60;
+
+    /**
+     * This constant is the enemy speed in the easy mode.
+     */
     private static final int LOW_SPEED = 300;
+
+    /**
+     * This constant is the enemy speed in the hard mode.
+     */
     private static final int HIGH_SPEED = 200;
     private Difficulty mode;
     private Actions behavior;
     private int frameCounter;
+    private int animationCounter;
     private int nextMoveFrameCounter;
     private boolean isHittable = false;
 
@@ -41,6 +71,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
         this.mode = gameMode;
         this.setSpeed(LOW_SPEED);
+        this.animationCounter = 0;
         this.behavior = new BasicBehavior(this);
     }
 
@@ -67,7 +98,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
                     boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition.getX(),
                             enemyPosition.getY());
                     if (playerFound && this.behavior.getClass() == BasicBehavior.class) {
-                        this.behavior = new HardBehavior(this);
+                        this.behavior = new HardBehavior(this, new BFSSearch());
                         this.setSpeed(HIGH_SPEED);
                     }
                 }
@@ -80,5 +111,43 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
 
     public boolean isHittable() {
         return this.isHittable;
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setSprite() {
+        if (this.getDir() == Direction.UP) {
+            this.setDirectionIndex(3);
+        } else if (this.getDir() == Direction.RIGHT) {
+            this.setDirectionIndex(2);
+        } else if (this.getDir() == Direction.LEFT) {
+            this.setDirectionIndex(1);
+        } else {
+            this.setDirectionIndex(0);
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setAnimation() {
+        if (this.animationCounter == EnemyImpl.ANIMATION_FRAME_QUANTITY) {
+            this.animationCounter = 0;
+            this.setAnimationIndex(this.getAnimationIndex() + 1);
+        } else {
+            this.animationCounter++;
+        }
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void manageAnimations() {
+        this.setSprite();
+        this.setAnimation();
     }
 }
