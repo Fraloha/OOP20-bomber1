@@ -43,7 +43,7 @@ public class TestPathfinding {
             e.printStackTrace();
         }
 
-        this.testBoard = new GameBoard(boardToSet);
+        this.testBoard = new GameBoard(boardToSet, 'H');
     }
 
     @Test
