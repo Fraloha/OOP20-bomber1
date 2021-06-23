@@ -17,13 +17,10 @@ public final class BomberOneBoard extends GameBoard {
      */
     private static final int CELL_SIZE = 32;
 
-    /**
-     * Singleton pattern.
-     */
     private static final BomberOneBoard SINGLETON = new BomberOneBoard();
 
     private BomberOneBoard() {
-        super(Maps.MAP1.getList(), 'H');
+        super(Maps.MAP1.getList());
     }
 
     /**

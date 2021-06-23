@@ -21,22 +21,19 @@ public class TestPathfinding {
 
     private static final int POS_8 = 8;
     private static final int POS_7 = 7;
+    BoardPoint startPosition;
     private PathFinder pathFinder;
     private GameBoard testBoard;
 
-    /**
-     * 
-     */
     @BeforeEach
     public void init() {
-        this.pathFinder = new BFSSearch();
         List<List<String>> boardToSet = new LinkedList<List<String>>();
-        List<String> buffer = new LinkedList<String>();
 
         try {
             Scanner reader = new Scanner(new File("./bin/test/bomberone/model/pathfinding/TestBoard.txt"));
             while (reader.hasNextLine()) {
-                char [] array = reader.nextLine().toCharArray();
+                char[] array = reader.nextLine().toCharArray();
+                List<String> buffer = new LinkedList<String>();
                 for (char item : array) {
                     buffer.add(String.valueOf(item));
                 }
@@ -48,14 +45,28 @@ public class TestPathfinding {
             e.printStackTrace();
         }
 
-        this.testBoard = new GameBoard(boardToSet, 'H');
+        this.testBoard = new GameBoard(boardToSet);
     }
 
     @Test
     public void noWayOutTest() {
+        this.startPosition = new BoardPointImpl(TestPathfinding.POS_7, TestPathfinding.POS_8);
+        this.pathFinder = new BFSSearch(this.testBoard);
+        assertTrue(this.pathFinder.searchPath(startPosition).isEmpty());
+    }
+
+    @Test
+    public void firstTest() {
         BoardPoint startPosition = new BoardPointImpl(POS_7, POS_8);
+        List<BoardPoint> pointsToReset = new LinkedList<BoardPoint>();
+        pointsToReset.add(new BoardPointImpl(3, 7));
+        pointsToReset.add(new BoardPointImpl(3, 8));
+        pointsToReset.add(new BoardPointImpl(1, 8));
+        pointsToReset.add(new BoardPointImpl(1, 3));
+        this.testBoard.resetAllItems(pointsToReset);
+
+        this.pathFinder = new BFSSearch(this.testBoard);
         List<Direction> path = this.pathFinder.searchPath(startPosition);
-        System.out.println(path.isEmpty());
-        assertTrue(path.isEmpty());
+        assertTrue(!path.isEmpty());
     }
 }

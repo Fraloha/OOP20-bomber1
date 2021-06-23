@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * This object represent the playground of the game, more clearly a current
+ * This object represent the playground of the game, specifically a current
  * status of the game ground. This object is used in the path finding enemy AI.
  */
 public class GameBoard {
@@ -31,7 +31,7 @@ public class GameBoard {
         }
     }
 
-    public GameBoard(final List<List<String>> mapLayout, final char notAccessibleItem) {
+    public GameBoard(final List<List<String>> mapLayout) {
         this.rows = mapLayout.size();
         this.columns = mapLayout.get(0).size();
         this.currentGameBoard = new ArrayList<ArrayList<BoardPoint>>();
@@ -41,11 +41,14 @@ public class GameBoard {
             this.currentGameBoard.add(new ArrayList<BoardPoint>());
             for (int j = 0; j < this.columns; j++) {
 
-                BoardPoint newPoint = new BoardPointImpl(i, j);
-                if (mapLayout.get(i).get(j).equals(String.valueOf(notAccessibleItem))) {
-                    newPoint.setMarker(Markers.NOTACCESSIBLE);
-                } else {
-                    newPoint.setMarker(Markers.ACCESSIBLE);
+                BoardPoint newPoint = new BoardPointImpl(i, j, Markers.ACCESSIBLE);
+                String item = mapLayout.get(i).get(j);
+
+                for (Markers currentMarker : Markers.values()) {
+                    if (String.valueOf(currentMarker.getMarker()).equals(item)) {
+                        newPoint.setMarker(currentMarker);
+                        break;
+                    }
                 }
 
                 this.currentGameBoard.get(i).add(newPoint);
@@ -145,9 +148,9 @@ public class GameBoard {
      * This method sets a marker to a specified position.
      * 
      * 
-     * @param marker        the marker to set.
-     * @param x coordinate of the position.
-     * @param y coordinate of the position.
+     * @param marker the marker to set.
+     * @param x      coordinate of the position.
+     * @param y      coordinate of the position.
      * @return item
      */
     public boolean setItem(final int x, final int y, final Markers marker) {
@@ -338,6 +341,25 @@ public class GameBoard {
     }
 
     /**
+     * This method set all BoardPoint objects marker to the new marker passed as
+     * second argument.
+     * 
+     * @param points    A List<BoardPoint> objects that have to get the marker
+     *                  changed.
+     * @param newMarker The new marker.
+     */
+    public void changeAllItems(final List<BoardPoint> points, final Markers newMarker) {
+        boolean result;
+
+        for (BoardPoint currentPoint : points) {
+            result = this.setItem(currentPoint.getX(), currentPoint.getY(), newMarker);
+            if (!result) {
+                break;
+            }
+        }
+    }
+
+    /**
      * This method changes the first occurrence of the marker passed as argument to
      * a ground marker.
      * 
@@ -348,6 +370,16 @@ public class GameBoard {
     }
 
     /**
+     * This method sets the item at the specified position as accessible.
+     * 
+     * @param x The first coordinate.
+     * @param y The second coordinate.
+     */
+    public void resetItem(final int x, final int y) {
+        this.setItem(x, y, Markers.ACCESSIBLE);
+    }
+
+    /**
      * This method changes all the occurrences of the marker passed as a argument to
      * a ground marker.
      * 
@@ -355,5 +387,14 @@ public class GameBoard {
      */
     public void resetAllItems(final Markers markerToChange) {
         this.changeAllItems(markerToChange, Markers.ACCESSIBLE);
+    }
+
+    /**
+     * This method sets all the BoardPoint objects marker to accessible.
+     * 
+     * @param points A List<BoardPoint> that have to get the marker changed.
+     */
+    public void resetAllItems(final List<BoardPoint> points) {
+        this.changeAllItems(points, Markers.ACCESSIBLE);
     }
 }

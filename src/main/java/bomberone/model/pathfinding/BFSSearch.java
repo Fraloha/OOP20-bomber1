@@ -6,22 +6,39 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import bomberone.model.common.Direction;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.GameBoard;
 import bomberone.model.pathfinding.navigation.Node;
 import bomberone.model.pathfinding.navigation.NodeImpl;
 import bomberone.model.pathfinding.navigation.PathFinder;
-import bomberone.model.bombergameboard.BomberOneBoard;
 
 public final class BFSSearch implements PathFinder {
 
+    /**
+     * This constant is the index of the first node of the discovered node list.
+     */
+    private static final int FIRST_NODE = 0;
+
+    private GameBoard map;
     private List<BoardPoint> exploredNodes;
     private List<Node> discoveredNodes;
 
     /**
      * Creates a new BFSSearch object.
+     * 
+     * @param map The game map.
      */
-    public BFSSearch() {
+    public BFSSearch(GameBoard map) {
+        this.map = map;
         this.exploredNodes = new LinkedList<BoardPoint>();
         this.discoveredNodes = new LinkedList<Node>();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
+    @Override
+    public void setMap(GameBoard newMap) {
+        this.map = newMap;
     }
 
     /**
@@ -45,7 +62,7 @@ public final class BFSSearch implements PathFinder {
             newY--;
         }
 
-        return BomberOneBoard.getInstance().getItem(newX, newY);
+        return this.map.getItem(newX, newY);
     }
 
     /**
@@ -80,7 +97,7 @@ public final class BFSSearch implements PathFinder {
 
             if (!positionToCheck.isEmpty()) {
                 if (!this.explored(positionToCheck.get())) {
-                    if (BomberOneBoard.getInstance().isAccessible(positionToCheck.get().getX(), position.getY())) {
+                    if (this.map.isAccessible(positionToCheck.get().getX(), positionToCheck.get().getY())) {
                         this.discoveredNodes.add(new NodeImpl(currentDirection, positionToCheck.get(), currentNode));
                     }
                 }
@@ -101,8 +118,8 @@ public final class BFSSearch implements PathFinder {
 
         this.discoveredNodes.add(new NodeImpl(null, enemyLocation, null));
         while (!this.discoveredNodes.isEmpty()) {
-            currentNode = this.discoveredNodes.remove(0);
-            playerLocation = BomberOneBoard.getInstance().findSpotLocation();
+            currentNode = this.discoveredNodes.remove(BFSSearch.FIRST_NODE);
+            playerLocation = this.map.findSpotLocation();
 
             if (!playerLocation.isEmpty() && currentNode.getPosition().isEquals(playerLocation.get())) {
                 path = currentNode.getPath();

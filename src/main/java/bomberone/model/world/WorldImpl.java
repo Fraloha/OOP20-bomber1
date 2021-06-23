@@ -33,7 +33,7 @@ import bomberone.model.world.collection.GameObjectCollectionImpl;
 public class WorldImpl implements World {
 
     /**
-     * Costant to set the number of enemies.
+     * Constant to set the number of enemies.
      */
     private static final int ENEMYNUMBER = 3;
 

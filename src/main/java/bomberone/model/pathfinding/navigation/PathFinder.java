@@ -3,11 +3,19 @@ package bomberone.model.pathfinding.navigation;
 import java.util.List;
 import bomberone.model.common.Direction;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
+import bomberone.model.pathfinding.gameboard.GameBoard;
 
 /**
  * This interface defines a generic path finding algorithm.
  */
 public interface PathFinder {
+
+    /**
+     * This method sets a GameBoard object as a map.
+     * 
+     * @param newMap The map where the path finding will be performed.
+     */
+    void setMap(GameBoard newMap);
 
     /**
      * This method checks if the BoardPoint object passed as argument was already

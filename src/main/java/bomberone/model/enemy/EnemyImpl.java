@@ -98,7 +98,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
                     boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition.getX(),
                             enemyPosition.getY());
                     if (playerFound && this.behavior.getClass() == BasicBehavior.class) {
-                        this.behavior = new HardBehavior(this, new BFSSearch());
+                        this.behavior = new HardBehavior(this, new BFSSearch(BomberOneBoard.getInstance()));
                         this.setSpeed(HIGH_SPEED);
                     }
                 }
