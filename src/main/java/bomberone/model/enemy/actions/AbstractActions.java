@@ -10,62 +10,18 @@ import bomberone.model.common.Direction;
 public abstract class AbstractActions implements Actions {
 
     /* Fields. */
-    /**
-     * This constant is the amount of frames to wait until the next animation. This
-     * constant makes the animation as smooth as possible.
-     */
-    private static final int ANIMATION_FRAME_QUANTITY = 10;
 
     /**
      * The enemy object that uses an instance of AbstractActions.
      */
     private Enemy selectedEnemy;
-    private int animationCounter;
 
     /* Constructors. */
     public AbstractActions(final Enemy newEnemy) {
-        this.animationCounter = 0;
         this.selectedEnemy = newEnemy;
     }
 
     /* Methods. */
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setAnimation() {
-        if (this.animationCounter == AbstractActions.ANIMATION_FRAME_QUANTITY) {
-            this.animationCounter = 0;
-            this.selectedEnemy.setAnimationIndex(this.selectedEnemy.getAnimationIndex() + 1);
-        } else {
-            this.animationCounter++;
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void setSprite() {
-        if (this.selectedEnemy.getDir() == Direction.UP) {
-            this.selectedEnemy.setDirectionIndex(3);
-        } else if (this.selectedEnemy.getDir() == Direction.RIGHT) {
-            this.selectedEnemy.setDirectionIndex(2);
-        } else if (this.selectedEnemy.getDir() == Direction.LEFT) {
-            this.selectedEnemy.setDirectionIndex(1);
-        } else {
-            this.selectedEnemy.setDirectionIndex(0);
-        }
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public void manageAnimations() {
-        this.setAnimation();
-        this.setSprite();
-    }
 
     /**
      * {@inheritDoc}

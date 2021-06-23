@@ -49,12 +49,9 @@ public final class BFSSearch implements PathFinder {
     }
 
     /**
-     * This method checks if the BoardPoint object passed as argument was already
-     * explored.
-     * 
-     * @param pointToCheck The point to check.
-     * @return true if the point was already explored, otherwise false.
+     * {@inheritDoc}
      */
+    @Override
     public boolean explored(final BoardPoint pointToCheck) {
         boolean result = false;
         Iterator<BoardPoint> iterator = this.exploredNodes.iterator();
@@ -71,12 +68,9 @@ public final class BFSSearch implements PathFinder {
     }
 
     /**
-     * This method adds new positions to check in the search algorithm. In
-     * particular, this method builds the tree or graph, where the searching
-     * algorithm can be performed.
-     * 
-     * @param currentNode The node from which the neighbors are searched.
+     * {@inheritDoc}
      */
+    @Override
     public void addTargets(final Node currentNode) {
         Optional<BoardPoint> positionToCheck;
         BoardPoint position = currentNode.getPosition();
@@ -111,7 +105,6 @@ public final class BFSSearch implements PathFinder {
             playerLocation = BomberOneBoard.getInstance().findSpotLocation();
 
             if (!playerLocation.isEmpty() && currentNode.getPosition().isEquals(playerLocation.get())) {
-                // this.discoveredNodes.add(currentNode);
                 path = currentNode.getPath();
                 break;
             }

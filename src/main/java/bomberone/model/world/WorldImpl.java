@@ -89,7 +89,8 @@ public class WorldImpl implements World {
         for (int y = 0; y < WorldImpl.DIMENSION; y++) {
             for (int x = 0; x < WorldImpl.DIMENSION; x++) {
                 if (this.mapLayout.get(y).get(x).equals("H")) {
-                    this.collection.spawn(this.objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
+                    this.collection.spawn(
+                            this.objectFactory.createHardWall(new P2d(x * WorldImpl.FRAME, y * WorldImpl.FRAME)));
                 }
             }
         }

@@ -24,13 +24,14 @@ import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.controllers.rank.RankController;
+import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 import javafx.scene.image.Image;
 
 /**
  * This is the class that defines the view of the ranks.
  */
-public final class RankView extends ViewImpl {
+public final class RankViewImpl extends ViewImpl implements RankView {
 
     /* Fields. */
     /**
@@ -107,35 +108,31 @@ public final class RankView extends ViewImpl {
         this.loadRanks();
 
         // Setting the initial rank to show.
-        this.currentRank = this.getController().getModel().getCurrentMatch().getDifficulty().ordinal();
+        try {
+            this.currentRank = ((RankController) this.getController()).getMatchDifficulty().ordinal();
+        } catch(Exception e) {
+            this.currentRank = Difficulty.EASY.ordinal();
+        }
+
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-
+    
     /**
-     * This method sets an Image object to an ImageView object, on the basis of a
-     * boolean value. If the first parameter is true, the "verified" argument is set
-     * as the image of the ImageView object, otherwise the "notVerified" argument is
-     * set.
-     * 
-     * @param set         The boolean value that acts like a condition.
-     * @param verified    The Image object that has to be set if the "set" argument
-     *                    is true.
-     * @param notVerified The Image object that has to be set if the "set argument
-     *                    is false.
-     * @param imageToSet  The ImageView where the second or third argument has to be
-     *                    set.
+     * {@inheritDoc}
      */
-    private void setButton(final boolean set, final Image verified, final Image notVerified,
+    @Override
+    public void setButton(final boolean set, final Image verified, final Image notVerified,
             final ImageView imageToSet) {
         Image image = set ? verified : notVerified;
         imageToSet.setImage(image);
     }
 
     /**
-     * This method sets the initial images at the form initialization.
+     * {@inheritDoc}
      */
-    private void setButtonImages() {
+    @Override
+    public void setButtonImages() {
         this.setButton(false, GameImages.PREV_SET.getImage(), GameImages.PREV_UNSET.getImage(),
                 this.imageViewPreviousButton);
         this.setButton(false, GameImages.NEXT_SET.getImage(), GameImages.NEXT_UNSET.getImage(),
@@ -144,9 +141,10 @@ public final class RankView extends ViewImpl {
     }
 
     /**
-     * This method sets all the buttons event handlers.
+     * {@inheritDoc}
      */
-    private void setButtonsEventHandlers() {
+    @Override
+    public void setButtonsEventHandlers() {
         this.imageViewPreviousButton.setOnMouseEntered(e -> {
             setButton(true, this.imagesPrevButtons[0], this.imagesPrevButtons[1], this.imageViewPreviousButton);
         });
@@ -165,11 +163,10 @@ public final class RankView extends ViewImpl {
     }
 
     /**
-     * This method initiliaze the TableView object, setting the font and the style.
-     * 
-     * @param fontToSet The font of the cells.
+     * {@inheritDoc}
      */
-    private void tableViewInitialization(final Font fontToSet) {
+    @Override
+    public void tableViewInitialization(final Font fontToSet) {
 
         this.tableView.setEditable(false);
         this.tableViewPlayers.setEditable(false);
@@ -230,12 +227,13 @@ public final class RankView extends ViewImpl {
     }
 
     /**
-     * This method loads all the images that have to be set in the view.
+     * {@inheritDoc}
      */
-    private void loadImages() {
-        this.rankDifficultyImages = new Image[RankView.RANKS];
-        this.imagesPrevButtons = new Image[RankView.BUTTONS_IMAGES];
-        this.imagesNextButtons = new Image[RankView.BUTTONS_IMAGES];
+    @Override
+    public void loadImages() {
+        this.rankDifficultyImages = new Image[RankViewImpl.RANKS];
+        this.imagesPrevButtons = new Image[RankViewImpl.BUTTONS_IMAGES];
+        this.imagesNextButtons = new Image[RankViewImpl.BUTTONS_IMAGES];
 
         // Loading the images.
         this.rankDifficultyImages[0] = GameImages.EASYMODE.getImage();
@@ -250,9 +248,10 @@ public final class RankView extends ViewImpl {
     }
 
     /**
-     * This method loads the ranks.
+     * {@inheritDoc}
      */
-    private void loadRanks() {
+    @Override
+    public void loadRanks() {
         // Loading the ranks.
         ObservableList<User> standardRank = FXCollections
                 .observableList(((RankController) this.getController()).getStdRank());
@@ -276,30 +275,38 @@ public final class RankView extends ViewImpl {
     }
 
     /**
-     * This method changes the rank to visualize on the basis of the click event in
-     * the next or previous buttons.
-     * 
-     * @param next This arguments has to be true if the next rank (a more difficult
-     *             mode rank) is to be showed, otherwise false to visualize the
-     *             previous rank (a less difficult mode rank).
+     * {@inheritDoc}
      */
-    private void changeRank(final boolean next) {
+    @Override
+    public void changeRank(final boolean next) {
         // Checking if the user wants to watch the next rank or the previous.
-        this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankView.RANKS;
+        this.currentRank = Math.abs((next ? this.currentRank + 1 : this.currentRank - 1)) % RankViewImpl.RANKS;
 
         // Setting the right image and rank.
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onNextClicked() {
         this.changeRank(true);
     }
-
+    
+    /**
+     * {@inheritDoc}
+     */
+    @Override
     public void onPreviousClicked() {
         this.changeRank(false);
     }
