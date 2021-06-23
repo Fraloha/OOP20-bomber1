@@ -43,7 +43,7 @@ public final class BasicBehavior extends AbstractActions {
             // Resetting the counter.
             this.nextDirectionCounter = 0;
         }
-        
+
         this.getEnemy().setAnimation();
         this.nextDirectionCounter++;
         this.nextMove();

@@ -25,7 +25,7 @@ public final class BFSSearch implements PathFinder {
     }
 
     /**
-     * This method gets the neighbor BoardPoint at the specified direction
+     * This method gets the neighbor BoardPoint at the specified direction.
      * 
      * @param currentPosition  A BoardPoint object.
      * @param directionToCheck The direction that specify the neighbor.

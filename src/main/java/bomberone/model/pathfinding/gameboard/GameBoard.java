@@ -144,8 +144,11 @@ public class GameBoard {
     /**
      * This method sets a marker to a specified position.
      * 
-     * @param locationToSet the position where the marker has to be set.
+     * 
      * @param marker        the marker to set.
+     * @param x coordinate of the position.
+     * @param y coordinate of the position.
+     * @return item
      */
     public boolean setItem(final int x, final int y, final Markers marker) {
         Optional<BoardPoint> item = this.getItem(x, y);
@@ -262,7 +265,8 @@ public class GameBoard {
     /**
      * This method sets the player position in the game board.
      * 
-     * @param newPosition The new position of the player.
+     * @param x The new coordinate x of the position of the player.
+     * @param y The new coordinate x of the position of the player.
      */
     public void setSpotLocation(final int x, final int y) {
         this.resetItem(Markers.SPOT);
