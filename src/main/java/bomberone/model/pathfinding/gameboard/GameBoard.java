@@ -31,7 +31,7 @@ public class GameBoard {
         }
     }
 
-    public GameBoard(final List<List<String>> mapLayout) {
+    public GameBoard(final List<List<String>> mapLayout, final char notAccessibleItem) {
         this.rows = mapLayout.size();
         this.columns = mapLayout.get(0).size();
         this.currentGameBoard = new ArrayList<ArrayList<BoardPoint>>();
@@ -41,8 +41,8 @@ public class GameBoard {
             this.currentGameBoard.add(new ArrayList<BoardPoint>());
             for (int j = 0; j < this.columns; j++) {
 
-                BoardPoint newPoint = new BoardPointImpl(j, i);
-                if (mapLayout.get(j).get(i).equals("H")) {
+                BoardPoint newPoint = new BoardPointImpl(i, j);
+                if (mapLayout.get(i).get(j).equals(String.valueOf(notAccessibleItem))) {
                     newPoint.setMarker(Markers.NOTACCESSIBLE);
                 } else {
                     newPoint.setMarker(Markers.ACCESSIBLE);

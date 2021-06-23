@@ -23,7 +23,7 @@ public final class BomberOneBoard extends GameBoard {
     private static final BomberOneBoard SINGLETON = new BomberOneBoard();
 
     private BomberOneBoard() {
-        super(Maps.MAP1.getList());
+        super(Maps.MAP1.getList(), 'H');
     }
 
     /**
