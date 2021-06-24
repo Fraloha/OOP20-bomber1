@@ -327,7 +327,7 @@ public class GameBoard {
      * 
      * @param points    A List<BoardPoint> objects that have to get the marker
      *                  changed.
-     * @param newMarker The new marker.
+     * 
      */
     public void changeAllItems(final List<BoardPoint> points) {
         boolean result;

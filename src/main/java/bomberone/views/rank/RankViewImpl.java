@@ -24,7 +24,6 @@ import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.controllers.rank.RankController;
-import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 import javafx.scene.image.Image;
 
@@ -115,14 +114,14 @@ public final class RankViewImpl extends ViewImpl implements RankView {
         // Setting the initial rank to show.
         try {
             this.currentRank = ((RankController) this.getController()).getMatchDifficulty().ordinal();
-        } catch(Exception e) {
+        } catch (Exception e) {
             this.currentRank = RankViewImpl.DEFAULT_RANK;
         }
 
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -291,7 +290,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -299,7 +298,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
     public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -307,7 +306,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
     public void onNextClicked() {
         this.changeRank(true);
     }
-    
+
     /**
      * {@inheritDoc}
      */

@@ -40,10 +40,13 @@ public class TestPathfinding {
      */
     private static final int POS_1 = 1;
 
-    BoardPoint startPosition;
+    private BoardPoint startPosition;
     private PathFinder pathFinder;
     private GameBoard testBoard;
 
+    /**
+     * 
+     */
     @BeforeEach
     public void init() {
         List<List<String>> boardToSet = new LinkedList<List<String>>();

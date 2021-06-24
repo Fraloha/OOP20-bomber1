@@ -21,6 +21,7 @@ public final class HardBehavior extends AbstractActions {
      * Creates a new IntermediateBehavior object.
      * 
      * @param newEnemy The enemy that uses this behavior.
+     * @param finder
      */
     public HardBehavior(final Enemy newEnemy, final PathFinder finder) {
         super(newEnemy);

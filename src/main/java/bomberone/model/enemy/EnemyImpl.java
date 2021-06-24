@@ -38,7 +38,7 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
     private static final int SECONDS_TO_WAIT = 4;
 
     /**
-     * This constant is the number of frames per second
+     * This constant is the number of frames per second.
      */
     private static final int FRAME_PER_SECOND = 60;
 

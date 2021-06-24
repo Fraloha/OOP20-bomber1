@@ -27,7 +27,7 @@ public final class BFSSearch implements PathFinder {
      * 
      * @param map The game map.
      */
-    public BFSSearch(GameBoard map) {
+    public BFSSearch(final GameBoard map) {
         this.map = map;
         this.exploredNodes = new LinkedList<BoardPoint>();
         this.discoveredNodes = new LinkedList<Node>();
@@ -37,7 +37,7 @@ public final class BFSSearch implements PathFinder {
      * {@inheritDoc}
      */
     @Override
-    public void setMap(GameBoard newMap) {
+    public void setMap(final GameBoard newMap) {
         this.map = newMap;
     }
 
