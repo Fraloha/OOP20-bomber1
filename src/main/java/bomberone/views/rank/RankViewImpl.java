@@ -49,6 +49,11 @@ public final class RankViewImpl extends ViewImpl implements RankView {
      */
     private static final int BUTTONS_IMAGES = 2;
 
+    /**
+    *  This constant indicates the default selected rank.
+    */
+    private static final int DEFAULT_RANK = 0;
+
     private int currentRank;
     private Image[] rankDifficultyImages;
     private Image[] imagesPrevButtons;
@@ -111,7 +116,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
         try {
             this.currentRank = ((RankController) this.getController()).getMatchDifficulty().ordinal();
         } catch(Exception e) {
-            this.currentRank = Difficulty.EASY.ordinal();
+            this.currentRank = RankViewImpl.DEFAULT_RANK;
         }
 
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
