@@ -28,13 +28,6 @@ public interface BoardPoint {
     Markers getMarker();
 
     /**
-     * This method gets the current marker's value.
-     * 
-     * @return a character that is the marker value.
-     */
-    char getMarkerValue();
-
-    /**
      * This method sets the BoardPoint's first coordinate.
      * 
      * @param newX The new value of the first coordinate.

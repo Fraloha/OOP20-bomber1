@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.LinkedList;
 import bomberone.model.pathfinding.gameboard.GameBoard;
+import bomberone.model.pathfinding.gameboard.Markers;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.pathfinding.gameboard.BoardPointImpl;
 import bomberone.model.pathfinding.navigation.PathFinder;
@@ -81,7 +82,11 @@ public class TestPathfinding {
         pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_3, TestPathfinding.POS_8));
         pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_1, TestPathfinding.POS_8));
         pointsToReset.add(new BoardPointImpl(TestPathfinding.POS_1, TestPathfinding.POS_3));
-        this.testBoard.resetAllItems(pointsToReset);
+        for (BoardPoint point : pointsToReset) {
+            point.setMarker(Markers.ACCESSIBLE);
+        }
+
+        this.testBoard.changeAllItems(pointsToReset);
 
         this.pathFinder = new BFSSearch(this.testBoard);
         List<Direction> path = this.pathFinder.searchPath(startPosition);

@@ -36,7 +36,7 @@ public enum Markers {
         this.marker = markerToSet;
     }
 
-    public char getMarker() {
+    public char getValue() {
         return this.marker;
     }
 }

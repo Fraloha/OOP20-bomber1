@@ -45,7 +45,7 @@ public class GameBoard {
                 String item = mapLayout.get(i).get(j);
 
                 for (Markers currentMarker : Markers.values()) {
-                    if (String.valueOf(currentMarker.getMarker()).equals(item)) {
+                    if (String.valueOf(currentMarker.getValue()).equals(item)) {
                         newPoint.setMarker(currentMarker);
                         break;
                     }
@@ -142,25 +142,6 @@ public class GameBoard {
         }
 
         return result;
-    }
-
-    /**
-     * This method sets a marker to a specified position.
-     * 
-     * 
-     * @param marker the marker to set.
-     * @param x      coordinate of the position.
-     * @param y      coordinate of the position.
-     * @return item
-     */
-    public boolean setItem(final int x, final int y, final Markers marker) {
-        Optional<BoardPoint> item = this.getItem(x, y);
-
-        if (!item.isEmpty()) {
-            this.currentGameBoard.get(x).get(y).setMarker(marker);
-        }
-
-        return !item.isEmpty();
     }
 
     /**
@@ -348,11 +329,11 @@ public class GameBoard {
      *                  changed.
      * @param newMarker The new marker.
      */
-    public void changeAllItems(final List<BoardPoint> points, final Markers newMarker) {
+    public void changeAllItems(final List<BoardPoint> points) {
         boolean result;
 
         for (BoardPoint currentPoint : points) {
-            result = this.setItem(currentPoint.getX(), currentPoint.getY(), newMarker);
+            result = this.setItem(currentPoint);
             if (!result) {
                 break;
             }
@@ -376,7 +357,7 @@ public class GameBoard {
      * @param y The second coordinate.
      */
     public void resetItem(final int x, final int y) {
-        this.setItem(x, y, Markers.ACCESSIBLE);
+        this.setItem(new BoardPointImpl(x, y, Markers.ACCESSIBLE));
     }
 
     /**
@@ -387,14 +368,5 @@ public class GameBoard {
      */
     public void resetAllItems(final Markers markerToChange) {
         this.changeAllItems(markerToChange, Markers.ACCESSIBLE);
-    }
-
-    /**
-     * This method sets all the BoardPoint objects marker to accessible.
-     * 
-     * @param points A List<BoardPoint> that have to get the marker changed.
-     */
-    public void resetAllItems(final List<BoardPoint> points) {
-        this.changeAllItems(points, Markers.ACCESSIBLE);
     }
 }

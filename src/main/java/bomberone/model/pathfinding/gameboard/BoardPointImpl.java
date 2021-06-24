@@ -80,14 +80,6 @@ public class BoardPointImpl implements BoardPoint {
      * {@inheritDoc}
      */
     @Override
-    public char getMarkerValue() {
-        return this.pointMarker.getMarker();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
     public void setX(final int newX) {
         this.x = newX;
     }
