@@ -1,6 +1,7 @@
 package bomberone.model.bombergameboard;
 
 import bomberone.model.common.P2d;
+
 import bomberone.model.common.Maps;
 import bomberone.model.pathfinding.gameboard.BoardPoint;
 import bomberone.model.pathfinding.gameboard.BoardPointImpl;
@@ -21,6 +22,14 @@ public final class BomberOneBoard extends GameBoard {
 
     private BomberOneBoard() {
         super(Maps.MAP1.getList());
+
+        for (int i = 0; i < this.getRowsQuantity(); i++) {
+            for (int j = 0; j < this.getColumnsQuantity(); j++) {
+                if (Maps.MAP1.getList().get(i).get(j).equals("H")) {
+                    this.setItem(new BoardPointImpl(i, j, Markers.NOTACCESSIBLE));
+                }
+            }
+        }
     }
 
     /**
