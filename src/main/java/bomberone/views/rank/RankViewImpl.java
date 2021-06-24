@@ -24,7 +24,6 @@ import bomberone.views.ViewImpl;
 import bomberone.views.ViewType;
 import bomberone.views.ViewsSwitcher;
 import bomberone.controllers.rank.RankController;
-import bomberone.model.match.Difficulty;
 import bomberone.model.user.User;
 import javafx.scene.image.Image;
 
@@ -48,6 +47,11 @@ public final class RankViewImpl extends ViewImpl implements RankView {
      * This constant indicates the size of the button images.
      */
     private static final int BUTTONS_IMAGES = 2;
+
+    /**
+    *  This constant indicates the default selected rank.
+    */
+    private static final int DEFAULT_RANK = 0;
 
     private int currentRank;
     private Image[] rankDifficultyImages;
@@ -110,14 +114,14 @@ public final class RankViewImpl extends ViewImpl implements RankView {
         // Setting the initial rank to show.
         try {
             this.currentRank = ((RankController) this.getController()).getMatchDifficulty().ordinal();
-        } catch(Exception e) {
-            this.currentRank = Difficulty.EASY.ordinal();
+        } catch (Exception e) {
+            this.currentRank = RankViewImpl.DEFAULT_RANK;
         }
 
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -286,7 +290,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
         this.imageViewDifficulty.setImage(this.rankDifficultyImages[this.currentRank]);
         this.tableView.setItems(this.ranks.get(this.currentRank));
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -294,7 +298,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
     public void onBackToMainMenuClicked() {
         ViewsSwitcher.getInstance().switchView(this.getStage(), ViewType.HOME, this.getController().getModel());
     }
-    
+
     /**
      * {@inheritDoc}
      */
@@ -302,7 +306,7 @@ public final class RankViewImpl extends ViewImpl implements RankView {
     public void onNextClicked() {
         this.changeRank(true);
     }
-    
+
     /**
      * {@inheritDoc}
      */
