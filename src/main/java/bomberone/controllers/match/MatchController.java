@@ -16,7 +16,7 @@ import bomberone.model.timer.Timer;
 import bomberone.model.user.User;
 
 /**
- * The Game Controller of the MatchView that contains the Gameloop and handles
+ * The Match Controller of the MatchView that contains the Gameloop and handles
  * Events & Command.
  * 
  *

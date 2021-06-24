@@ -2,7 +2,7 @@
 
 ## Installation
 
-1. Download the last realease of BomberOne.
+1. Download the last release of BomberOne.
 2. Execute "java -jar 'BomberOne.jar" from your terminal.
 3. Enjoy the game!
 
@@ -18,7 +18,7 @@ Whenever the Bomber is killed, all PowerUps (except TimerInc) will be deactivate
 
 ## Levels
 At the beginning of the game it will be possible to choose between two different levels:
-- The first one called **"Normal"** is the less difficult, will generates 3 enemies, that, once dead, will no longer be present in the map.
+- The first one called **"Easy"** is the less difficult, will generates 3 enemies, that, once dead, will no longer be present in the map.
 - The second one, called **"Hard"**, the most difficult, will generetes more boxes and the enemies can be respawned until until there will be boxes on the map. 
 
 

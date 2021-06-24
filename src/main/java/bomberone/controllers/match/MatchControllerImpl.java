@@ -21,7 +21,7 @@ import bomberone.tools.RankLoader;
 import bomberone.views.match.MatchView;
 
 /**
- * An implementation of GameController.
+ * An implementation of MatchController.
  *
  */
 public class MatchControllerImpl extends ControllerImpl implements MatchController, Runnable {
