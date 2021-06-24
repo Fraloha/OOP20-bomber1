@@ -3,7 +3,7 @@
 ## Installation
 
 1. Download the last release of BomberOne.
-2. Execute "java -jar 'BomberOne.jar" from your terminal.
+2. Execute "java -jar 'OOP20-bomber1-all.jar" from your terminal.
 3. Enjoy the game!
 
 ## Rules
