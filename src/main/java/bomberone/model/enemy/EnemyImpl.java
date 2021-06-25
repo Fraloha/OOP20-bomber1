@@ -51,12 +51,14 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
      * This constant is the enemy speed in the hard mode.
      */
     private static final int HIGH_SPEED = 200;
+
     private Difficulty mode;
     private Actions behavior;
     private int frameCounter;
     private int animationCounter;
     private int nextMoveFrameCounter;
     private boolean isHittable = false;
+    private boolean playerFound = false;
 
     /* Constructors. */
     public EnemyImpl(final P2d position, final int lifes, final Difficulty gameMode) {
@@ -69,8 +71,12 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         // move.
         this.nextMoveFrameCounter = NEXT_MOVE_FRAME_QUANTITY;
 
+        if (gameMode.equals(Difficulty.EASY)) {
+            this.setSpeed(LOW_SPEED);
+        } else {
+            this.setSpeed(HIGH_SPEED);
+        }
         this.mode = gameMode;
-        this.setSpeed(LOW_SPEED);
         this.animationCounter = 0;
         this.behavior = new BasicBehavior(this);
     }
@@ -86,20 +92,20 @@ public final class EnemyImpl extends MoveableObjectImpl implements Enemy {
         if (this.frameCounter > 0) {
             this.frameCounter--;
         } else {
+
             if (!this.isHittable) {
                 this.isHittable = true;
             }
 
             // The enemy has to wait some frames before the next move.
             if (++this.nextMoveFrameCounter >= NEXT_MOVE_FRAME_QUANTITY) {
-
                 if (this.mode.equals(Difficulty.HARD)) {
-                    BoardPoint enemyPosition = BomberOneBoard.getInstance().convertPosition(this.getPosition());
-                    boolean playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition.getX(),
-                            enemyPosition.getY());
                     if (playerFound && this.behavior.getClass() == BasicBehavior.class) {
                         this.behavior = new HardBehavior(this, new BFSSearch(BomberOneBoard.getInstance()));
-                        this.setSpeed(HIGH_SPEED);
+                    } else {
+                        BoardPoint enemyPosition = BomberOneBoard.getInstance().convertPosition(this.getPosition());
+                        playerFound = BomberOneBoard.getInstance().isSpotVisible(enemyPosition.getX(),
+                                enemyPosition.getY());
                     }
                 }
                 this.nextMoveFrameCounter = 0;
